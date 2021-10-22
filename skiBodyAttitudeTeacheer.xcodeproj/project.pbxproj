@@ -1,0 +1,1205 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */; };
+		BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C93F92722636B007D5325 /* ContentView.swift */; };
+		BA3C93FC2722636E007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FB2722636E007D5325 /* Assets.xcassets */; };
+		BA3C93FF2722636E007D5325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */; };
+		BA3C94092722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94082722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift */; };
+		BA3C94132722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94122722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift */; };
+		BA3C94152722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94142722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift */; };
+		BA3C94192722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA3C941E2722636F007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C941D2722636F007D5325 /* Assets.xcassets */; };
+		BA3C94242722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */; };
+		BA3C942B2722636F007D5325 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C942A2722636F007D5325 /* ContentView.swift */; };
+		BA3C942D2722636F007D5325 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C942C2722636F007D5325 /* NotificationController.swift */; };
+		BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C942E2722636F007D5325 /* NotificationView.swift */; };
+		BA3C94312722636F007D5325 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94302722636F007D5325 /* ComplicationController.swift */; };
+		BA3C943327226371007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C943227226371007D5325 /* Assets.xcassets */; };
+		BA3C943627226371007D5325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C943527226371007D5325 /* Preview Assets.xcassets */; };
+		BA3C944227226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */; };
+		BA3C944C27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */; };
+		BA3C944E27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BA3C94052722636E007D5325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3C93F32722636B007D5325;
+			remoteInfo = skiBodyAttitudeTeacheer;
+		};
+		BA3C940F2722636E007D5325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3C93F32722636B007D5325;
+			remoteInfo = skiBodyAttitudeTeacheer;
+		};
+		BA3C941A2722636E007D5325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3C94172722636E007D5325;
+			remoteInfo = "skiBodyAttitudeTeacheer WatchKit App";
+		};
+		BA3C94252722636F007D5325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3C94222722636F007D5325;
+			remoteInfo = "skiBodyAttitudeTeacheer WatchKit Extension";
+		};
+		BA3C943E27226371007D5325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3C94222722636F007D5325;
+			remoteInfo = "skiBodyAttitudeTeacheer WatchKit Extension";
+		};
+		BA3C944827226371007D5325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3C94172722636E007D5325;
+			remoteInfo = "skiBodyAttitudeTeacheer WatchKit App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BA3C945427226371007D5325 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BA3C94242722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C945827226371007D5325 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BA3C94192722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BA3C93F42722636B007D5325 /* skiBodyAttitudeTeacheer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skiBodyAttitudeTeacheer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerApp.swift; sourceTree = "<group>"; };
+		BA3C93F92722636B007D5325 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA3C93FB2722636E007D5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = skiBodyAttitudeTeacheerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C94082722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerTests.swift; sourceTree = "<group>"; };
+		BA3C940E2722636E007D5325 /* skiBodyAttitudeTeacheerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = skiBodyAttitudeTeacheerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C94122722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerUITests.swift; sourceTree = "<group>"; };
+		BA3C94142722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C941D2722636F007D5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerApp.swift; sourceTree = "<group>"; };
+		BA3C942A2722636F007D5325 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA3C942C2722636F007D5325 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		BA3C942E2722636F007D5325 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		BA3C94302722636F007D5325 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		BA3C943227226371007D5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA3C943527226371007D5325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BA3C943727226371007D5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA3C943827226371007D5325 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BA3C943D27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppTests.swift; sourceTree = "<group>"; };
+		BA3C944727226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
+		BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA3C93F12722636B007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C94012722636E007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C940B2722636E007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C94202722636F007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C943A27226371007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C944427226371007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA3C93EB2722636B007D5325 = {
+			isa = PBXGroup;
+			children = (
+				BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */,
+				BA3C94072722636E007D5325 /* skiBodyAttitudeTeacheerTests */,
+				BA3C94112722636E007D5325 /* skiBodyAttitudeTeacheerUITests */,
+				BA3C941C2722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */,
+				BA3C94272722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */,
+				BA3C944027226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */,
+				BA3C944A27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests */,
+				BA3C93F52722636B007D5325 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA3C93F52722636B007D5325 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C93F42722636B007D5325 /* skiBodyAttitudeTeacheer.app */,
+				BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */,
+				BA3C940E2722636E007D5325 /* skiBodyAttitudeTeacheerUITests.xctest */,
+				BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */,
+				BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */,
+				BA3C943D27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests.xctest */,
+				BA3C944727226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
+				BA3C93F92722636B007D5325 /* ContentView.swift */,
+				BA3C93FB2722636E007D5325 /* Assets.xcassets */,
+				BA3C93FD2722636E007D5325 /* Preview Content */,
+			);
+			path = skiBodyAttitudeTeacheer;
+			sourceTree = "<group>";
+		};
+		BA3C93FD2722636E007D5325 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA3C94072722636E007D5325 /* skiBodyAttitudeTeacheerTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C94082722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift */,
+			);
+			path = skiBodyAttitudeTeacheerTests;
+			sourceTree = "<group>";
+		};
+		BA3C94112722636E007D5325 /* skiBodyAttitudeTeacheerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C94122722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift */,
+				BA3C94142722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift */,
+			);
+			path = skiBodyAttitudeTeacheerUITests;
+			sourceTree = "<group>";
+		};
+		BA3C941C2722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C941D2722636F007D5325 /* Assets.xcassets */,
+			);
+			path = "skiBodyAttitudeTeacheer WatchKit App";
+			sourceTree = "<group>";
+		};
+		BA3C94272722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
+				BA3C942A2722636F007D5325 /* ContentView.swift */,
+				BA3C942C2722636F007D5325 /* NotificationController.swift */,
+				BA3C942E2722636F007D5325 /* NotificationView.swift */,
+				BA3C94302722636F007D5325 /* ComplicationController.swift */,
+				BA3C943227226371007D5325 /* Assets.xcassets */,
+				BA3C943727226371007D5325 /* Info.plist */,
+				BA3C943827226371007D5325 /* PushNotificationPayload.apns */,
+				BA3C943427226371007D5325 /* Preview Content */,
+			);
+			path = "skiBodyAttitudeTeacheer WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		BA3C943427226371007D5325 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C943527226371007D5325 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA3C944027226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */,
+			);
+			path = "skiBodyAttitudeTeacheer WatchKit AppTests";
+			sourceTree = "<group>";
+		};
+		BA3C944A27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */,
+				BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */,
+			);
+			path = "skiBodyAttitudeTeacheer WatchKit AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C945927226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer" */;
+			buildPhases = (
+				BA3C93F02722636B007D5325 /* Sources */,
+				BA3C93F12722636B007D5325 /* Frameworks */,
+				BA3C93F22722636B007D5325 /* Resources */,
+				BA3C945827226371007D5325 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA3C941B2722636E007D5325 /* PBXTargetDependency */,
+			);
+			name = skiBodyAttitudeTeacheer;
+			productName = skiBodyAttitudeTeacheer;
+			productReference = BA3C93F42722636B007D5325 /* skiBodyAttitudeTeacheer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BA3C94032722636E007D5325 /* skiBodyAttitudeTeacheerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C945C27226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheerTests" */;
+			buildPhases = (
+				BA3C94002722636E007D5325 /* Sources */,
+				BA3C94012722636E007D5325 /* Frameworks */,
+				BA3C94022722636E007D5325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA3C94062722636E007D5325 /* PBXTargetDependency */,
+			);
+			name = skiBodyAttitudeTeacheerTests;
+			productName = skiBodyAttitudeTeacheerTests;
+			productReference = BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BA3C940D2722636E007D5325 /* skiBodyAttitudeTeacheerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C945F27226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheerUITests" */;
+			buildPhases = (
+				BA3C940A2722636E007D5325 /* Sources */,
+				BA3C940B2722636E007D5325 /* Frameworks */,
+				BA3C940C2722636E007D5325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA3C94102722636E007D5325 /* PBXTargetDependency */,
+			);
+			name = skiBodyAttitudeTeacheerUITests;
+			productName = skiBodyAttitudeTeacheerUITests;
+			productReference = BA3C940E2722636E007D5325 /* skiBodyAttitudeTeacheerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C945527226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit App" */;
+			buildPhases = (
+				BA3C94162722636E007D5325 /* Resources */,
+				BA3C945427226371007D5325 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA3C94262722636F007D5325 /* PBXTargetDependency */,
+			);
+			name = "skiBodyAttitudeTeacheer WatchKit App";
+			productName = "skiBodyAttitudeTeacheer WatchKit App";
+			productReference = BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C945127226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit Extension" */;
+			buildPhases = (
+				BA3C941F2722636F007D5325 /* Sources */,
+				BA3C94202722636F007D5325 /* Frameworks */,
+				BA3C94212722636F007D5325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "skiBodyAttitudeTeacheer WatchKit Extension";
+			productName = "skiBodyAttitudeTeacheer WatchKit Extension";
+			productReference = BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		BA3C943C27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C946227226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit AppTests" */;
+			buildPhases = (
+				BA3C943927226371007D5325 /* Sources */,
+				BA3C943A27226371007D5325 /* Frameworks */,
+				BA3C943B27226371007D5325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA3C943F27226371007D5325 /* PBXTargetDependency */,
+			);
+			name = "skiBodyAttitudeTeacheer WatchKit AppTests";
+			productName = "skiBodyAttitudeTeacheer WatchKit AppTests";
+			productReference = BA3C943D27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BA3C944627226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA3C946527226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit AppUITests" */;
+			buildPhases = (
+				BA3C944327226371007D5325 /* Sources */,
+				BA3C944427226371007D5325 /* Frameworks */,
+				BA3C944527226371007D5325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA3C944927226371007D5325 /* PBXTargetDependency */,
+			);
+			name = "skiBodyAttitudeTeacheer WatchKit AppUITests";
+			productName = "skiBodyAttitudeTeacheer WatchKit AppUITests";
+			productReference = BA3C944727226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA3C93EC2722636B007D5325 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					BA3C93F32722636B007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					BA3C94032722636E007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = BA3C93F32722636B007D5325;
+					};
+					BA3C940D2722636E007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = BA3C93F32722636B007D5325;
+					};
+					BA3C94172722636E007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					BA3C94222722636F007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					BA3C943C27226371007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = BA3C94222722636F007D5325;
+					};
+					BA3C944627226371007D5325 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = BA3C94172722636E007D5325;
+					};
+				};
+			};
+			buildConfigurationList = BA3C93EF2722636B007D5325 /* Build configuration list for PBXProject "skiBodyAttitudeTeacheer" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BA3C93EB2722636B007D5325;
+			productRefGroup = BA3C93F52722636B007D5325 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */,
+				BA3C94032722636E007D5325 /* skiBodyAttitudeTeacheerTests */,
+				BA3C940D2722636E007D5325 /* skiBodyAttitudeTeacheerUITests */,
+				BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */,
+				BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */,
+				BA3C943C27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */,
+				BA3C944627226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BA3C93F22722636B007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C93FF2722636E007D5325 /* Preview Assets.xcassets in Resources */,
+				BA3C93FC2722636E007D5325 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C94022722636E007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C940C2722636E007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C94162722636E007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C941E2722636F007D5325 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C94212722636F007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C943627226371007D5325 /* Preview Assets.xcassets in Resources */,
+				BA3C943327226371007D5325 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C943B27226371007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C944527226371007D5325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA3C93F02722636B007D5325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
+				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C94002722636E007D5325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C94092722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C940A2722636E007D5325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C94132722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift in Sources */,
+				BA3C94152722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C941F2722636F007D5325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C942D2722636F007D5325 /* NotificationController.swift in Sources */,
+				BA3C942B2722636F007D5325 /* ContentView.swift in Sources */,
+				BA3C94312722636F007D5325 /* ComplicationController.swift in Sources */,
+				BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
+				BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C943927226371007D5325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C944227226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA3C944327226371007D5325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA3C944E27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift in Sources */,
+				BA3C944C27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA3C94062722636E007D5325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */;
+			targetProxy = BA3C94052722636E007D5325 /* PBXContainerItemProxy */;
+		};
+		BA3C94102722636E007D5325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */;
+			targetProxy = BA3C940F2722636E007D5325 /* PBXContainerItemProxy */;
+		};
+		BA3C941B2722636E007D5325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */;
+			targetProxy = BA3C941A2722636E007D5325 /* PBXContainerItemProxy */;
+		};
+		BA3C94262722636F007D5325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */;
+			targetProxy = BA3C94252722636F007D5325 /* PBXContainerItemProxy */;
+		};
+		BA3C943F27226371007D5325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */;
+			targetProxy = BA3C943E27226371007D5325 /* PBXContainerItemProxy */;
+		};
+		BA3C944927226371007D5325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */;
+			targetProxy = BA3C944827226371007D5325 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BA3C944F27226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BA3C945027226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		BA3C945227226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "skiBodyAttitudeTeacheer WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		BA3C945327226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "skiBodyAttitudeTeacheer WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		BA3C945627226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = skiBodyAttitudeTeacheer_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		BA3C945727226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = skiBodyAttitudeTeacheer_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		BA3C945A27226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer/Preview Content\"";
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA3C945B27226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer/Preview Content\"";
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA3C945D27226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skiBodyAttitudeTeacheer.app/skiBodyAttitudeTeacheer";
+			};
+			name = Debug;
+		};
+		BA3C945E27226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skiBodyAttitudeTeacheer.app/skiBodyAttitudeTeacheer";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA3C946027226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = skiBodyAttitudeTeacheer;
+			};
+			name = Debug;
+		};
+		BA3C946127226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = skiBodyAttitudeTeacheer;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA3C946327226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "koyakei.skiBodyAttitudeTeacheer-WatchKit-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skiBodyAttitudeTeacheer WatchKit Extension.appex/skiBodyAttitudeTeacheer WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		BA3C946427226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "koyakei.skiBodyAttitudeTeacheer-WatchKit-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skiBodyAttitudeTeacheer WatchKit Extension.appex/skiBodyAttitudeTeacheer WatchKit Extension";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		BA3C946627226371007D5325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "koyakei.skiBodyAttitudeTeacheer-WatchKit-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "skiBodyAttitudeTeacheer WatchKit App";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		BA3C946727226371007D5325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "koyakei.skiBodyAttitudeTeacheer-WatchKit-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "skiBodyAttitudeTeacheer WatchKit App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA3C93EF2722636B007D5325 /* Build configuration list for PBXProject "skiBodyAttitudeTeacheer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C944F27226371007D5325 /* Debug */,
+				BA3C945027226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C945127226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C945227226371007D5325 /* Debug */,
+				BA3C945327226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C945527226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C945627226371007D5325 /* Debug */,
+				BA3C945727226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C945927226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C945A27226371007D5325 /* Debug */,
+				BA3C945B27226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C945C27226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C945D27226371007D5325 /* Debug */,
+				BA3C945E27226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C945F27226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C946027226371007D5325 /* Debug */,
+				BA3C946127226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C946227226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C946327226371007D5325 /* Debug */,
+				BA3C946427226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA3C946527226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA3C946627226371007D5325 /* Debug */,
+				BA3C946727226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BA3C93EC2722636B007D5325 /* Project object */;
+}
