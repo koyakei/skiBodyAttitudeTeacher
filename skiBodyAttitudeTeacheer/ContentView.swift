@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack{
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Text("start")
+            }
+            .accessibilityLabel("Start")
+//            Button.init("Stop", action: <#T##() -> Void#>)
+        }
     }
 }
 

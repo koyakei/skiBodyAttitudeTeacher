@@ -13,5 +13,6 @@ struct skiBodyAttitudeTeacheerApp: App {
         WindowGroup {
             ContentView()
         }
+        
     }
 }
