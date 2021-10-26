@@ -20,6 +20,7 @@ class MotionWriter {
             FileManager.default.createFile(atPath: filePath.path, contents: nil, attributes: nil)
             let file = try FileHandle(forWritingTo: filePath)
             var header = ""
+            header += "date_now,"
             header += "acceleration_x,"
             header += "acceleration_y,"
             header += "acceleration_z,"
@@ -37,7 +38,6 @@ class MotionWriter {
             header += "rotation_y,"
             header += "rotation_z,"
             header += "time interval"
-            header += "date_now"
             header += "\n"
             file.write(header.data(using: .utf8)!)
             self.file = file
@@ -50,6 +50,9 @@ class MotionWriter {
     func write(_ motion: CMDeviceMotion) {
         guard let file = self.file else { return }
         var text = ""
+        let format = DateFormatter()
+            format.dateFormat = "HH:mm:ss.SSS"
+        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt)))"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -67,9 +70,6 @@ class MotionWriter {
         text += "\(motion.rotationRate.y),"
         text += "\(motion.rotationRate.z),"
         text += "\(motion.timestamp),"
-        let format = DateFormatter()
-            format.dateFormat = "HH:mm:ss.SSS"
-        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt)))"
         
         print(text)
         text += "\n"

@@ -13,6 +13,7 @@ let motionManager = CMMotionManager()
 let motionWriter = MotionWriter()
 let filename = MotionWriter.makeFilePath()
 struct ContentView: View {
+    @ObservedObject var connector = PhoneConnector()
     var body: some View {
         VStack{
         Button(action: start){
@@ -21,6 +22,11 @@ struct ContentView: View {
         Button(action: stop){
             Text("stop")
         }
+HStack {
+                Text("\(connector.count)")
+                Button(action: { self.connector.send() }) { Text("送信") }
+            }
+            Text("\(self.connector.receivedMessage)")
         }
         
     }

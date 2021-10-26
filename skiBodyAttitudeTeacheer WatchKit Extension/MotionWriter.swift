@@ -13,12 +13,14 @@ class MotionWriter {
     var file: FileHandle?
     var filePath: URL?
     var sample: Int = 0
+    let startAt : Date = Date.now
 
     func open(_ filePath: URL) {
         do {
             FileManager.default.createFile(atPath: filePath.path, contents: nil, attributes: nil)
             let file = try FileHandle(forWritingTo: filePath)
             var header = ""
+            header += "date_now,"
             header += "acceleration_x,"
             header += "acceleration_y,"
             header += "acceleration_z,"
@@ -47,6 +49,9 @@ class MotionWriter {
     func write(_ motion: CMDeviceMotion) {
         guard let file = self.file else { return }
         var text = ""
+        let format = DateFormatter()
+            format.dateFormat = "HH:mm:ss.SSS"
+        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt)))"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -84,7 +89,7 @@ class MotionWriter {
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd_HHmmss"
-        let filename = formatter.string(from: Date()) + ".csv"
+        let filename = "watch "+formatter.string(from: Date()) + ".csv"
         let fileUrl = url.appendingPathComponent(filename)
         print(fileUrl.absoluteURL)
         return fileUrl
