@@ -88,11 +88,11 @@ class MotionWriter {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
-    static func makeFilePath() -> URL {
+    static func makeFilePath(fileAlias: String) -> URL {
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd_HHmmss"
-        let filename = formatter.string(from: Date()) + ".csv"
+        let filename = formatter.string(from: Date()) + "\(fileAlias).csv"
         let fileUrl = url.appendingPathComponent(filename)
         print(fileUrl.absoluteURL)
         return fileUrl
