@@ -52,7 +52,7 @@ class WatchMotionWriter {
         var text = ""
         let format = DateFormatter()
             format.dateFormat = "HH:mm:ss.SSS"
-        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt)))"
+        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt))),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -69,8 +69,7 @@ class WatchMotionWriter {
 //        text += "\(motion.rotationRate.x),"
 //        text += "\(motion.rotationRate.y),"
 //        text += "\(motion.rotationRate.z),"
-        text += "\(motion.timestamp),"
-        
+        text += "\(motion.timestamp)"
         print(text)
         text += "\n"
         file.write(text.data(using: .utf8)!)

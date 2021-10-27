@@ -158,14 +158,14 @@ struct ContentView: View {
     }
 
     func startRecord(){
-//        motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
-//        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
-//        coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-//            motionWriter.write(motion!)
-//        }
-//        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-//            motionWriterHeadPhone.write(motion!)
-//        }
+        motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
+        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
+        coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
+            motionWriter.write(motion!)
+        }
+        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
+            motionWriterHeadPhone.write(motion!)
+        }
         
 //        sensorKitManager.request()
 //        sensorKitManager.fetch() // 10ms ごとにフェッチ
@@ -173,10 +173,10 @@ struct ContentView: View {
     }
     
     func stopRecord(){
-//        coreMotion.stopDeviceMotionUpdates()
-//        headphoneMotion.stopDeviceMotionUpdates()
-//        motionWriter.close()
-//        motionWriterHeadPhone.close()
+        coreMotion.stopDeviceMotionUpdates()
+        headphoneMotion.stopDeviceMotionUpdates()
+        motionWriter.close()
+        motionWriterHeadPhone.close()
         motionWriterWatch.close()
 //        sensorKitManager.stopRecording()
 
@@ -227,7 +227,9 @@ class WatchConnector: NSObject, ObservableObject, WCSessionDelegate {
         DispatchQueue.main.async {
             self.receivedMessage = "WATCH : \(message["motion"])"
             motionWriterWatch.write(
-                WatchMotion.init(timestamp: message["motion.timestamp"] as! Double, userAcceleration: CMAcceleration.init(x: message["motion.userAcceleration.x"] as! Double, y: message["motion.userAcceleration.y"] as! Double, z: message["motion.userAcceleration.z"] as! Double),
+                WatchMotion.init(
+                    timestamp: message["motion.timestamp"] as! Double,
+                    userAcceleration: CMAcceleration.init(x: message["motion.userAcceleration.x"] as! Double, y: message["motion.userAcceleration.y"] as! Double, z: message["motion.userAcceleration.z"] as! Double),
                     rotationRate:
                     CMRotationRate.init(
                         x: message["motion.rotationRate.x"] as! Double,
@@ -239,7 +241,6 @@ class WatchConnector: NSObject, ObservableObject, WCSessionDelegate {
             )
         }
     }
-    
 }
 
 struct ConnetedMessage{

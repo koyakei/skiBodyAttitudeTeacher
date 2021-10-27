@@ -52,7 +52,7 @@ class MotionWriter {
         var text = ""
         let format = DateFormatter()
             format.dateFormat = "HH:mm:ss.SSS"
-        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt)))"
+        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt))),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
