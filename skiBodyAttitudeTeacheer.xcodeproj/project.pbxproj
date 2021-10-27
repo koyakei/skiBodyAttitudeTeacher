@@ -139,6 +139,8 @@
 		BA90EF512724E1A700FC7A66 /* MotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionWriter.swift; sourceTree = "<group>"; };
 		BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
+		BAA0A9D427293C4700FEDF23 /* skiBodyAttitudeTeacheer-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "skiBodyAttitudeTeacheer-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BAA0A9D527293C8400FEDF23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
 			isa = PBXGroup;
 			children = (
+				BAA0A9D527293C8400FEDF23 /* Info.plist */,
 				BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */,
 				BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */,
 				BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */,
@@ -258,6 +261,7 @@
 		BA3C941C2722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				BAA0A9D427293C4700FEDF23 /* skiBodyAttitudeTeacheer-WatchKit-App-Info.plist */,
 				BA3C941D2722636F007D5325 /* Assets.xcassets */,
 			);
 			path = "skiBodyAttitudeTeacheer WatchKit App";
@@ -837,7 +841,9 @@
 				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = skiBodyAttitudeTeacheer_WatchKit_Extension;
+				INFOPLIST_FILE = "skiBodyAttitudeTeacheer-WatchKit-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit App";
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer;
 				MARKETING_VERSION = 1.0;
@@ -863,7 +869,9 @@
 				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = skiBodyAttitudeTeacheer_WatchKit_Extension;
+				INFOPLIST_FILE = "skiBodyAttitudeTeacheer-WatchKit-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit App";
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer;
 				MARKETING_VERSION = 1.0;
@@ -892,6 +900,10 @@
 				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = test;
+				INFOPLIST_KEY_NSSensorKitPrivacyPolicyURL = "https://my-site.xyz/privacy-policy/";
+				INFOPLIST_KEY_NSSensorKitUsageDescription = "This is my app&apos;s SensorKit usage description.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -925,6 +937,10 @@
 				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = test;
+				INFOPLIST_KEY_NSSensorKitPrivacyPolicyURL = "https://my-site.xyz/privacy-policy/";
+				INFOPLIST_KEY_NSSensorKitUsageDescription = "This is my app&apos;s SensorKit usage description.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
