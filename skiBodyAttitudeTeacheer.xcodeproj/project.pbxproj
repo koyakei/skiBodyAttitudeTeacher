@@ -32,6 +32,7 @@
 		BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90EF512724E1A700FC7A66 /* MotionWriter.swift */; };
 		BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */; };
 		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
+		BAA0A9D727294D3D00FEDF23 /* WatchMotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
 		BAA0A9D427293C4700FEDF23 /* skiBodyAttitudeTeacheer-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "skiBodyAttitudeTeacheer-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BAA0A9D527293C8400FEDF23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMotionWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				BA3C93FB2722636E007D5325 /* Assets.xcassets */,
 				BA3C93FD2722636E007D5325 /* Preview Content */,
 				BA90EF512724E1A700FC7A66 /* MotionWriter.swift */,
+				BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */,
 			);
 			path = skiBodyAttitudeTeacheer;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */,
+				BAA0A9D727294D3D00FEDF23 /* WatchMotionWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,7 +781,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "skiBodyAttitudeTeacheer WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = skiBodyAttitudeTeacheer_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -809,7 +813,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "skiBodyAttitudeTeacheer WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = skiBodyAttitudeTeacheer_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -29,23 +29,35 @@ class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
         print("activationDidCompleteWith state= \(activationState.rawValue)")
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String: ConnetedMessage]) {
-        print("didReceiveMessage: \(message["motion"])")
-        
-        DispatchQueue.main.async {
-            self.receivedMessage = "PHONE : \(message["motion"]!.watchCount)"
-        }
-    }
-    
-    func send(motion: CMDeviceMotion) {
-        if WCSession.default.isReachable {
-            count += 1
-            WCSession.default.sendMessage(["motion": ConnetedMessage.init(watchCount: count, motion: motion)]
-                                          , replyHandler: nil) { error in
-                print(error)
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+            print("didReceiveMessage: \(message)")
+            
+            DispatchQueue.main.async {
+                self.receivedMessage = "PHONE : \(message["PHONE_COUNT"] as! Int)"
             }
         }
-    }
+    
+    func send(motion: CMDeviceMotion) {
+            if WCSession.default.isReachable {
+                count += 1
+                WCSession.default.sendMessage(
+                    ["WATCH_COUNT" : count,
+                     "motion.userAcceleration.x":motion.userAcceleration.x,
+                     "motion.userAcceleration.y":motion.userAcceleration.y,
+                     "motion.userAcceleration.z":motion.userAcceleration.z,
+                   "motion.rotationRate.x":motion.rotationRate.x,
+                   "motion.rotationRate.y":motion.rotationRate.y,
+                   "motion.rotationRate.z":motion.rotationRate.z,
+                   "motion.attitude.pitch":motion.attitude.pitch,
+                   "motion.attitude.roll":motion.attitude.roll,
+                   "motion.attitude.yaw":motion.attitude.yaw,
+                   "motion.timestamp": motion.timestamp
+                  ]
+                                               , replyHandler: nil) { error in
+                    print(error)
+                }
+            }
+        }
     
 }
 struct ConnetedMessage{

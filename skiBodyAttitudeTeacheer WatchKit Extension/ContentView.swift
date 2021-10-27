@@ -19,7 +19,7 @@ struct ContentView: View {
         Button(action: {
             motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
                 if let motion = motion {
-                    connector.send(motion: motion)
+                    self.connector.send(motion: motion)
                 }
             }
         }){

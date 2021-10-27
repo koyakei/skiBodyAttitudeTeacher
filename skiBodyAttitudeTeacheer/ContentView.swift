@@ -10,7 +10,7 @@ import CoreMotion
 import SensorKit
 let motionWriter = MotionWriter()
 let motionWriterHeadPhone = MotionWriter()
-let motionWriterWatch = MotionWriter()
+let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
 // can only fetch data > 24 hours ago - //https://developer.apple.com/documentation/sensorkit/srfetchrequest
@@ -158,28 +158,25 @@ struct ContentView: View {
     }
 
     func startRecord(){
-        motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
-        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
-        coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-            motionWriter.write(motion!)
-        }
-        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-            motionWriterHeadPhone.write(motion!)
-        }
+//        motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
+//        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
+//        coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
+//            motionWriter.write(motion!)
+//        }
+//        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
+//            motionWriterHeadPhone.write(motion!)
+//        }
+        
 //        sensorKitManager.request()
 //        sensorKitManager.fetch() // 10ms ごとにフェッチ
-
+        motionWriterWatch.open(MotionWriter.makeFilePath(fileAlias: "Watch"))
     }
     
     func stopRecord(){
-        coreMotion.stopDeviceMotionUpdates()
-        headphoneMotion.stopDeviceMotionUpdates()
-        motionWriter.close()
-        motionWriterHeadPhone.close()
-        motionWriterWatch.open(MotionWriter.makeFilePath(fileAlias: "Watch"))
-        connector.motion.forEach{
-            motionWriterWatch.write($0)
-        }
+//        coreMotion.stopDeviceMotionUpdates()
+//        headphoneMotion.stopDeviceMotionUpdates()
+//        motionWriter.close()
+//        motionWriterHeadPhone.close()
         motionWriterWatch.close()
 //        sensorKitManager.stopRecording()
 
@@ -191,3 +188,62 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 }
+
+import Foundation
+import UIKit
+import WatchConnectivity
+import CoreMotion
+
+class WatchConnector: NSObject, ObservableObject, WCSessionDelegate {
+
+    
+    @Published var receivedMessage = "WATCH : 未受信"
+    
+    @Published var count = 0
+    
+    var motion:[CMDeviceMotion] = []
+    
+    override init() {
+        super.init()
+        if WCSession.isSupported() {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith state= \(activationState.rawValue)")
+    }
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("sessionDidBecomeInactive")
+    }
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("sessionDidDeactivate")
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
+        print("didReceiveMessage: \(message)")
+        count += 1
+        DispatchQueue.main.async {
+            self.receivedMessage = "WATCH : \(message["motion"])"
+            motionWriterWatch.write(
+                WatchMotion.init(timestamp: message["motion.timestamp"] as! Double, userAcceleration: CMAcceleration.init(x: message["motion.userAcceleration.x"] as! Double, y: message["motion.userAcceleration.y"] as! Double, z: message["motion.userAcceleration.z"] as! Double),
+                    rotationRate:
+                    CMRotationRate.init(
+                        x: message["motion.rotationRate.x"] as! Double,
+                        y: message["motion.rotationRate.y"] as! Double,
+                        z: message["motion.rotationRate.z"] as! Double),
+                    attitude: WatchMotion.Attitude.init(roll: message["motion.attitude.pitch"] as! Double,
+                        yaw: message["motion.attitude.yaw"] as! Double,
+                    pitch: message["motion.attitude.pitch"] as! Double))
+            )
+        }
+    }
+    
+}
+
+struct ConnetedMessage{
+    let watchCount : Int
+    let motion: CMDeviceMotion
+}
+

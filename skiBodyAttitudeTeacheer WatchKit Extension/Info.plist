@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>wat</key>
-	<string></string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -14,5 +12,12 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
+	<key>com.apple.developer.sensorkit.reader.allow</key>
+	<array>
+		<string>motion-accelerometer</string>
+		<string>motion-rotation-rate</string>
+	</array>
+	<key>wat</key>
+	<string></string>
 </dict>
 </plist>
