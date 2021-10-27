@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "13E90B2F-7BF3-4B6E-BDB9-62705916D4D5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "13E90B2F-7BF3-4B6E-BDB9-62705916D4D5 - 4f2444ee34b15d34"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ModifiedContent&lt;SwiftUI.Button&lt;SwiftUI.Text&gt;, SwiftUI.AccessibilityAttachmentModifier&gt; in skiBodyAttitudeTeacheer.ContentView.body.getter : some"
-                  moduleName = "skiBodyAttitudeTeacheer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/ContentView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "308">
-               </Location>
-               <Location
-                  uuid = "13E90B2F-7BF3-4B6E-BDB9-62705916D4D5 - 953154ad9ca3a2b0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; SwiftUI.Text in closure #1 () -&gt; SwiftUI.ModifiedContent&lt;SwiftUI.Button&lt;SwiftUI.Text&gt;, SwiftUI.AccessibilityAttachmentModifier&gt; in skiBodyAttitudeTeacheer.ContentView.body.getter : some"
-                  moduleName = "skiBodyAttitudeTeacheer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/ContentView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "320">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7AFBE71F-DF68-487F-827B-6BC9DF48D2C2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -128,8 +80,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "start()"
-            landmarkType = "9">
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -224,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "start()"
-            landmarkType = "9">
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -240,7 +192,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
             endingLineNumber = "40"
-            landmarkName = "stop()"
+            landmarkName = "start()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -256,8 +208,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "start()"
-            landmarkType = "9">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

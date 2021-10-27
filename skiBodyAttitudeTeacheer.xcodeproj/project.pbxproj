@@ -30,6 +30,7 @@
 		BA3C946E27227562007D5325 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C946A27227460007D5325 /* InterfaceController.swift */; };
 		BA3C946F27228659007D5325 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C946827226CF5007D5325 /* MotionWriter.swift */; };
 		BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90EF512724E1A700FC7A66 /* MotionWriter.swift */; };
+		BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BA90EF512724E1A700FC7A66 /* MotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionWriter.swift; sourceTree = "<group>"; };
+		BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 		BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
 			isa = PBXGroup;
 			children = (
+				BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */,
 				BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */,
 				BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */,
 				BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
@@ -553,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
+				BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */,
 			);
