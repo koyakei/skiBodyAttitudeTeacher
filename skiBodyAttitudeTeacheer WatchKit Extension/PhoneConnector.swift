@@ -8,11 +8,14 @@
 import Foundation
 import UIKit
 import WatchConnectivity
+import CoreMotion
 class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
     
     @Published var receivedMessage = "PHONE : 未受信"
     
     @Published var count = 0
+    
+    @Published var motion :[CMDeviceMotion] = []
     
     override init() {
         super.init()
@@ -26,21 +29,26 @@ class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
         print("activationDidCompleteWith state= \(activationState.rawValue)")
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print("didReceiveMessage: \(message)")
+    func session(_ session: WCSession, didReceiveMessage message: [String: ConnetedMessage]) {
+        print("didReceiveMessage: \(message["motion"])")
         
         DispatchQueue.main.async {
-            self.receivedMessage = "PHONE : \(message["PHONE_COUNT"] as! Int)"
+            self.receivedMessage = "PHONE : \(message["motion"]!.watchCount)"
         }
     }
     
-    func send() {
+    func send(motion: CMDeviceMotion) {
         if WCSession.default.isReachable {
             count += 1
-            WCSession.default.sendMessage(["WATCH_COUNT" : count], replyHandler: nil) { error in
+            WCSession.default.sendMessage(["motion": ConnetedMessage.init(watchCount: count, motion: motion)]
+                                          , replyHandler: nil) { error in
                 print(error)
             }
         }
     }
     
+}
+struct ConnetedMessage{
+    let watchCount : Int
+    let motion: CMDeviceMotion
 }

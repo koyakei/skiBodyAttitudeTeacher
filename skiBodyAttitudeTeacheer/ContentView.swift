@@ -25,7 +25,6 @@ struct ContentView: View {
             }
             HStack {
                             Text("\(connector.count)")
-                            Button(action: { self.connector.send() }) { Text("送信") }
                         }
                         Text("\(self.connector.receivedMessage)")
         }
@@ -34,7 +33,6 @@ struct ContentView: View {
     func startRecord(){
         motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
         motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
-        motionWriterWatch.open(MotionWriter.makeFilePath(fileAlias: "Watch"))
         coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             motionWriter.write(motion!)
         }
@@ -48,6 +46,10 @@ struct ContentView: View {
         headphoneMotion.stopDeviceMotionUpdates()
         motionWriter.close()
         motionWriterHeadPhone.close()
+        motionWriterWatch.open(MotionWriter.makeFilePath(fileAlias: "Watch"))
+        connector.motion.forEach{
+            motionWriterWatch.write($0)
+        }
         motionWriterWatch.close()
     }
 

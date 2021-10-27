@@ -31,6 +31,7 @@
 		BA3C946F27228659007D5325 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C946827226CF5007D5325 /* MotionWriter.swift */; };
 		BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90EF512724E1A700FC7A66 /* MotionWriter.swift */; };
 		BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */; };
+		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BA90EF512724E1A700FC7A66 /* MotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionWriter.swift; sourceTree = "<group>"; };
 		BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
+		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				BA3C946827226CF5007D5325 /* MotionWriter.swift */,
+				BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */,
 				BA3C946A27227460007D5325 /* InterfaceController.swift */,
 				BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
 				BA3C942A2722636F007D5325 /* ContentView.swift */,
@@ -587,6 +590,7 @@
 				BA3C942B2722636F007D5325 /* ContentView.swift in Sources */,
 				BA3C946F27228659007D5325 /* MotionWriter.swift in Sources */,
 				BA3C94312722636F007D5325 /* ComplicationController.swift in Sources */,
+				BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */,
 				BA3C946E27227562007D5325 /* InterfaceController.swift in Sources */,
 				BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */,

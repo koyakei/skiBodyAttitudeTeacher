@@ -2,19 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMotionUsageDescription</key>
-	<string>test</string>
-	<key>NSSensorKitPrivacyPolicyURL</key>
-	<string>https://my-site.xyz/privacy-policy/</string>
-	<key>NSSensorKitUsageDescription</key>
-	<string>testlllllllllllllllllllllllllllllllllllllllllllljkjlk</string>
-	<key>NSSensorKitUsageDetail</key>
-	<dict>
-		<key>SRSensorUsageMotion</key>
-		<dict/>
-		<key>Description</key>
-		<string>This describes how my app uses motion data.</string>
-	</dict>
 	<key>wat</key>
 	<string></string>
 	<key>NSExtension</key>
@@ -27,18 +14,5 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
-	<key>com.apple.developer.sensorkit.reader.allow</key>
-	<array>
-		<string>on-wrist</string>
-		<string>ambient-light-sensor</string>
-		<string>motion-accelerometer</string>
-		<string>motion-rotation-rate</string>
-		<string>visits</string>
-		<string>pedometer</string>
-		<string>device-usage</string>
-		<string>messages-usage</string>
-		<string>phone-usage</string>
-		<string>keyboard-metrics</string>
-	</array>
 </dict>
 </plist>
