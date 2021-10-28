@@ -52,7 +52,9 @@ class MotionWriter {
         var text = ""
         let format = DateFormatter()
             format.dateFormat = "HH:mm:ss.SSS"
-        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt))),"
+        format.timeZone = .current
+        let recordedDate = Date(timeInterval: motion.timestamp, since: Date.now.addingTimeInterval( ProcessInfo.processInfo.systemUptime * -1))
+        text += "\(format.string(from: recordedDate)),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -69,7 +71,7 @@ class MotionWriter {
         text += "\(motion.rotationRate.x),"
         text += "\(motion.rotationRate.y),"
         text += "\(motion.rotationRate.z),"
-        text += "\(motion.timestamp),"
+        text += "\(recordedDate.timeIntervalSince1970),"
         
         print(text)
         text += "\n"

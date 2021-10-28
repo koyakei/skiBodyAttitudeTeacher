@@ -37,7 +37,7 @@ class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
             }
         }
     
-    func send(motion: CMDeviceMotion) {
+    func send(motion: CMDeviceMotion, timeStamp: Double) {
             if WCSession.default.isReachable {
                 count += 1
                 WCSession.default.sendMessage(
@@ -51,7 +51,7 @@ class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
                    "motion.attitude.pitch":motion.attitude.pitch,
                    "motion.attitude.roll":motion.attitude.roll,
                    "motion.attitude.yaw":motion.attitude.yaw,
-                   "motion.timestamp": motion.timestamp
+                   "motion.timestamp": timeStamp
                   ]
                                                , replyHandler: nil) { error in
                     print(error)

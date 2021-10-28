@@ -7,11 +7,7 @@
 
 import SwiftUI
 import CoreMotion
-
-
 let motionManager = CMMotionManager()
-let motionWriter = MotionWriter()
-let filename = MotionWriter.makeFilePath()
 struct ContentView: View {
     @ObservedObject var connector = PhoneConnector()
     var body: some View {
@@ -19,7 +15,7 @@ struct ContentView: View {
         Button(action: {
             motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
                 if let motion = motion {
-                    self.connector.send(motion: motion)
+                    self.connector.send(motion: motion,timeStamp: Date(timeInterval: motion.timestamp, since: Date.now.addingTimeInterval( ProcessInfo.processInfo.systemUptime * -1)).timeIntervalSince1970)
                 }
             }
         }){

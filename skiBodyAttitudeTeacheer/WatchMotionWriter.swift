@@ -52,7 +52,8 @@ class WatchMotionWriter {
         var text = ""
         let format = DateFormatter()
             format.dateFormat = "HH:mm:ss.SSS"
-        text += "\(format.string(from: Date(timeInterval: motion.timestamp, since: startAt))),"
+        format.timeZone = .current
+        text += "\(format.string(from: Date(timeIntervalSince1970: motion.timestamp))),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -99,7 +100,7 @@ class WatchMotionWriter {
 }
 
 struct WatchMotion{
-    let timestamp : Double
+    let timestamp : TimeInterval
     let userAcceleration: CMAcceleration
     let rotationRate : CMRotationRate
     let attitude: Attitude

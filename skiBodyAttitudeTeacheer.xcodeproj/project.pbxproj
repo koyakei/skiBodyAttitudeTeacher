@@ -27,7 +27,6 @@
 		BA3C944227226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */; };
 		BA3C944C27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */; };
 		BA3C944E27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */; };
-		BA3C946E27227562007D5325 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C946A27227460007D5325 /* InterfaceController.swift */; };
 		BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90EF512724E1A700FC7A66 /* MotionWriter.swift */; };
 		BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */; };
 		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
@@ -132,7 +131,6 @@
 		BA3C944727226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BA3C946A27227460007D5325 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BA90EF512724E1A700FC7A66 /* MotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionWriter.swift; sourceTree = "<group>"; };
@@ -272,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */,
-				BA3C946A27227460007D5325 /* InterfaceController.swift */,
 				BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
 				BA3C942A2722636F007D5325 /* ContentView.swift */,
 				BA3C942C2722636F007D5325 /* NotificationController.swift */,
@@ -595,7 +592,6 @@
 				BA3C942B2722636F007D5325 /* ContentView.swift in Sources */,
 				BA3C94312722636F007D5325 /* ComplicationController.swift in Sources */,
 				BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */,
-				BA3C946E27227562007D5325 /* InterfaceController.swift in Sources */,
 				BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */,
 			);
