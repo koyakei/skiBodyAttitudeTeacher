@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 import WatchConnectivity
 import CoreMotion
+import WatchKit
+
 class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
+    
     
     @Published var receivedMessage = "PHONE : 未受信"
     
@@ -40,6 +43,7 @@ class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
     func send(motion: CMDeviceMotion, timeStamp: Double) {
             if WCSession.default.isReachable {
                 count += 1
+                print(timeStamp)
                 WCSession.default.sendMessage(
                     ["WATCH_COUNT" : count,
                      "motion.userAcceleration.x":motion.userAcceleration.x,

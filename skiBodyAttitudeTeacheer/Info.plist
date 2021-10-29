@@ -15,6 +15,10 @@
 		<key>Description</key>
 		<string>This describes how my app uses motion data.</string>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>processing</string>
+	</array>
 	<key>com.apple.developer.sensorkit.reader.allow</key>
 	<array>
 		<string>motion-accelerometer</string>
