@@ -28,13 +28,17 @@
 		BA3C944C27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */; };
 		BA3C944E27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */; };
 		BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90EF512724E1A700FC7A66 /* MotionWriter.swift */; };
-		BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */; };
 		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
 		BAA0A9D727294D3D00FEDF23 /* WatchMotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */; };
 		BAA0A9D9272AC9C500FEDF23 /* MotionAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9D8272AC9C500FEDF23 /* MotionAnalyser.swift */; };
 		BAA0A9DC272BABCE00FEDF23 /* 設置状況補正.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9DB272BABCE00FEDF23 /* 設置状況補正.swift */; };
 		BAA0A9DE272BAC0D00FEDF23 /* TurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9DD272BAC0D00FEDF23 /* TurnPhase.swift */; };
 		BAA0A9E3272C2C3D00FEDF23 /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */; };
+		BAA0A9E7272D5A9500FEDF23 /* OneTrun.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E6272D5A9500FEDF23 /* OneTrun.swift */; };
+		BAA0A9EA272D732800FEDF23 /* TrunStreamReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E9272D732800FEDF23 /* TrunStreamReceiver.swift */; };
+		BAA0A9ED272D790800FEDF23 /* MotionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9EC272D790800FEDF23 /* MotionRecord.swift */; };
+		BAA0A9F0272E0BE300FEDF23 /* 時計を平にして重心移動方向にX軸を向けたWatchTrunStreamReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9EF272E0BE300FEDF23 /* 時計を平にして重心移動方向にX軸を向けたWatchTrunStreamReceiver.swift */; };
+		BAA0A9F2272E197700FEDF23 /* Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F1272E197700FEDF23 /* Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,16 +142,19 @@
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BA90EF512724E1A700FC7A66 /* MotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionWriter.swift; sourceTree = "<group>"; };
-		BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
 		BAA0A9D427293C4700FEDF23 /* skiBodyAttitudeTeacheer-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "skiBodyAttitudeTeacheer-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
-		BAA0A9D527293C8400FEDF23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMotionWriter.swift; sourceTree = "<group>"; };
 		BAA0A9D8272AC9C500FEDF23 /* MotionAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionAnalyser.swift; sourceTree = "<group>"; };
 		BAA0A9DB272BABCE00FEDF23 /* 設置状況補正.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "設置状況補正.swift"; sourceTree = "<group>"; };
 		BAA0A9DD272BAC0D00FEDF23 /* TurnPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnPhase.swift; sourceTree = "<group>"; };
 		BAA0A9DF272C10F400FEDF23 /* skiBodyAttitudeTeacheer WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "skiBodyAttitudeTeacheer WatchKit App.entitlements"; sourceTree = "<group>"; };
 		BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
+		BAA0A9E6272D5A9500FEDF23 /* OneTrun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTrun.swift; sourceTree = "<group>"; };
+		BAA0A9E9272D732800FEDF23 /* TrunStreamReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrunStreamReceiver.swift; sourceTree = "<group>"; };
+		BAA0A9EC272D790800FEDF23 /* MotionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRecord.swift; sourceTree = "<group>"; };
+		BAA0A9EF272E0BE300FEDF23 /* 時計を平にして重心移動方向にX軸を向けたWatchTrunStreamReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "時計を平にして重心移動方向にX軸を向けたWatchTrunStreamReceiver.swift"; sourceTree = "<group>"; };
+		BAA0A9F1272E197700FEDF23 /* Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,17 +234,15 @@
 		BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
 			isa = PBXGroup;
 			children = (
+				BAA0A9EB272D73EB00FEDF23 /* MotionWriter */,
+				BAA0A9E8272D71A800FEDF23 /* TurnStream */,
 				BAA0A9DA272BABA300FEDF23 /* AttitudeAnlyser */,
-				BAA0A9D527293C8400FEDF23 /* Info.plist */,
-				BAA0A8812728ED5900FEDF23 /* WatchConnector.swift */,
 				BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */,
 				BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */,
 				BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
 				BA3C93F92722636B007D5325 /* ContentView.swift */,
 				BA3C93FB2722636E007D5325 /* Assets.xcassets */,
 				BA3C93FD2722636E007D5325 /* Preview Content */,
-				BA90EF512724E1A700FC7A66 /* MotionWriter.swift */,
-				BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */,
 			);
 			path = skiBodyAttitudeTeacheer;
 			sourceTree = "<group>";
@@ -324,10 +329,39 @@
 			isa = PBXGroup;
 			children = (
 				BAA0A9D8272AC9C500FEDF23 /* MotionAnalyser.swift */,
-				BAA0A9DB272BABCE00FEDF23 /* 設置状況補正.swift */,
 				BAA0A9DD272BAC0D00FEDF23 /* TurnPhase.swift */,
+				BAA0A9E6272D5A9500FEDF23 /* OneTrun.swift */,
 			);
 			path = AttitudeAnlyser;
+			sourceTree = "<group>";
+		};
+		BAA0A9E8272D71A800FEDF23 /* TurnStream */ = {
+			isa = PBXGroup;
+			children = (
+				BAA0A9EE272E0BB800FEDF23 /* 各センサーの受信した動き */,
+				BAA0A9EC272D790800FEDF23 /* MotionRecord.swift */,
+				BAA0A9DB272BABCE00FEDF23 /* 設置状況補正.swift */,
+				BAA0A9E9272D732800FEDF23 /* TrunStreamReceiver.swift */,
+			);
+			path = TurnStream;
+			sourceTree = "<group>";
+		};
+		BAA0A9EB272D73EB00FEDF23 /* MotionWriter */ = {
+			isa = PBXGroup;
+			children = (
+				BA90EF512724E1A700FC7A66 /* MotionWriter.swift */,
+				BAA0A9D627294D3D00FEDF23 /* WatchMotionWriter.swift */,
+			);
+			path = MotionWriter;
+			sourceTree = "<group>";
+		};
+		BAA0A9EE272E0BB800FEDF23 /* 各センサーの受信した動き */ = {
+			isa = PBXGroup;
+			children = (
+				BAA0A9EF272E0BE300FEDF23 /* 時計を平にして重心移動方向にX軸を向けたWatchTrunStreamReceiver.swift */,
+				BAA0A9F1272E197700FEDF23 /* Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift */,
+			);
+			path = "各センサーの受信した動き";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,11 +617,15 @@
 			files = (
 				BAA0A9D9272AC9C500FEDF23 /* MotionAnalyser.swift in Sources */,
 				BAA0A9DC272BABCE00FEDF23 /* 設置状況補正.swift in Sources */,
+				BAA0A9EA272D732800FEDF23 /* TrunStreamReceiver.swift in Sources */,
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
-				BAA0A8822728ED5900FEDF23 /* WatchConnector.swift in Sources */,
+				BAA0A9E7272D5A9500FEDF23 /* OneTrun.swift in Sources */,
 				BAA0A9DE272BAC0D00FEDF23 /* TurnPhase.swift in Sources */,
+				BAA0A9ED272D790800FEDF23 /* MotionRecord.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
+				BAA0A9F2272E197700FEDF23 /* Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift in Sources */,
 				BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */,
+				BAA0A9F0272E0BE300FEDF23 /* 時計を平にして重心移動方向にX軸を向けたWatchTrunStreamReceiver.swift in Sources */,
 				BAA0A9D727294D3D00FEDF23 /* WatchMotionWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

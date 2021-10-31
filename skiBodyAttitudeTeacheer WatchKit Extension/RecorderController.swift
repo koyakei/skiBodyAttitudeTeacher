@@ -9,9 +9,9 @@ import WatchKit
 import Foundation
 import CoreMotion
 
-class RecordController: NSObject , WKExtendedRuntimeSessionDelegate{
+class RecordController:NSObject, WKExtendedRuntimeSessionDelegate{
     let motionManager = CMMotionManager()
-    var connector = PhoneConnector()
+//    var connector = PhoneConnector()
     
     var session: WKExtendedRuntimeSession!
     func startSession() {
@@ -27,7 +27,7 @@ class RecordController: NSObject , WKExtendedRuntimeSessionDelegate{
     func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             if let motion = motion {
-                self.connector.send(motion: motion,timeStamp: Date(timeInterval: motion.timestamp, since: Date.now.addingTimeInterval( ProcessInfo.processInfo.systemUptime * -1)).timeIntervalSince1970)
+                connector.send(motion: motion,timeStamp: Date(timeInterval: motion.timestamp, since: Date.now.addingTimeInterval( ProcessInfo.processInfo.systemUptime * -1)).timeIntervalSince1970)
             }
         }
     }

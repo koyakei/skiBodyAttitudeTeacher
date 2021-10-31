@@ -7,33 +7,35 @@
 
 import SwiftUI
 import CoreMotion
+import WatchKit
+
+var connector = PhoneConnector()
 let motionManager = CMMotionManager()
 struct ContentView: View {
-    @ObservedObject var connector = PhoneConnector()
+    var session: WKExtendedRuntimeSession = WKExtendedRuntimeSession()
     var body: some View {
         VStack{
         Button(action: {
-            motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-                if let motion = motion {
-                    self.connector.send(motion: motion,timeStamp: Date(timeInterval: motion.timestamp, since: Date.now.addingTimeInterval( ProcessInfo.processInfo.systemUptime * -1)).timeIntervalSince1970)
-                }
-            }
-        }){
+            session.delegate = RecordController()
+            session.start()
+        }
+        ){
             Text("start")
         }
-        Button(action: stop){
+            Button(action: {
+                let session = RecordController()
+                session.stopSession()
+                
+            }){
             Text("stop")
         }
         HStack {
                 Text("\(connector.count)")
             }
-            Text("\(self.connector.receivedMessage)")
+            Text("\(connector.receivedMessage)")
         }
         
     }
-}
-func stop(){
-    motionManager.stopDeviceMotionUpdates()
 }
 
 

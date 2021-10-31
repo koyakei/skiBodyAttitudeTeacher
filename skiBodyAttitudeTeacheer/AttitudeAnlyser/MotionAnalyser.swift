@@ -9,50 +9,46 @@ import Foundation
 import CoreMotion
 import UIKit
 
-class MotionAnalyser{
+struct TrunCorrector{
+    var turnStream:[TrunPhase]
+    let beforeOneTrun: OneFinisedTurn
+    let beforeTrunMax: Double
+    let afterTrunMax: Double
     
-    //一度
-    let deg = 180/Double.pi
+    func turnCutter(turnStream: [TrunPhase])-> OneFinisedTurn {
+        
+    }
     
-    var savedTrunStream:[TrunPhase] = []
-    var oneTrunStream:[TrunPhase] = []
+}
+
+struct MotionEvaluater{
+    let pairOfFinishedTrun : PairOfFinishedTurn
+    
+    // ターン後半のワットでかんがえるか？
+    func score() -> Int{
+        return 100
+    }
     // stream で受けて1ターン蓄積したら、流す
-    func turnCutter(turnStream: [TrunPhase])-> [TrunPhase]{
-        if(turnStream.first?.attitude.roll == 0){
-            return turnStream
-        }
-        return turnStream
-    }
     
-    // ターンエンドで切っている物が来たとして、 フォールラインを検出
-    func fallLineAttitude(
-        yawStream: [Double]
-    ) -> FallLineAttitude{
-        let attitude = oneTrunStream.max(by: {(lhs,rhs)-> Bool in return lhs.attitude.roll < rhs.attitude.roll})!.attitude
-        return FallLineAttitude.init(yaw: attitude.yaw, pitch: attitude.pitch)
-    }
     
     func relativeFallLineAttitude(
         absoluteFalllineAttitude: FallLineAttitude,
         currentAttitude: TrunPhase.Attitude
     )-> FallLineAttitude {
-        FallLineAttitude.init(yaw: absoluteFalllineAttitude.yaw - currentAttitude.yaw, pitch: absoluteFalllineAttitude.pitch - currentAttitude.pitch)
+        FallLineAttitude.init(yaw: absoluteFalllineAttitude.yaw - currentAttitude.yaw,
+                              pitch: absoluteFalllineAttitude.pitch - currentAttitude.pitch,
+                              roll: absoluteFalllineAttitude.roll - currentAttitude.roll)
     }
     
     // fall line の方向への加速度を計算
     func fallLineAccelaration(
         currentAcceleration: CMAcceleration,
-        relativeFallLineAttitude: TrunPhase.Attitude
+        relativeFallLineAttitude: FallLineAttitude
     )-> Double{
-        let x = currentAcceleration.x * cos(        relativeFallLineAttitude.yaw) +
-        currentAcceleration.x * cos(        relativeFallLineAttitude.roll) +
-        currentAcceleration.x * cos(        relativeFallLineAttitude.pitch)
-        let y = currentAcceleration.x * cos(        relativeFallLineAttitude.yaw) +
-        currentAcceleration.x * cos(        relativeFallLineAttitude.roll) +
-        currentAcceleration.x * cos(        relativeFallLineAttitude.pitch)
-        let z = currentAcceleration.x * cos(        relativeFallLineAttitude.yaw) +
-        currentAcceleration.x * cos(        relativeFallLineAttitude.roll) +
-        currentAcceleration.x * cos(        relativeFallLineAttitude.pitch)
+        let x = currentAcceleration.x * cos(        relativeFallLineAttitude.yaw)   * cos(        relativeFallLineAttitude.pitch)
+        let y = currentAcceleration.y * cos(        relativeFallLineAttitude.yaw)   * cos(        relativeFallLineAttitude.roll)
+        let z = currentAcceleration.z * cos(        relativeFallLineAttitude.pitch)   * cos(        relativeFallLineAttitude.roll)
         return x + y + z
     }
+    
 }
