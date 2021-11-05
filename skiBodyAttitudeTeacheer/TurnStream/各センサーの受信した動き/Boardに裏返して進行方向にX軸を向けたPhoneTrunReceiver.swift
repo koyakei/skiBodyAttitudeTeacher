@@ -1,27 +1,85 @@
 //
-//  Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver.swift
+//  Boardに裏返して進行方向にX軸を向けたPhoneturnReceiver.swift
 //  skiBodyAttitudeTeacheer
 //
 //  Created by koyanagi on 2021/10/31.
 //
 
 import Foundation
-struct Boardに裏返して進行方向にX軸を向けたPhoneTrunReceiver{
-    var turnPhases:[TrunPhase]
+import CoreMotion
+import SwiftUI
+class Boardに裏返して進行方向にX軸を向けたPhoneturnReceiver: MotionStreamReceiver{
+    // 一番目のバケツ
+    var turnPhases: TurnPhases = TurnPhases.init(turnPhases: [])
+    // ターンを切ったバケツ
+    var finishedTurns: FinishedTurns = FinishedTurns.init()
     
-    private func ターンの蓄積がある()-> Bool{
-        turnPhases.count > 1000
+    init(){
+        
     }
     
-    mutating func receiver( turunPhase: TrunPhase){
-        turnPhases.append(turunPhase)
-        if ターンの蓄積がある(){
+    // 20度以上ロール角があったらターンが始まったことにしよう
+    func turnStarted()-> TurnPhase?{
+        let v :  TurnPhase? = turnPhases.turnPhases.max(by: { (a, b) -> Bool in
+            a.attitude.roll < b.attitude.roll
+        })
+        if((v!.attitude.roll) > Double(20)){
+            return v
+        }
+        return nil
+    }
+    //裏側においたとき ひっくり返す。
+    // 裏返し　roll 反転　pitch 反転 yaw 反転
+    // roll だけ上下にひっくり返す
+    func boardRideingPhoneAttitudeConverter(attitude: Attitude) -> Attitude{
+        Attitude.init(roll: (Double.pi - attitude.roll) * -1, yaw: attitude.yaw * -1, pitch: attitude.pitch * -1)
+    }
+    
+    func boardRideingPhoneRotationRateConverter(rotationRate: CMRotationRate) -> CMRotationRate{
+        CMRotationRate.init(
+            x: rotationRate.x * -1,
+            y: rotationRate.y,
+            z: rotationRate.z * -1
+        )
+    }
+    
+    let turnInitNumberOfTurn = 100
+    func バケツの移し替え(_ finishedTurnIndex: Int
+    , startedTurnIndex: Int){
+        if finishedTurns.finishedTurns.count > turnInitNumberOfTurn{
+            let pitchArray = turnPhases.turnPhases.map({$0.attitude.pitch})
+            let yawArray = turnPhases.turnPhases.map({$0.attitude.yaw})
+            finishedTurns.defaultFallLine = Attitude.init(roll: 0, yaw: yawArray.reduce(0.0){
+                return $0 + $1/Double(yawArray.count)
+            }, pitch: pitchArray.reduce(0.0){
+                return $0 + $1/Double(pitchArray.count)
+            })
+        }
+        finishedTurns.finishedTurns.append(OneFinisedMonoSkiTurn.init(turnPhases: <#T##[SkiTurnPhaseWithFallLineAttitude]#>))
+        // 捨てる　バケツの移し替え
+        turnPhases.turnPhases.removeSubrange(startedTurnIndex...finishedTurnIndex
+        )
+    }
+    
+    @State var turning: Bool = false
+    @State var lastTurnSide: TurnSide = true
+    
+    func receiver( turnPhase: TurnPhase){
+        turnPhases.turnPhases.append(TurnPhase.init(turnPhase: turnPhase, attitude:  boardRideingPhoneAttitudeConverter(attitude:turnPhase.attitude), rotationRate: boardRideingPhoneRotationRateConverter(rotationRate: turnPhase.rotationRate)))
+            
+        let finishedIndex = turnPhases.isTurnFinished()
+        if finishedIndex != nil{
+            バケツの移し替え(finishedIndex!, startedTurnIndex: 0)
+        }
+        let isStarted = turnStarted()
+        if turning{
+            
             // ターンの評価に入る　１ターンごとに区切る
         } else {
         
             let turn : FirstOneNotFinishedTurn = FirstOneNotFinishedTurn.init(turnPhases: turnPhases)
             
-            if turn.turnMaxPassed(){
+            if turn.turnMaxPhase != nil{
                 
             } else{
                 // wait

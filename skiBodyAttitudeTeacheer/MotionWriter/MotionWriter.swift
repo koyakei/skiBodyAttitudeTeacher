@@ -50,11 +50,8 @@ class MotionWriter {
     func write(_ motion: CMDeviceMotion) {
         guard let file = self.file else { return }
         var text = ""
-        let format = DateFormatter()
-            format.dateFormat = "HH:mm:ss.SSS"
-        format.timeZone = .current
-        let recordedDate = Date(timeInterval: motion.timestamp, since: Date.now.addingTimeInterval( ProcessInfo.processInfo.systemUptime * -1))
-        text += "\(format.string(from: recordedDate)),"
+        let recordedDate = MotionAbsoluteTimeCaluclator.init(timeStamp: motion.timestamp, systemUptime:ProcessInfo.processInfo.systemUptime)
+        text += "\(recordedDate.milsecStringHHmmssSSS),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -71,7 +68,7 @@ class MotionWriter {
         text += "\(motion.rotationRate.x),"
         text += "\(motion.rotationRate.y),"
         text += "\(motion.rotationRate.z),"
-        text += "\(recordedDate.timeIntervalSince1970),"
+        text += "\(recordedDate.absoluteDate.timeIntervalSince1970),"
         
         print(text)
         text += "\n"

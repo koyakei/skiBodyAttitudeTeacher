@@ -1,5 +1,5 @@
 //
-//  OneTrun.swift
+//  Oneturn.swift
 //  skiBodyAttitudeTeacheer
 //
 //  Created by koyanagi on 2021/10/30.
@@ -9,19 +9,23 @@ import Foundation
 
 // ロールのベースが0 度で
 struct FirstOneNotFinishedTurn{
-    let turnPhases : [TrunPhase]
-    var turnMax: TrunPhase? = nil
+    let turnPhases : [TurnPhase]
+    var turnMaxPhase: TurnPhase? = nil
     // 正方向のロール角増加がターン前半だとする
-    let turnDirection: Int = +1
+    let turnDirection: Int = 1
     var rollBaseAngle = 0
     // 前のターンの最大ロール角はわかっている。
     // 次のターンの最大ロール角を見つける
     // ターン方向よりも逆方向にある区間連続して下がっていれば、ターンマックスを超えたとする
     // 連続した地点
     // それで下がっていって、前のターン最大とあとの最大のちょうど中間
-    func turnMaxPassed() -> Bool{
-        !( 小さなフェイズごとに単調増加しているか() // してる
-        && 離れた二点の増加()) // 離れた二点でもぞうかしてる
+    func turnMaxPassed() {
+        if ( // 小さなフェイズごとに単調増加しなくて、離れた二点でも単調増加しなくなった場合
+        !小さなフェイズごとに単調増加しているか()
+              && !離れた二点の増加()){
+            // ターンマックスを
+            turnMaxPhase = turnPhases.max(by: <#T##(turnPhase, turnPhase) throws -> Bool#>)
+        }
         
     }
     
@@ -66,43 +70,8 @@ struct FirstOneNotFinishedTurn{
     }
 }
 
-struct OneNotFinishedTurn{
-    var turnPhases : [TrunPhase]
-    var turnMaxPassed: Bool
-    var turnMax: TrunPhase
-    // 正方向のロール角増加がターン前半だとする
-    var turnDirection = +1
-    
-    // 前のターンの最大ロール角はわかっている。
-    // 次のターンの最大ロール角を見つける
-    // ロール角5フレーム前よりも逆方向に下がっていれば、ターンマックスを超えたとする
-    // それで下がっていって、前のターン最大とあとの最大のちょうど中間
-    func turnMaxFinder()-> TrunPhase{
-        beforeOneTrun - afterTrunMax
-    }
-}
 
-struct OneFinisedTurn{
-    let trunPhases : [EvaluatedTrunPhase]
-    func turnMaxRollAttitude(_ turnPhases:[TrunPhase]) -> TrunPhase{
-        turnPhases.max{$0.attitude.roll < $1.attitude.roll}!
-    }
-}
 
-struct Doc
 
-struct PairOfFinishedTurn{
-    
-    let oldTrunPhases:OneFinisedTurn
-    let newTurnPhases:OneFinisedTurn
-    // 地面に近い方に回り込むように設定する必要がある。
-    func rollBace(oldTurnMMax: Double, nextTurnMax: Double) -> Double{
-        (oldTurnMMax - nextTurnMax) / 2
-    }
-    
-    func absoluteFalllineAttitude()-> TrunPhase.Attitude{
-        return TrunPhase.Attitude.init(roll: rollBace(oldTurnMMax: turnMaxRollAttitude(oldTrunPhases).attitude.roll,nextTurnMax: newTrunMax.attitude.roll),
-                                yaw: newTrunMax.attitude.yaw,
-                                pitch: newTrunMax.attitude.pitch)
-    }
-}
+
+

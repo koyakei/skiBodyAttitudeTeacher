@@ -139,6 +139,7 @@ class SensorKitManager {
 }
 
 let sensorKitManager = SensorKitManager();
+let motionEvaluaterManager : MotionEvaluaterManager = MotionEvaluaterManager.init(delegate: MotionFeedbackerImpl())
 
 struct ContentView: View {
     @ObservedObject var connector = WatchConnector()
@@ -151,9 +152,9 @@ struct ContentView: View {
                 Text("Stop")
             }
             HStack {
-                            Text("\(connector.count)")
-                        }
-                        Text("\(self.connector.receivedMessage)")
+                Text("\(connector.count)")
+            }
+            Text("\(self.connector.receivedMessage)")
         }
     }
 
@@ -162,6 +163,7 @@ struct ContentView: View {
         motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
         coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             motionWriter.write(motion!)
+            motionEvaluaterManager.boardMotionReceiver(motion!, ProcessInfo().systemUptime)
         }
         headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             motionWriterHeadPhone.write(motion!)

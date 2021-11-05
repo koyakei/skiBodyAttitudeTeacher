@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA3C93F32722636B007D5325"
+               BuildableName = "skiBodyAttitudeTeacheer.app"
+               BlueprintName = "skiBodyAttitudeTeacheer"
+               ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      allowLocationSimulation = "YES">
+      <BuildableProducturnnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA3C93F32722636B007D5325"
+            BuildableName = "skiBodyAttitudeTeacheer.app"
+            BlueprintName = "skiBodyAttitudeTeacheer"
+            ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
+         </BuildableReference>
+      </BuildableProducturnnable>
+   </LaunchAction>
+</Scheme>
