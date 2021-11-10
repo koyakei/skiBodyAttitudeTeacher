@@ -55,7 +55,7 @@ class Boardに裏返して進行方向にX軸を向けたPhoneturnReceiver: Moti
                 return $0 + $1/Double(pitchArray.count)
             })
         }
-        finishedTurns.finishedTurns.append(OneFinisedMonoSkiTurn.init(turnPhases: <#T##[SkiTurnPhaseWithFallLineAttitude]#>))
+        finishedTurns.finishedTurns.append(OneFinishedMonoSkiTurn.init(turnPhases: <#T##[SkiTurnPhaseWithFallLineAttitude]#>))
         // 捨てる　バケツの移し替え
         turnPhases.turnPhases.removeSubrange(startedTurnIndex...finishedTurnIndex
         )

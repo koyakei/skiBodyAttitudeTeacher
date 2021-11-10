@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol FinishedTurnProtocol {
-    
+protocol FinishedTurnProtocol :MovingPhasesProtocol{
+    func turnSide()->TurnSide
 }

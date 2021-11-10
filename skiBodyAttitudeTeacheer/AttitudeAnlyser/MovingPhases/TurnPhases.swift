@@ -9,13 +9,21 @@ import Foundation
 import CoreMotion
 
 protocol TurnPhasesProtocol:MovingPhasesProtocol{
-    var movingPhases: [TurnPhaseProtocol] { get set }
 
 }
 
-struct TurnPhases:TurnPhasesProtocol{
-    let movingPhases: [TurnPhaseProtocol]
+struct TurnPhases:MovingPhasesProtocol{
 
+    func turnFinished() throws -> Bool {
+        <#code#>
+    }
+
+
+    let movingPhases: [MovingPhaseProtocol]
+
+    func maxYawAttitudePhase() throws ->MovingPhaseProtocol{
+
+    }
     init(movingPhases: [TurnPhaseProtocol]){
         self.movingPhases = movingPhases
     }
@@ -32,11 +40,7 @@ struct TurnPhases:TurnPhasesProtocol{
 //    func isTurn() -> Bool{
 //
 //    }
-    
-    // return finishedIndex
-    func isTurnFinished() -> Int?{
-        
-    }
+
     func ターン前半の角速度と姿勢が一致してますか(turnPhase: TurnPhase)-> Bool{
         let 横回転 :Double = turnPhase.rotationRate.z
         let roll : Double = turnPhase.rotationRate.y

@@ -50,8 +50,8 @@ class MotionWriter {
     func write(_ motion: CMDeviceMotion) {
         guard let file = self.file else { return }
         var text = ""
-        let recordedDate = MotionAbsoluteTimeCaluclator.init(timeStamp: motion.timestamp, systemUptime:ProcessInfo.processInfo.systemUptime)
-        text += "\(recordedDate.milsecStringHHmmssSSS),"
+        let recordedDate = TimeIntervalFromSystemUptimeToSince1970.init(timeStamp: motion.timestamp, systemUptime:ProcessInfo.processInfo.systemUptime)
+        text += "\(recordedDate.milliSecondString),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
