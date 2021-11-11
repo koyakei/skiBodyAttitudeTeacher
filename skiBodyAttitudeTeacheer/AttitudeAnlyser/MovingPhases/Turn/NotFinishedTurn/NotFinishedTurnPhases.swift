@@ -15,6 +15,7 @@ struct XRotationRateDirection {
 }
 
 struct TimeStampAndRotationRateXDirectionSide {
+    // 右ターン  true left false
     let turnSideDirection: Bool
     let timeStampSince1970: Double
 }
@@ -89,6 +90,7 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
     var timeStampAndRotationRateXDirectionSideCollection: [TimeStampAndRotationRateXDirectionSide]
     var timeStampAndTurnSideDirectionChanged: [TimeStampAndTurnSideDirectionChanged]
     var timeStampAndTurnSideDirectionChangedPeriod: [TimeStampAndTurnSideDirectionChangedPeriod]
+    var fallLineYaw: Double = 0
 
     mutating func turnMaxFromMovingPhase(movingPhase: MovingPhase) {
         let turnSideDirectionChanged: Bool =
@@ -106,21 +108,17 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
         )
         let average: Double = movingPhases.yawAttitudeMovingAverage(
                 milliSeconds: timeStampAndTurnSideDirectionChangedPeriod.last!.turnSideDirectionChangedPeriod)
-        let turnFinished: Bool = isTurnMax(movingPhase: movingPhase)
-        // turn finished じゃなくてターン開始からの１００分率で表記しようか？ ターン終了からの
-        turnPhasesWithYawMovingAverage.append(
-                TurnPhaseYawSimpleRotationRateAverage.init(
-                        movingPhaseProtocol: movingPhase,
-                        movingAverageYawAngle: average,
-                        turnFinished: turnFinished,
-                        turnSideDirectionChanged: turnSideDirectionChanged
-                ))
-        if turnFinished {
-            // ターンが終わったら、ターンフェイズのどこにいるかを 100分率で計算
-            turnPhaseFromInitiation()
+        let turnFinished: Bool = isTurnFinished(movingPhase: movingPhase)
+        let isTurnMax = isTurnMax(movingPhase: movingPhase)
+        if isTurnMax {
+            fallLineYaw = movingPhase.attitude.yaw
         }
+        // turn finished じゃなくてターン開始からの１００分率で表記しようか？ ターン終了からの
+
+
     }
-    func movingPhaseReceiver(movingPhase: MovingPhase){
+
+    func movingPhaseReceiver(movingPhase: MovingPhase) {
         // 角速度の平均を出す
         // 角速度の入れ替わりからターンの切り替え時を判定
         // ヨーイング角の平均角度計算
@@ -129,34 +127,65 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
         // フォールライン方向の加速度を計算
         // 他の指標も計算していく
         // ピボットスリップを計算する前提で考えてみよう
+
+        // 前回のターン切り替えからの偏角は計算するか？　べつにしなくていいか
+        // フォールラインと直角方向の加速度を計算
+        fallLine直交Acceleration(movingPhase: movingPhase)
+        fallLineAcceleration()
         // それを oneTurn にいれる とりあえず 5000 コマ超えたら csv に入れればいい
         // これはやらなくていいターンが終わったらそれらをTurnPhases ぶちこむ
+
+//        turnPhasesWithYawMovingAverage.append(
+//                TurnPhaseYawSimpleRotationRateAverage.init(
+//                        movingPhaseProtocol: movingPhase,
+//                        movingAverageYawAngle: average,
+//                        turnFinished: turnFinished,
+//                        turnSideDirectionChanged: turnSideDirectionChanged
+//                ))
+
+//        if turnFinished {
+//            // ターンが終わったら、ターンフェイズのどこにいるかを 100分率で計算
+//            turnPhaseFromInitiation()
+//        }
     }
 
-    // ローリング角の同調
-    // ヨーイング角度の同調
-    // 角速度の同調
-    // ターンマックスが 180度以上離れていること
-    // 各種スコアは毎ターンごとに出すのが良さそうだ。
-    // ターン中盤でスコアを出したい場合は、区切りをもっと細かくしなきゃだめだね。
-    // 途中でスコアを出さないとね。
-    func pivotSlipScore(){
+    func fallLineDirection() -> Double {
+        if timeStampAndRotationRateXDirectionSideCollection.last!.turnSideDirection {
+            //右ターンのとき
+            AngleShifter.handle(currentAngle: fallLineYaw, shiftAngle: (Double.pi / 2 * -1))
+        } else {
+            // 左ターンのとき
+            AngleShifter.handle(currentAngle: fallLineYaw, shiftAngle: Double.pi / 2)// 右９０度
+        }
+    }
+
+    func fallLine直交Acceleration(movingPhase: MovingPhase) ->
+            TargetDirectionAccelerationAndRelativeAttitude {
+        // 一番最新のフォールラインをGet それと直交するヨーイング方向を計算
+        // その方向の加速度を習得
+        AccelerationForTargetAngle.handle(
+                userAcceleration: movingPhase.userAcceleration,
+                userAttitude: movingPhase.attitude,
+                targetAttitude: Attitude.init(roll: 0, yaw: fallLineDirection(), pitch: 0)
+        )
 
     }
 
-    // ターン後半でのフォールライン方向の加速度の体とスキーの差で表現可能か？
-    //
-    func outSideTurnScore(){
 
-    }
 
-    // 前後バランススコア
-    func forwardAfterwardBalanceScore(){
+    // 常にフォールライン方向に体を運ぶスピードは最大にしなきゃいけない
+    // フォールラインと直角に外側に向かって板と自分の距離が縮まる
+    // ロール角が一定以上担った場合に、エッジグリップが高くなるのでそこから
+    // スキーと自分の重心を話しながら、次のターン外側へ体を運ぶ
+    // ロール角以外で縮めていいタイミングを決定できる要素はないのか？
+    // ロール角が小さい以外で判断する材料がほしい
+    // ヨーイング角ができるだけ深い内に小さくなって踏み始めたい。
+    // できるだけ横方向の減速を遅らせたい。
+    // 板がターンマックスで帰ってこない場合はどうなんだ？
+    // 板が反ってくるかどうかって判定できるの？
+    // スキーと重心の相対加速度がマイナスの場合。
+    func スキーを通してフォールラインと直角に重心を運ぶ量() {
 
-    }
-
-    func スキーを通してフォールラインと逆方向に重心を運ぶ量(){
-        
     }
 
     var oneTurn: [TurnPhase]
@@ -176,46 +205,8 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
     var turnPhaseWithRotationRateXDirectionChangePeriod: [TurnPhaseWithRotationRateXDirectionChangePeriod]
     var turnPhasesWithYawRotationRate: [TurnPhaseProtocol]
     var movingPhases: [MovingPhaseProtocol]
-    // 動いているか加速度の合計や角速度の大きさで測る
-    // 2秒ぐらい  前後方向のみの速度変化にするか。　リフトだと完全な等速度になるのかなぁ。
-    // decent じゃなくても検知するし。
-    //同速度で運動していたら、加速度がない。　でも速度変化があることは期待しよう。
-    func isMoving(continuedSeconds: Double = 2, minimumMPS: Double = 2) -> Bool {
-        let towSeconds: [MovingPhaseProtocol] = movingPhases.filter {
-            $0.timeStampSince1970 >
-                    Calendar.current.date(
-                            byAdding: .second,
-                            value: Int(continuedSeconds), to: Date())!.timeIntervalSince1970
-        }
-        var afterSeconds: TimeInterval
-        let al: [UATI] = towSeconds.reversed().map {
-            var elapsed: TimeInterval
-            if afterSeconds != nil {
-                elapsed = afterSeconds - $0.timeStampSince1970
-            }
-            afterSeconds = $0.timeStampSince1970
-            return UATI.init(accel:
-            $0.userAcceleration.x,
-                    ti: elapsed)
-        }
-        return al[1...(al.count - 1)].map {
-            abs(PhysicsConstants.accelerationToVelocity(
-                    accelerationByG: $0.accel, elapsedTime: $0.ti!
-            ))
-        }.reduce(0, +) / Double(continuedSeconds) > minimumMPS
-    }
 
-    struct UATI {
-        let accel: Double
-        let ti: TimeInterval?
-    }
 
-    // pitch が最大よりも小さければ、フォールラインよりも切り上がっていると判定する
-    func turnMaxPassedByPitchAttitude() throws -> Bool {
-        if (movingPhases.count > 10) {
-            throw TurnError.tooShortToDetectMaxYawAttitude
-        }
-    }
 
     // 比較している最中にrotation rate の符号が反転しないことを前提にする
     // そもそも ios自体が一秒間に180度を超える回転に対応していないのだろう。
@@ -243,6 +234,13 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
         // a = 最後に今とターン方向が違う局面を検出する
         // b = そこから過去にさかのぼって、符号が反転する局面を検出する
         // a - b = 周期として設定
+    }
+
+    // pitch が最大よりも小さければ、フォールラインよりも切り上がっていると判定する
+    func turnMaxPassedByPitchAttitude() throws -> Bool {
+        if (movingPhases.count > 10) {
+            throw TurnError.tooShortToDetectMaxYawAttitude
+        }
     }
 
 }

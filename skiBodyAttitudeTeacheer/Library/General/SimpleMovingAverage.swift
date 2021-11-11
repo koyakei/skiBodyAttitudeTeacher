@@ -51,6 +51,15 @@ extension Collection where Element == Int, Index == Int {
 
 
 extension Collection where Element == MovingPhaseProtocol {
+
+    func recentNSecondsFilter(seconds: Int) -> [MovingPhaseProtocol]{
+        self.filter{
+            $0.timeStampSince1970 >
+                    Calendar.current.date(
+                            byAdding: .second,
+                            value: Int(seconds), to: Date())!.timeIntervalSince1970
+        }
+    }
     func convertLastPhaseToTurnPhaseWithRotationRateXDirection(
             milliSeconds: Double = 2000,
             beforeTurnSide: Bool
@@ -108,11 +117,6 @@ extension Collection where Element == MovingPhaseProtocol {
 
 }
 
-extension Collection where Element == TurnPhaseYawSimpleRotationRateAverage {
-    // 振り返ってターンフェイズのどこにいるかを100分率でつけなくてもいいだろ
-    // 今の時点がどれぐらいちがうのか　考えていくか
-
-}
 
 extension Collection where Element == TurnPhaseWithRotationRateXDirectionProtocol {
     func convertLastPhaseToTurnPhaseWithTurnPhaseWithRotationRateXDirectionChangePeriod(
@@ -134,7 +138,7 @@ extension Collection where Element == TurnPhaseWithRotationRateXDirectionChangeP
     func yawAttitudeMovingAverage(milliSeconds: Double = 2000) -> Double {
         precondition(self.count > 1)
         precondition(milliSeconds > 0)
-        let res: Double = AverageAngleFinder.handle(angles_rad:
+        return AverageAngleFinder.handle(angles_rad:
         self.filter {
             $0.timeStampSince1970 >
                     (Calendar.current.date(
@@ -145,7 +149,6 @@ extension Collection where Element == TurnPhaseWithRotationRateXDirectionChangeP
             $0.attitude.yaw
         }
         )
-        return res
     }
 }
 
