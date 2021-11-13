@@ -5,6 +5,8 @@
 import Foundation
 
 struct AngleShifter {
+
+    // return 180 to -180
     static func handle(currentAngle: Double, shiftAngle: Double)-> Double{
         let shiftedAngle = (currentAngle + shiftAngle)
         switch shiftedAngle{

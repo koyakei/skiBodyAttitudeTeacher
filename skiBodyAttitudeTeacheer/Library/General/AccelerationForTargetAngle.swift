@@ -6,7 +6,8 @@ import Foundation
 import CoreMotion
 
 struct AccelerationForTargetAngle {
-    static func handle(userAcceleration: CMAcceleration, userAttitude: Attitude, targetAttitude: Attitude) -> TargetDirectionAccelerationAndRelativeAttitude {
+    static func handle(userAcceleration: CMAcceleration, userAttitude: Attitude, targetAttitude: Attitude)
+                    -> TargetDirectionAccelerationAndRelativeAttitude {
         let relativeAttitude: Attitude = Attitude.init(roll: targetAttitude.roll - userAttitude.roll, yaw: targetAttitude.yaw - userAttitude.yaw,
                 pitch: targetAttitude.pitch - userAttitude.pitch)
         let targetDirectionAcceleration: Double =

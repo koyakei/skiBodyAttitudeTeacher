@@ -52,39 +52,19 @@ extension Collection where Element == Int, Index == Int {
 
 extension Collection where Element == MovingPhaseProtocol {
 
-    func recentNSecondsFilter(seconds: Int) -> [MovingPhaseProtocol]{
-        self.filter{
+    func recentNSecondsFilter(seconds: Int) -> [MovingPhaseProtocol] {
+        self.filter {
             $0.timeStampSince1970 >
                     Calendar.current.date(
                             byAdding: .second,
                             value: Int(seconds), to: Date())!.timeIntervalSince1970
         }
     }
-    func convertLastPhaseToTurnPhaseWithRotationRateXDirection(
-            milliSeconds: Double = 2000,
-            beforeTurnSide: Bool
-    ) -> TurnPhaseWithRotationRateXDirection {
-        let avr: Double = self.filter {
-            $0.timeStampSince1970 >
-                    (Calendar.current.date(
-                            byAdding: .nanosecond,
-                            value: Int(milliSeconds * 1000)
-                            , to: Date())!.timeIntervalSince1970 as Double)
-        }.map {
-            $0.rotationRate.z
-        }.reduce(0, +) / Double(self.count)
-        return TurnPhaseWithRotationRateXDirection.init(
-                movingPhaseProtocol: self[self.endIndex]
-                , movingAverageYawAngle: avr,
-                rotationRateXDirection: TurnSide(avr.sign == .plus),
-                turnSideChanged: TurnSide(avr.sign == .plus) != beforeTurnSide
-        )
-    }
 
     func yawRotationRateMovingAverage(milliSeconds: Double = 200) -> Double {
         precondition(self.count > 1)
         precondition(milliSeconds > 0)
-        let res: Double = AverageAngleFinder.handle(angles_rad:
+        return AverageAngleFinder.handle(angles_rad:
         self.filter {
             $0.timeStampSince1970 >
                     (Calendar.current.date(
@@ -95,13 +75,12 @@ extension Collection where Element == MovingPhaseProtocol {
             $0.rotationRate.z
         }
         )
-        return res
     }
 
     func yawAttitudeMovingAverage(milliSeconds: Double = 2000) -> Double {
         precondition(self.count > 1)
         precondition(milliSeconds > 0)
-        let res: Double = AverageAngleFinder.handle(angles_rad:
+        return AverageAngleFinder.handle(angles_rad:
         self.filter {
             $0.timeStampSince1970 >
                     (Calendar.current.date(
@@ -112,27 +91,12 @@ extension Collection where Element == MovingPhaseProtocol {
             $0.attitude.yaw
         }
         )
-        return res
     }
 
 }
 
 
-extension Collection where Element == TurnPhaseWithRotationRateXDirectionProtocol {
-    func convertLastPhaseToTurnPhaseWithTurnPhaseWithRotationRateXDirectionChangePeriod(
-            milliSeconds: Double = 2000) ->
-            TurnPhaseWithRotationRateXDirectionChangePeriod {
-        let avr: Double = self.filter {
-            $0.timeStampSince1970 >
-                    (Calendar.current.date(
-                            byAdding: .nanosecond,
-                            value: Int(milliSeconds * 1000)
-                            , to: Date())!.timeIntervalSince1970 as Double)
-        }.map {
-            $0.rotationRate.z
-        }.reduce(0, +) / Double(self.count)
-    }
-}
+
 
 extension Collection where Element == TurnPhaseWithRotationRateXDirectionChangePeriodProtocol {
     func yawAttitudeMovingAverage(milliSeconds: Double = 2000) -> Double {
@@ -153,8 +117,8 @@ extension Collection where Element == TurnPhaseWithRotationRateXDirectionChangeP
 }
 
 extension Collection where Element == TimeStampAndTurnSideDirectionChanged {
-    func yawPeriod() -> Double{
-        let last2 = self.filter{
+    func yawRotationRateDirectionChangePeriod() -> Double {
+        let last2 = self.filter {
             $0.turnSideDirectionChanged == true
         }[self.count - 2...self.count - 1]
         return last2.last!.timeStampSince1970 - last2.first!.timeStampSince1970

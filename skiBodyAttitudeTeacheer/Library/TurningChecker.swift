@@ -11,10 +11,9 @@ struct TurningChecker {
     // ギルランデになっているかどうか
     //ギルランでってフォールラインに向いたらだめなんだよね　ターン担っていない場合ギルランでと判定したい。
     // ギルランデ　ターンサイドは変わる　フォールラインに板が向かない。
-
     func turning(startYaw: Double, turnEndYaw: Double) -> Bool {
         // true + is turn right
-        abs(TwoAngleDiffrencial.handle(angle: startYaw,
+        abs(TwoAngleDifferential.handle(angle: startYaw,
                 secondAngle: turnEndYaw)) >= mimYawingAngle
     }
 

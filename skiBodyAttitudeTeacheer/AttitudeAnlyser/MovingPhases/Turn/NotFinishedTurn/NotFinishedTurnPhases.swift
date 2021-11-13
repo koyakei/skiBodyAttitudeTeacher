@@ -37,6 +37,7 @@ struct TimeStampAndYawRotationRateMovingAverage {
 
 
 struct OneNotFinishedTurn: MovingPhasesProtocol {
+
     var timeStampAndYawRotationRateMovingAverageCollection: [TimeStampAndYawRotationRateMovingAverage]
     // true right to left false left to right
     // plus is right turn
@@ -67,6 +68,7 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
         isYawRotationRateDirectionChanged(movingPhase: movingPhase)
     }
 
+
     mutating func isTurnMax(movingPhase: MovingPhase) -> Bool {
         if lastYawAttitudeCrossZeroDirection {
             let res = movingPhase.attitude.yaw <
@@ -90,9 +92,14 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
     var timeStampAndRotationRateXDirectionSideCollection: [TimeStampAndRotationRateXDirectionSide]
     var timeStampAndTurnSideDirectionChanged: [TimeStampAndTurnSideDirectionChanged]
     var timeStampAndTurnSideDirectionChangedPeriod: [TimeStampAndTurnSideDirectionChangedPeriod]
-    var fallLineYaw: Double = 0
+    var fallLineYawAttitude: Double = 0
 
-    mutating func turnMaxFromMovingPhase(movingPhase: MovingPhase) {
+    mutating func turnMaxFromMovingPhase(movingPhase: MovingPhase) -> (Double, Bool, Bool, Bool, Double, Double) {
+        let yawRotationRateMovingAverage = movingPhases.yawRotationRateMovingAverage()
+        timeStampAndRotationRateXDirectionSideCollection.append(TimeStampAndRotationRateXDirectionSide.init(
+                turnSideDirection: yawRotationRateMovingAverage.sign == .plus, // 右回り true
+                timeStampSince1970: movingPhase.timeStampSince1970))
+        // 角速度の入れ替わりからターンの切り替え時を判定
         let turnSideDirectionChanged: Bool =
                 timeStampAndRotationRateXDirectionSideCollection[timeStampAndRotationRateXDirectionSideCollection.count - 2].turnSideDirection !=
                         timeStampAndRotationRateXDirectionSideCollection.last?.turnSideDirection
@@ -101,47 +108,56 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
                         turnSideDirectionChanged: turnSideDirectionChanged,
                         timeStampSince1970: timeStampAndRotationRateXDirectionSideCollection.last!.timeStampSince1970)
         )
+        // ターンの周期を計算
+        let rotationRateDirectionChangePeriod: Double = timeStampAndTurnSideDirectionChanged.yawRotationRateDirectionChangePeriod()
         timeStampAndTurnSideDirectionChangedPeriod.append(
                 TimeStampAndTurnSideDirectionChangedPeriod.init(
-                        turnSideDirectionChangedPeriod: timeStampAndTurnSideDirectionChanged.yawPeriod(),
+                        turnSideDirectionChangedPeriod: rotationRateDirectionChangePeriod,
                         timeStampSince1970: timeStampAndTurnSideDirectionChangedPeriod.last!.timeStampSince1970)
         )
-        let average: Double = movingPhases.yawAttitudeMovingAverage(
-                milliSeconds: timeStampAndTurnSideDirectionChangedPeriod.last!.turnSideDirectionChangedPeriod)
+        // ターンの周期を移動平均したヨーイング角の平均角度を計算
+        let yawingSimpleMovingAverage: Double = movingPhases.yawAttitudeMovingAverage(
+                milliSeconds: rotationRateDirectionChangePeriod
+        )
         let turnFinished: Bool = isTurnFinished(movingPhase: movingPhase)
-        let isTurnMax = isTurnMax(movingPhase: movingPhase)
+        // ヨーイング角度を超えたらターンマックスとする
+        let isTurnMax: Bool = isTurnMax(movingPhase: movingPhase)
+
+        // フォールライン方向の判定　前回のターンマックスヨーイング角をフォールラインとする。
         if isTurnMax {
-            fallLineYaw = movingPhase.attitude.yaw
+            fallLineYawAttitude = movingPhase.attitude.yaw
         }
+
+        return (yawingSimpleMovingAverage,
+                turnFinished, isTurnMax, turnSideDirectionChanged, rotationRateDirectionChangePeriod, yawRotationRateMovingAverage)
         // turn finished じゃなくてターン開始からの１００分率で表記しようか？ ターン終了からの
-
-
     }
 
-    func movingPhaseReceiver(movingPhase: MovingPhase) {
+    mutating func movingPhaseReceiver(movingPhase: MovingPhase) {
+        movingPhases.append(movingPhase)
         // 角速度の平均を出す
-        // 角速度の入れ替わりからターンの切り替え時を判定
-        // ヨーイング角の平均角度計算
-        // ターンマックスの判定
-        // フォールライン方向の判定　前回のターンマックスヨーイング角をフォールラインとする。
+        let (yawingSimpleMovingAverage, turnFinished,
+             isTurnMax, turnSideDirectionChanged, rotationRateChangePeriod,
+             yawRotationRateMovingAverage) = turnMaxFromMovingPhase(movingPhase: movingPhase)
         // フォールライン方向の加速度を計算
         // 他の指標も計算していく
         // ピボットスリップを計算する前提で考えてみよう
-
         // 前回のターン切り替えからの偏角は計算するか？　べつにしなくていいか
         // フォールラインと直角方向の加速度を計算
-        fallLine直交Acceleration(movingPhase: movingPhase)
-        fallLineAcceleration()
+        let fallLineOrthogonal: TargetDirectionAccelerationAndRelativeAttitude = fallLineOrthogonalAcceleration(movingPhase: movingPhase)
         // それを oneTurn にいれる とりあえず 5000 コマ超えたら csv に入れればいい
         // これはやらなくていいターンが終わったらそれらをTurnPhases ぶちこむ
-
-//        turnPhasesWithYawMovingAverage.append(
-//                TurnPhaseYawSimpleRotationRateAverage.init(
-//                        movingPhaseProtocol: movingPhase,
-//                        movingAverageYawAngle: average,
-//                        turnFinished: turnFinished,
-//                        turnSideDirectionChanged: turnSideDirectionChanged
-//                ))
+        turnPhasesWithYawMovingAverage.append(
+                TurnPhase.init(
+                        movingPhaseProtocol: movingPhase,
+                        movingAverageYawAngle: yawingSimpleMovingAverage,
+                        turnFinished: turnFinished,
+                        turnSideDirectionChanged: turnSideDirectionChanged,
+                        turnPhaseRatio: <#T##Float##Float#>,
+                        isTurnMax: isTurnMax,
+                        yawRotationRateMovingAverage: yawRotationRateMovingAverage,
+                        fallLineOrthogonalAcceleration: fallLineOrthogonal.targetDirectionAcceleration,
+                        fallLineOrthogonalRelativeAttitude: fallLineOrthogonal.relativeAttitude))
 
 //        if turnFinished {
 //            // ターンが終わったら、ターンフェイズのどこにいるかを 100分率で計算
@@ -152,14 +168,14 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
     func fallLineDirection() -> Double {
         if timeStampAndRotationRateXDirectionSideCollection.last!.turnSideDirection {
             //右ターンのとき
-            AngleShifter.handle(currentAngle: fallLineYaw, shiftAngle: (Double.pi / 2 * -1))
+            AngleShifter.handle(currentAngle: fallLineYawAttitude, shiftAngle: (Double.pi / 2 * -1))
         } else {
             // 左ターンのとき
-            AngleShifter.handle(currentAngle: fallLineYaw, shiftAngle: Double.pi / 2)// 右９０度
+            AngleShifter.handle(currentAngle: fallLineYawAttitude, shiftAngle: Double.pi / 2)// 右９０度
         }
     }
 
-    func fallLine直交Acceleration(movingPhase: MovingPhase) ->
+    func fallLineOrthogonalAcceleration(movingPhase: MovingPhase) ->
             TargetDirectionAccelerationAndRelativeAttitude {
         // 一番最新のフォールラインをGet それと直交するヨーイング方向を計算
         // その方向の加速度を習得
@@ -170,7 +186,6 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
         )
 
     }
-
 
 
     // 常にフォールライン方向に体を運ぶスピードは最大にしなきゃいけない
@@ -198,14 +213,13 @@ struct OneNotFinishedTurn: MovingPhasesProtocol {
 
     }
 
-    var turnPhasesWithYawMovingAverage: [TurnPhaseYawSimpleRotationRateAverage]
+    var turnPhasesWithYawMovingAverage: [TurnPhase]
     var xDirectionWithTimeStampCollection: [XRotationRateDirection]
 
     var turnPhaseWithRotationRateXDirection: [TurnPhaseWithRotationRateXDirection]
     var turnPhaseWithRotationRateXDirectionChangePeriod: [TurnPhaseWithRotationRateXDirectionChangePeriod]
     var turnPhasesWithYawRotationRate: [TurnPhaseProtocol]
     var movingPhases: [MovingPhaseProtocol]
-
 
 
     // 比較している最中にrotation rate の符号が反転しないことを前提にする

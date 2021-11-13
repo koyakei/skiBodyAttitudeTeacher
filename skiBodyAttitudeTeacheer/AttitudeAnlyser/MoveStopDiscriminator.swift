@@ -11,11 +11,11 @@ import Foundation
 struct MoveStopDiscriminator {
     func handle(
             movingPhases: [MovingPhaseProtocol],
-            continuedSeconds: Double = 2,
+            continuedSeconds: Int = 2,
             minimumVelocityPerSeconds: Double = 2
     ) -> Bool {
         let moveFromLast :[MovingPhaseProtocol] = movingPhases.recentNSecondsFilter(seconds: continuedSeconds)
-                .reversed()
+                .reversed() // sortedのほうが保証できるのか？
         var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
         return moveFromLast.map {
                     var elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970

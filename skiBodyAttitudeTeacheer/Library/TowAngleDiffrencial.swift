@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct TwoAngleDiffrencial {
+struct TwoAngleDifferential {
     // pi to - pi  180 to - 180
     static func handle(angle: Double, secondAngle: Double) -> Double{
         atan2(sin( angle - secondAngle ),cos(angle - secondAngle))

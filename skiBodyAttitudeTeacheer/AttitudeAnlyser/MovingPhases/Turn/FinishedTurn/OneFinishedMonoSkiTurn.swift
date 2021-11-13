@@ -12,11 +12,6 @@ struct OneFinishedMonoSkiTurn: FinishedTurnProtocol {
     func maxYawAttitudePhase() -> MovingPhaseProtocol {
         MaxAngleFinder.handle(movingPhases: movingPhases, baseDegree: (movingPhases.first?.attitude.yaw)!)
     }
-
-    func turnFinished() -> Bool {
-        TurnFinishedChecker.init(movingPhases: movingPhases).handle()
-    }
-
     var movingPhases: [MovingPhaseProtocol]
 
     var turnStartPhase: MovingPhaseProtocol {
@@ -34,12 +29,12 @@ struct OneFinishedMonoSkiTurn: FinishedTurnProtocol {
     // start > fall line > end == left turn
     func turnSide() -> TurnSide {
         // true + is turn right
-        let startToFallLineTurnSide = TwoAngleDiffrencial.handle(
+        let startToFallLineTurnSide = TwoAngleDifferential.handle(
                 angle: turnStartPhase.attitude.yaw,
                 secondAngle: maxYawAttitudePhase().attitude.yaw
         )
         // true + is turn right
-        let fallLineToEndTurnSide = TwoAngleDiffrencial.handle(
+        let fallLineToEndTurnSide = TwoAngleDifferential.handle(
                 angle: maxYawAttitudePhase().attitude.yaw,
                 secondAngle: turnEndPhase.attitude.yaw
         )

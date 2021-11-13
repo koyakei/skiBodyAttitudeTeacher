@@ -10,7 +10,7 @@ import Foundation
 //受け取り部位ごとに分けるか。
 
 protocol MotionStreamReceiver{
-    var  turnPhases:TurnPhases{get}
+    var  movingPhases:[MovingPhase]{get}
     
-    mutating func receiver(turnPhase: TurnPhase)
+    mutating func receiver(movingPhase: MovingPhase)
 }

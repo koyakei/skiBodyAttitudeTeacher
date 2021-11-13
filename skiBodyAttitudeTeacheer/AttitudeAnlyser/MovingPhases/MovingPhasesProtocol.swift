@@ -14,7 +14,6 @@ protocol MovingPhasesProtocol{
 // ターンしているか判定する
 //  ターンってなに？　どのぐらいの小さな波をターンとして設定するの？
 // 大きさを角度で決める　何度回転したら　どれぐらいの加速度　速度があったら　いいのか？
-    func isTurnMax() throws -> Bool
 }
 
 protocol MovingPhaseProtocol {

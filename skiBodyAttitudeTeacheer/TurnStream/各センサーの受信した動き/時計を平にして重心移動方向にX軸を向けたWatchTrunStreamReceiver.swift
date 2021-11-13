@@ -1,5 +1,5 @@
 //
-//  時計を平にして重心移動方向にX軸を向けたWatchturnStreamReceiver.swift
+//  時計を平にして重心移動方向にX軸を向けたWatchTurnStreamReceiver.swift
 //  skiBodyAttitudeTeacheer
 //
 //  Created by koyanagi on 2021/10/31.
