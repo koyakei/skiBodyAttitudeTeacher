@@ -1,5 +1,5 @@
 //
-//  TurnPhases.swift
+//  IdealTurnConditionDetector.swift
 //  skiBodyAttitudeTeacheer
 //
 //  Created by koyanagi on 2021/11/05.
@@ -8,15 +8,10 @@
 import Foundation
 import CoreMotion
 
-struct TurnPhases {
+struct IdealTurnConditionDetector {
 
-    func maxRollAngle(turnPhases: [MovingPhaseProtocol]) -> Double {
-        (turnPhases.max(by: { (a, b) -> Bool in
-            return a.attitude.roll < b.attitude.roll
-        })?.attitude.roll)!
-    }
-
-    func ターン前半の角速度と姿勢が一致してますか(turnPhase: MovingPhaseProtocol) -> Bool {
+    func ターン前半のすべての角速度とAttitudeが理想状態に一致しているか？(turnPhase:
+            MovingPhaseProtocol) -> Bool {
         let 横回転: Double = turnPhase.rotationRate.z
         let roll: Double = turnPhase.rotationRate.y
         let pitch: Double = turnPhase.rotationRate.x

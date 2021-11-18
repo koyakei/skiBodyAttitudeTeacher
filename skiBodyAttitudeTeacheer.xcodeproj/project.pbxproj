@@ -102,6 +102,7 @@
 		2EF63CE8D0FC8D1AD3D4D754 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63D0ED06638E5D1986704 /* MoveStopDiscriminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63F83B6DF65A01909BF6B /* MoveStopDiscriminator.swift */; };
 		2EF63D5F1D9E0F8FA1984F7E /* ToneOutputUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E2977EBFB79A098F72C /* ToneOutputUnit.swift */; };
+		2EF63D6881BCD49545436A4F /* IdealTurnConditionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63CA665B45601F0630F90 /* IdealTurnConditionDetector.swift */; };
 		2EF63DC674D110C3DDAF9143 /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		2EF63E004599F2F941B988B5 /* TurningChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6367AEA439D9E81178292 /* TurningChecker.swift */; };
 		2EF63E045CA643184048BB82 /* ForwardAfterwardBalanceScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63D25F03E4914ADE99630 /* ForwardAfterwardBalanceScore.swift */; };
@@ -141,7 +142,6 @@
 		BAA0A9F6272F688E00FEDF23 /* MotionFeedBackerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F5272F688E00FEDF23 /* MotionFeedBackerImpl.swift */; };
 		BAA0A9F8272F75CE00FEDF23 /* AirPodOnHeadMotionReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F7272F75CE00FEDF23 /* AirPodOnHeadMotionReceiver.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedbackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedbackerDelegate.swift */; };
-		BAA0AA0A2734D53E00FEDF23 /* TurnPhases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AA092734D53E00FEDF23 /* TurnPhases.swift */; };
 		BAA0AA152734DE2500FEDF23 /* MovingPhasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AA142734DE2500FEDF23 /* MovingPhasesProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -238,6 +238,7 @@
 		2EF63A86C43B82AEE67A73CA /* ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift; sourceTree = "<group>"; };
 		2EF63A959EB08D554B42103C /* MovingPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovingPhase.swift; path = skiBodyAttitudeTeacheer/AttitudeAnlyser/MovingPhases/MovingPhase.swift; sourceTree = SOURCE_ROOT; };
 		2EF63B7CFD918FC311FCA8C4 /* EvaluationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationResponder.swift; path = skiBodyAttitudeTeacheer/EvaluationResponder.swift; sourceTree = SOURCE_ROOT; };
+		2EF63CA665B45601F0630F90 /* IdealTurnConditionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdealTurnConditionDetector.swift; path = skiBodyAttitudeTeacheer/AttitudeAnlyser/MovingPhases/IdealTurnConditionDetector.swift; sourceTree = SOURCE_ROOT; };
 		2EF63D175E7A78CA60A03654 /* PivotSlipScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PivotSlipScore.swift; sourceTree = "<group>"; };
 		2EF63D25F03E4914ADE99630 /* ForwardAfterwardBalanceScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardAfterwardBalanceScore.swift; sourceTree = "<group>"; };
 		2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsConstants.swift; sourceTree = "<group>"; };
@@ -286,7 +287,6 @@
 		BAA0A9F5272F688E00FEDF23 /* MotionFeedBackerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFeedBackerImpl.swift; sourceTree = "<group>"; };
 		BAA0A9F7272F75CE00FEDF23 /* AirPodOnHeadMotionReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPodOnHeadMotionReceiver.swift; sourceTree = "<group>"; };
 		BAA0A9F9272F973700FEDF23 /* MotionFeedbackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFeedbackerDelegate.swift; sourceTree = "<group>"; };
-		BAA0AA092734D53E00FEDF23 /* TurnPhases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnPhases.swift; sourceTree = "<group>"; };
 		BAA0AA142734DE2500FEDF23 /* MovingPhasesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingPhasesProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -560,6 +560,7 @@
 				2EF637D195E0612C9F6FFD59 /* TurnPeriodFinder.swift */,
 				2EF634E904C2E4675682BB72 /* TurnPhaseFinder.swift */,
 				2EF6367475334DCEDA56EC04 /* TurnConditionFinder.swift */,
+				2EF63CA665B45601F0630F90 /* IdealTurnConditionDetector.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -567,7 +568,6 @@
 		BAA0AA132734DDE500FEDF23 /* MovingPhases */ = {
 			isa = PBXGroup;
 			children = (
-				BAA0AA092734D53E00FEDF23 /* TurnPhases.swift */,
 				BAA0AA142734DE2500FEDF23 /* MovingPhasesProtocol.swift */,
 				2EF636C3DC7A799770AC98E5 /* Turn */,
 			);
@@ -830,7 +830,6 @@
 				BAA0A9F6272F688E00FEDF23 /* MotionFeedBackerImpl.swift in Sources */,
 				BAA0AA152734DE2500FEDF23 /* MovingPhasesProtocol.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
-				BAA0AA0A2734D53E00FEDF23 /* TurnPhases.swift in Sources */,
 				BA90EF522724E1A700FC7A66 /* MotionWriter.swift in Sources */,
 				BAA0A9FA272F973700FEDF23 /* MotionFeedbackerDelegate.swift in Sources */,
 				BAA0A9D727294D3D00FEDF23 /* WatchMotionWriter.swift in Sources */,
@@ -866,6 +865,7 @@
 				2EF63AFE1AFAEFDEA035617D /* CanterOfMassTurnPhaseAnalyzer.swift in Sources */,
 				2EF63E0971FD5F9DAAB9584B /* TimeStampAndTurnSideDirectionSide.swift in Sources */,
 				2EF6360546B9703C240AE316 /* SkiTurnPhaseAnalyzer.swift in Sources */,
+				2EF63D6881BCD49545436A4F /* IdealTurnConditionDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

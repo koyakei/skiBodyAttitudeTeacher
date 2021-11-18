@@ -122,7 +122,7 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseYawSimpleRotationRateAverageProtoc
     var absoluteRotationRate: CMRotationRate
     var fallLineAcceleration: Double
     let turnSideDirection: Bool
-    init(skiTurnPhase: TurnPhase,
+    init(skiTurnPhase: SkiTurnPhase,
          centerOfMassTurnPhase: CenterOfMassTurnPhase
     ) {
         movingAverageYawAngle = centerOfMassTurnPhase.yawRotationRateMovingAverage

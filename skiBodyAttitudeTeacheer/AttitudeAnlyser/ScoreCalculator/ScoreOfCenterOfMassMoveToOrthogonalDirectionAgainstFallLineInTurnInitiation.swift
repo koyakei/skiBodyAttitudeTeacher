@@ -4,7 +4,7 @@
 
 import Foundation
 
-extension Collection where Element == TurnPhase {
+extension Collection where Element == SkiTurnPhase {
 
     func filterLastTurnSwitchToTurnMax() -> [TurnPhase] {
         self.filter {
