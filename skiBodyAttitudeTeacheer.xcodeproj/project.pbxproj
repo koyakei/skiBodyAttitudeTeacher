@@ -10,6 +10,7 @@
 		2EF63040402F834A53FB22C9 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63050B5C66F8BA9A15216 /* EvaluationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF632FFB6882E7920F88177 /* EvaluationResponder.swift */; };
 		2EF63089F090CAC8F3320A3B /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
+		2EF6309337E0D2256CFCA07D /* OneTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EDF50E1FEE61302C58B /* OneTurn.swift */; };
 		2EF630CB25D0A0B1D38568AD /* SimpleMovingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF638B675848A6951C10522 /* SimpleMovingAverage.swift */; };
 		2EF630E5E6C98B9812FFBD08 /* AccelerationForTargetAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635822175156661826BB7 /* AccelerationForTargetAngle.swift */; };
 		2EF630EA35632406C5F5F891 /* SimpleMovingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF638B675848A6951C10522 /* SimpleMovingAverage.swift */; };
@@ -21,8 +22,8 @@
 		2EF631E91B06832CC6CB0BF0 /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF632587D6D76093850E009 /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		2EF6326215D919BD4AED9F7D /* TurnError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635C99299EF72A7E1CE89 /* TurnError.swift */; };
-		2EF632755FCA6EC12317BC60 /* MotionAbsoluteTimeCalcuulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */; };
-		2EF632E457EF1DAE7C4F7714 /* MotionAbsoluteTimeCalcuulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */; };
+		2EF632755FCA6EC12317BC60 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
+		2EF632E457EF1DAE7C4F7714 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF63308CEBB1EC4EF6BBE16 /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63AF477EEB73E64C3340F /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift */; };
 		2EF63325186B89E51CD1E3A6 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF6333A9B34791FBCABED07 /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
@@ -30,11 +31,11 @@
 		2EF6341FFB51AA0E753D86AB /* SkiTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63F74A4EC4CD9024AA22B /* SkiTurnPhase.swift */; };
 		2EF6344254B370436EFF6AC1 /* ForwardAfterwardBalanceScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E296DCB11BA142480D9 /* ForwardAfterwardBalanceScore.swift */; };
 		2EF63455FC5D5E76E185DE45 /* ToneOutputUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631D70C72AD3C7621CDFC /* ToneOutputUnit.swift */; };
-		2EF634708DBE2CD1CD343B1F /* MotionAbsoluteTimeCalcuulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */; };
+		2EF634708DBE2CD1CD343B1F /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF6347323FFBE625E957D33 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF6347BBAB51066FE1DC5C2 /* MotionAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF637F6B5201E6DCD55E406 /* MotionAnalyser.swift */; };
 		2EF634BD5193C1781F1F80C9 /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
-		2EF634BF428069C49B5461BD /* MotionAbsoluteTimeCalcuulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */; };
+		2EF634BF428069C49B5461BD /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF6353978ACCD61F12B932E /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		2EF635587061705849D6DF1A /* TimeStampAndTurnSideDirectionSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6313C1C1B2B57F0334AE9 /* TimeStampAndTurnSideDirectionSide.swift */; };
 		2EF635E3BC76C0B423AABECA /* MoveStopDiscriminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63B291F72B8C9A40D8094 /* MoveStopDiscriminator.swift */; };
@@ -44,8 +45,9 @@
 		2EF6363AAD93DEA38BDE2913 /* ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63F136DF82CBCCB363A4B /* ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift */; };
 		2EF6363B2D9C05F4F725420D /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF63672289EDDE5A4871A40 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
+		2EF6367E6F3DCB9B18A304C1 /* MotionFeedBackerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */; };
 		2EF63688177153659015D292 /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
-		2EF636AE20AA511BE00413E1 /* MotionAbsoluteTimeCalcuulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */; };
+		2EF636AE20AA511BE00413E1 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF636D3F85B058C44C5FAC0 /* TimeStampAndTurnSideDirectionChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6377BD3A83603F7D2F226 /* TimeStampAndTurnSideDirectionChanged.swift */; };
 		2EF636E174019520949CA45F /* MovingPhasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF632804E51191A8B165B39 /* MovingPhasesProtocol.swift */; };
 		2EF636FF3B616036EC7F67EB /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
@@ -56,7 +58,7 @@
 		2EF638720887BF54D57CC823 /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		2EF63898659EE4E7F256E02B /* AccelerationForTargetAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635822175156661826BB7 /* AccelerationForTargetAngle.swift */; };
 		2EF638E910C2202EF0B03D63 /* TurnPhaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EE4F9DCB1F3D5558C4F /* TurnPhaseProtocol.swift */; };
-		2EF638FCDE68FFDB241484A2 /* MotionAbsoluteTimeCalcuulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */; };
+		2EF638FCDE68FFDB241484A2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF6390AF3397C50DAB7491A /* SkiTurnPhaseAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63170E20736515729E144 /* SkiTurnPhaseAnalyzer.swift */; };
 		2EF6395BDE442DF4C51019A7 /* AirPodOnHeadMotionReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF630AFEF7873CF71EA5E82 /* AirPodOnHeadMotionReceiver.swift */; };
 		2EF63999D97DE95FB060616F /* AccelerationForTargetAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635822175156661826BB7 /* AccelerationForTargetAngle.swift */; };
@@ -107,7 +109,6 @@
 		BA3C944E27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */; };
 		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
 		BAA0A9E3272C2C3D00FEDF23 /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */; };
-		BAA0A9F6272F688E00FEDF23 /* MotionFeedBackerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F5272F688E00FEDF23 /* MotionFeedBackerImpl.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -196,7 +197,7 @@
 		2EF632804E51191A8B165B39 /* MovingPhasesProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovingPhasesProtocol.swift; path = skiBodyAttitudeTeacheer/DomainModel/Service/MovingPhasesProtocol.swift; sourceTree = SOURCE_ROOT; };
 		2EF632FFB6882E7920F88177 /* EvaluationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationResponder.swift; path = skiBodyAttitudeTeacheer/EvaluationResponder.swift; sourceTree = SOURCE_ROOT; };
 		2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngleShifter.swift; sourceTree = "<group>"; };
-		2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionAbsoluteTimeCalcuulator.swift; path = skiBodyAttitudeTeacheer/Library/MotionAbsoluteTimeCalcuulator.swift; sourceTree = SOURCE_ROOT; };
+		2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift; path = skiBodyAttitudeTeacheer/Library/CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift; sourceTree = SOURCE_ROOT; };
 		2EF6349EBE48A324D8010A7C /* IdealTurnConditionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdealTurnConditionDetector.swift; path = skiBodyAttitudeTeacheer/DomainModel/Service/IdealTurnConditionDetector.swift; sourceTree = SOURCE_ROOT; };
 		2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TowAngleDiffrencial.swift; path = skiBodyAttitudeTeacheer/Library/TowAngleDiffrencial.swift; sourceTree = SOURCE_ROOT; };
 		2EF6357FEE78DF0CD64A792C /* TurningChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurningChecker.swift; path = skiBodyAttitudeTeacheer/Library/TurningChecker.swift; sourceTree = SOURCE_ROOT; };
@@ -210,9 +211,11 @@
 		2EF63AF477EEB73E64C3340F /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift; sourceTree = "<group>"; };
 		2EF63B291F72B8C9A40D8094 /* MoveStopDiscriminator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveStopDiscriminator.swift; path = skiBodyAttitudeTeacheer/DomainModel/MoveStopDiscriminator.swift; sourceTree = SOURCE_ROOT; };
 		2EF63BBC4C3B04B024C151A1 /* CurrentVelocity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentVelocity.swift; path = skiBodyAttitudeTeacheer/Library/CurrentVelocity.swift; sourceTree = SOURCE_ROOT; };
+		2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionFeedBackerImpl.swift; path = skiBodyAttitudeTeacheer/MotionFeedBackerImpl.swift; sourceTree = SOURCE_ROOT; };
 		2EF63D1B8ACD39EDB7CE5F31 /* Attitude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attitude.swift; path = skiBodyAttitudeTeacheer/DomainModel/Attitude.swift; sourceTree = SOURCE_ROOT; };
 		2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsConstants.swift; sourceTree = "<group>"; };
 		2EF63E296DCB11BA142480D9 /* ForwardAfterwardBalanceScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardAfterwardBalanceScore.swift; sourceTree = "<group>"; };
+		2EF63EDF50E1FEE61302C58B /* OneTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTurn.swift; sourceTree = "<group>"; };
 		2EF63EE4F9DCB1F3D5558C4F /* TurnPhaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurnPhaseProtocol.swift; path = skiBodyAttitudeTeacheer/DomainModel/MovingPhase/TurnPhaseProtocol.swift; sourceTree = SOURCE_ROOT; };
 		2EF63EED1399E8E4A5853A98 /* TurnConditionFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurnConditionFinder.swift; path = skiBodyAttitudeTeacheer/Library/TurnConditionFinder.swift; sourceTree = SOURCE_ROOT; };
 		2EF63F136DF82CBCCB363A4B /* ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift; sourceTree = "<group>"; };
@@ -253,7 +256,6 @@
 		BAA0A9D427293C4700FEDF23 /* skiBodyAttitudeTeacheer-WatchKit-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "skiBodyAttitudeTeacheer-WatchKit-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BAA0A9DF272C10F400FEDF23 /* skiBodyAttitudeTeacheer WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "skiBodyAttitudeTeacheer WatchKit App.entitlements"; sourceTree = "<group>"; };
 		BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
-		BAA0A9F5272F688E00FEDF23 /* MotionFeedBackerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFeedBackerImpl.swift; sourceTree = "<group>"; };
 		BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFeedBackerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,6 +320,7 @@
 			children = (
 				2EF6311DB1B933771B9CFAA4 /* 各センサーでの受信 */,
 				2EF634E913EAD164A936424F /* MotionWriter */,
+				2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				2EF6304E653C974E55ECC55C /* MovingPhase.swift */,
 				2EF63B3351CD8F71C349DC7E /* TurnPhase */,
 				2EF632804E51191A8B165B39 /* MovingPhasesProtocol.swift */,
+				2EF63EDF50E1FEE61302C58B /* OneTurn.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -377,7 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */,
-				2EF63474CC5B29D712BFEBC2 /* MotionAbsoluteTimeCalcuulator.swift */,
+				2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */,
 				2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */,
 				2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */,
 				2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */,
@@ -442,7 +446,6 @@
 				BA3C93F92722636B007D5325 /* ContentView.swift */,
 				BA3C93FB2722636E007D5325 /* Assets.xcassets */,
 				BA3C93FD2722636E007D5325 /* Preview Content */,
-				BAA0A9F5272F688E00FEDF23 /* MotionFeedBackerImpl.swift */,
 				2EF633AEFBD7DDFC856E999F /* Interface */,
 			);
 			path = skiBodyAttitudeTeacheer;
@@ -810,11 +813,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
-				BAA0A9F6272F688E00FEDF23 /* MotionFeedBackerImpl.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */,
 				2EF631B11228B943A5143E24 /* AverageAngleFinder.swift in Sources */,
-				2EF634708DBE2CD1CD343B1F /* MotionAbsoluteTimeCalcuulator.swift in Sources */,
+				2EF634708DBE2CD1CD343B1F /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF631B15A3B9665292A8B28 /* TowAngleDiffrencial.swift in Sources */,
 				2EF63B0086810A1D356D353E /* MaxAngleFinder.swift in Sources */,
 				2EF63672289EDDE5A4871A40 /* PhysicsConstants.swift in Sources */,
@@ -851,6 +853,8 @@
 				2EF6363AAD93DEA38BDE2913 /* ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.swift in Sources */,
 				2EF635E3BC76C0B423AABECA /* MoveStopDiscriminator.swift in Sources */,
 				2EF63455FC5D5E76E185DE45 /* ToneOutputUnit.swift in Sources */,
+				2EF6367E6F3DCB9B18A304C1 /* MotionFeedBackerImpl.swift in Sources */,
+				2EF6309337E0D2256CFCA07D /* OneTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,7 +864,7 @@
 			files = (
 				BA3C94092722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift in Sources */,
 				2EF63089F090CAC8F3320A3B /* AverageAngleFinder.swift in Sources */,
-				2EF634BF428069C49B5461BD /* MotionAbsoluteTimeCalcuulator.swift in Sources */,
+				2EF634BF428069C49B5461BD /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF63B2956375341C7736D07 /* TowAngleDiffrencial.swift in Sources */,
 				2EF631E91B06832CC6CB0BF0 /* MaxAngleFinder.swift in Sources */,
 				2EF630FC659F0A28F66A7F3F /* PhysicsConstants.swift in Sources */,
@@ -877,7 +881,7 @@
 				BA3C94132722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift in Sources */,
 				BA3C94152722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift in Sources */,
 				2EF63EC9EFE6CD025BEC4605 /* AverageAngleFinder.swift in Sources */,
-				2EF632E457EF1DAE7C4F7714 /* MotionAbsoluteTimeCalcuulator.swift in Sources */,
+				2EF632E457EF1DAE7C4F7714 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF636FF3B616036EC7F67EB /* TowAngleDiffrencial.swift in Sources */,
 				2EF6363B2D9C05F4F725420D /* MaxAngleFinder.swift in Sources */,
 				2EF63BEDD442AD9A7171E892 /* PhysicsConstants.swift in Sources */,
@@ -899,7 +903,7 @@
 				BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */,
 				2EF6386ED99C7899340F1594 /* AverageAngleFinder.swift in Sources */,
-				2EF632755FCA6EC12317BC60 /* MotionAbsoluteTimeCalcuulator.swift in Sources */,
+				2EF632755FCA6EC12317BC60 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF63CE8D0FC8D1AD3D4D754 /* TowAngleDiffrencial.swift in Sources */,
 				2EF63E6630EDBEF471FD0385 /* MaxAngleFinder.swift in Sources */,
 				2EF63325186B89E51CD1E3A6 /* PhysicsConstants.swift in Sources */,
@@ -915,7 +919,7 @@
 			files = (
 				BA3C944227226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift in Sources */,
 				2EF63688177153659015D292 /* AverageAngleFinder.swift in Sources */,
-				2EF636AE20AA511BE00413E1 /* MotionAbsoluteTimeCalcuulator.swift in Sources */,
+				2EF636AE20AA511BE00413E1 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF63040402F834A53FB22C9 /* TowAngleDiffrencial.swift in Sources */,
 				2EF63AF15292729142597319 /* MaxAngleFinder.swift in Sources */,
 				2EF6347323FFBE625E957D33 /* PhysicsConstants.swift in Sources */,
@@ -932,7 +936,7 @@
 				BA3C944E27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift in Sources */,
 				BA3C944C27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift in Sources */,
 				2EF6333A9B34791FBCABED07 /* AverageAngleFinder.swift in Sources */,
-				2EF638FCDE68FFDB241484A2 /* MotionAbsoluteTimeCalcuulator.swift in Sources */,
+				2EF638FCDE68FFDB241484A2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF63A994F9479BF1B8EF61A /* TowAngleDiffrencial.swift in Sources */,
 				2EF634BD5193C1781F1F80C9 /* MaxAngleFinder.swift in Sources */,
 				2EF63A1596955ACBA7EDF885 /* PhysicsConstants.swift in Sources */,

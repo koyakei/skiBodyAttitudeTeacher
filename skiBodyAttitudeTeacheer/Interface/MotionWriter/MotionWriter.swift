@@ -51,8 +51,9 @@ class MotionWriter {
     func write(_ motion: CMDeviceMotion) {
         guard let file = self.file else { return }
         var text = ""
-        let recordedDate = TimeIntervalFromSystemUptimeToSince1970.init(timeStamp: motion.timestamp, systemUptime:ProcessInfo.processInfo.systemUptime)
-        text += "\(recordedDate.milliSecondString),"
+        let recordedDate =
+                CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime)
+        text += "\(MilliSecondString.handle(timeStamp: recordedDate)),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -70,7 +71,7 @@ class MotionWriter {
         text += "\(motion.rotationRate.y),"
         text += "\(motion.rotationRate.z),"
         text += "\(motion.magneticField.accuracy),"
-        text += "\(recordedDate.absoluteDate.timeIntervalSince1970),"
+        text += "\(recordedDate),"
         
         print(text)
         text += "\n"
