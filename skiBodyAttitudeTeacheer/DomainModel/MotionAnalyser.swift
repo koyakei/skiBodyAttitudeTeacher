@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreMotion
-import UIKit
 
 final public class MotionAnalyzerManager {
     var delegate: MotionFeedBackerDelegate =
