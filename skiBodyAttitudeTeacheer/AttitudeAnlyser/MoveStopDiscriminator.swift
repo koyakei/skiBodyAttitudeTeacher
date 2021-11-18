@@ -25,6 +25,8 @@ struct MoveStopDiscriminator {
                             timeElapsedFromBeforePhase: elapsed)
                 }.handle(minimumVelocityPerSeconds: minimumVelocityPerSeconds)
     }
+
+
 }
 
 typealias Seconds = Double

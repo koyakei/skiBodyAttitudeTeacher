@@ -8,25 +8,15 @@
 import Foundation
 import CoreMotion
 
-protocol TurnPhasesProtocol:MovingPhasesProtocol{
-
-}
-
 struct TurnPhases {
 
-//    func maxRollAngle(turnPhases: [TurnPhase]) -> Double {
-//        (turnPhases.max(by: { (a, b) -> Bool in
-//            return a.attitude.roll < b.attitude.roll
-//        })?.attitude.roll)!
-//    }
-    // ターンとは ロール角でうちに倒れてそのほうこうにヨーイングしていること  ピッチングは 下に向いていくのがターン前半で 上に向くのが後半 この三つの要素が合っている場合にターンが開始していると判定する
-    // ロール角が0になった時に上記をチェックしよう
-    // ターン三分割して 増減表を書いてやる
-//    func isTurn() -> Bool{
-//
-//    }
+    func maxRollAngle(turnPhases: [MovingPhaseProtocol]) -> Double {
+        (turnPhases.max(by: { (a, b) -> Bool in
+            return a.attitude.roll < b.attitude.roll
+        })?.attitude.roll)!
+    }
 
-    func ターン前半の角速度と姿勢が一致してますか(turnPhase: TurnPhase) -> Bool {
+    func ターン前半の角速度と姿勢が一致してますか(turnPhase: MovingPhaseProtocol) -> Bool {
         let 横回転: Double = turnPhase.rotationRate.z
         let roll: Double = turnPhase.rotationRate.y
         let pitch: Double = turnPhase.rotationRate.x

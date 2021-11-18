@@ -37,6 +37,7 @@ class MotionWriter {
             header += "rotation_x,"
             header += "rotation_y,"
             header += "rotation_z,"
+            header += "accuracy,"
             header += "time interval"
             header += "\n"
             file.write(header.data(using: .utf8)!)
@@ -68,6 +69,7 @@ class MotionWriter {
         text += "\(motion.rotationRate.x),"
         text += "\(motion.rotationRate.y),"
         text += "\(motion.rotationRate.z),"
+        text += "\(motion.magneticField.accuracy),"
         text += "\(recordedDate.absoluteDate.timeIntervalSince1970),"
         
         print(text)

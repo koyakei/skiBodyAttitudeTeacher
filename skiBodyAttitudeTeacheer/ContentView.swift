@@ -139,7 +139,6 @@ class SensorKitManager {
 }
 
 let sensorKitManager = SensorKitManager();
-let motionEvaluaterManager : MotionEvaluaterManager = MotionEvaluaterManager.init(delegate: MotionFeedbackerImpl())
 
 struct ContentView: View {
     @ObservedObject var connector = WatchConnector()
@@ -163,10 +162,18 @@ struct ContentView: View {
         motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
         coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             motionWriter.write(motion!)
-            motionEvaluaterManager.boardMotionReceiver(motion!, ProcessInfo().systemUptime)
+            MotionAnalyzerManager.shared
+                    .receiveBoardMotion(motion!,
+                                         ProcessInfo
+                                                 .processInfo.systemUptime
+                                         )
         }
         headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             motionWriterHeadPhone.write(motion!)
+            MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
+                                         ProcessInfo
+                                                 .processInfo.systemUptime
+            )
         }
         
 //        sensorKitManager.request()

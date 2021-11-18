@@ -3,26 +3,19 @@
 //
 
 import Foundation
-protocol TurnPhaseProtocol: MovingPhaseProtocol {
 
-}
-
-protocol TurnPhaseYawSimpleRotationRateAverageProtocol: TurnPhaseProtocol{
-    var rotationRateAverage: Double{get}
+protocol TurnPhaseYawSimpleRotationRateAverageProtocol: MovingPhaseProtocol {
+    var rotationRateAverage: Double { get }
+    var fallLineAcceleration: Double { get }
+    var fallLineOrthogonalAcceleration: Double { get }
+    var fallLineOrthogonalRelativeAttitude: Attitude { get }
 }
 
 protocol TurnPhaseWithRotationRateXDirectionProtocol:
-        TurnPhaseYawSimpleRotationRateAverageProtocol{
-    var rotationRateXDirection: TurnSide{get}
-    var turnSideChanged:Bool{get}
-}
-// 向きの変化周期
-protocol TurnPhaseWithRotationRateXDirectionChangePeriodProtocol: TurnPhaseWithRotationRateXDirectionProtocol{
-    var rotationRateDirectionChangePeriod: MilliSecond{get}
-}
-// ヨーイングの移動平均
-protocol TurnPhaseWithAverageYawAngleProtocol:TurnPhaseWithRotationRateXDirectionChangePeriodProtocol{
-    var movingAverageYawAngle: Double { get }
+        TurnPhaseYawSimpleRotationRateAverageProtocol {
+    var rotationRateXDirection: TurnSide { get }
+    var turnSideChanged: Bool { get }
+    var rotationRateDirectionChangePeriod: MilliSecond { get }
 }
 
 
