@@ -26,12 +26,14 @@ final public class MotionAnalyzerManager {
 
     func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) {
-        boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion, receivedProcessUptime)
+        boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
+                CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
     }
 
     func receiveAirPodMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) {
-        ariPodMotionReceiver.receiver(motion, receivedProcessUptime)
+        ariPodMotionReceiver.receiver(motion,
+                                      CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
     }
 
     private func tellTheScore(score: Int) {

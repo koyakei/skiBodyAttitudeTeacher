@@ -1,6 +1,6 @@
 //
 // Created by koyanagi on 2021/11/11.
-//
+//　指定した方向への加速度と現在の姿勢からの相対角度を取得
 
 import Foundation
 import CoreMotion

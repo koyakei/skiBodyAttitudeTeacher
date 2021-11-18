@@ -1,32 +1,10 @@
 //
 // Created by koyanagi on 2021/11/08.
-//
+//　TODO: 正しい位置にファイルを置く
 
 import Foundation
 
-class SimpleMovingAverage {
-    var q: [Double] = [Double]()
-    var size: Int = 0
-    var sum: Double = 0
-
-    init(_ size: Int) {
-        self.size = size
-        sum = 0
-    }
-
-    func next(_ val: Double) -> Double {
-        if q.count >= size {
-            let num: Double = Double(q.removeFirst())
-            sum -= num
-        }
-        q.append(val)
-        sum += Double(val)
-        return sum / Double(q.count)
-    }
-}
-
 extension Collection where Element == Int, Index == Int {
-
     /// Calculates a moving average.
     /// - Parameter period: the period to calculate averages for.
     /// - Warning: the supplied `period` must be larger than 1.

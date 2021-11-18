@@ -1,6 +1,6 @@
 //
 // Created by koyanagi on 2021/11/05.
-//
+//　180 to - 180 の間で　角度の平均を算出
 
 import Foundation
 

@@ -1,20 +1,18 @@
 //
-// Created by koyanagi on 2021/11/05.
+// Created by koyanagi on 2021/11/18.
 //
 
 import Foundation
-import CoreMotion
 
-struct SkiTurnPhase: TurnPhaseProtocol {
+struct CenterOfMassTurnPhase: MovingPhaseProtocol {
+    var absoluteRotationRate: CMRotationRate
+
     init(movingPhaseProtocol: MovingPhaseProtocol, movingAverageYawAngle: Double,
          turnFinished: Bool,
          turnSideDirectionChanged: Bool,
-         turnPhaseRatio: Float,
          isTurnMax: Bool,
          yawRotationRateMovingAverage: Double,
-         fallLineOrthogonalAcceleration: Double,
-         fallLineOrthogonalRelativeAttitude: Attitude,
-         fallLineAcceleration: Double
+         rotationRateDirectionChangePeriod: TimeInterval
     ) {
         self.movingAverageYawAngle = movingAverageYawAngle
         attitude = movingPhaseProtocol.attitude
@@ -23,39 +21,22 @@ struct SkiTurnPhase: TurnPhaseProtocol {
         rotationRate = movingPhaseProtocol.rotationRate
         self.turnFinished = turnFinished
         self.turnSideDirectionChanged = turnSideDirectionChanged
-        self.turnPhaseRatio = turnPhaseRatio
         self.isTurnMax = isTurnMax
         self.yawRotationRateMovingAverage = yawRotationRateMovingAverage
-        self.fallLineOrthogonalAcceleration = fallLineOrthogonalAcceleration
-        self.fallLineOrthogonalRelativeAttitude = fallLineOrthogonalRelativeAttitude
         absoluteRotationRate = movingPhaseProtocol.absoluteRotationRate
-        self.fallLineAcceleration = fallLineAcceleration
     }
 
-    let turnPhaseRatio: Float
     let turnFinished: Bool
     let turnSideDirectionChanged: Bool
     let isTurnMax: Bool
     let yawRotationRateMovingAverage: Double
-
-    var turnSideDirection: Bool{
-        get {
-            yawRotationRateMovingAverage.sign == .minus
-        }
-    }
     let attitude: Attitude
 
     let userAcceleration: CMAcceleration
 
     let timeStampSince1970: TimeInterval
-    let absoluteRotationRate: CMRotationRate
+
     let rotationRate: CMRotationRate
     let movingAverageYawAngle: Double
     let rotationRateAverage: Double
-    let fallLineOrthogonalAcceleration: Double
-    let fallLineAcceleration: Double
-    let fallLineOrthogonalRelativeAttitude: Attitude
 }
-
-
-

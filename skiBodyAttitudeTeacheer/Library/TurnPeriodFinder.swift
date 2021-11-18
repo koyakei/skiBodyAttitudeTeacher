@@ -4,8 +4,6 @@
 
 import Foundation
 
-
-
 struct TurnPeriodFinder {
     var timeStampAndTurnSideDirectionSide:
             [TimeStampAndTurnSideDirectionSide]

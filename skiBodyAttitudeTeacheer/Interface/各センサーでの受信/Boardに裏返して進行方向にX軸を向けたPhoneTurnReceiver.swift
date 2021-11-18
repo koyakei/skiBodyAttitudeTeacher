@@ -29,8 +29,8 @@ struct Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver {
         )
     }
 
-    mutating func receiver(_ motion: CMDeviceMotion, _ receivedProcessUptime: TimeInterval) {
+    mutating func receiver(_ motion: CMDeviceMotion, _ timeStamp: TimeInterval) {
         turnPhaseAnalyzer.handle(movingPhase: MovingPhase
-                .init(motion, receivedProcessUptime))
+                .init(motion, timeStamp))
     }
 }
