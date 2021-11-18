@@ -6,7 +6,7 @@ import Foundation
 
 extension Collection where Element == SkiTurnPhase {
 
-    func filterLastTurnSwitchToTurnMax() -> [TurnPhase] {
+    func filterLastTurnSwitchToTurnMax() -> [SkiTurnPhase] {
         self.filter {
              self.filter {
                 $0.turnSideDirectionChanged == true
@@ -20,7 +20,7 @@ extension Collection where Element == SkiTurnPhase {
     // ターンマックスのときにこれを使う
     // 今ターンマックス
     // 最後のターンマックスからもう一つ前のターンマックスから最後の切り替えまで
-    func filterLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax() -> [TurnPhase] {
+    func filterLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax() -> [SkiTurnPhase] {
         self.filter {
             self.filter {
                 $0.isTurnMax == true
@@ -41,9 +41,7 @@ extension Collection where Element == CenterOfMassTurnPhase {
     }
 
     // 近くのTurnPhaseをみつけて　fall line 方向を発見　加速度を計算して変換する
-    // TODO: 照らし合わせはどうするね
-    //
-    func unifyWithSkiTurnPhases(skiTurnPhases:[TurnPhase])->[CenterOfMassUnifiedTurnPhase] {
+    func unifyWithSkiTurnPhases(skiTurnPhases:[SkiTurnPhase])->[CenterOfMassUnifiedTurnPhase] {
         var res :[CenterOfMassUnifiedTurnPhase] = []
         // 一番近いのを見つける　sorted fast
         for turnPhase  in skiTurnPhases{
@@ -71,7 +69,7 @@ extension Collection where Element == CenterOfMassTurnPhase {
         }
         return res
     }
-    func nearByPhase(turnPhase: TurnPhase,
+    func nearByPhase(turnPhase: SkiTurnPhase,
                      centerOfMassTurnPhase1:CenterOfMassTurnPhase,
                      centerOfMassTurnPhase2:CenterOfMassTurnPhase) -> Bool{
         abs(centerOfMassTurnPhase1.timeStampSince1970 - turnPhase.timeStampSince1970) <
@@ -85,8 +83,8 @@ extension Collection where Element == CenterOfMassTurnPhase {
 // 渡されるのは 1ターンごとにするか
 struct ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation {
     //時間方向に同じフレームに入れることもできるが
-    let skiTurnPhaseTurnSwitchToTurnMax: [TurnPhase] //  ターンマックスまでを取り出す？
-    let skiTurnPhaseTurnMaxToTurnSwitch: [TurnPhase]
+    let skiTurnPhaseTurnSwitchToTurnMax: [SkiTurnPhase] //  ターンマックスまでを取り出す？
+    let skiTurnPhaseTurnMaxToTurnSwitch: [SkiTurnPhase]
     let centerOfMassTurnPhaseTurnSwitchToTurnMax: [CenterOfMassUnifiedTurnPhase]
     let centerOfMassTurnPhaseTurnMaxToTurnSwitch: [CenterOfMassUnifiedTurnPhase]
 

@@ -7,9 +7,9 @@ import Foundation
 struct CurrentVelocity {
 
     static func fallLineVelocity(
-            movingPhases: [TurnPhaseYawSimpleRotationRateAverageProtocol]
+            movingPhases: [TurnPhaseProtocol]
     ) -> Double {
-        let moveFromLast :[TurnPhaseYawSimpleRotationRateAverageProtocol] = movingPhases
+        let moveFromLast :[TurnPhaseProtocol] = movingPhases
                 .reversed() // sortedのほうが保証できるのか？
         var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
         return moveFromLast.map {
@@ -22,9 +22,9 @@ struct CurrentVelocity {
     }
 
     static func fallLineOrthogonalVelocity(
-            movingPhases: [TurnPhaseYawSimpleRotationRateAverageProtocol]
+            movingPhases: [TurnPhaseProtocol]
     ) -> Double {
-        let moveFromLast :[TurnPhaseYawSimpleRotationRateAverageProtocol] = movingPhases
+        let moveFromLast :[TurnPhaseProtocol] = movingPhases
                 .reversed() // sortedのほうが保証できるのか？
         var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
         return moveFromLast.map {

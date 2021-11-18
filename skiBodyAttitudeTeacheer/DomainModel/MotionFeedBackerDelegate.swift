@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol MotionFeedbackerDelegate{
+protocol MotionFeedBackerDelegate {
     func result(score: Int)
 }

@@ -10,7 +10,7 @@ import CoreMotion
 import UIKit
 
 final public class MotionAnalyzerManager {
-    var delegate: MotionFeedbackerDelegate =
+    var delegate: MotionFeedBackerDelegate =
             MotionFeedBackerImpl.init()
     var unifiedAnalyzedTurnCollection: [OneTurn]
     // motion from board

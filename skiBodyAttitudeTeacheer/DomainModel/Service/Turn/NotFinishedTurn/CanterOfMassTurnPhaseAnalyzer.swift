@@ -1,33 +1,26 @@
 //
-//  IdealTurnConditionDetector.swift
-//  skiBodyAttitudeTeacheer
-//
-//  Created by koyanagi on 2021/11/01.
+// Created by koyanagi on 2021/11/16.
 //
 
 import Foundation
 
-typealias TurnSide = Bool
-
-struct TimeStampAndTurnSideDirectionChanged {
-    let turnSideDirectionChanged: Bool
-    let timeStampSince1970: Double
+protocol TurnPhaseAnalyzerProtocol {
+    var movingPhases: [MovingPhaseProtocol] { get }
+    var turnPhaseFinder: TurnPhaseFinder { get }
+    var turnPeriodFinder: TurnPeriodFinder { get }
 }
 
-struct TimeStampAndTurnSideDirectionChangedPeriod {
-    let turnSideDirectionChangedPeriod: Double
-    let timeStampSince1970: Double
-}
-
-
-struct SkiTurnPhaseAnalyzer: MovingPhasesProtocol {
+struct CanterOfMassTurnPhaseAnalyzer: TurnPhaseAnalyzerProtocol {
     var movingPhases: [MovingPhaseProtocol] = []
     // true right to left false left to right
-    // plus is right turn
-    // minus is left turn
+    // minus is right turn
+    // plus left turn
     var turnPhaseFinder: TurnPhaseFinder = TurnPhaseFinder.init()
     var turnPeriodFinder: TurnPeriodFinder =
             TurnPeriodFinder.init()
+    //    var lastTurnMaxYawAngle: Double
+    //            = 0
+
     mutating func turnMaxFromMovingPhase
             (_ movingPhase: MovingPhase,
              _ yawRotationRateMovingAverage:
@@ -41,12 +34,24 @@ struct SkiTurnPhaseAnalyzer: MovingPhasesProtocol {
         // ターンの周期を計算
         let yawingSimpleMovingAverage = movingPhases
                 .yawAttitudeMovingAverage(milliSeconds: rotationRateDirectionChangePeriod)
+        // ターンの周期を移動平均したヨーイング角の平均角度を計算
+
+        // ヨーイング角度を超えたらターンマックスとする
+
+
+        // フォールライン方向の判定　前回のターンマックスヨーイング角をフォールラインとする。
+        //        if isTurnMax {
+        //            lastTurnMaxYawAngle = turnPhasesAnalyzed.last!
+        //                    .yawRotationRateMovingAverage
+        //        }
+
         return (yawingSimpleMovingAverage, turnSideDirectionChanged, rotationRateDirectionChangePeriod)
         // turn finished じゃなくてターン開始からの１００分率で表記しようか？ ターン終了からの
     }
 
-    mutating func handle(movingPhase:
-            MovingPhase) -> SkiTurnPhase {
+    mutating func handle
+            (movingPhase: MovingPhase) ->
+            CenterOfMassTurnPhase {
         movingPhases.append(movingPhase)
         // 角速度の平均を出す
         let yawRotationRateMovingAverage = movingPhases
@@ -71,24 +76,15 @@ struct SkiTurnPhaseAnalyzer: MovingPhasesProtocol {
                 FallLineOrthogonalAccelerationCalculator.handle(turnSideDirection: turnPhaseFinder.rightTurnFromSwitchTurnSideToEnd, fallLineYawAngle: yawRotationRateMovingAverage, userAcceleration: movingPhase.userAcceleration, userAttitude: movingPhase.attitude)
         // それを oneTurn にいれる とりあえず 5000 コマ超えたら csv に入れればいい
         // これはやらなくていいターンが終わったらそれらをTurnPhases ぶちこむ
-        if turnFinished {
-            // ターンが終わったら、ターンフェイズのどこにいるかを 100分率で計算
-            MotionAnalyzerManager.shared.unify()
-        }
-        SkiTurnPhase.init(
-                movingPhaseProtocol: movingPhase,
-                movingAverageYawAngle: yawingSimpleMovingAverage,
-                turnFinished: turnFinished,
-                turnSideDirectionChanged: turnSideDirectionChanged,
-                turnPhaseRatio: <#T##Float##Float#>,
+        CenterOfMassTurnPhase.init(
+                movingPhaseProtocol: movingPhase, movingAverageYawAngle: yawingSimpleMovingAverage, turnFinished: turnFinished, turnSideDirectionChanged: turnSideDirectionChanged,
                 isTurnMax: isTurnMax,
-                yawRotationRateMovingAverage: yawRotationRateMovingAverage,
-                fallLineOrthogonalAcceleration: fallLineOrthogonal.targetDirectionAcceleration,
-                fallLineOrthogonalRelativeAttitude: fallLineOrthogonal.relativeAttitude)
+                yawRotationRateMovingAverage: yawRotationRateMovingAverage, rotationRateDirectionChangePeriod: rotationRateDirectionChangePeriod)
 
-
+        //        if turnFinished {
+        //            // ターンが終わったら、ターンフェイズのどこにいるかを 100分率で計算
+        //            turnPhaseFromInitiation()
+        //        }
     }
 }
-
-
 

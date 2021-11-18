@@ -5,7 +5,7 @@
 import Foundation
 import CoreMotion
 
-struct SkiTurnPhase: TurnPhaseYawSimpleRotationRateAverageProtocol {
+struct SkiTurnPhase: TurnPhaseProtocol {
     init(movingPhaseProtocol: MovingPhaseProtocol, movingAverageYawAngle: Double,
          turnFinished: Bool,
          turnSideDirectionChanged: Bool,
@@ -94,7 +94,7 @@ struct CenterOfMassTurnPhase: MovingPhaseProtocol {
     let rotationRateAverage: Double
 }
 
-struct CenterOfMassUnifiedTurnPhase: TurnPhaseYawSimpleRotationRateAverageProtocol {
+struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
     var fallLineOrthogonalRelativeAttitude: Attitude{
         get {
             if timeStampAndRotationRateXDirectionSideCollection.last!.turnSideDirection {

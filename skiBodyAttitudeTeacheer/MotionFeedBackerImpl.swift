@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct MotionFeedBackerImpl: MotionFeedbackerDelegate{
+struct MotionFeedBackerImpl: MotionFeedBackerDelegate{
     
    
     func result(score: Int) {
