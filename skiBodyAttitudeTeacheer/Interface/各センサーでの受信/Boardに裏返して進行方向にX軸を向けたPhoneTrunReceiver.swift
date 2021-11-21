@@ -51,7 +51,7 @@ struct Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver: Mot
     }
     
     @State var turning: Bool = false
-    @State var lastTurnSide: TurnSide = true
+    @State var lastTurnSide: TurnYawingSide = true
     
     func receiver( turnPhase: TurnPhase){
         turnPhases.turnPhases.append(TurnPhase.init(turnPhase: turnPhase, attitude:  boardRideingPhoneAttitudeConverter(attitude:turnPhase.attitude), rotationRate: boardRideingPhoneRotationRateConverter(rotationRate: turnPhase.rotationRate)))

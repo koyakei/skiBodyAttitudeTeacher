@@ -1,6 +1,6 @@
 //
 // Created by koyanagi on 2021/11/16.
-//
+// TODO: 処理の共通化するべき
 
 import Foundation
 

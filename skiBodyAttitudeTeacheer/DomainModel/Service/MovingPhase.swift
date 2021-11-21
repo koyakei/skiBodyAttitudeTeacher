@@ -34,6 +34,19 @@ public struct MovingPhase: MovingPhaseProtocol {
         timeStampSince1970 = movingPhase.timeStampSince1970
         self.rotationRate = rotationRate
     }
+
+    init(_ attitude:Attitude,
+         _ rotationRate: CMRotationRate,
+         _ acceleration: CMAcceleration,
+         _ timeStampSince1970: TimeInterval){
+        self.timeStampSince1970 = timeStampSince1970
+        self.rotationRate = rotationRate
+        userAcceleration = acceleration
+        self.attitude = attitude
+        absoluteRotationRate = GetAbsoluteRotationRate
+                .handle(rotationRate: rotationRate,
+                        attitude: attitude)
+    }
 }
 
 

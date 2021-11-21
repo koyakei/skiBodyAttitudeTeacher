@@ -21,7 +21,7 @@ struct MilliSecondString {
     static func handle(timeStamp: TimeInterval)-> String {
         let format = DateFormatter()
         format.dateFormat = "HH:mm:ss.SSS"
-        format.string(from: Date(timeIntervalSince1970:
+        return format.string(from: Date(timeIntervalSince1970:
                                  timeStamp))
     }
 }

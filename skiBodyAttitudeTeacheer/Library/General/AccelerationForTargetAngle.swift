@@ -44,7 +44,7 @@ struct TurnInsideAngleFinder {
 
 struct FallLineOrthogonalAccelerationCalculator{
     static func handle(turnSideDirection: Bool,
-                       fallLineYawAngle: Double,
+                       fallLineAttitude: Attitude,
                        userAcceleration: CMAcceleration,
                        userAttitude: Attitude
                        ) -> TargetDirectionAccelerationAndRelativeAttitude{
@@ -53,7 +53,7 @@ struct FallLineOrthogonalAccelerationCalculator{
                 userAttitude: userAttitude,
                 targetAttitude: Attitude.init(roll: 0, yaw: TurnInsideAngleFinder.handle(
                         turnSideDirection: turnSideDirection,
-                        fallLineYawAngle: fallLineYawAngle), pitch: 0)
+                        fallLineYawAngle: fallLineAttitude.yaw), pitch: 0)
         )
     }
 }

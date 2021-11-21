@@ -142,6 +142,7 @@ let sensorKitManager = SensorKitManager();
 
 struct ContentView: View {
     @ObservedObject var connector = WatchConnector()
+    @State var tf: TurnYawingSide = TurnYawingSide.Straight
     var body: some View {
         VStack{
             Button(action: startRecord) {
@@ -152,6 +153,7 @@ struct ContentView: View {
             }
             HStack {
                 Text("\(connector.count)")
+                Text(tf.rawValue)
             }
             Text("\(self.connector.receivedMessage)")
         }
@@ -162,19 +164,19 @@ struct ContentView: View {
         motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
         coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
             motionWriter.write(motion!)
-            MotionAnalyzerManager.shared
+            tf = MotionAnalyzerManager.shared
                     .receiveBoardMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
         }
-        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-            motionWriterHeadPhone.write(motion!)
-            MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
-                                         ProcessInfo
-                                                 .processInfo.systemUptime
-            )
-        }
+//        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
+//            motionWriterHeadPhone.write(motion!)
+//            MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
+//                                         ProcessInfo
+//                                                 .processInfo.systemUptime
+//            )
+//        }
         
 //        sensorKitManager.request()
 //        sensorKitManager.fetch() // 10ms ごとにフェッチ

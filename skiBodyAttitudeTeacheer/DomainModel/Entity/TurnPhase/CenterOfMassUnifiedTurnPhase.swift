@@ -3,7 +3,7 @@
 //
 
 import Foundation
-
+import CoreMotion
 struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
     var fallLineOrthogonalRelativeAttitude: Attitude{
         get {
@@ -21,11 +21,11 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
     // 重心の加速度　とスキーの直角方向を計算
     var fallLineOrthogonalAcceleration: Double{
         get {
-            AccelerationForTargetAngle.handle(
-                    userAcceleration: userAcceleration,
-                    userAttitude: attitude, targetAttitude: Attitude.init(roll: 0,
-                                                                          yaw: yawRotationRateMovingAverage, pitch: 0)
-            ).targetDirectionAcceleration
+//            AccelerationForTargetAngle.handle(
+//                    userAcceleration: userAcceleration,
+//                    userAttitude: attitude, targetAttitude: Attitude.init(roll: 0,
+//                                                                          yaw: yawRotationRateMovingAverage, pitch: 0)
+//            ).targetDirectionAcceleration
         }
     }
 

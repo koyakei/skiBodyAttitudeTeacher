@@ -18,5 +18,4 @@ struct AverageAngleFinder {
         }
         return .zero
     }
-
 }

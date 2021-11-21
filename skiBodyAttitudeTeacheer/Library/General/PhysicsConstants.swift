@@ -6,6 +6,7 @@ import Foundation
 
 class PhysicsConstants {
     static let G = 9.80665 // m/s^2
+    static let degree : Double = .pi / 180
 
     static func timeIntervalToSecond(_ timeInterval: TimeInterval)
                     -> Double {
