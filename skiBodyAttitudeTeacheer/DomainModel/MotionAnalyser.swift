@@ -24,7 +24,7 @@ final public class MotionAnalyzerManager {
     }
 
     func receiveBoardMotion(_ motion: CMDeviceMotion, _
-    receivedProcessUptime: TimeInterval) -> TurnYawingSide{
+    receivedProcessUptime: TimeInterval) -> (TurnYawingSide,TurnSwitchingDirection,Attitude,Double){
         return boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
                 CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
     }

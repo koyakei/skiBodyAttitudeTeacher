@@ -18,14 +18,14 @@ enum TurnPhase {
     //    case LeftTurnMaxToTurnSwitch
 }
 
-enum TurnSwitchingDirection {
-    case RightToLeft
-    case LeftToRight
-    case StraightToLeftTurn
-    case StraightToRightTurn
-    case LeftTurnToStraight
-    case RightTurnToStraight
-    case Keep
+enum TurnSwitchingDirection: String {
+    case RightToLeft = "RightToLeft"
+    case LeftToRight = "LeftToRight"
+    case StraightToLeftTurn = "StraightToLeftTurn"
+    case StraightToRightTurn = "StraightToRightTurn"
+    case LeftTurnToStraight = "LeftTurnToStraight"
+    case RightTurnToStraight = "RightTurnToStraight"
+    case Keep = "Keep"
 }
 
 enum TurnYawingSide : String{
@@ -34,10 +34,10 @@ enum TurnYawingSide : String{
     case Straight = "Straight"
 }
 
-enum TurnChronologicalPhase {
-    case SwitchToMax
-    case TurnMax
-    case MaxToSwitch
+enum TurnChronologicalPhase  : String{
+    case SwitchToMax = "SwitchToMax"
+    case TurnMax = "TurnMax"
+    case MaxToSwitch = "MaxToSwitch"
 }
 
 // ターンマックスだけを見つける

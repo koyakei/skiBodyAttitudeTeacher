@@ -108,6 +108,7 @@
 		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
 		BAA0A9E3272C2C3D00FEDF23 /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
+		BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB26539274BBBB0001A51BA /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +262,8 @@
 		BAA0A9DF272C10F400FEDF23 /* skiBodyAttitudeTeacheer WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "skiBodyAttitudeTeacheer WatchKit App.entitlements"; sourceTree = "<group>"; };
 		BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
 		BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFeedBackerDelegate.swift; sourceTree = "<group>"; };
+		BAB26539274BBBB0001A51BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		BAF25FF2274BC83F009992C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +469,7 @@
 				BA3C944027226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */,
 				BA3C944A27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests */,
 				BA3C93F52722636B007D5325 /* Products */,
+				BAB26538274BBBB0001A51BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -483,6 +488,7 @@
 		BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
 			isa = PBXGroup;
 			children = (
+				BAF25FF2274BC83F009992C9 /* Info.plist */,
 				BAA0A9FB272F9F3300FEDF23 /* Library */,
 				BAA0A9DA272BABA300FEDF23 /* DomainModel */,
 				BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */,
@@ -609,6 +615,14 @@
 				2EF634B77308022ECB76158C /* AbsoluteFallLineAttitudeFinder.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		BAB26538274BBBB0001A51BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAB26539274BBBB0001A51BA /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1195,6 +1209,8 @@
 				DEVELOPMENT_TEAM = YG69W9J287;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_NSMotionUsageDescription = test;
 				INFOPLIST_KEY_NSSensorKitPrivacyPolicyURL = "https://my-site.xyz/privacy-policy/";
 				INFOPLIST_KEY_NSSensorKitUsageDescription = "This is my app&apos;s SensorKit usage description.";
@@ -1233,6 +1249,8 @@
 				DEVELOPMENT_TEAM = YG69W9J287;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_NSMotionUsageDescription = test;
 				INFOPLIST_KEY_NSSensorKitPrivacyPolicyURL = "https://my-site.xyz/privacy-policy/";
 				INFOPLIST_KEY_NSSensorKitUsageDescription = "This is my app&apos;s SensorKit usage description.";

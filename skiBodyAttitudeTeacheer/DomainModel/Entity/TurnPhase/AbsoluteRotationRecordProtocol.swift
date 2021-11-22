@@ -22,7 +22,7 @@ extension Collection where Element :RecordWithTimeStamp{
     func filterByBeforeMilleSecondsFromNow(
             yawingPeriod: TimeInterval) ->[Element]{
         self.filter{
-            $0.timeStampSince1970 > Date.now.timeIntervalSince1970 - yawingPeriod
+            Date(timeIntervalSince1970: $0.timeStampSince1970) > Calendar.current.date(byAdding: .second, value: -1, to: Date(timeIntervalSince1970: $0.timeStampSince1970))!
         }
     }
 }
@@ -56,7 +56,7 @@ extension AbsoluteAttitudeProtocol {
 extension Collection where Element : AbsoluteAttitudeProtocol{
     func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> Double {
         return AverageAngleFinder.handle(angles_rad:
-                                            self.filterByBeforeMilleSecondsFromNow(yawingPeriod: 0.02).mapper()
+                                            self.filterByBeforeMilleSecondsFromNow(yawingPeriod: yawingPeriod).mapper()
         )
     }
 

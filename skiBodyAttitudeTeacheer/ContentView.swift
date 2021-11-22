@@ -8,11 +8,13 @@
 import SwiftUI
 import CoreMotion
 import SensorKit
+import CoreLocation
 let motionWriter = MotionWriter()
 let motionWriterHeadPhone = MotionWriter()
 let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
+var locationManager : CLLocationManager = CLLocationManager()
 // can only fetch data > 24 hours ago - //https://developer.apple.com/documentation/sensorkit/srfetchrequest
 let toSecondsOffset:Double = -1 * 24 * 60 * 60;
 let minute:Double = 60;
@@ -142,8 +144,14 @@ let sensorKitManager = SensorKitManager();
 
 struct ContentView: View {
     @ObservedObject var connector = WatchConnector()
-    @State var tf: TurnYawingSide = TurnYawingSide.Straight
+    @State var turnYawingSide: TurnYawingSide = TurnYawingSide.Straight
+    @State var turnSwitchingDirection : TurnSwitchingDirection = TurnSwitchingDirection.Keep
+    @State var attitude :Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
+    @State var currentYaw: Double = 0
+    @State var yawingPeriod: Double = 0
+    @State var accuracy: CMMagneticFieldCalibrationAccuracy = CMMagneticFieldCalibrationAccuracy.uncalibrated
     var body: some View {
+        
         VStack{
             Button(action: startRecord) {
                 Text("Start")
@@ -152,20 +160,52 @@ struct ContentView: View {
                 Text("Stop")
             }
             HStack {
+                Text("\(accuracy.rawValue)")
+                Text("⇑")
+                    .background(Color.red)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(degrees: currentYaw ))
+                Divider()
+                Divider()
                 Text("\(connector.count)")
-                Text(tf.rawValue)
+                Text(turnYawingSide.rawValue)
+                Text(turnSwitchingDirection.rawValue)
+                Text("\(yawingPeriod)")
+            }
+            VStack{
+                Text("⇑")
+                    .background(Color.green)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(degrees: attitude.yaw - currentYaw ))
+                
             }
             Text("\(self.connector.receivedMessage)")
+        }.onAppear{
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
     }
 
     func startRecord(){
+        
         motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
         motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
-        coreMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-            motionWriter.write(motion!)
-            tf = MotionAnalyzerManager.shared
-                    .receiveBoardMotion(motion!,
+        coreMotion.magnetometerUpdateInterval = 0.1
+        coreMotion.startMagnetometerUpdates()
+        coreMotion.startGyroUpdates()
+        coreMotion.startMagnetometerUpdates(to: OperationQueue.main){ (motion, error) in
+            if coreMotion.isGyroAvailable && coreMotion.isGyroActive
+                && coreMotion.isMagnetometerActive && coreMotion.isMagnetometerAvailable{
+                print(motion!.magneticField.z)
+                currentYaw = motion!.magneticField.z
+            }
+        }
+        coreMotion.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { (motion, error) in
+//            motionWriter.write(motion!)
+            
+            accuracy = motion!.magneticField.accuracy
+            
+            (self.turnYawingSide, self.turnSwitchingDirection, self.attitude, self.yawingPeriod) = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )

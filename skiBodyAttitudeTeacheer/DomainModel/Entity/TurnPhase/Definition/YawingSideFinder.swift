@@ -9,9 +9,9 @@ struct YawingSideFinder {
     static func handle(currentRotationRate: CMRotationRate)
                     -> TurnYawingSide{
         switch currentRotationRate.z {
-        case -.infinity..<Double.zero:
+        case -.infinity..<PhysicsConstants.degree * -1:
             return TurnYawingSide.RightYawing
-        case 0.0000001...Double.infinity:
+        case PhysicsConstants.degree...Double.infinity:
             return TurnYawingSide.LeftYawing
         default:
             return TurnYawingSide.Straight
