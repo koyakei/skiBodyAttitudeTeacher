@@ -59,7 +59,7 @@ extension Collection where Element : AbsoluteAttitudeProtocol{
         precondition(yawingPeriod > 0)
         precondition(self.count > 1)
         return AverageAngleFinder.handle(angles_rad:
-                                         self.filterByBeforeMilleSecondsFromNow().mapper()
+                                            self.filterByBeforeMilleSecondsFromNow(yawingPeriod: 0.02).mapper()
         )
     }
 

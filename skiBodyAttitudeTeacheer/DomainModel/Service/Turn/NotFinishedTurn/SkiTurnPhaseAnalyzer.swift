@@ -17,7 +17,8 @@ struct SkiTurnPhaseAnalyzer {
     var turnPhaseFinder: TurnChronologicalPhaseFinder = TurnChronologicalPhaseFinder.init()
     var turnSideChangingPeriodFinder: TurnSideChangingPeriodFinder =
             TurnSideChangingPeriodFinder.init()
-    var turnSideFinder = TurnSideFinder.init()
+    var yawingRotationRateAverageFinder :YawRotationRateMovingAverageFinder = YawRotationRateMovingAverageFinder.init()
+    var yawingSideFinder = YawingSideFinder.init()
     var absoluteFallLineAttitudeFinder: AbsoluteFallLineAttitudeFinder =
             AbsoluteFallLineAttitudeFinder.init()
     //    var turnYawingSideFinder = TurnYawing
@@ -25,7 +26,8 @@ struct SkiTurnPhaseAnalyzer {
 
     mutating func handle(movingPhase:
             MovingPhase) -> TurnYawingSide {
-        let turnYawingSide: TurnYawingSide = turnSideFinder.handle(absoluteRotationRate: movingPhase.absoluteRotationRate, timeStampSince1970: movingPhase.timeStampSince1970)
+        let turnYawingSide: TurnYawingSide = YawingSideFinder.handle(currentRotationRate: yawingRotationRateAverageFinder.handle(
+            absoluteRotationRate: movingPhase.absoluteRotationRate, timeStampSince1970: movingPhase.timeStampSince1970))
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: turnYawingSide)
         let absoluteFallLineAttitude: Attitude = absoluteFallLineAttitudeFinder.handle(attitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970,yawingPeriod: turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: turnYawingSide))
 

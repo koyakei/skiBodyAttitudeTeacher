@@ -24,29 +24,29 @@ struct TurnConditionFinder{
 
     }
 
-    func turnPhaseFromInitiation() -> Double {
-
-    }
+//    func turnPhaseFromInitiation() -> Double {
+//
+//    }
     // 比較している最中にrotation rate の符号が反転しないことを前提にする
     // そもそも ios自体が一秒間に180度を超える回転に対応していないのだろう。
-    func rotationDirectionChanged(
-            evaluationFrame: Int = 10,
-            ターンと認める偏角秒: Double = 30,
-            movingPhases:[MovingPhase]) -> Bool {
-        // 最後１０個 のヨーイング方向の角速度の平均
-        let radian: Double = (Double.pi / 180) * ターンと認める偏角秒
-        (movingPhases[
-                (movingPhases.count - evaluationFrame)..<(movingPhases.count - 1)
-                ].map {
-            $0.rotationRate.z
-        }.reduce(0, +) / Double(evaluationFrame)) > radian
-    }
+//    func rotationDirectionChanged(
+//            evaluationFrame: Int = 10,
+//            ターンと認める偏角秒: Double = 30,
+//            movingPhases:[MovingPhase]) -> Bool {
+//        // 最後１０個 のヨーイング方向の角速度の平均
+//        let radian: Double = (Double.pi / 180) * ターンと認める偏角秒
+//        (movingPhases[
+//                (movingPhases.count - evaluationFrame)..<(movingPhases.count - 1)
+//                ].map {
+//            $0.rotationRate.z
+//        }.reduce(0, +) / Double(evaluationFrame)) > radian
+//    }
 
     // pitch が最大よりも小さければ、フォールラインよりも切り上がっていると判定する
-    func turnMaxPassedByPitchAttitude(
-            movingPhases:[MovingPhase]) throws -> Bool {
-        if (movingPhases.count > 10) {
-            throw TurnError.tooShortToDetectMaxYawAttitude
-        }
-    }
+//    func turnMaxPassedByPitchAttitude(
+//            movingPhases:[MovingPhase]) throws -> Bool {
+//        if (movingPhases.count > 10) {
+//            throw TurnError.tooShortToDetectMaxYawAttitude
+//        }
+//    }
 }

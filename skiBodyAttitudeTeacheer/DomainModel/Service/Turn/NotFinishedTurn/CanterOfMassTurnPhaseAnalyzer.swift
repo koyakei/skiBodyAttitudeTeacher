@@ -15,7 +15,7 @@ struct CanterOfMassTurnPhaseAnalyzer: TurnPhaseAnalyzerProtocol {
     // true right to left false left to right
     // minus is right turn
     // plus left turn
-    var turnSideFinder = TurnSideFinder.init()
+    var turnSideFinder = YawRotationRateMovingAverageFinder.init()
     var turnPhaseFinder: TurnChronologicalPhaseFinder = TurnChronologicalPhaseFinder.init()
     var turnPeriodFinder: TurnSideChangingPeriodFinder =
             TurnSideChangingPeriodFinder.init()

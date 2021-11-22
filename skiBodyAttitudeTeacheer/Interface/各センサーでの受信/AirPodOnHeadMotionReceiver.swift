@@ -15,10 +15,10 @@ struct AirPodOnHeadMotionReceiver {
     var notFinishedSkiTurnPhases: CanterOfMassTurnPhaseAnalyzer = CanterOfMassTurnPhaseAnalyzer.init()
 
     mutating func receiver(_ motion: CMDeviceMotion, _ timeStamp: TimeInterval) {
-        turnPhases.append(
-                notFinishedSkiTurnPhases
-                                .handle(movingPhase:
-                                        MovingPhase.init(motion, timeStamp)))
+//        turnPhases.append(
+//                notFinishedSkiTurnPhases
+//                                .handle(movingPhase:
+//                                        MovingPhase.init(motion, timeStamp)))
     }
 
 

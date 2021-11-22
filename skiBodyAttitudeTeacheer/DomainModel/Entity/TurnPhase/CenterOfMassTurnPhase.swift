@@ -3,29 +3,9 @@
 //
 
 import Foundation
+import CoreMotion
 
 struct CenterOfMassTurnPhase: MovingPhaseProtocol {
-    var absoluteRotationRate: CMRotationRate
-
-    init(movingPhaseProtocol: MovingPhaseProtocol, movingAverageYawAngle: Double,
-         turnFinished: Bool,
-         turnSideDirectionChanged: Bool,
-         isTurnMax: Bool,
-         yawRotationRateMovingAverage: Double,
-         rotationRateDirectionChangePeriod: TimeInterval
-    ) {
-        self.movingAverageYawAngle = movingAverageYawAngle
-        attitude = movingPhaseProtocol.attitude
-        userAcceleration = movingPhaseProtocol.userAcceleration
-        timeStampSince1970 = movingPhaseProtocol.timeStampSince1970
-        rotationRate = movingPhaseProtocol.rotationRate
-        self.turnFinished = turnFinished
-        self.turnSideDirectionChanged = turnSideDirectionChanged
-        self.isTurnMax = isTurnMax
-        self.yawRotationRateMovingAverage = yawRotationRateMovingAverage
-        absoluteRotationRate = movingPhaseProtocol.absoluteRotationRate
-    }
-
     let turnFinished: Bool
     let turnSideDirectionChanged: Bool
     let isTurnMax: Bool
@@ -38,5 +18,27 @@ struct CenterOfMassTurnPhase: MovingPhaseProtocol {
 
     let rotationRate: CMRotationRate
     let movingAverageYawAngle: Double
-    let rotationRateAverage: Double
+    var absoluteRotationRate: CMRotationRate
+
+    init(movingPhaseProtocol: MovingPhaseProtocol, movingAverageYawAngle: Double,
+         turnFinished: Bool,
+         turnSideDirectionChanged: Bool,
+         isTurnMax: Bool,
+         yawRotationRateMovingAverage: Double,
+         rotationRateDirectionChangePeriod: TimeInterval
+    ) {
+        
+        self.turnSideDirectionChanged = turnSideDirectionChanged
+        self.turnFinished = turnFinished
+        self.movingAverageYawAngle = movingAverageYawAngle
+        attitude = movingPhaseProtocol.attitude
+        userAcceleration = movingPhaseProtocol.userAcceleration
+        timeStampSince1970 = movingPhaseProtocol.timeStampSince1970
+        rotationRate = movingPhaseProtocol.rotationRate
+        self.isTurnMax = isTurnMax
+        self.yawRotationRateMovingAverage = yawRotationRateMovingAverage
+        absoluteRotationRate = movingPhaseProtocol.absoluteRotationRate
+    }
+
+    
 }

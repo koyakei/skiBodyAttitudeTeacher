@@ -5,7 +5,7 @@
 import Foundation
 import CoreMotion
 
-struct TurnSideFinder {
+struct YawRotationRateMovingAverageFinder {
     struct AbsoluteRotationRecord: AbsoluteRotationRecordProtocol {
         let absoluteRotationRate: CMRotationRate
         let timeStampSince1970: TimeInterval
@@ -13,8 +13,8 @@ struct TurnSideFinder {
 
     var rotationHistory: [AbsoluteRotationRecord] = []
 
-    mutating func handle(absoluteRotationRate: CMRotationRate, timeStampSince1970: TimeInterval) -> TurnYawingSide{
+    mutating func handle(absoluteRotationRate: CMRotationRate, timeStampSince1970: TimeInterval) -> CMRotationRate{
         rotationHistory.append(AbsoluteRotationRecord.init(absoluteRotationRate: absoluteRotationRate, timeStampSince1970: timeStampSince1970))
-        rotationHistory.yawRotationRateMovingAverage()
+        return CMRotationRate.init(x: 0, y: 0, z: rotationHistory.yawRotationRateMovingAverage())
     }
 }

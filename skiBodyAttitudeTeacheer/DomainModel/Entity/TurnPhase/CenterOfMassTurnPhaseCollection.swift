@@ -32,11 +32,11 @@ extension Collection where Element == CenterOfMassTurnPhase {
                                         turnPhase: turnPhase,
                                         centerOfMassTurnPhase1: $0, centerOfMassTurnPhase2: $1)
                             }).first!
-            res.append(
-                    CenterOfMassUnifiedTurnPhase.init(
-                            skiTurnPhase:turnPhase, centerOfMassTurnPhase: pairedPhase
-                    )
-            )
+//            res.append(
+//                    CenterOfMassUnifiedTurnPhase.init(
+//                            skiTurnPhase:turnPhase, centerOfMassTurnPhase: pairedPhase
+//                    )
+//            )
         }
         return res
     }

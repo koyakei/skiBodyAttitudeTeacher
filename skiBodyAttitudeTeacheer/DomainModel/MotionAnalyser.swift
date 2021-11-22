@@ -11,7 +11,7 @@ import CoreMotion
 final public class MotionAnalyzerManager {
     var delegate: MotionFeedBackerDelegate =
             MotionFeedBackerImpl.init()
-    var unifiedAnalyzedTurnCollection: [OneTurn]
+    var unifiedAnalyzedTurnCollection: [OneTurn] = []
     // motion from board
     // motion from headphone
     // 全部混ぜて評価

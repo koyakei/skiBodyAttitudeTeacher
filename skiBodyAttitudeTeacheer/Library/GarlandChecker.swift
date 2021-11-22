@@ -5,7 +5,7 @@
 import Foundation
 
 struct GarlandChecker {
-    func isGarland() -> Bool{
-
-    }
+//    func isGarland() -> Bool{
+//
+//    }
 }

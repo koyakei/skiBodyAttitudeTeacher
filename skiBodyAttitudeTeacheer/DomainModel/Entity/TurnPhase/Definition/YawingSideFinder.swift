@@ -3,12 +3,12 @@
 //
 
 import Foundation
+import CoreMotion
 
 struct YawingSideFinder {
-    static func handle(absoluteFallLineAttitude: Attitude,
-                currentMovingPhase: MovingPhaseProtocol)
+    static func handle(currentRotationRate: CMRotationRate)
                     -> TurnYawingSide{
-        switch currentMovingPhase.rotationRate.z {
+        switch currentRotationRate.z {
         case -.infinity..<Double.zero:
             return TurnYawingSide.RightYawing
         case 0.0000001...Double.infinity:

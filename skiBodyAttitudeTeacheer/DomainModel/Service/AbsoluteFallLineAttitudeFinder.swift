@@ -14,7 +14,7 @@ struct AbsoluteFallLineAttitudeFinder {
 
     mutating func handle(attitude: Attitude, timeStampSince1970: TimeInterval, yawingPeriod: TimeInterval) -> Attitude {
         absoluteAttitudeRecords.append(AbsoluteAttitudeRecord.init(attitude: attitude, timeStampSince1970: timeStampSince1970))
-        Attitude.init(roll: 0,
+        return Attitude.init(roll: 0,
                       yaw:
                       absoluteAttitudeRecords.yawYawingMovingAverage(yawingPeriod: yawingPeriod), pitch: 0)
     }

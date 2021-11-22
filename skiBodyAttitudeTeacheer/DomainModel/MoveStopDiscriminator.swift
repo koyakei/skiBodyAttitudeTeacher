@@ -18,7 +18,7 @@ struct MoveStopDiscriminator {
                 .reversed() // sortedのほうが保証できるのか？
         var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
         return moveFromLast.map {
-                    var elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970
+                    let elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970
                     afterSeconds = $0.timeStampSince1970
                     return IsMovingDiscriminator.init(acceleration:
                     $0.userAcceleration.x,

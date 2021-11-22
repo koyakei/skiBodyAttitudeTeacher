@@ -56,6 +56,7 @@ struct TurnChronologicalPhaseDefinition {
                 absoluteFallLineAttitude.yaw) {
             return TurnChronologicalPhase.SwitchToMax
         }
+        return TurnChronologicalPhase.SwitchToMax
     }
 
     func 左ターンの時にターンマックスを過ぎているか() -> TurnChronologicalPhase {
@@ -68,6 +69,7 @@ struct TurnChronologicalPhaseDefinition {
                 absoluteFallLineAttitude.yaw) {
             return TurnChronologicalPhase.SwitchToMax
         }
+        return TurnChronologicalPhase.SwitchToMax
     }
 
     func turnMax() -> Bool {
@@ -81,11 +83,15 @@ struct TurnChronologicalPhaseDefinition {
     func handle() -> TurnChronologicalPhase {
         // ヨーイング方向によって　以前の角度と今の角度を比較する
         // 以前の角度からのフォールラインのまたぎ越しを判定する
-        if turnYawingSide == TurnYawingSide.RightYawing {
+        switch turnYawingSide{
+        case TurnYawingSide.RightYawing:
             return 右ターンの時にターンマックスを過ぎているか()
-        } else if turnYawingSide == TurnYawingSide.LeftYawing {
+        case .LeftYawing:
             return 左ターンの時にターンマックスを過ぎているか()
+        case .Straight:
+            return TurnChronologicalPhase.SwitchToMax
         }
+        
     }
 }
 

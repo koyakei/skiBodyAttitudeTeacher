@@ -27,14 +27,14 @@
 		2EF63294AAE30149B8261DDA /* CenterOfMassTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E42BD37BB3228BEB9A2 /* CenterOfMassTurnPhase.swift */; };
 		2EF632E2131ACEC2249CA588 /* CenterOfMassUnifiedTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63A84B828BB50B47BF23E /* CenterOfMassUnifiedTurnPhase.swift */; };
 		2EF632E457EF1DAE7C4F7714 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
-		2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */; };
+		2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */; };
 		2EF63308CEBB1EC4EF6BBE16 /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63AF477EEB73E64C3340F /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift */; };
 		2EF63325186B89E51CD1E3A6 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF6333A9B34791FBCABED07 /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
 		2EF63341EDCA9F63BE736EC0 /* TurnChronologicalPhaseFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF634D918CD8E3B75EFC003 /* TurnChronologicalPhaseFinder.swift */; };
 		2EF63391AA1405D93E5F1C02 /* CurrentVelocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63BBC4C3B04B024C151A1 /* CurrentVelocity.swift */; };
-		2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */; };
-		2EF634129360B3769285D6A2 /* RightTurn前半スキーが内にロールしていっている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */; };
+		2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */; };
+		2EF634129360B3769285D6A2 /* RightTurn前半スキーが内にロールしていっている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */; };
 		2EF6341FFB51AA0E753D86AB /* SkiTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63F74A4EC4CD9024AA22B /* SkiTurnPhase.swift */; };
 		2EF6344254B370436EFF6AC1 /* ForwardAfterwardBalanceScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E296DCB11BA142480D9 /* ForwardAfterwardBalanceScore.swift */; };
 		2EF63455FC5D5E76E185DE45 /* ToneOutputUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631D70C72AD3C7621CDFC /* ToneOutputUnit.swift */; };
@@ -55,7 +55,7 @@
 		2EF6367E6F3DCB9B18A304C1 /* MotionFeedBackerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */; };
 		2EF63688177153659015D292 /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
 		2EF636AE20AA511BE00413E1 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
-		2EF636AF54846DC1F651FA09 /* TurnSideFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635ED93C5099DEF862FEE /* TurnSideFinder.swift */; };
+		2EF636AF54846DC1F651FA09 /* YawRotationRateMovingAverageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635ED93C5099DEF862FEE /* YawRotationRateMovingAverageFinder.swift */; };
 		2EF636D3F85B058C44C5FAC0 /* TimeStampAndTurnSideDirectionChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6377BD3A83603F7D2F226 /* TimeStampAndTurnSideDirectionChanged.swift */; };
 		2EF636E174019520949CA45F /* MovingPhasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF632804E51191A8B165B39 /* MovingPhasesProtocol.swift */; };
 		2EF636FF3B616036EC7F67EB /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
@@ -73,16 +73,16 @@
 		2EF63A1596955ACBA7EDF885 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF63A1B8DA64B39B7A5A45A /* CenterOfMassTurnPhaseCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6308135883FEA9607CEDE /* CenterOfMassTurnPhaseCollection.swift */; };
 		2EF63A994F9479BF1B8EF61A /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
-		2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */; };
+		2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */; };
 		2EF63AF15292729142597319 /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF63B0086810A1D356D353E /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF63B2956375341C7736D07 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63B2A328D2899F8F365D8 /* TurnConditionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EED1399E8E4A5853A98 /* TurnConditionFinder.swift */; };
 		2EF63B2C71216B0301DCABCD /* LeftTurn前半内にロールしていっている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63AFEE47E68C6A773D866 /* LeftTurn前半内にロールしていっている.swift */; };
 		2EF63B57C6B221362A4C9049 /* SkiTurnPhaseCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63936A0C112C8ABB1928F /* SkiTurnPhaseCollection.swift */; };
-		2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63C155F564F480D9B4043 /* RightTurn後半スキーのロール角が起き上がってきている.swift */; };
+		2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63C155F564F480D9B4043 /* RightTurn後半スキーのロール角が起き上がってきている.swift */; };
 		2EF63B93B3B3F40C00200ED8 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FD1BB56D985EA70A268 /* MotionWriter.swift */; };
-		2EF63BB80B7C0D4FE7BD216D /* LeftTurn後半スキーのロール角が起き上がってきている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */; };
+		2EF63BB80B7C0D4FE7BD216D /* LeftTurn後半スキーのロール角が起き上がってきている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */; };
 		2EF63BCE98EADED23EF13297 /* MovingPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6304E653C974E55ECC55C /* MovingPhase.swift */; };
 		2EF63BEDD442AD9A7171E892 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF63C2FF02AA06CC85692F8 /* LeftTurn後半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF639DB37674B64D1AB5306 /* LeftTurn後半Phase.swift */; };
@@ -206,7 +206,7 @@
 		2EF63170E20736515729E144 /* SkiTurnPhaseAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkiTurnPhaseAnalyzer.swift; path = Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift; sourceTree = "<group>"; };
 		2EF631834BE40471093D77E6 /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift"; sourceTree = "<group>"; };
 		2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaxAngleFinder.swift; sourceTree = "<group>"; };
-		2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn内にスキーが傾いている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn内にスキーが傾いている.swift"; sourceTree = SOURCE_ROOT; };
+		2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn内にスキーが傾いている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn内にスキーが傾いている.swift"; sourceTree = SOURCE_ROOT; };
 		2EF631D70C72AD3C7621CDFC /* ToneOutputUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToneOutputUnit.swift; path = skiBodyAttitudeTeacheer/Library/ToneOutputUnit.swift; sourceTree = SOURCE_ROOT; };
 		2EF6323D6F702A9500A98DAE /* WatchMotionWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchMotionWriter.swift; sourceTree = "<group>"; };
 		2EF6326CAF988A36F5BEB2DD /* ReverceDeviceMotionMaintainXAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverceDeviceMotionMaintainXAxis.swift; sourceTree = "<group>"; };
@@ -222,10 +222,10 @@
 		2EF6357FEE78DF0CD64A792C /* TurningChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurningChecker.swift; path = skiBodyAttitudeTeacheer/Library/TurningChecker.swift; sourceTree = SOURCE_ROOT; };
 		2EF635822175156661826BB7 /* AccelerationForTargetAngle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationForTargetAngle.swift; sourceTree = "<group>"; };
 		2EF635C99299EF72A7E1CE89 /* TurnError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurnError.swift; path = Turn/TurnError.swift; sourceTree = "<group>"; };
-		2EF635ED93C5099DEF862FEE /* TurnSideFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnSideFinder.swift; sourceTree = "<group>"; };
-		2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LeftTurn内にスキーが傾いている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/LeftTurn内にスキーが傾いている.swift"; sourceTree = SOURCE_ROOT; };
+		2EF635ED93C5099DEF862FEE /* YawRotationRateMovingAverageFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YawRotationRateMovingAverageFinder.swift; sourceTree = "<group>"; };
+		2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LeftTurn内にスキーが傾いている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/LeftTurn内にスキーが傾いている.swift"; sourceTree = SOURCE_ROOT; };
 		2EF6363BA389115ED2B7F776 /* PivotSlipScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PivotSlipScore.swift; sourceTree = "<group>"; };
-		2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn前半スキーが内にロールしていっている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn前半スキーが内にロールしていっている.swift"; sourceTree = SOURCE_ROOT; };
+		2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn前半スキーが内にロールしていっている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn前半スキーが内にロールしていっている.swift"; sourceTree = SOURCE_ROOT; };
 		2EF6366F5F6BCD9FC33EF541 /* GetAbsoluteRotationRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAbsoluteRotationRate.swift; sourceTree = "<group>"; };
 		2EF6377BD3A83603F7D2F226 /* TimeStampAndTurnSideDirectionChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampAndTurnSideDirectionChanged.swift; sourceTree = "<group>"; };
 		2EF637F6B5201E6DCD55E406 /* MotionAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionAnalyser.swift; path = skiBodyAttitudeTeacheer/DomainModel/MotionAnalyser.swift; sourceTree = SOURCE_ROOT; };
@@ -233,7 +233,7 @@
 		2EF6389F251297054388331A /* SimpleMovingAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMovingAverage.swift; sourceTree = "<group>"; };
 		2EF638C4A9237C688099FC70 /* YawingSideFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YawingSideFinder.swift; path = skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/YawingSideFinder.swift; sourceTree = SOURCE_ROOT; };
 		2EF63936A0C112C8ABB1928F /* SkiTurnPhaseCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkiTurnPhaseCollection.swift; sourceTree = "<group>"; };
-		2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Switch後ずっとKeepか.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/Switch後ずっとKeepか.swift"; sourceTree = SOURCE_ROOT; };
+		2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Switch後ずっとKeepか.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/Switch後ずっとKeepか.swift"; sourceTree = SOURCE_ROOT; };
 		2EF639DB37674B64D1AB5306 /* LeftTurn後半Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LeftTurn後半Phase.swift"; sourceTree = "<group>"; };
 		2EF63A84B828BB50B47BF23E /* CenterOfMassUnifiedTurnPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterOfMassUnifiedTurnPhase.swift; sourceTree = "<group>"; };
 		2EF63ACF7B51D0C384E340EC /* TurnSideChangingPeriodFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurnSideChangingPeriodFinder.swift; path = skiBodyAttitudeTeacheer/Library/TurnSideChangingPeriodFinder.swift; sourceTree = SOURCE_ROOT; };
@@ -242,9 +242,9 @@
 		2EF63B291F72B8C9A40D8094 /* MoveStopDiscriminator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoveStopDiscriminator.swift; path = skiBodyAttitudeTeacheer/DomainModel/MoveStopDiscriminator.swift; sourceTree = SOURCE_ROOT; };
 		2EF63BBC4C3B04B024C151A1 /* CurrentVelocity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentVelocity.swift; path = skiBodyAttitudeTeacheer/Library/CurrentVelocity.swift; sourceTree = SOURCE_ROOT; };
 		2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionFeedBackerImpl.swift; path = skiBodyAttitudeTeacheer/MotionFeedBackerImpl.swift; sourceTree = SOURCE_ROOT; };
-		2EF63C155F564F480D9B4043 /* RightTurn後半スキーのロール角が起き上がってきている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn後半スキーのロール角が起き上がってきている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn後半スキーのロール角が起き上がってきている.swift"; sourceTree = SOURCE_ROOT; };
+		2EF63C155F564F480D9B4043 /* RightTurn後半スキーのロール角が起き上がってきている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn後半スキーのロール角が起き上がってきている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn後半スキーのロール角が起き上がってきている.swift"; sourceTree = SOURCE_ROOT; };
 		2EF63D289638024D0CB2DC6E /* RightTurn後半Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RightTurn後半Phase.swift"; sourceTree = "<group>"; };
-		2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LeftTurn後半スキーのロール角が起き上がってきている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/LeftTurn後半スキーのロール角が起き上がってきている.swift"; sourceTree = SOURCE_ROOT; };
+		2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LeftTurn後半スキーのロール角が起き上がってきている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/LeftTurn後半スキーのロール角が起き上がってきている.swift"; sourceTree = SOURCE_ROOT; };
 		2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsConstants.swift; sourceTree = "<group>"; };
 		2EF63E296DCB11BA142480D9 /* ForwardAfterwardBalanceScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardAfterwardBalanceScore.swift; sourceTree = "<group>"; };
 		2EF63E35CFA579DE9212AA38 /* RightTurn前半Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RightTurn前半Phase.swift"; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2EF6311DB1B933771B9CFAA4 /* 各センサーでの受信 */ = {
+		2EF6311DB1B933771B9CFAA4 /* 各センサーでの受信 */ = {
 			isa = PBXGroup;
 			children = (
 				2EF630AFEF7873CF71EA5E82 /* AirPodOnHeadMotionReceiver.swift */,
@@ -354,7 +354,7 @@
 		2EF633AEFBD7DDFC856E999F /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				2EF6311DB1B933771B9CFAA4 /* 各センサーでの受信 */,
+				2EF6311DB1B933771B9CFAA4 /* 各センサーでの受信 */,
 				2EF634E913EAD164A936424F /* MotionWriter */,
 				2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */,
 			);
@@ -395,7 +395,7 @@
 		2EF6385520327E050DDA9D54 /* 反応の速い十分条件 */ = {
 			isa = PBXGroup;
 			children = (
-				2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */,
+				2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */,
 				2EF638C4A9237C688099FC70 /* YawingSideFinder.swift */,
 			);
 			path = "反応の速い十分条件";
@@ -464,15 +464,15 @@
 			path = General;
 			sourceTree = "<group>";
 		};
-		2EF63BFF00991DB2943AAA94 /* フェイズ中一度は成就する条件 */ = {
+		2EF63BFF00991DB2943AAA94 /* フェイズ中一度は成就する条件 */ = {
 			isa = PBXGroup;
 			children = (
 				2EF63AFEE47E68C6A773D866 /* LeftTurn前半内にロールしていっている.swift */,
-				2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */,
-				2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */,
-				2EF63C155F564F480D9B4043 /* RightTurn後半スキーのロール角が起き上がってきている.swift */,
-				2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */,
-				2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */,
+				2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */,
+				2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */,
+				2EF63C155F564F480D9B4043 /* RightTurn後半スキーのロール角が起き上がってきている.swift */,
+				2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */,
+				2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */,
 			);
 			path = "フェイズ中一度は成就する条件";
 			sourceTree = "<group>";
@@ -495,7 +495,7 @@
 			children = (
 				2EF63A3298102CE8398B9962 /* 一度は成就する条件4Phase */,
 				2EF6385520327E050DDA9D54 /* 反応の速い十分条件 */,
-				2EF63BFF00991DB2943AAA94 /* フェイズ中一度は成就する条件 */,
+				2EF63BFF00991DB2943AAA94 /* フェイズ中一度は成就する条件 */,
 			);
 			path = Definition;
 			sourceTree = "<group>";
@@ -653,7 +653,7 @@
 				2EF63B291F72B8C9A40D8094 /* MoveStopDiscriminator.swift */,
 				2EF63EC0588686A51DD25C3D /* CanterOfMassTurnPhaseAnalyzer.swift */,
 				2EF634D918CD8E3B75EFC003 /* TurnChronologicalPhaseFinder.swift */,
-				2EF635ED93C5099DEF862FEE /* TurnSideFinder.swift */,
+				2EF635ED93C5099DEF862FEE /* YawRotationRateMovingAverageFinder.swift */,
 				2EF634B77308022ECB76158C /* AbsoluteFallLineAttitudeFinder.swift */,
 			);
 			path = Service;
@@ -961,17 +961,17 @@
 				2EF63D6A68181FCF71A9D716 /* RightTurn後半Phase.swift in Sources */,
 				2EF63C2FF02AA06CC85692F8 /* LeftTurn後半Phase.swift in Sources */,
 				2EF63066E41541AFD04CF2D8 /* LeftTurn前半Phase.swift in Sources */,
-				2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */,
+				2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */,
 				2EF63FC94CADBB46D2648037 /* YawingSideFinder.swift in Sources */,
 				2EF63B2C71216B0301DCABCD /* LeftTurn前半内にロールしていっている.swift in Sources */,
-				2EF63BB80B7C0D4FE7BD216D /* LeftTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
-				2EF634129360B3769285D6A2 /* RightTurn前半スキーが内にロールしていっている.swift in Sources */,
-				2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
-				2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */,
-				2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */,
+				2EF63BB80B7C0D4FE7BD216D /* LeftTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
+				2EF634129360B3769285D6A2 /* RightTurn前半スキーが内にロールしていっている.swift in Sources */,
+				2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
+				2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */,
+				2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */,
 				2EF63073D5AAF9D61036BB1D /* CanterOfMassTurnPhaseAnalyzer.swift in Sources */,
 				2EF63341EDCA9F63BE736EC0 /* TurnChronologicalPhaseFinder.swift in Sources */,
-				2EF636AF54846DC1F651FA09 /* TurnSideFinder.swift in Sources */,
+				2EF636AF54846DC1F651FA09 /* YawRotationRateMovingAverageFinder.swift in Sources */,
 				2EF638067456213912610AE5 /* AbsoluteRotationRecordProtocol.swift in Sources */,
 				2EF6398909F5052BF57E4D3F /* AbsoluteFallLineAttitudeFinder.swift in Sources */,
 				2EF631C538A7A86D965E43DE /* Attitude.swift in Sources */,

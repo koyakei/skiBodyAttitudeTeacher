@@ -19,6 +19,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA3C93F32722636B007D5325"
+            BuildableName = "skiBodyAttitudeTeacheer.app"
+            BlueprintName = "skiBodyAttitudeTeacheer"
+            ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <BuildableProducturnnable>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -28,5 +37,9 @@
             ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
          </BuildableReference>
       </BuildableProducturnnable>
+      <LocationScenarioReference
+         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+         referenceType = "1">
+      </LocationScenarioReference>
    </LaunchAction>
 </Scheme>
