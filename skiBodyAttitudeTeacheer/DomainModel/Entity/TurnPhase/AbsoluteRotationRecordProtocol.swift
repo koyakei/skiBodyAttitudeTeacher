@@ -31,7 +31,6 @@ extension Collection where Element :RecordWithTimeStamp{
 
 extension Collection where Element : AbsoluteRotationRecordProtocol{
     func yawRotationRateMovingAverage() -> Double {
-        precondition(self.count > 1)
         return AverageAngleFinder.handle(angles_rad:
                                          self.filterByBeforeMilleSecondsFromNow(yawingPeriod: 0.1).mapper()
         )
@@ -56,8 +55,6 @@ extension AbsoluteAttitudeProtocol {
 
 extension Collection where Element : AbsoluteAttitudeProtocol{
     func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> Double {
-        precondition(yawingPeriod > 0)
-        precondition(self.count > 1)
         return AverageAngleFinder.handle(angles_rad:
                                             self.filterByBeforeMilleSecondsFromNow(yawingPeriod: 0.02).mapper()
         )

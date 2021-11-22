@@ -7,7 +7,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>koyakei.skiBodyAttitudeTeacheer.watchkitapp</string>
+			<string>koyakei.skiBodyAttitudeTeacheer2.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
