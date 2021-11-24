@@ -32,7 +32,7 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
 //        }
 //    }
 
-    var absoluteRotationRate: CMRotationRate
+    var rotationRate: CMRotationRate
     var fallLineAcceleration: Double
     let turnYawingSideDirection: TurnYawingSide
 //    init(skiTurnPhase: SkiTurnPhase,
@@ -47,7 +47,7 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
 //        turnSideDirectionChanged = skiTurnPhase.turnSideDirectionChanged
 //        isTurnMax = skiTurnPhase.isTurnMax
 //        yawRotationRateMovingAverage = skiTurnPhase.yawRotationRateMovingAverage
-//        absoluteRotationRate = centerOfMassTurnPhase.absoluteRotationRate
+//        rotationRate = centerOfMassTurnPhase.rotationRate
 //        turnSideDirection = skiTurnPhase.
 //    }
 
@@ -68,7 +68,7 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
 //        self.turnSideDirectionChanged = turnSideDirectionChanged
 //        self.isTurnMax = isTurnMax
 //        self.yawRotationRateMovingAverage = yawRotationRateMovingAverage
-//        absoluteRotationRate = movingPhaseProtocol.absoluteRotationRate
+//        rotationRate = movingPhaseProtocol.rotationRate
 //    }
 
     let turnFinished: Bool
@@ -80,8 +80,6 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
     let userAcceleration: CMAcceleration
 
     let timeStampSince1970: TimeInterval
-
-    let rotationRate: CMRotationRate
     let movingAverageYawAngle: Double
     let rotationRateAverage: Double
 }

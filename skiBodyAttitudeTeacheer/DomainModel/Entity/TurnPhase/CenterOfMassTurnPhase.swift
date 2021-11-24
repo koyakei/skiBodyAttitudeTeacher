@@ -18,7 +18,6 @@ struct CenterOfMassTurnPhase: MovingPhaseProtocol {
 
     let rotationRate: CMRotationRate
     let movingAverageYawAngle: Double
-    var absoluteRotationRate: CMRotationRate
 
     init(movingPhaseProtocol: MovingPhaseProtocol, movingAverageYawAngle: Double,
          turnFinished: Bool,
@@ -37,7 +36,6 @@ struct CenterOfMassTurnPhase: MovingPhaseProtocol {
         rotationRate = movingPhaseProtocol.rotationRate
         self.isTurnMax = isTurnMax
         self.yawRotationRateMovingAverage = yawRotationRateMovingAverage
-        absoluteRotationRate = movingPhaseProtocol.absoluteRotationRate
     }
 
     

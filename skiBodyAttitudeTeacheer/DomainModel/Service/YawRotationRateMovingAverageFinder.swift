@@ -6,15 +6,18 @@ import Foundation
 import CoreMotion
 
 struct YawRotationRateMovingAverageFinder {
-    struct AbsoluteRotationRecord: AbsoluteRotationRecordProtocol {
-        let absoluteRotationRate: CMRotationRate
+    struct RotationRateRecord: RotationRateRecordProtocol {
+        let rotationRate: CMRotationRate
         let timeStampSince1970: TimeInterval
     }
 
-    var rotationHistory: [AbsoluteRotationRecord] = []
+    var rotationHistory: [RotationRateRecord] = []
 
-    mutating func handle(absoluteRotationRate: CMRotationRate, timeStampSince1970: TimeInterval) -> CMRotationRate{
-        rotationHistory.append(AbsoluteRotationRecord.init(absoluteRotationRate: absoluteRotationRate, timeStampSince1970: timeStampSince1970))
+    mutating func handle(rotationRate: CMRotationRate, timeStampSince1970: TimeInterval) -> CMRotationRate{
+        if rotationHistory.count > 200{
+            rotationHistory.removeFirst()
+        }
+        rotationHistory.append(RotationRateRecord.init(rotationRate: rotationRate, timeStampSince1970: timeStampSince1970))
         return CMRotationRate.init(x: 0, y: 0, z: rotationHistory.yawRotationRateMovingAverage())
     }
 }

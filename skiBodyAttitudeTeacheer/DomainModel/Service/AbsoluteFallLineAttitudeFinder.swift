@@ -13,6 +13,9 @@ struct AbsoluteFallLineAttitudeFinder {
     var absoluteAttitudeRecords: [AbsoluteAttitudeRecord] = []
 
     mutating func handle(attitude: Attitude, timeStampSince1970: TimeInterval, yawingPeriod: TimeInterval) -> Attitude {
+        if absoluteAttitudeRecords.count > 200{
+            absoluteAttitudeRecords.removeFirst()
+        }
         absoluteAttitudeRecords.append(AbsoluteAttitudeRecord.init(attitude: attitude, timeStampSince1970: timeStampSince1970))
         return Attitude.init(roll: 0,
                       yaw:

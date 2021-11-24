@@ -28,7 +28,7 @@ struct SkiTurnPhase: TurnPhaseProtocol {
 //        self.yawRotationRateMovingAverage = yawRotationRateMovingAverage
 //        self.fallLineOrthogonalAcceleration = fallLineOrthogonalAcceleration
 //        self.fallLineOrthogonalRelativeAttitude = fallLineOrthogonalRelativeAttitude
-//        absoluteRotationRate = movingPhaseProtocol.absoluteRotationRate
+//        rotationRate = movingPhaseProtocol.rotationRate
 //        self.fallLineAcceleration = fallLineAcceleration
 //    }
 
@@ -48,7 +48,6 @@ struct SkiTurnPhase: TurnPhaseProtocol {
     let userAcceleration: CMAcceleration
 
     let timeStampSince1970: TimeInterval
-    let absoluteRotationRate: CMRotationRate
     let rotationRate: CMRotationRate
     let movingAverageYawAngle: Double
     let rotationRateAverage: Double

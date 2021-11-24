@@ -5,12 +5,12 @@
 import Foundation
 import CoreMotion
 
-protocol AbsoluteRotationRecordProtocol: RecordWithTimeStamp {
-    var absoluteRotationRate: CMRotationRate { get }
+protocol RotationRateRecordProtocol: RecordWithTimeStamp {
+    var rotationRate: CMRotationRate { get }
 }
-extension AbsoluteRotationRecordProtocol {
+extension RotationRateRecordProtocol {
     func mapper() -> Double {
-        absoluteRotationRate.z
+        rotationRate.z
     }
 }
 
@@ -29,7 +29,7 @@ extension Collection where Element :RecordWithTimeStamp{
 
 
 
-extension Collection where Element : AbsoluteRotationRecordProtocol{
+extension Collection where Element : RotationRateRecordProtocol{
     func yawRotationRateMovingAverage() -> Double {
         return AverageAngleFinder.handle(angles_rad:
                                          self.filterByBeforeMilleSecondsFromNow(yawingPeriod: 0.1).mapper()

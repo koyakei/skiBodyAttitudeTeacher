@@ -13,7 +13,6 @@ public struct MovingPhase: MovingPhaseProtocol {
     let userAcceleration: CMAcceleration
     let timeStampSince1970: TimeInterval
     let rotationRate: CMRotationRate
-    let absoluteRotationRate: CMRotationRate // 重力方向に対する角速度
 
     init(_ motion: CMDeviceMotion,
          _ timeStampSince1970: TimeInterval) {
@@ -21,9 +20,6 @@ public struct MovingPhase: MovingPhaseProtocol {
         userAcceleration = motion.userAcceleration
         self.timeStampSince1970 = timeStampSince1970
         attitude = Attitude.init(roll: motion.attitude.roll, yaw: motion.attitude.yaw, pitch: motion.attitude.pitch)
-        absoluteRotationRate = GetAbsoluteRotationRate
-                .handle(rotationRate: rotationRate,
-                       attitude: attitude)
     }
 
     init(movingPhase: MovingPhaseProtocol,
@@ -33,9 +29,6 @@ public struct MovingPhase: MovingPhaseProtocol {
         userAcceleration = movingPhase.userAcceleration
         timeStampSince1970 = movingPhase.timeStampSince1970
         self.rotationRate = rotationRate
-        absoluteRotationRate = GetAbsoluteRotationRate
-                .handle(rotationRate: rotationRate,
-                        attitude: attitude)
     }
 
     init(_ attitude:Attitude,
@@ -46,9 +39,6 @@ public struct MovingPhase: MovingPhaseProtocol {
         self.rotationRate = rotationRate
         userAcceleration = acceleration
         self.attitude = attitude
-        absoluteRotationRate = GetAbsoluteRotationRate
-                .handle(rotationRate: rotationRate,
-                        attitude: attitude)
     }
 }
 

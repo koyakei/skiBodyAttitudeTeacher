@@ -24,9 +24,11 @@ final public class MotionAnalyzerManager {
     }
 
     func receiveBoardMotion(_ motion: CMDeviceMotion, _
-    receivedProcessUptime: TimeInterval) -> (TurnYawingSide,TurnSwitchingDirection,Attitude,Double){
-        return boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
-                CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
+    receivedProcessUptime: TimeInterval) -> (TurnYawingSide,TurnSwitchingDirection,Attitude,Double, Date){
+        let now = CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime)
+        let va  = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
+                                                                now)
+        return (va.0,va.1,va.2,va.3,Date.init(timeIntervalSince1970: now) )
     }
 
     func receiveAirPodMotion(_ motion: CMDeviceMotion, _

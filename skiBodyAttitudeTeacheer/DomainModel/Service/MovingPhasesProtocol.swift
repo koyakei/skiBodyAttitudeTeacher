@@ -8,9 +8,8 @@
 import Foundation
 import CoreMotion
 
-protocol MovingPhaseProtocol: AbsoluteRotationRecordProtocol, AbsoluteAttitudeProtocol {
+protocol MovingPhaseProtocol: RotationRateRecordProtocol, AbsoluteAttitudeProtocol {
     var userAcceleration: CMAcceleration { get }
-    var rotationRate: CMRotationRate { get }
 }
 
 extension Collection where Element == MovingPhaseProtocol {

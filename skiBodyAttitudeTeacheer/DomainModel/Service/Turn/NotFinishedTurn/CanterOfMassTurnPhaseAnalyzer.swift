@@ -23,7 +23,7 @@ struct CanterOfMassTurnPhaseAnalyzer: TurnPhaseAnalyzerProtocol {
 //    mutating func handle
 //            (movingPhase: MovingPhase) ->
 //            CenterOfMassTurnPhase {
-//        let turnSide = turnSideFinder.handle(absoluteRotationRate: movingPhase.absoluteRotationRate, timeStampSince1970: movingPhase.timeStampSince1970)
+//        let turnSide = turnSideFinder.handle(rotationRate: movingPhase.rotationRate, timeStampSince1970: movingPhase.timeStampSince1970)
 //        // フォールライン方向の加速度を計算
 //        // 他の指標も計算していく
 //        // ピボットスリップを計算する前提で考えてみよう
