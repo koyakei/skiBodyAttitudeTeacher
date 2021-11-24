@@ -34,6 +34,16 @@ enum TurnYawingSide : String{
     case Straight = "Straight"
 }
 
+extension Collection where Element == TurnYawingSide{
+    func isRightYawingContinued() -> Bool{
+        !self.contains(TurnYawingSide.LeftYawing)
+    }
+    func isLeftYawingContinued() -> Bool{
+        !self.contains(TurnYawingSide.RightYawing)
+    }
+
+}
+
 enum TurnChronologicalPhase  : String{
     case SwitchToMax = "SwitchToMax"
     case TurnMax = "TurnMax"

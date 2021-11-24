@@ -33,18 +33,18 @@ struct ContentView: View {
                 Text("Stop")
             }
             VStack {
-//                Text("⇑")
-//                    .background(Color.red)
-//                    .font(.largeTitle)
-//                    .rotationEffect(Angle.init(radians: attitude.yaw ))
-//                Text("⇑")
-//                    .background(Color.blue)
-//                    .font(.largeTitle)
-//                    .rotationEffect(Angle.init(radians: attitude.roll ))
-//                Text("⇑")
-//                    .background(Color.green)
-//                    .font(.largeTitle)
-//                    .rotationEffect(Angle.init(radians: attitude.pitch ))
+                Text("⇑")
+                    .background(Color.red)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(radians: (attitude.yaw - currentYaw) * -1 ))
+                Text("⇑")
+                    .background(Color.blue)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(radians: attitude.roll ))
+                Text("⇑")
+                    .background(Color.green)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(radians: attitude.pitch ))
                 Divider()
                 Divider()
                 Text(turnYawingSide.rawValue)
@@ -64,9 +64,9 @@ struct ContentView: View {
 //        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
         coreMotion.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .current!) { (motion, error) in
 //            motionWriter.write(motion!)
-            attitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
+            currentYaw = motion!.attitude.yaw
             motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
-            (self.turnYawingSide, self.turnSwitchingDirection, _, self.yawingPeriod, motionDate) = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
+            (self.turnYawingSide, self.turnSwitchingDirection, self.attitude, self.yawingPeriod, motionDate) = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
