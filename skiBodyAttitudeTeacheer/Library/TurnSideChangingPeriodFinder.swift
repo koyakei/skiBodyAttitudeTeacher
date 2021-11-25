@@ -16,7 +16,7 @@ struct TurnSideChangingPeriodFinder {
             (currentTimeStampSince1970: TimeInterval, currentYawingSide: TurnYawingSide) -> TimeInterval {
         // 全部右ターンが続いていたら、
        if (yawingSideRecords.isLeftYawingContinued() && currentYawingSide == TurnYawingSide.RightYawing) ||
-                                                               (yawingSideRecords.isRightYawingContinued() && currentYawingSide == TurnYawingSide.LeftYawing)                                                                                                                                      {
+                                                               (yawingSideRecords.isRightYawingContinued() && currentYawingSide == TurnYawingSide.LeftYawing)                                                                                                                 {
             // ターン方向が変わっていたら
             lastSwitchedTurnSideTimeStamp = currentTimeStampSince1970
             yawingSideRecords = [TurnYawingSide.Straight] // 初期化

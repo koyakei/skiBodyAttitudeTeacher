@@ -13,11 +13,11 @@ struct YawRotationRateMovingAverageFinder {
 
     var rotationHistory: [RotationRateRecord] = []
 
-    mutating func handle(rotationRate: CMRotationRate, timeStampSince1970: TimeInterval) -> CMRotationRate{
+    mutating func handle(rotationRate: CMRotationRate, timeStampSince1970: TimeInterval, period: TimeInterval) -> CMRotationRate{
         if rotationHistory.count > 200{
             rotationHistory.removeFirst()
         }
         rotationHistory.append(RotationRateRecord.init(rotationRate: rotationRate, timeStampSince1970: timeStampSince1970))
-        return CMRotationRate.init(x: 0, y: 0, z: rotationHistory.yawRotationRateMovingAverage())
+        return CMRotationRate.init(x: 0, y: 0, z: rotationHistory.yawRotationRateMovingAverage(timeInterval: period))
     }
 }

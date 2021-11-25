@@ -28,11 +28,7 @@ enum TurnSwitchingDirection: String {
     case Keep = "Keep"
 }
 
-enum TurnYawingSide : String{
-    case RightYawing = "Right"
-    case LeftYawing = "Left"
-    case Straight = "Straight"
-}
+
 
 extension Collection where Element == TurnYawingSide{
     func isRightYawingContinued() -> Bool{
@@ -55,14 +51,13 @@ struct TurnChronologicalPhaseDefinition {
     let turnYawingSide: TurnYawingSide
     let absoluteFallLineAttitude: Attitude
     let currentAttitude: Attitude
-
     func 右ターンの時にターンマックスを過ぎているか() -> TurnChronologicalPhase {
         if turnMax() {
             return TurnChronologicalPhase.TurnMax
-        } else if (turnYawingSide == TurnYawingSide.RightYawing && currentAttitude.yaw >
+        } else if (turnYawingSide == TurnYawingSide.RightYawing && currentAttitude.yaw <
                 absoluteFallLineAttitude.yaw) {
             return TurnChronologicalPhase.MaxToSwitch
-        } else if (turnYawingSide == TurnYawingSide.RightYawing && currentAttitude.yaw <
+        } else if (turnYawingSide == TurnYawingSide.RightYawing && currentAttitude.yaw >
                 absoluteFallLineAttitude.yaw) {
             return TurnChronologicalPhase.SwitchToMax
         }
@@ -72,10 +67,10 @@ struct TurnChronologicalPhaseDefinition {
     func 左ターンの時にターンマックスを過ぎているか() -> TurnChronologicalPhase {
         if turnMax() {
             return TurnChronologicalPhase.TurnMax
-        } else if (turnYawingSide == TurnYawingSide.LeftYawing && currentAttitude.yaw <
+        } else if (turnYawingSide == TurnYawingSide.LeftYawing && currentAttitude.yaw >
                 absoluteFallLineAttitude.yaw) {
             return TurnChronologicalPhase.MaxToSwitch
-        } else if (turnYawingSide == TurnYawingSide.LeftYawing && currentAttitude.yaw >
+        } else if (turnYawingSide == TurnYawingSide.LeftYawing && currentAttitude.yaw <
                 absoluteFallLineAttitude.yaw) {
             return TurnChronologicalPhase.SwitchToMax
         }
@@ -83,9 +78,8 @@ struct TurnChronologicalPhaseDefinition {
     }
 
     func turnMax() -> Bool {
-        // TODO: ここ設定ファイルに出していいかも
-        .zero..<PhysicsConstants.degree * 1 ~= abs(currentAttitude.yaw -
-                                                           absoluteFallLineAttitude.yaw)
+        .zero..<PhysicsConstants.degree * 1 ~= abs(
+            TwoAngleDifferential.handle(angle: currentAttitude.yaw, secondAngle: absoluteFallLineAttitude.yaw))
     }
 
     // ターンマックス前なら false ターンマックス後ならtrue を返す
@@ -114,7 +108,7 @@ struct TurnInitiationOrEndDiscriminator {
     ) -> TurnChronologicalPhase {
         let turnMaxPassedChecker: TurnChronologicalPhaseDefinition = TurnChronologicalPhaseDefinition.init(turnYawingSide: turnSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
         switch turnMaxPassedChecker.handle() {
-        case TurnChronologicalPhase.SwitchToMax:
+        case .SwitchToMax:
             return TurnChronologicalPhase.SwitchToMax
         case .TurnMax:
             isTurnMaxPassed = true
@@ -138,32 +132,41 @@ struct TurnChronologicalPhaseFinder {
                          currentTurnYawingSide: TurnYawingSide,
                          turnSwitchingDirection: TurnSwitchingDirection
     ) -> TurnChronologicalPhase {
+        return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
         // switch 後ずっと　keep しているんだったら　右ターン左ターンでのターンマックスの判断が可能
-        if (switch後ずっとKeepか.handle(now: turnSwitchingDirection)) {
-            switch (turnSwitchingDirection) {
-            case (.RightToLeft):
-                turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
-                switch後ずっとKeepか = Switch後ずっとKeepか.init()
-                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
-            case (.LeftToRight):
-                turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
-                switch後ずっとKeepか = Switch後ずっとKeepか.init()
-                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
-            case (.Keep):
-                // 以前の状態を維持していて　 なおかつ左
-                // RightToLeft or LeftToRight
-                // で他の
-                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
-            default:
-                return TurnChronologicalPhase.TurnMax
-            }
-        } else {
-            /// キープが崩れたら turn max finder を　最初期化
-            turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
-            switch後ずっとKeepか = Switch後ずっとKeepか.init()
-            // ホントはここで ターンマックスを返すんじゃなくてエラーをはくほうがいいのか
-            return TurnChronologicalPhase.TurnMax
-        }
+//        if (switch後ずっとKeepか.handle(now: turnSwitchingDirection)) {
+//            switch (turnSwitchingDirection) {
+//            case (.StraightToLeftTurn):
+////                turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
+//                switch後ずっとKeepか = Switch後ずっとKeepか.init()
+//                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
+//            case (.StraightToRightTurn):
+////                turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
+//                switch後ずっとKeepか = Switch後ずっとKeepか.init()
+//                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
+//            case (.Keep):
+//                // 以前の状態を維持していて　 なおかつ左
+//                // RightToLeft or LeftToRight
+//                // で他の
+//                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
+////            case .LeftTurnToStraight:
+////                turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
+////                switch後ずっとKeepか = Switch後ずっとKeepか.init()
+////                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
+////            case .RightTurnToStraight:
+////                turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
+////                switch後ずっとKeepか = Switch後ずっとKeepか.init()
+////                return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
+//            default:
+//                return TurnChronologicalPhase.MaxToSwitch
+//            }
+//        } else {
+//            /// キープが崩れたら turn max finder を　最初期化
+//            turnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
+//            switch後ずっとKeepか = Switch後ずっとKeepか.init()
+//            // ホントはここで ターンマックスを返すんじゃなくてエラーをはくほうがいいのか
+//            return TurnChronologicalPhase.TurnMax
+//        }
     }
 }
 

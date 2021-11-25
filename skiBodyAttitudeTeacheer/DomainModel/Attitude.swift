@@ -4,7 +4,12 @@
 
 import Foundation
 
-struct Attitude {
+protocol AttitudeProtocol{
+    var roll: Double {get}
+    var yaw: Double{get}
+    var pitch: Double{get}
+}
+struct Attitude : AttitudeProtocol{
     let roll: Double
     let yaw: Double
     let pitch: Double

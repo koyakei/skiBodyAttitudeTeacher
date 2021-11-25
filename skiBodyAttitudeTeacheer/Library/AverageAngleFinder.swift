@@ -12,7 +12,8 @@ struct AverageAngleFinder {
                 }.reduce(0.0, +) / Double(angles_rad.count),
                         angles_rad.map {
                             cos($0)
-                        }.reduce(0.0, +) / Double(angles_rad.count))
+                        }.reduce(0.0, +) / Double(angles_rad.count)) // なんで マイナス1?
+        
         if (abs(ang_avg) > pow(10, -8)) {
             return ang_avg
         }

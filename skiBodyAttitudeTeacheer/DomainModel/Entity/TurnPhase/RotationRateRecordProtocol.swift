@@ -20,9 +20,9 @@ protocol RecordWithTimeStamp {
 
 extension Collection where Element :RecordWithTimeStamp{
     func filterByBeforeMilleSecondsFromNow(
-            yawingPeriod: TimeInterval) ->[Element]{
+        timeInterval : TimeInterval) ->[Element]{
         self.filter{
-            Date(timeIntervalSince1970: $0.timeStampSince1970) > Calendar.current.date(byAdding: .second, value: -1, to: Date(timeIntervalSince1970: $0.timeStampSince1970))!
+            $0.timeStampSince1970 > ($0.timeStampSince1970 - timeInterval)
         }
     }
 }
@@ -30,9 +30,9 @@ extension Collection where Element :RecordWithTimeStamp{
 
 
 extension Collection where Element : RotationRateRecordProtocol{
-    func yawRotationRateMovingAverage() -> Double {
+    func yawRotationRateMovingAverage(timeInterval: TimeInterval) -> Double {
         return AverageAngleFinder.handle(angles_rad:
-                                         self.filterByBeforeMilleSecondsFromNow(yawingPeriod: 0.1).mapper()
+                                         self.filterByBeforeMilleSecondsFromNow(timeInterval: timeInterval).mapper()
         )
     }
 
@@ -56,7 +56,7 @@ extension AbsoluteAttitudeProtocol {
 extension Collection where Element : AbsoluteAttitudeProtocol{
     func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> Double {
         return AverageAngleFinder.handle(angles_rad:
-                                            self.filterByBeforeMilleSecondsFromNow(yawingPeriod: yawingPeriod).mapper()
+                                            self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).mapper() 
         )
     }
 

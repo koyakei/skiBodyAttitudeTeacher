@@ -27,33 +27,6 @@ struct TargetDirectionAccelerationAndRelativeAttitude {
     let relativeAttitude: Attitude
 }
 
-struct TurnInsideAngleFinder {
-    static func handle(
-            turnSideDirection: Bool,
-            fallLineYawAngle: Double
-    ) -> Double {
-        if turnSideDirection {
-            //右ターンのとき
-            return AngleShifter.handle(currentAngle: fallLineYawAngle, shiftAngle: (Double.pi / 2 * -1))// 右９０度
-        } else {
-            // 左ターンのとき
-            return AngleShifter.handle(currentAngle: fallLineYawAngle, shiftAngle: Double.pi / 2)// 左９０度
-        }
-    }
-}
 
-struct FallLineOrthogonalAccelerationCalculator{
-    static func handle(turnSideDirection: Bool,
-                       fallLineAttitude: Attitude,
-                       userAcceleration: CMAcceleration,
-                       userAttitude: Attitude
-                       ) -> TargetDirectionAccelerationAndRelativeAttitude{
-        AccelerationForTargetAngle.handle(
-                userAcceleration: userAcceleration,
-                userAttitude: userAttitude,
-                targetAttitude: Attitude.init(roll: 0, yaw: TurnInsideAngleFinder.handle(
-                        turnSideDirection: turnSideDirection,
-                        fallLineYawAngle: fallLineAttitude.yaw), pitch: 0)
-        )
-    }
-}
+
+
