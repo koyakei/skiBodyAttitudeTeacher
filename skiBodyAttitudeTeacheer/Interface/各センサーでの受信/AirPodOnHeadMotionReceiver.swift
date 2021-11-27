@@ -12,11 +12,13 @@ struct AirPodOnHeadMotionReceiver {
 
     let 磁北偏差: Double
     var canterOfMassTurnPhaseAnalyzer: CenterOfMassTurnPhaseAnalyzer = CenterOfMassTurnPhaseAnalyzer.init()
-
+    var turnPhases: [CenterOfMassTurnPhase] = []
     mutating func receiver(_ motion: CMDeviceMotion, _ timeStamp: TimeInterval) -> CenterOfMassTurnPhase{
-        return canterOfMassTurnPhaseAnalyzer
+        let v = canterOfMassTurnPhaseAnalyzer
                                 .handle(movingPhase:
                                         MovingPhase.init(motion, timeStamp, 磁北偏差))
+        turnPhases.append(v)
+        return v
     }
 
 

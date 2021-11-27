@@ -76,11 +76,7 @@ struct ContentView: View {
     }
 
     func startRecord(){
-        
-//        motionWriter.open(MotionWriter.makeFilePath(fileAlias: "Body"))
-//        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
         coreMotion.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .current!) { (motion, error) in
-//            motionWriter.write(motion!)
             currentYaw = motion!.attitude.yaw
             motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
             if MotionAnalyzerManager.shared.磁北偏差 == nil{

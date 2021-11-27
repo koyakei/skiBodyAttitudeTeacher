@@ -14,8 +14,10 @@ struct Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver {
             = SkiTurnPhaseAnalyzer.init()
 
     mutating func receiver(_ motion: CMDeviceMotion, _ timeStamp: TimeInterval) ->
-            (TurnYawingSide,TurnSwitchingDirection,Attitude,Double,TurnChronologicalPhase,TargetDirectionAccelerationAndRelativeAttitude){
-        turnPhaseAnalyzer.handle(movingPhase:
+            SkiTurnPhase{
+        let v = turnPhaseAnalyzer.handle(movingPhase:
                  MovingPhase.init(motion, timeStamp))
+        turnPhases.append(v)
+        return v
     }
 }

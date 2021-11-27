@@ -26,11 +26,11 @@ final public class MotionAnalyzerManager {
     }
 
     func receiveBoardMotion(_ motion: CMDeviceMotion, _
-    receivedProcessUptime: TimeInterval) -> (TurnYawingSide,TurnSwitchingDirection,Attitude,Double,TurnChronologicalPhase, TargetDirectionAccelerationAndRelativeAttitude,Date){
+    receivedProcessUptime: TimeInterval) -> SkiTurnPhase{
         let now = CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime)
         let va  = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
                                                                 now)
-        return (va.0,va.1,va.2,va.3,va.4,va.5,Date.init(timeIntervalSince1970: now) )
+        return va
     }
 
     func receiveAirPodMotion(_ motion: CMDeviceMotion, _
@@ -50,38 +50,40 @@ final public class MotionAnalyzerManager {
     }
 
     func unify() {
-//        let skiTurnEnd: [SkiTurnPhase] =
-//                boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhases
-//                        .filterLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax()
-//        let skiTurnInitiation: [SkiTurnPhase] =
-//                boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver
-//                        .turnPhases.filterLastTurnSwitchToTurnMax()
-//        let ti: [CenterOfMassUnifiedTurnPhase] =
-//                ariPodMotionReceiver.turnPhases.filterByTimeStamp(
-//                        startedAt: skiTurnEnd.first!.timeStampSince1970,
-//                        endAt: skiTurnEnd.first!.timeStampSince1970).unifyWithSkiTurnPhases(skiTurnPhases: skiTurnEnd)
-//        let te: [CenterOfMassUnifiedTurnPhase] = ariPodMotionReceiver
-//                .turnPhases
-//                .filterByTimeStamp(
-//                        startedAt: skiTurnInitiation.first!.timeStampSince1970,
-//                        endAt: skiTurnInitiation.first!.timeStampSince1970)
-//                .unifyWithSkiTurnPhases(skiTurnPhases: skiTurnInitiation)
-//        unifiedAnalyzedTurnCollection.append(
-//                OneTurn.init(
-//                        oneSkiTurnLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax: skiTurnEnd,
-//                        oneSkiTurnLastTurnSwitchToTurnMax: skiTurnInitiation,
-//                        oneCenterOfMassTurnLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax:
-//                        ti
-//                        ,
-//                        oneCenterOfMassTurnLastTurnSwitchToTurnMax: te)
-//        )
-//        // ここに来るのはどうも気に入らない　イベント駆動にするしかなさそうだなぁ　まあしたところで何が変わるかわからんが。
-//        tellTheScore(score: Int(ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.init(
-//                skiTurnPhaseTurnSwitchToTurnMax: skiTurnInitiation,
-//                skiTurnPhaseTurnMaxToTurnSwitch: skiTurnEnd,
-//                centerOfMassTurnPhaseTurnSwitchToTurnMax: te,
-//                centerOfMassTurnPhaseTurnMaxToTurnSwitch: ti).score())
-//        )
+        // 最初のターンマックスは捨てる？
+        // ターンマックスごとに切るか
+        let skiTurnEnd: [SkiTurnPhase] =
+                boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhases
+        let skiTurnInitiation: [SkiTurnPhase] =
+                boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver
+                        .turnPhases
+        let ti: [CenterOfMassUnifiedTurnPhase] =
+                ariPodMotionReceiver?.turnPhases.filterByTimeStamp(
+                        startedAt: skiTurnInitiation.first!.timeStampSince1970,
+                        endAt: skiTurnInitiation.first!.timeStampSince1970).unifyWithSkiTurnPhases(skiTurnPhases: skiTurnInitiation) ?? []
+        let te: [CenterOfMassUnifiedTurnPhase] =
+                ariPodMotionReceiver?
+                .turnPhases
+                .filterByTimeStamp(
+                        startedAt: skiTurnInitiation.first!.timeStampSince1970,
+                        endAt: skiTurnInitiation.first!.timeStampSince1970)
+                .unifyWithSkiTurnPhases(skiTurnPhases: skiTurnInitiation) ?? []
+        unifiedAnalyzedTurnCollection.append(
+                OneTurn.init(
+                        oneSkiTurnLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax: skiTurnEnd,
+                        oneSkiTurnLastTurnSwitchToTurnMax: skiTurnInitiation,
+                        oneCenterOfMassTurnLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax:
+                        ti
+                        ,
+                        oneCenterOfMassTurnLastTurnSwitchToTurnMax: te)
+        )
+        // ここに来るのはどうも気に入らない　イベント駆動にするしかなさそうだなぁ　まあしたところで何が変わるかわからんが。
+        tellTheScore(score: Int(ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.init(
+                skiTurnPhaseTurnSwitchToTurnMax: skiTurnInitiation,
+                skiTurnPhaseTurnMaxToTurnSwitch: skiTurnEnd,
+                centerOfMassTurnPhaseTurnSwitchToTurnMax: te,
+                centerOfMassTurnPhaseTurnMaxToTurnSwitch: ti).score())
+        )
     }
 }
 

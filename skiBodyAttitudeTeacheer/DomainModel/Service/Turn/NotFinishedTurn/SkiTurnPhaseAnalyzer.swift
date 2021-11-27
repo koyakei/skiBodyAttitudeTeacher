@@ -19,7 +19,7 @@ struct SkiTurnPhaseAnalyzer {
     var turnSwitchingDirectionFinder: TurnSwitchingDirectionFinder = TurnSwitchingDirectionFinder.init()
     var rotationAngleFinder: RotationAngleFinder = RotationAngleFinder.init()
     mutating func handle(movingPhase:
-            MovingPhase) -> (TurnYawingSide,TurnSwitchingDirection,Attitude,Double,TurnChronologicalPhase,TargetDirectionAccelerationAndRelativeAttitude) {
+            MovingPhase) -> SkiTurnPhase {
 
         let yawingRate: CMRotationRate = rotationAngleFinder.handle(radianAngle: movingPhase.attitude.yaw,timeStamp: movingPhase.timeStampSince1970)
 //        let yawingRate : CMRotationRate = yawingRotationRateAverageFinder.handle(
@@ -38,23 +38,19 @@ struct SkiTurnPhaseAnalyzer {
                 =
                 FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide, userAcceleration: movingPhase.userAcceleration, userAttitude: movingPhase.attitude)
 
-
-        return (turnYawingSide,turnSwitchingDirection,absoluteFallLineAttitude ,yawingRate.z,turnPhase,fallLineOrthogonalAccelerationAndRelativeAttitude)
-
-//        if (turnPhaseType == TurnSwitchRightToLeft
-//                || turnPhaseType == TurnSwitchLeftToRight) {
-//            // ターンが終わったら、ターンフェイズのどこにいるかを 100分率で計算
-//            MotionAnalyzerManager.shared.unify()
-//        }
-//        SkiTurnPhase.init(
-//                movingPhaseProtocol: movingPhase,
-//                movingAverageYawAngle: yawingSimpleMovingAverage,
-//                turnPhaseType: turnPhaseType,
-//                turnSideDirectionChanged: turnSideDirectionChanged
-//                ,
-//                yawRotationRateMovingAverage: yawRotationRateMovingAverage,
-//                fallLineOrthogonalAcceleration: fallLineOrthogonal.targetDirectionAcceleration,
-//                fallLineOrthogonalRelativeAttitude: fallLineOrthogonal.relativeAttitude)
+        switch turnPhase{
+        case .TurnMax:
+            MotionAnalyzerManager.shared.unify()
+        default:
+            <#code#>
+        }
+        return SkiTurnPhase.init(turnYawingSide: turnYawingSide,
+                          turnSwitchingDirection: turnSwitchingDirection,
+                          turnSideChangePeriod: turnSideChangePeriod,
+                          absoluteFallLineAttitude: absoluteFallLineAttitude,
+                          turnPhase: turnPhase,
+                          fallLineOrthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
+                          timeStampSince1970: movingPhase.timeStampSince1970, rotationRate: yawingRate)
 
         
     }

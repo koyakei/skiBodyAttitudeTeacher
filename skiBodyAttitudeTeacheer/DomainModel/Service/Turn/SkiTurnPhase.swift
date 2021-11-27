@@ -5,7 +5,7 @@
 import Foundation
 import CoreMotion
 
-struct SkiTurnPhase: TurnPhaseProtocol {
+struct SkiTurnPhase {
 //    init(movingPhaseProtocol: MovingPhaseProtocol, movingAverageYawAngle: Double,
 //         turnFinished: Bool,
 //         turnSideDirectionChanged: Bool,
@@ -32,29 +32,17 @@ struct SkiTurnPhase: TurnPhaseProtocol {
 //        self.fallLineAcceleration = fallLineAcceleration
 //    }
 
-    let turnPhaseRatio: Float
-    let turnFinished: Bool
-    let turnSideDirectionChanged: Bool
-    let isTurnMax: Bool
-    let yawRotationRateMovingAverage: Double
-    let sensorLocation: CMDeviceMotion.SensorLocation
-
-    var turnSideDirection: Bool{
-        get {
-            yawRotationRateMovingAverage.sign == .minus
-        }
-    }
-    let attitude: Attitude
-
-    let userAcceleration: CMAcceleration
+    let turnYawingSide: TurnYawingSide
+    let turnSwitchingDirection: TurnSwitchingDirection
+    let turnSideChangePeriod: TimeInterval
+    let absoluteFallLineAttitude: Attitude
+    let turnPhase: TurnChronologicalPhase
+    let fallLineOrthogonalAccelerationAndRelativeAttitude:
+            TargetDirectionAccelerationAndRelativeAttitude
 
     let timeStampSince1970: TimeInterval
+
     let rotationRate: CMRotationRate
-    let movingAverageYawAngle: Double
-    let rotationRateAverage: Double
-    let fallLineOrthogonalAcceleration: Double
-    let fallLineAcceleration: Double
-    let fallLineOrthogonalRelativeAttitude: Attitude
 }
 
 

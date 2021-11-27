@@ -32,7 +32,7 @@ public struct MovingPhase: MovingPhaseProtocol {
         rotationRate = motion.rotationRate
         userAcceleration = motion.userAcceleration
         self.timeStampSince1970 = timeStampSince1970
-        attitude = Attitude.init(roll: motion.attitude.roll, yaw: motion.attitude.yaw - 磁北偏差, pitch: motion.attitude.pitch)
+        attitude = Attitude.init(roll: motion.attitude.roll, yaw: motion.attitude.yaw + 磁北偏差, pitch: motion.attitude.pitch)
         timeStamp = Date(timeIntervalSince1970: timeStampSince1970)
         sensorLocation = motion.sensorLocation
     }
