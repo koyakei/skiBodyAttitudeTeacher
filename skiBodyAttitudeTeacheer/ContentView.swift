@@ -24,9 +24,9 @@ struct ContentView: View {
     @State var turnChronologicalPhase:TurnChronologicalPhase = TurnChronologicalPhase.TurnMax
     @State var targetDirectionAccelerationAndRelativeAttitude : TargetDirectionAccelerationAndRelativeAttitude =
             TargetDirectionAccelerationAndRelativeAttitude.init(targetDirectionAcceleration: 0, relativeAttitude: Attitude.init(roll: 0, yaw: 0, pitch: 0))
-    @State var lastTurnMaxAttitude : CMAttitude? = nil
-    @State var currentUserAccelalaration: CMAcceleration? = nil
-    @State var outsideAccelaration: CMAcceleration? = nil
+    @State var barLength : CGFloat = 0
+    @State var headPhoneMotionDeviceLeft: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
+    @State var headPhoneMotionDeviceRight: CMDeviceMotion?
     var body: some View {
         
         VStack{
@@ -45,7 +45,7 @@ struct ContentView: View {
                 Text("⇑")
                     .background(Color.blue)
                     .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians: (absoluteFallLineAttitude.yaw)))
+                    .rotationEffect(Angle.init(radians: (currentYaw)))
                 Text("⇑")
                     .background(Color.green)
                     .font(.largeTitle)
@@ -58,13 +58,21 @@ struct ContentView: View {
                 Text(motionDate.formatted(.dateTime.second().minute()))
                 Text(Date.now.formatted(.dateTime.second().minute()))
             }
-            VStack{
-//                Text("\(currentUserAccelalaration?.z)")
-//                Text("\(outsideAccelaration?.z)")
-            }
-            
-            
+        }.onAppear{
+            NSLog("Motion Available: \(headphoneMotion.isDeviceMotionAvailable)")
+            NSLog("Motion Act: \(headphoneMotion.isDeviceMotionActive)")
         }
+//        Rectangle()
+//            .fill(Color.blue)
+//            .frame(width: barLength + 100, height: 150)
+        Text("⇑")
+            .background(Color.green)
+            .font(.largeTitle)
+            .rotationEffect(Angle.init(radians: headPhoneMotionDeviceLeft.yaw))
+        Text("⇑")
+            .background(Color.green)
+            .font(.largeTitle)
+            .rotationEffect(Angle.init(radians: headPhoneMotionDeviceRight?.attitude.yaw ?? 0))
     }
 
     func startRecord(){
@@ -73,31 +81,26 @@ struct ContentView: View {
 //        motionWriterHeadPhone.open(MotionWriter.makeFilePath(fileAlias: "HeadPhone"))
         coreMotion.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .current!) { (motion, error) in
 //            motionWriter.write(motion!)
-//            motion!.attitude.multiply(byInverseOf: <#T##CMAttitude#>)
             currentYaw = motion!.attitude.yaw
             motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
+            if MotionAnalyzerManager.shared.磁北偏差 == nil{
+                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
+            }
             (self.turnYawingSide, self.turnSwitchingDirection, self.absoluteFallLineAttitude, self.yawingPeriod, turnChronologicalPhase ,targetDirectionAccelerationAndRelativeAttitude,motionDate) = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
-            if nil == lastTurnMaxAttitude{
-                lastTurnMaxAttitude = motion!.attitude
-            }
-            currentUserAccelalaration = motion!.userAcceleration
-            print(currentUserAccelalaration?.y)
-            if lastTurnMaxAttitude != nil{
-            motion!.attitude.multiply(byInverseOf: lastTurnMaxAttitude!)
-            outsideAccelaration = motion!.userAcceleration
-                print ("di")
-            print(outsideAccelaration?.y)
-            }
+            barLength = CGFloat(targetDirectionAccelerationAndRelativeAttitude.targetDirectionAcceleration * 300)
         }
-//        headphoneMotion.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-//            MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
-//                                         ProcessInfo
-//                                                 .processInfo.systemUptime
-//            )
-//        }
+        // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
+        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
+            
+            let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
+                                         ProcessInfo
+                                                 .processInfo.systemUptime
+            )
+            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
+        }
         
 //        sensorKitManager.request()
 //        sensorKitManager.fetch() // 10ms ごとにフェッチ

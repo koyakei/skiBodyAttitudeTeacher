@@ -10,6 +10,7 @@ import CoreMotion
 
 protocol MovingPhaseProtocol: RotationRateRecordProtocol, AbsoluteAttitudeProtocol {
     var userAcceleration: CMAcceleration { get }
+    var sensorLocation: CMDeviceMotion.SensorLocation{get}
 }
 
 extension Collection where Element == MovingPhaseProtocol {

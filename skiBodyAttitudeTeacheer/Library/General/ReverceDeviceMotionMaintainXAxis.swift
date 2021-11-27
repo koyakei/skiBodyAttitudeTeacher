@@ -12,7 +12,7 @@ struct 裏返しにしたDeviceMotionを表にする {
         MovingPhase.init(boardRidingPhoneAttitudeConverter(attitude:
                                                            deviceMotion.attitude), boardRidingPhoneRotationRateConverter(rotationRate: deviceMotion.rotationRate),
                          accelerationConverter(acceleration: deviceMotion
-                                 .userAcceleration), timeStamp
+                                                .userAcceleration), timeStamp, deviceMotion.sensorLocation
         )
     }
 

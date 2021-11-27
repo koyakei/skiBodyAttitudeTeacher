@@ -37,6 +37,7 @@ struct SkiTurnPhase: TurnPhaseProtocol {
     let turnSideDirectionChanged: Bool
     let isTurnMax: Bool
     let yawRotationRateMovingAverage: Double
+    let sensorLocation: CMDeviceMotion.SensorLocation
 
     var turnSideDirection: Bool{
         get {

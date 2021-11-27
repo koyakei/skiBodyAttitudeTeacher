@@ -8,12 +8,22 @@ import CoreMotion
 struct AccelerationForTargetAngle {
     static func handle(userAcceleration: CMAcceleration, userAttitude: Attitude, targetAttitude: Attitude)
                     -> TargetDirectionAccelerationAndRelativeAttitude {
-        let relativeAttitude: Attitude = Attitude.init(roll: targetAttitude.roll - userAttitude.roll, yaw: targetAttitude.yaw - userAttitude.yaw,
-                pitch: targetAttitude.pitch - userAttitude.pitch)
+        let relativeAttitude: Attitude = Attitude.init(roll:
+//                                                        targetAttitude.roll -
+                                                       userAttitude.roll
+                                                       , yaw:
+//                                                        targetAttitude.yaw -
+                                                       userAttitude.yaw
+                                                       ,
+                pitch:
+//                                                        targetAttitude.pitch -
+                                                       userAttitude.pitch)
         let targetDirectionAcceleration: Double =
-                userAcceleration.x * cos(relativeAttitude.yaw) * cos(relativeAttitude.pitch)
-                        + userAcceleration.y * cos(relativeAttitude.yaw) * cos(relativeAttitude.roll)
-                        + userAcceleration.z * cos(relativeAttitude.pitch) * cos(relativeAttitude.roll)
+                (userAcceleration.x * cos(relativeAttitude.yaw) * cos(relativeAttitude.roll) * 1)
+                        +
+                        (userAcceleration.y * sin(relativeAttitude.yaw) * cos(relativeAttitude.pitch))
+                        +
+                        (userAcceleration.z * cos(relativeAttitude.pitch) * sin(relativeAttitude.roll))
         return TargetDirectionAccelerationAndRelativeAttitude.init(
                 targetDirectionAcceleration: targetDirectionAcceleration,
                 relativeAttitude: relativeAttitude

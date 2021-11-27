@@ -9,16 +9,14 @@ import Foundation
 import CoreMotion
 
 struct AirPodOnHeadMotionReceiver {
-    var turnPhases:
-            [CenterOfMassTurnPhase]
-            = []
-    var notFinishedSkiTurnPhases: CanterOfMassTurnPhaseAnalyzer = CanterOfMassTurnPhaseAnalyzer.init()
 
-    mutating func receiver(_ motion: CMDeviceMotion, _ timeStamp: TimeInterval) {
-//        turnPhases.append(
-//                notFinishedSkiTurnPhases
-//                                .handle(movingPhase:
-//                                        MovingPhase.init(motion, timeStamp)))
+    let 磁北偏差: Double
+    var canterOfMassTurnPhaseAnalyzer: CenterOfMassTurnPhaseAnalyzer = CenterOfMassTurnPhaseAnalyzer.init()
+
+    mutating func receiver(_ motion: CMDeviceMotion, _ timeStamp: TimeInterval) -> CenterOfMassTurnPhase{
+        return canterOfMassTurnPhaseAnalyzer
+                                .handle(movingPhase:
+                                        MovingPhase.init(motion, timeStamp, 磁北偏差))
     }
 
 

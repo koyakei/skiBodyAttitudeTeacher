@@ -82,4 +82,5 @@ struct CenterOfMassUnifiedTurnPhase: TurnPhaseProtocol {
     let timeStampSince1970: TimeInterval
     let movingAverageYawAngle: Double
     let rotationRateAverage: Double
+    let sensorLocation: CMDeviceMotion.SensorLocation
 }

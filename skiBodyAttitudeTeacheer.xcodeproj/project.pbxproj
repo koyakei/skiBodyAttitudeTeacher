@@ -10,7 +10,7 @@
 		2EF63040402F834A53FB22C9 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63050B5C66F8BA9A15216 /* EvaluationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF632FFB6882E7920F88177 /* EvaluationResponder.swift */; };
 		2EF63066E41541AFD04CF2D8 /* LeftTurn前半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E5C4D306FD6168CC163 /* LeftTurn前半Phase.swift */; };
-		2EF63073D5AAF9D61036BB1D /* CanterOfMassTurnPhaseAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EC0588686A51DD25C3D /* CanterOfMassTurnPhaseAnalyzer.swift */; };
+		2EF63073D5AAF9D61036BB1D /* CenterOfMassTurnPhaseAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EC0588686A51DD25C3D /* CenterOfMassTurnPhaseAnalyzer.swift */; };
 		2EF63089F090CAC8F3320A3B /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
 		2EF6309337E0D2256CFCA07D /* OneTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EDF50E1FEE61302C58B /* OneTurn.swift */; };
 		2EF630AF71D2370FCA457C30 /* GetAbsoluteRotationRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6366F5F6BCD9FC33EF541 /* GetAbsoluteRotationRate.swift */; };
@@ -233,7 +233,7 @@
 		2EF63E35CFA579DE9212AA38 /* RightTurn前半Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RightTurn前半Phase.swift"; sourceTree = "<group>"; };
 		2EF63E42BD37BB3228BEB9A2 /* CenterOfMassTurnPhase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterOfMassTurnPhase.swift; sourceTree = "<group>"; };
 		2EF63E5C4D306FD6168CC163 /* LeftTurn前半Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LeftTurn前半Phase.swift"; sourceTree = "<group>"; };
-		2EF63EC0588686A51DD25C3D /* CanterOfMassTurnPhaseAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CanterOfMassTurnPhaseAnalyzer.swift; path = Turn/NotFinishedTurn/CanterOfMassTurnPhaseAnalyzer.swift; sourceTree = "<group>"; };
+		2EF63EC0588686A51DD25C3D /* CenterOfMassTurnPhaseAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CenterOfMassTurnPhaseAnalyzer.swift; path = Turn/NotFinishedTurn/CenterOfMassTurnPhaseAnalyzer.swift; sourceTree = "<group>"; };
 		2EF63EDF50E1FEE61302C58B /* OneTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTurn.swift; sourceTree = "<group>"; };
 		2EF63EE4F9DCB1F3D5558C4F /* TurnPhaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurnPhaseProtocol.swift; path = skiBodyAttitudeTeacheer/DomainModel/MovingPhase/TurnPhaseProtocol.swift; sourceTree = SOURCE_ROOT; };
 		2EF63EED1399E8E4A5853A98 /* TurnConditionFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TurnConditionFinder.swift; path = skiBodyAttitudeTeacheer/Library/TurnConditionFinder.swift; sourceTree = SOURCE_ROOT; };
@@ -624,7 +624,7 @@
 				2EF637F6B5201E6DCD55E406 /* MotionAnalyser.swift */,
 				2EF639D12BA09C4567A77266 /* ScoreCalculator */,
 				2EF63B291F72B8C9A40D8094 /* MoveStopDiscriminator.swift */,
-				2EF63EC0588686A51DD25C3D /* CanterOfMassTurnPhaseAnalyzer.swift */,
+				2EF63EC0588686A51DD25C3D /* CenterOfMassTurnPhaseAnalyzer.swift */,
 				2EF634D918CD8E3B75EFC003 /* TurnChronologicalPhaseFinder.swift */,
 				2EF635ED93C5099DEF862FEE /* YawRotationRateMovingAverageFinder.swift */,
 				2EF634B77308022ECB76158C /* AbsoluteFallLineAttitudeFinder.swift */,
@@ -891,7 +891,7 @@
 				2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
 				2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */,
 				2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */,
-				2EF63073D5AAF9D61036BB1D /* CanterOfMassTurnPhaseAnalyzer.swift in Sources */,
+				2EF63073D5AAF9D61036BB1D /* CenterOfMassTurnPhaseAnalyzer.swift in Sources */,
 				2EF63341EDCA9F63BE736EC0 /* TurnChronologicalPhaseFinder.swift in Sources */,
 				2EF636AF54846DC1F651FA09 /* YawRotationRateMovingAverageFinder.swift in Sources */,
 				2EF638067456213912610AE5 /* RotationRateRecordProtocol.swift in Sources */,
