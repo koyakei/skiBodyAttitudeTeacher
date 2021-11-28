@@ -18,24 +18,74 @@ struct ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiati
     let centerOfMassTurnPhaseTurnSwitchToTurnMax: [UnifiedTurnPhase]
     let centerOfMassTurnPhaseTurnMaxToTurnSwitch: [UnifiedTurnPhase]
 
-    var turnMaxInsideDirectionVelocity: Double {
+    var skiTurnEndFallLineDirectionVelocity: Double {
         get {
-            CurrentVelocity.bodyFallLineOrthogonalVelocity(
-                    movingPhases: centerOfMassTurnPhaseTurnSwitchToTurnMax
+            CurrentVelocity.skiFallLineOrthogonalVelocity(
+                    movingPhases: skiTurnPhaseTurnMaxToTurnSwitch
             )
         }
-    }// G そのままのほうがあつかいやすいか？ 9.8 m/s
-    var turnSwitchNextOutsideDirectionVelocity: Double {
+    }
+
+    var skiTurnInitiationFallLineDirectionVelocity: Double {
+        get {
+            CurrentVelocity.skiFallLineOrthogonalVelocity(
+                    movingPhases: skiTurnPhaseTurnSwitchToTurnMax
+            )
+        }
+    }
+
+    var bodyTurnEndFallLineDirectionVelocity: Double {
         get {
             CurrentVelocity.bodyFallLineOrthogonalVelocity(
                     movingPhases: centerOfMassTurnPhaseTurnMaxToTurnSwitch
             )
         }
-    }// ターン切替時の速度
+    }
+
+    var bodyTurnInitiationFallLineDirectionVelocity: Double {
+        get {
+            CurrentVelocity.bodyFallLineOrthogonalVelocity(
+                    movingPhases: centerOfMassTurnPhaseTurnSwitchToTurnMax
+            )
+        }
+    }
+
+    var skiTurnEndFallLineOrthogonalDirectionVelocity: Double {
+        get {
+            CurrentVelocity.skiFallLineOrthogonalVelocity(
+                    movingPhases: skiTurnPhaseTurnMaxToTurnSwitch
+            )
+        }
+    }
+
+    var skiTurnInitiationFallLineOrthogonalDirectionVelocity: Double {
+        get {
+            CurrentVelocity.skiFallLineOrthogonalVelocity(
+                    movingPhases: skiTurnPhaseTurnSwitchToTurnMax
+            )
+        }
+    }
+
+    var bodyTurnEndFallLineOrthogonalDirectionVelocity: Double {
+        get {
+            CurrentVelocity.bodyFallLineOrthogonalVelocity(
+                    movingPhases: centerOfMassTurnPhaseTurnMaxToTurnSwitch
+            )
+        }
+    }
+
+    var bodyTurnInitiationFallLineOrthogonalDirectionVelocity: Double {
+        get {
+            CurrentVelocity.bodyFallLineOrthogonalVelocity(
+                    movingPhases: centerOfMassTurnPhaseTurnSwitchToTurnMax
+            )
+        }
+    }
 
     //
     func score() -> Double {
-        turnMaxInsideDirectionVelocity * PhysicsConstants.G * 3600 / 1000// そのまま返すか 時速になおしてみよう
+//        skiTurnEndFallLineDirectionVelocity * 3600 / 1000// k/h 時速になおしてみよう
+        bodyTurnInitiationFallLineOrthogonalDirectionVelocity * 3600 / 1000
 //        turnMaxInsideDirectionVelocity / turnSwitchNextOutsideDirectionVelocity // ターン切り替えわりざんすっか？　でも一緒にならないんじゃない？
         // ターンマックスが　スキーの動きなら速度は変わらないだろう割り算で機能するなぁ
         //turnMaxInsideDirectionVelocity こっちが大きいと　turnMaxInsideDirectionVelocity

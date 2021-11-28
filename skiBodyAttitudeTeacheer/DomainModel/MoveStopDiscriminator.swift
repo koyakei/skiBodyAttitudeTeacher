@@ -41,13 +41,16 @@ extension Collection where Element == IsMovingDiscriminator {
         currentVelocity() > minimumVelocityPerSeconds
     }
 
+    // 現在の速度　m/s
+    //　どうやって出すの？ 進んだ距離を出そう。
     func currentVelocity() -> Double {
         self.map {
-            PhysicsConstants.accelerationToVelocity(
+            // m
+            PhysicsConstants.距離(
                     accelerationByG: $0.acceleration, elapsedTime: $0.timeElapsedFromBeforePhase
             )
         }.reduce(0, +) / self.map {
-            $0.timeElapsedFromBeforePhase
+            $0.timeElapsedFromBeforePhase // 時間
         }.reduce(0, +)
     }
 

@@ -44,10 +44,10 @@ struct CurrentVelocity {
         }.currentVelocity()
     }
 
-    static func fallLineVelocity(
-            movingPhases: [TurnPhaseProtocol]
+    static func skiFallLineVelocity(
+            movingPhases: [SkiTurnPhase]
     ) -> Double {
-        let moveFromLast :[TurnPhaseProtocol] = movingPhases
+        let moveFromLast :[SkiTurnPhase] = movingPhases
                 .reversed() // sortedのほうが保証できるのか？
         var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
         return moveFromLast.map {
@@ -59,17 +59,17 @@ struct CurrentVelocity {
         }.currentVelocity()
     }
 
-    static func fallLineOrthogonalVelocity(
-            movingPhases: [TurnPhaseProtocol]
+    static func skiFallLineOrthogonalVelocity(
+            movingPhases: [SkiTurnPhase]
     ) -> Double {
-        let moveFromLast :[TurnPhaseProtocol] = movingPhases
+        let moveFromLast :[SkiTurnPhase] = movingPhases
                 .reversed() // sortedのほうが保証できるのか？
         var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
         return moveFromLast.map {
             var elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970
             afterSeconds = $0.timeStampSince1970
             return IsMovingDiscriminator.init(acceleration:
-            $0.fallLineOrthogonalAcceleration,
+            $0.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration,
                     timeElapsedFromBeforePhase: elapsed)
         }.currentVelocity()
     }
