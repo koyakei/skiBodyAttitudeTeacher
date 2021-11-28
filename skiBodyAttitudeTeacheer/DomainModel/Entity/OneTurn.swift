@@ -10,10 +10,8 @@ import Foundation
 // 重心側の前半後半で考える場合があるか？　早すぎる最適化か？　ピボットスリップ　アウトサイド　前後　カービング　リープ　サウザンドステップ
 // どれも前半後半だけだな
 // 重心の横移動方向の符号では区別できないだろう。スキーの横への相対速度に影響されすぎる
+// ターン前半を長くとるにはどうすればいいのか？　ターンマックスの定義をずらすか。
 struct OneTurn {
-    let
-            oneSkiTurnLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax: [SkiTurnPhase]
-    let oneSkiTurnLastTurnSwitchToTurnMax: [SkiTurnPhase]
-    let oneCenterOfMassTurnLastTurnMaxToTurnSwitchWhenPhaseIsTurnMax: [CenterOfMassUnifiedTurnPhase]
-    let oneCenterOfMassTurnLastTurnSwitchToTurnMax: [CenterOfMassUnifiedTurnPhase]
+    let oneUnifiedTurnInitiation: [UnifiedTurnPhase]
+    let oneUnifiedTurnEnd: [UnifiedTurnPhase]
 }

@@ -6,11 +6,11 @@ import Foundation
 import CoreMotion
 
 protocol RotationRateRecordProtocol: RecordWithTimeStamp {
-    var rotationRate: CMRotationRate { get }
+    var absoluteRotationRate: CMRotationRate { get }
 }
 extension RotationRateRecordProtocol {
     func mapper() -> Double {
-        rotationRate.z
+        absoluteRotationRate.z
     }
 }
 

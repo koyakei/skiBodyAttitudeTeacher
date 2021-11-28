@@ -9,7 +9,7 @@ import Foundation
 import CoreMotion
 
 protocol MovingPhaseProtocol: RotationRateRecordProtocol, AbsoluteAttitudeProtocol {
-    var userAcceleration: CMAcceleration { get }
+    var absoluteUserAcceleration: CMAcceleration { get }
     var sensorLocation: CMDeviceMotion.SensorLocation{get}
 }
 

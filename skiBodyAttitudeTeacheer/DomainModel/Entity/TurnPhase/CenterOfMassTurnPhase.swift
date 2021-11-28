@@ -13,8 +13,11 @@ struct CenterOfMassTurnPhase {
     let turnPhase: TurnChronologicalPhase
     let fallLineOrthogonalAccelerationAndRelativeAttitude:
             TargetDirectionAccelerationAndRelativeAttitude
-
+    let relativeAcceleration: CMAcceleration // 磁北偏差を直さない
     let timeStampSince1970: TimeInterval
-
+    let relativeAttitude: Attitude
+    let 磁北偏差: Double
+    let fallLineAcceleration: Double
     let rotationRate: CMRotationRate
+    let sensorLocation: CMDeviceMotion.SensorLocation
 }

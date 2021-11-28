@@ -12,8 +12,8 @@ extension Collection where Element == CenterOfMassTurnPhase {
     }
 
     // 近くのTurnPhaseをみつけて　fall line 方向を発見　加速度を計算して変換する
-    func unifyWithSkiTurnPhases(skiTurnPhases:[SkiTurnPhase])->[CenterOfMassUnifiedTurnPhase] {
-        var res :[CenterOfMassUnifiedTurnPhase] = []
+    func unifyWithSkiTurnPhases(skiTurnPhases:[SkiTurnPhase])->[UnifiedTurnPhase] {
+        var res :[UnifiedTurnPhase] = []
         // 一番近いのを見つける　sorted fast
         for turnPhase  in skiTurnPhases{
             let pairedPhase  =
@@ -32,11 +32,11 @@ extension Collection where Element == CenterOfMassTurnPhase {
                                         turnPhase: turnPhase,
                                         centerOfMassTurnPhase1: $0, centerOfMassTurnPhase2: $1)
                             }).first!
-//            res.append(
-//                    CenterOfMassUnifiedTurnPhase.init(
-//                            skiTurnPhase:turnPhase, centerOfMassTurnPhase: pairedPhase
-//                    )
-//            )
+            res.append(
+                    UnifiedTurnPhase.init(
+                            skiTurnPhase:turnPhase, centerOfMassTurnPhase: pairedPhase
+                    )
+            )
         }
         return res
     }

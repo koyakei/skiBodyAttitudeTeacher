@@ -12,9 +12,9 @@ struct IdealTurnConditionDetector {
 
     func ターン前半のすべての角速度とAttitudeが理想状態に一致しているか？(turnPhase:
             MovingPhaseProtocol) -> Bool {
-        let 横回転: Double = turnPhase.rotationRate.z
-        let roll: Double = turnPhase.rotationRate.y
-        let pitch: Double = turnPhase.rotationRate.x
+        let 横回転: Double = turnPhase.absoluteRotationRate.z
+        let roll: Double = turnPhase.absoluteRotationRate.y
+        let pitch: Double = turnPhase.absoluteRotationRate.x
         return 横回転.sign == .plus //横回転が右回りだったら、
                 && roll.sign == .plus // ロール角も右に倒れていっている
                 && turnPhase.attitude.roll.sign == .plus //　現在のロール角も右

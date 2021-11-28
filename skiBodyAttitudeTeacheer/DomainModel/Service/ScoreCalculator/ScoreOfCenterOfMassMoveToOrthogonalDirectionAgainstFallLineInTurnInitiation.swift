@@ -15,19 +15,19 @@ struct ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiati
     //時間方向に同じフレームに入れることもできるが
     let skiTurnPhaseTurnSwitchToTurnMax: [SkiTurnPhase] //  ターンマックスまでを取り出す？
     let skiTurnPhaseTurnMaxToTurnSwitch: [SkiTurnPhase]
-    let centerOfMassTurnPhaseTurnSwitchToTurnMax: [CenterOfMassUnifiedTurnPhase]
-    let centerOfMassTurnPhaseTurnMaxToTurnSwitch: [CenterOfMassUnifiedTurnPhase]
+    let centerOfMassTurnPhaseTurnSwitchToTurnMax: [UnifiedTurnPhase]
+    let centerOfMassTurnPhaseTurnMaxToTurnSwitch: [UnifiedTurnPhase]
 
     var turnMaxInsideDirectionVelocity: Double {
         get {
-            CurrentVelocity.fallLineOrthogonalVelocity(
+            CurrentVelocity.bodyFallLineOrthogonalVelocity(
                     movingPhases: centerOfMassTurnPhaseTurnSwitchToTurnMax
             )
         }
     }// G そのままのほうがあつかいやすいか？ 9.8 m/s
     var turnSwitchNextOutsideDirectionVelocity: Double {
         get {
-            CurrentVelocity.fallLineOrthogonalVelocity(
+            CurrentVelocity.bodyFallLineOrthogonalVelocity(
                     movingPhases: centerOfMassTurnPhaseTurnMaxToTurnSwitch
             )
         }

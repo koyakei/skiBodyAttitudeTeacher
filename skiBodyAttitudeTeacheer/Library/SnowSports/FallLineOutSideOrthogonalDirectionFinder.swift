@@ -5,6 +5,7 @@
 import Foundation
 
 struct FallLineOutSideOrthogonalDirectionFinder{
+    // absolute attitude
     static func handle(fallLineAttitude: Attitude, turnYawingSide: TurnYawingSide)-> Attitude{
         switch turnYawingSide{
         case .RightYawing:

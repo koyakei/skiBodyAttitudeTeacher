@@ -12,7 +12,8 @@ import CoreMotion
 //let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
-
+import AVFoundation
+import AudioToolbox
 struct ContentView: View {
     @State var turnYawingSide: TurnYawingSide = TurnYawingSide.Straight
     @State var turnSwitchingDirection : TurnSwitchingDirection = TurnSwitchingDirection.Keep
@@ -82,25 +83,27 @@ struct ContentView: View {
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
             }
-            (self.turnYawingSide, self.turnSwitchingDirection, self.absoluteFallLineAttitude, self.yawingPeriod, turnChronologicalPhase ,targetDirectionAccelerationAndRelativeAttitude,motionDate) = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
+            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
+            absoluteFallLineAttitude = skiTurnPhase.absoluteFallLineAttitude
+            targetDirectionAccelerationAndRelativeAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude
+            turnYawingSide = skiTurnPhase.turnYawingSide
+            turnChronologicalPhase = skiTurnPhase.turnPhase
+            turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
+            yawingPeriod = skiTurnPhase.turnSideChangePeriod
             barLength = CGFloat(targetDirectionAccelerationAndRelativeAttitude.targetDirectionAcceleration * 300)
         }
         // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
         headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
-            
+
             let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
             )
             headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
         }
-        
-//        sensorKitManager.request()
-//        sensorKitManager.fetch() // 10ms ごとにフェッチ
-//        motionWriterWatch.open(MotionWriter.makeFilePath(fileAlias: "Watch"))
     }
     
     func stopRecord(){

@@ -9,14 +9,14 @@ struct AccelerationForTargetAngle {
     static func handle(userAcceleration: CMAcceleration, userAttitude: Attitude, targetAttitude: Attitude)
                     -> TargetDirectionAccelerationAndRelativeAttitude {
         let relativeAttitude: Attitude = Attitude.init(roll:
-//                                                        targetAttitude.roll -
+                                                        targetAttitude.roll -
                                                        userAttitude.roll
                                                        , yaw:
-//                                                        targetAttitude.yaw -
+                                                        targetAttitude.yaw -
                                                        userAttitude.yaw
                                                        ,
                 pitch:
-//                                                        targetAttitude.pitch -
+                                                        targetAttitude.pitch -
                                                        userAttitude.pitch)
         let targetDirectionAcceleration: Double =
                 (userAcceleration.x * cos(relativeAttitude.yaw) * cos(relativeAttitude.roll) * 1)

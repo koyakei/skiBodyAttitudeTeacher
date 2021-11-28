@@ -21,7 +21,7 @@ struct MoveStopDiscriminator {
                     let elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970
                     afterSeconds = $0.timeStampSince1970
                     return IsMovingDiscriminator.init(acceleration:
-                    $0.userAcceleration.x,
+                    $0.absoluteUserAcceleration.x,
                             timeElapsedFromBeforePhase: elapsed)
                 }.handle(minimumVelocityPerSeconds: minimumVelocityPerSeconds)
     }
@@ -43,9 +43,9 @@ extension Collection where Element == IsMovingDiscriminator {
 
     func currentVelocity() -> Double {
         self.map {
-            abs(PhysicsConstants.accelerationToVelocity(
+            PhysicsConstants.accelerationToVelocity(
                     accelerationByG: $0.acceleration, elapsedTime: $0.timeElapsedFromBeforePhase
-            ))
+            )
         }.reduce(0, +) / self.map {
             $0.timeElapsedFromBeforePhase
         }.reduce(0, +)

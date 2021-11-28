@@ -20,7 +20,7 @@ struct CenterOfMassTurnPhaseAnalyzer {
     var rotationAngleFinder: RotationAngleFinder = RotationAngleFinder.init()
 
     mutating func handle
-            (movingPhase: MovingPhase) ->
+            (movingPhase: AirPodMovingPhase) ->
             CenterOfMassTurnPhase {
         let rotationRate: CMRotationRate = rotationAngleFinder.handle(radianAngle: movingPhase.attitude.yaw, timeStamp: movingPhase.timeStampSince1970)
         //        let yawingRate : CMRotationRate = yawingRotationRateAverageFinder.handle(
@@ -37,14 +37,14 @@ struct CenterOfMassTurnPhaseAnalyzer {
         let fallLineOrthogonalAccelerationAndRelativeAttitude:
                 TargetDirectionAccelerationAndRelativeAttitude
                 =
-                FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide, userAcceleration: movingPhase.userAcceleration, userAttitude: movingPhase.attitude)
-        return CenterOfMassTurnPhase.init(turnYawingSide: turnYawingSide,
-                                   turnSwitchingDirection: turnSwitchingDirection,
-                                   turnSideChangePeriod: turnSideChangePeriod,
-                                   absoluteFallLineAttitude: absoluteFallLineAttitude,
-                                   turnPhase: turnPhase,
-                                   fallLineOrthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
-                                   timeStampSince1970: movingPhase.timeStampSince1970, rotationRate: rotationRate)
+                FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: absoluteFallLineAttitude,
+                                                                turnYawingSide: turnYawingSide,
+                                                                userAcceleration: movingPhase.absoluteUserAcceleration, userAttitude: movingPhase.attitude)
+
+        return CenterOfMassTurnPhase.init(turnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection, turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineAttitude, turnPhase: turnPhase, fallLineOrthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude, relativeAcceleration: movingPhase.absoluteUserAcceleration, timeStampSince1970: movingPhase.timeStampSince1970, relativeAttitude: movingPhase.attitude, 磁北偏差: movingPhase.磁北偏差,
+                                          fallLineAcceleration: fallLineOrthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration,
+                                          rotationRate: movingPhase.absoluteRotationRate,
+                                          sensorLocation: movingPhase.sensorLocation)
     }
 }
 

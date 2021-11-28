@@ -9,7 +9,7 @@ struct Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver {
 
     // 一番目のバケツ
     // ターンを切ったバケツ
-    var turnPhases: [SkiTurnPhase] = []
+    public var turnPhases: [SkiTurnPhase] = []
     var turnPhaseAnalyzer: SkiTurnPhaseAnalyzer
             = SkiTurnPhaseAnalyzer.init()
 
