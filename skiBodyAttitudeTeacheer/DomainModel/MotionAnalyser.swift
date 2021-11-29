@@ -20,7 +20,9 @@ public struct MotionAnalyzerManager {
             = Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.init()
     public var 磁北偏差: Double? = nil
 
-    public static var shared = MotionAnalyzerManager()
+    var unifyBodyAndSkiTurn :UnifyBodyAndSkiTurn = UnifyBodyAndSkiTurn.shared
+
+    public static var shared: MotionAnalyzerManager = MotionAnalyzerManager()
 
     fileprivate init() {
     }
@@ -30,6 +32,7 @@ public struct MotionAnalyzerManager {
         let now = CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime)
         let va = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
                                                                  now)
+        unifyBodyAndSkiTurn.receive(turnPhase: va)
         return va
     }
 
@@ -39,8 +42,10 @@ public struct MotionAnalyzerManager {
             if ariPodMotionReceiver == nil {
                 ariPodMotionReceiver = AirPodOnHeadMotionReceiver.init(磁北偏差: 磁北偏差!)
             }
-            return ariPodMotionReceiver!.receiver(motion,
-                                                  CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
+            let va = ariPodMotionReceiver!.receiver(motion,
+                                                    CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
+            unifyBodyAndSkiTurn.receive(turnPhase: va)
+            return va
         }
         return nil
     }
@@ -49,47 +54,28 @@ public struct MotionAnalyzerManager {
         delegate.result(score: score)
     }
 
-    mutating func unify() {
-        // 最初のターンマックスは捨てる？
-        // ターンマックスごとに切るか
-        // 呼び出されたときにスコアを
-        // 1ターンごとに
-        // ターンごとに
-        if boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhases.count < 10
-        || ariPodMotionReceiver?.turnPhases.count ?? 0 < 10 {
-            return
-        }
-        let skiTurnEnd: [SkiTurnPhase] =
-                boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhases.filterTurnEnd()
-        let skiTurnInitiation: [SkiTurnPhase] =
-                boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver
-                        .turnPhases.filterTurnInitialize()
-        boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver
-                .turnPhases = []
-        let (skiTurnEndFirst, skiTurnEndLast) = skiTurnEnd.firstAndLastTimeStamp()
-        let (skiTurnInitiationFirst, skiTurnInitiationLast) = skiTurnInitiation.firstAndLastTimeStamp()
-        var bodyInitiation: [CenterOfMassTurnPhase] =
-                ariPodMotionReceiver?.turnPhases.filterByTimeStamp(
-                        startedAt: skiTurnInitiationFirst,
-                        endAt: skiTurnInitiationLast) ?? []
-        var bodyEnd: [CenterOfMassTurnPhase] = 
-                ariPodMotionReceiver?
-                        .turnPhases
-                        .filterByTimeStamp(
-                                startedAt: skiTurnEndFirst,
-                                endAt: skiTurnEndLast) ?? []
-        ariPodMotionReceiver?
-                .turnPhases = []
-        unifiedAnalyzedTurnCollection.append(
-                OneTurn.init(oneUnifiedTurnInitiation: ti, oneUnifiedTurnEnd: te)
+    // インターフェイスにして共通化したい
+    func skiTurnMax() {
+        getScore()
+    }
+
+    func skiTurnSwitch(turnPhase: SkiTurnPhase) {
+
+    }
+
+    func bodyTurnMax(turnPhase: SkiTurnPhase) {
+        UnifyBodyAndSkiTurn.shared.receive(turnPhase: turnPhase)
+    }
+
+    func bodyTurnSwitch() {
+
+    }
+
+    func getScore() {
+        let v = CurrentVelocity.turnVelocity(
+                movingPhases: TurnPhaseCutter.shared.getOneTurn()
         )
-        //         ここに来るのはどうも気に入らない　イベント駆動にするしかなさそうだなぁ　まあしたところで何が変わるかわからんが。
-        tellTheScore(score: Int(ScoreOfCenterOfMassMoveToOrthogonalDirectionAgainstFallLineInTurnInitiation.init(
-                skiTurnPhaseTurnSwitchToTurnMax: skiTurnInitiation,
-                skiTurnPhaseTurnMaxToTurnSwitch: skiTurnEnd,
-                centerOfMassTurnPhaseTurnSwitchToTurnMax: te,
-                centerOfMassTurnPhaseTurnMaxToTurnSwitch: ti).score())
-        )
+//        tellTheScore(score: Int(v.bodyO * 3600 / 1000))
     }
 }
 

@@ -25,8 +25,6 @@ struct MoveStopDiscriminator {
                             timeElapsedFromBeforePhase: elapsed)
                 }.handle(minimumVelocityPerSeconds: minimumVelocityPerSeconds)
     }
-
-
 }
 
 typealias Seconds = Double
@@ -34,6 +32,15 @@ typealias Seconds = Double
 struct IsMovingDiscriminator {
     let acceleration: Double
     let timeElapsedFromBeforePhase: Seconds
+    let distance : Double
+
+    init(acceleration: Double,timeElapsedFromBeforePhase: Seconds){
+        self.acceleration = acceleration
+        self.timeElapsedFromBeforePhase = timeElapsedFromBeforePhase
+        distance = PhysicsConstants.距離(
+                accelerationByG: acceleration, elapsedTime: timeElapsedFromBeforePhase
+        )
+    }
 }
 
 extension Collection where Element == IsMovingDiscriminator {
@@ -45,10 +52,7 @@ extension Collection where Element == IsMovingDiscriminator {
     //　どうやって出すの？ 進んだ距離を出そう。
     func currentVelocity() -> Double {
         self.map {
-            // m
-            PhysicsConstants.距離(
-                    accelerationByG: $0.acceleration, elapsedTime: $0.timeElapsedFromBeforePhase
-            )
+            $0.distance
         }.reduce(0, +) / self.map {
             $0.timeElapsedFromBeforePhase // 時間
         }.reduce(0, +)

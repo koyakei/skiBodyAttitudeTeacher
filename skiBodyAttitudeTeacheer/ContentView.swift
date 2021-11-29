@@ -96,14 +96,14 @@ struct ContentView: View {
             barLength = CGFloat(targetDirectionAccelerationAndRelativeAttitude.targetDirectionAcceleration * 300)
         }
         // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
-        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
-
-            let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
-                                         ProcessInfo
-                                                 .processInfo.systemUptime
-            )
-            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
-        }
+//        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
+//
+//            let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
+//                                         ProcessInfo
+//                                                 .processInfo.systemUptime
+//            )
+//            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
+//        }
     }
     
     func stopRecord(){

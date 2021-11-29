@@ -6,7 +6,7 @@ import Foundation
 import CoreMotion
 
 struct UnifiedTurnPhase {
-    
+
     var skiFallLineOrthogonalAcceleration: Double
     let bodyFallLineOrthogonalAcceleration: Double
     var skiFallLineAcceleration: Double
@@ -20,6 +20,7 @@ struct UnifiedTurnPhase {
     let skiAbsoluteAcceleration: CMAcceleration
     let skiTimeStampSince1970: TimeInterval
     let bodyTimeStampSince1970: TimeInterval
+    let skiTurnChronologicalPhase: TurnChronologicalPhase
 
     init(skiTurnPhase: SkiTurnPhase,
          centerOfMassTurnPhase: CenterOfMassTurnPhase
@@ -46,6 +47,7 @@ struct UnifiedTurnPhase {
         skiAbsoluteAcceleration = skiTurnPhase.absoluteAcceleration
         skiTimeStampSince1970 = skiTurnPhase.timeStampSince1970
         bodyTimeStampSince1970 = centerOfMassTurnPhase.timeStampSince1970
+        skiTurnChronologicalPhase = skiTurnPhase.turnPhase
     }
 
     var fallLineOrthogonalRelativeAttitude: Attitude {
@@ -92,4 +94,19 @@ struct UnifiedTurnPhase {
     //        rotationRate = movingPhaseProtocol.rotationRate
     //    }
 
+}
+
+extension Collection where Element == UnifiedTurnPhase {
+    func filterTurnInitialize() -> [Element] {
+        return self.filter{
+            $0.skiTurnChronologicalPhase == TurnChronologicalPhase.SwitchToMax
+        }
+
+    }
+
+    func filterTurnEnd() -> [Element] {
+        self.filter{
+            $0.skiTurnChronologicalPhase == TurnChronologicalPhase.MaxToSwitch
+        }
+    }
 }

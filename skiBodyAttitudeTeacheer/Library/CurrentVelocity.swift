@@ -4,73 +4,72 @@
 
 import Foundation
 
+struct Calc{
+    let bodyO: IsMovingDiscriminator
+    let bodyF: IsMovingDiscriminator
+    let skiO: IsMovingDiscriminator
+    let skiF: IsMovingDiscriminator
+}
+struct Distance{
+    let bodyODis: Double
+    let bodyFDis: Double
+}
+
+struct TurnVelocity{
+    let bodyO: Double
+    let bodyF: Double
+    let skiO: Double
+    let skiF: Double
+}
 struct CurrentVelocity {
-    static func bodyFallLineOrthogonalVelocity(
+
+    static func turnVelocity(
             movingPhases: [UnifiedTurnPhase]
-    ) -> Double {
-        
+    ) -> TurnVelocity {
         let moveFromLast :[UnifiedTurnPhase] = movingPhases
                 .reversed() // sortedのほうが保証できるのか？
         if moveFromLast.count == 0 {
-            return 0
+            return TurnVelocity.init(bodyO: 0, bodyF: 0, skiO: 0, skiF: 0)
         }
-        var afterSeconds: TimeInterval = moveFromLast.first!.bodyTimeStampSince1970
-        return moveFromLast.map {
-            let elapsed: TimeInterval = afterSeconds - $0.bodyTimeStampSince1970
-            afterSeconds = $0.bodyTimeStampSince1970
-            return IsMovingDiscriminator.init(acceleration:
-                                              $0.bodyFallLineOrthogonalAcceleration,
-                                              timeElapsedFromBeforePhase: elapsed)
-        }.currentVelocity()
-    }
-
-    
-    static func bodyFallLineVelocity(
-            movingPhases: [UnifiedTurnPhase]
-    ) -> Double {
-        let moveFromLast :[UnifiedTurnPhase] = movingPhases
-                .reversed() // sortedのほうが保証できるのか？
-        if moveFromLast.count == 0 {
-            return 0
+        var skiAfterSeconds: TimeInterval = moveFromLast.first!.bodyTimeStampSince1970
+        var bodyAfterSeconds: TimeInterval = moveFromLast.first!.skiTimeStampSince1970
+        let cMap = moveFromLast.map { (move: UnifiedTurnPhase) -> (Calc) in
+            let elapsed: TimeInterval = bodyAfterSeconds - move.bodyTimeStampSince1970
+            let skiElapsed: TimeInterval = skiAfterSeconds - move.bodyTimeStampSince1970
+            bodyAfterSeconds = move.bodyTimeStampSince1970
+            skiAfterSeconds = move.skiTimeStampSince1970
+            return Calc.init(bodyO: IsMovingDiscriminator.init(acceleration:
+                                               move.bodyFallLineOrthogonalAcceleration,
+                                               timeElapsedFromBeforePhase: elapsed),
+                bodyF:
+                    IsMovingDiscriminator.init(acceleration:
+                                               move.bodyFallLineAcceleration,
+                                               timeElapsedFromBeforePhase: elapsed),
+            skiO: IsMovingDiscriminator.init(acceleration:
+                                             move.skiFallLineOrthogonalAcceleration,
+                                             timeElapsedFromBeforePhase: skiElapsed),
+                      skiF: IsMovingDiscriminator.init(acceleration:
+                                                       move.skiFallLineAcceleration,
+                                                       timeElapsedFromBeforePhase: skiElapsed)
+            )
         }
-        var afterSeconds: TimeInterval = moveFromLast.first!.bodyTimeStampSince1970
-        // 最初が除外されてないんじゃない？
-        return moveFromLast.map {
-            let elapsed: TimeInterval = afterSeconds - $0.bodyTimeStampSince1970
-            afterSeconds = $0.bodyTimeStampSince1970
-            return IsMovingDiscriminator.init(acceleration:
-            $0.bodyFallLineAcceleration,
-                    timeElapsedFromBeforePhase: elapsed)
-        }.currentVelocity()
-    }
 
-    static func skiFallLineVelocity(
-            movingPhases: [SkiTurnPhase]
-    ) -> Double {
-        let moveFromLast :[SkiTurnPhase] = movingPhases
-                .reversed() // sortedのほうが保証できるのか？
-        var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
-        return moveFromLast.map {
-            let elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970
-            afterSeconds = $0.timeStampSince1970
-            return IsMovingDiscriminator.init(acceleration:
-            $0.fallLineAcceleration,
-                    timeElapsedFromBeforePhase: elapsed)
-        }.currentVelocity()
-    }
-
-    static func skiFallLineOrthogonalVelocity(
-            movingPhases: [SkiTurnPhase]
-    ) -> Double {
-        let moveFromLast :[SkiTurnPhase] = movingPhases
-                .reversed() // sortedのほうが保証できるのか？
-        var afterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
-        return moveFromLast.map {
-            var elapsed: TimeInterval = afterSeconds - $0.timeStampSince1970
-            afterSeconds = $0.timeStampSince1970
-            return IsMovingDiscriminator.init(acceleration:
-            $0.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration,
-                    timeElapsedFromBeforePhase: elapsed)
-        }.currentVelocity()
+        return TurnVelocity.init(bodyO: cMap.map {
+            $0.bodyF.distance
+        }.reduce(0, +) / cMap.map {
+            $0.bodyF.timeElapsedFromBeforePhase
+        }.reduce(0, +), bodyF: cMap.map {
+            $0.bodyO.distance
+        }.reduce(0, +) / cMap.map {
+            $0.bodyO.timeElapsedFromBeforePhase
+        }.reduce(0, +), skiO: cMap.map {
+            $0.skiO.distance
+        }.reduce(0, +) / cMap.map {
+            $0.skiO.timeElapsedFromBeforePhase
+        }.reduce(0, +), skiF: cMap.map {
+            $0.skiF.distance
+        }.reduce(0, +) / cMap.map {
+            $0.skiF.timeElapsedFromBeforePhase
+        }.reduce(0, +))
     }
 }

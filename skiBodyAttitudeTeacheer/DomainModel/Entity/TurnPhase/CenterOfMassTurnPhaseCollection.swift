@@ -4,41 +4,70 @@
 
 import Foundation
 
-struct UnifyBodyAndSkiTurn{
-    var skiTurnPhases: [SkiTurnPhase]
-    var bodyTurnPhases: [CenterOfMassTurnPhase]
+public struct TurnPhaseCutter {
+    var unifiedTurns: [UnifiedTurnPhase] = []
+    public static var shared = TurnPhaseCutter()
 
-    mutating func unifyWithSkiTurnPhases()-> UnifiedTurnPhase? {
-        if skiTurnPhases.count == 0  || bodyTurnPhases.count == 0{
-            return nil
+    fileprivate init() {
+    }
+
+    mutating func receive(unifiedTurnPhase: UnifiedTurnPhase) {
+        unifiedTurns.append(unifiedTurnPhase)
+    }
+
+    mutating func getOneTurn() -> [UnifiedTurnPhase] {
+        let v : [UnifiedTurnPhase] = unifiedTurns.filterTurnInitialize()
+        unifiedTurns.removeAll()
+        return v
+    }
+}
+
+struct UnifyBodyAndSkiTurn {
+    var skiTurnPhases: [SkiTurnPhase] = []
+    var bodyTurnPhases: [CenterOfMassTurnPhase] = []
+    public static var shared = UnifyBodyAndSkiTurn()
+
+    fileprivate init() {
+    }
+
+    mutating func receive(turnPhase: SkiTurnPhase) {
+        skiTurnPhases.append(turnPhase)
+    }
+
+    mutating func receive(turnPhase: CenterOfMassTurnPhase) {
+        bodyTurnPhases.append(turnPhase)
+        unifyWithSkiTurnPhases()
+    }
+
+    mutating func unifyWithSkiTurnPhases() {
+        if skiTurnPhases.count > 0 || bodyTurnPhases.count > 0 {
+            let turnPhase: SkiTurnPhase = skiTurnPhases.last!
+            let bodyTurnPhase: CenterOfMassTurnPhase? = bodyTurnPhases
+                    .sortedByNearSkiPhase(skiTurnPhase: turnPhase).first
+            if bodyTurnPhase != nil {
+                let rest = UnifiedTurnPhase.init(
+                        skiTurnPhase: turnPhase, centerOfMassTurnPhase: bodyTurnPhase!
+                )
+                bodyTurnPhases.removeFirst()
+                skiTurnPhases.removeLast()
+                TurnPhaseCutter.shared.receive(unifiedTurnPhase: rest)
+            }
         }
-        // 一番近いのを見つける　sorted fast
-        let turnPhase : SkiTurnPhase = skiTurnPhases.last!
-        let bodyTurnPhase : CenterOfMassTurnPhase? = bodyTurnPhases
-                .sortedByNearSkiPhase(skiTurnPhase: turnPhase).first
-        if bodyTurnPhase == nil {
-            return nil
-        }
-        let rest = UnifiedTurnPhase.init(
-                skiTurnPhase:turnPhase, centerOfMassTurnPhase: bodyTurnPhase!
-        )
-        bodyTurnPhases.removeFirst()
-        skiTurnPhases.removeLast()
-        return rest
     }
 }
 
 extension Collection where Element == CenterOfMassTurnPhase {
 
-    func sortedByNearSkiPhase(skiTurnPhase: SkiTurnPhase) -> [Element]{
+    func sortedByNearSkiPhase(skiTurnPhase: SkiTurnPhase) -> [Element] {
         self.sorted(by: {
             self.nearByPhase(
                     turnPhase: skiTurnPhase,
                     centerOfMassTurnPhase1: $0, centerOfMassTurnPhase2: $1)
         })
     }
-    func filterByTimeStamp(startedAt: TimeInterval, endAt:TimeInterval) -> [CenterOfMassTurnPhase]{
-        self.filter{
+
+    func filterByTimeStamp(startedAt: TimeInterval, endAt: TimeInterval) -> [CenterOfMassTurnPhase] {
+        self.filter {
             startedAt <= $0.timeStampSince1970
                     && $0.timeStampSince1970 <= endAt
         }
@@ -48,8 +77,8 @@ extension Collection where Element == CenterOfMassTurnPhase {
 
 
     func nearByPhase(turnPhase: SkiTurnPhase,
-                     centerOfMassTurnPhase1:CenterOfMassTurnPhase,
-                     centerOfMassTurnPhase2:CenterOfMassTurnPhase) -> Bool{
+                     centerOfMassTurnPhase1: CenterOfMassTurnPhase,
+                     centerOfMassTurnPhase2: CenterOfMassTurnPhase) -> Bool {
         abs(centerOfMassTurnPhase1.timeStampSince1970 - turnPhase.timeStampSince1970) <
                 abs(centerOfMassTurnPhase2.timeStampSince1970 - turnPhase.timeStampSince1970)
 
