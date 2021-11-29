@@ -8,6 +8,7 @@ import CoreMotion
 protocol RotationRateRecordProtocol: RecordWithTimeStamp {
     var absoluteRotationRate: CMRotationRate { get }
 }
+
 extension RotationRateRecordProtocol {
     func mapper() -> Double {
         absoluteRotationRate.z
@@ -18,18 +19,17 @@ protocol RecordWithTimeStamp {
     var timeStampSince1970: TimeInterval { get }
 }
 
-extension Collection where Element :RecordWithTimeStamp{
+extension Collection where Element: RecordWithTimeStamp {
     func filterByBeforeMilleSecondsFromNow(
-        timeInterval : TimeInterval) ->[Element]{
-        self.filter{
+            timeInterval: TimeInterval) -> [Element] {
+        self.filter {
             $0.timeStampSince1970 > ($0.timeStampSince1970 - timeInterval)
         }
     }
 }
 
 
-
-extension Collection where Element : RotationRateRecordProtocol{
+extension Collection where Element: RotationRateRecordProtocol {
     func yawRotationRateMovingAverage(timeInterval: TimeInterval) -> Double {
         return AverageAngleFinder.handle(angles_rad:
                                          self.filterByBeforeMilleSecondsFromNow(timeInterval: timeInterval).mapper()
@@ -43,7 +43,7 @@ extension Collection where Element : RotationRateRecordProtocol{
     }
 }
 
-protocol AbsoluteAttitudeProtocol : RecordWithTimeStamp{
+protocol AbsoluteAttitudeProtocol: RecordWithTimeStamp {
     var attitude: Attitude { get }
 }
 
@@ -53,10 +53,10 @@ extension AbsoluteAttitudeProtocol {
     }
 }
 
-extension Collection where Element : AbsoluteAttitudeProtocol{
+extension Collection where Element: AbsoluteAttitudeProtocol {
     func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> Double {
         return AverageAngleFinder.handle(angles_rad:
-                                            self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).mapper() 
+                                         self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).mapper()
         )
     }
 

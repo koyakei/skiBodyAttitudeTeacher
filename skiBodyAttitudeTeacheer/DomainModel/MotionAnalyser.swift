@@ -72,10 +72,14 @@ public struct MotionAnalyzerManager {
     }
 
     func getScore() {
-        let v = CurrentVelocity.turnVelocity(
-                movingPhases: TurnPhaseCutter.shared.getOneTurn()
-        )
-//        tellTheScore(score: Int(v.bodyO * 3600 / 1000))
+        let v = UnifyBodyAndSkiTurn.shared.ac()
+//        let v = CurrentVelocity.turnVelocity(
+//                movingPhases: TurnPhaseCutter.shared.getOneTurn()
+//        )
+        let va = Int(v.0 * 3600 / 1000)
+        if va > 1 || va < -1{
+        tellTheScore(score: va)
+        }
     }
 }
 

@@ -22,24 +22,48 @@ public struct TurnPhaseCutter {
     }
 }
 
-struct UnifyBodyAndSkiTurn {
+final public class UnifyBodyAndSkiTurn {
     var skiTurnPhases: [SkiTurnPhase] = []
     var bodyTurnPhases: [CenterOfMassTurnPhase] = []
-    public static var shared = UnifyBodyAndSkiTurn()
+    public static let shared = UnifyBodyAndSkiTurn()
 
     fileprivate init() {
     }
 
-    mutating func receive(turnPhase: SkiTurnPhase) {
+    func ac()-> (Double,Double){
+        let moveFromLast :[SkiTurnPhase] = skiTurnPhases.reversed() // sortedのほうが保証できるのか？
+        if moveFromLast.count < 10 {
+            return ( 0, 0)
+        }
+        var skiAfterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
+        let cMap = moveFromLast.map { (move: SkiTurnPhase) -> IsMovingDiscriminator in
+            let skiElapsed: TimeInterval = skiAfterSeconds - move.timeStampSince1970
+            skiAfterSeconds = move.timeStampSince1970
+            return IsMovingDiscriminator.init(acceleration:
+                                                               move.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration,
+                                                               timeElapsedFromBeforePhase: skiElapsed)
+        }
+        skiTurnPhases.removeAll()
+        let dis = cMap.map {
+            $0.distance
+        }.reduce(0, +)
+        
+        let time = cMap.map {
+            $0.timeElapsedFromBeforePhase
+        }.reduce(0, +)
+        return (dis / time,
+                0)
+    }
+    func receive(turnPhase: SkiTurnPhase) {
         skiTurnPhases.append(turnPhase)
     }
 
-    mutating func receive(turnPhase: CenterOfMassTurnPhase) {
+    func receive(turnPhase: CenterOfMassTurnPhase) {
         bodyTurnPhases.append(turnPhase)
-        unifyWithSkiTurnPhases()
+//        unifyWithSkiTurnPhases()
     }
 
-    mutating func unifyWithSkiTurnPhases() {
+    func unifyWithSkiTurnPhases() {
         if skiTurnPhases.count > 0 || bodyTurnPhases.count > 0 {
             let turnPhase: SkiTurnPhase = skiTurnPhases.last!
             let bodyTurnPhase: CenterOfMassTurnPhase? = bodyTurnPhases

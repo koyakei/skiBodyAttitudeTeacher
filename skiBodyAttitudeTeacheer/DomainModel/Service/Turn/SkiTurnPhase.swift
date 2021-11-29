@@ -20,6 +20,10 @@ struct SkiTurnPhase {
     let rotationRate: CMRotationRate
 }
 
+struct ElapsedTimeAndV{
+    let elapsedTime : Double
+    let velocity: Double
+}
 extension Collection where Element == SkiTurnPhase{
     func filterTurnInitialize()->[SkiTurnPhase]{
         return self.filter{

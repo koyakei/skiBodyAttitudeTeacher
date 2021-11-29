@@ -33,7 +33,7 @@ struct CurrentVelocity {
         }
         var skiAfterSeconds: TimeInterval = moveFromLast.first!.bodyTimeStampSince1970
         var bodyAfterSeconds: TimeInterval = moveFromLast.first!.skiTimeStampSince1970
-        let cMap = moveFromLast.map { (move: UnifiedTurnPhase) -> (Calc) in
+        let cMap = moveFromLast.map { (move: UnifiedTurnPhase) -> Calc in
             let elapsed: TimeInterval = bodyAfterSeconds - move.bodyTimeStampSince1970
             let skiElapsed: TimeInterval = skiAfterSeconds - move.bodyTimeStampSince1970
             bodyAfterSeconds = move.bodyTimeStampSince1970
