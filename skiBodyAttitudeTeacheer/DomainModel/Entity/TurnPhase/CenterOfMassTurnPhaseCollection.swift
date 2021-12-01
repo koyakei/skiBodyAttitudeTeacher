@@ -31,16 +31,18 @@ final public class UnifyBodyAndSkiTurn {
     }
 
     func ac()-> (Double,Double){
-        let moveFromLast :[SkiTurnPhase] = skiTurnPhases.reversed() // sortedのほうが保証できるのか？
+        let moveFromLast :[SkiTurnPhase] = skiTurnPhases.filterTurnInitialize().reversed() // sortedのほうが保証できるのか？
         if moveFromLast.count < 10 {
             return ( 0, 0)
         }
         var skiAfterSeconds: TimeInterval = moveFromLast.first!.timeStampSince1970
-        let cMap = moveFromLast.map { (move: SkiTurnPhase) -> IsMovingDiscriminator in
+        let cMap = moveFromLast[1...moveFromLast.count - 1].map { (move: SkiTurnPhase) -> IsMovingDiscriminator in
             let skiElapsed: TimeInterval = skiAfterSeconds - move.timeStampSince1970
             skiAfterSeconds = move.timeStampSince1970
             return IsMovingDiscriminator.init(acceleration:
-                                                               move.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration,
+//                                                               move.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration
+                                              move.fallLineAcceleration
+                                              ,
                                                                timeElapsedFromBeforePhase: skiElapsed)
         }
         skiTurnPhases.removeAll()
@@ -69,12 +71,12 @@ final public class UnifyBodyAndSkiTurn {
             let bodyTurnPhase: CenterOfMassTurnPhase? = bodyTurnPhases
                     .sortedByNearSkiPhase(skiTurnPhase: turnPhase).first
             if bodyTurnPhase != nil {
-                let rest = UnifiedTurnPhase.init(
-                        skiTurnPhase: turnPhase, centerOfMassTurnPhase: bodyTurnPhase!
-                )
+//                let rest = UnifiedTurnPhase.init(
+//                        skiTurnPhase: turnPhase, centerOfMassTurnPhase: bodyTurnPhase!
+//                )
                 bodyTurnPhases.removeFirst()
                 skiTurnPhases.removeLast()
-                TurnPhaseCutter.shared.receive(unifiedTurnPhase: rest)
+//                TurnPhaseCutter.shared.receive(unifiedTurnPhase: rest)
             }
         }
     }

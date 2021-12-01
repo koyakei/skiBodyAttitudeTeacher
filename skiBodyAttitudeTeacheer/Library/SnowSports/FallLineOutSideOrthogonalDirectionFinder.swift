@@ -3,17 +3,29 @@
 //
 
 import Foundation
+import simd
 
-struct FallLineOutSideOrthogonalDirectionFinder{
+
+struct FallLineOutSideOrthogonalDirectionFinder {
+    let fallLineAttitude: simd_quatd
+    let turnYawingSide: TurnYawingSide
+
     // absolute attitude
-    static func handle(fallLineAttitude: Attitude, turnYawingSide: TurnYawingSide)-> Attitude{
-        switch turnYawingSide{
+    func handle() -> simd_quatd {
+        switch turnYawingSide {
         case .RightYawing:
-            return Attitude.init(roll: 0, yaw: fallLineAttitude.yaw  - ( Double.pi / 2) , pitch: 0)
+            return simd_normalize(fallLineAttitude * yawRotation(-90.0))
         case .LeftYawing:
-            return Attitude.init(roll: 0, yaw: fallLineAttitude.yaw  - (Double.pi / -2), pitch: 0)
+            return simd_normalize(fallLineAttitude * yawRotation(90.0))
         case .Straight:
             return fallLineAttitude
         }
+    }
+
+    private func yawRotation(_ degree: Double) -> simd_quatd {
+        simd_quatd(
+                angle: Measurement(value: degree, unit: UnitAngle.degrees)
+                        .converted(to: .radians).value,
+                axis: simd_double3(x: 0, y: 0, z: 1))
     }
 }

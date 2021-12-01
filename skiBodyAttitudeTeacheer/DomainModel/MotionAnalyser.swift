@@ -38,15 +38,15 @@ public struct MotionAnalyzerManager {
 
     mutating func receiveAirPodMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> CenterOfMassTurnPhase? {
-        if 磁北偏差 != nil {
-            if ariPodMotionReceiver == nil {
-                ariPodMotionReceiver = AirPodOnHeadMotionReceiver.init(磁北偏差: 磁北偏差!)
-            }
-            let va = ariPodMotionReceiver!.receiver(motion,
-                                                    CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
-            unifyBodyAndSkiTurn.receive(turnPhase: va)
-            return va
-        }
+//        if 磁北偏差 != nil {
+//            if ariPodMotionReceiver == nil {
+//                ariPodMotionReceiver = AirPodOnHeadMotionReceiver.init(磁北偏差: 磁北偏差!)
+//            }
+//            let va = ariPodMotionReceiver!.receiver(motion,
+//                                                    CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
+//            unifyBodyAndSkiTurn.receive(turnPhase: va)
+//            return va
+//        }
         return nil
     }
 
@@ -76,7 +76,7 @@ public struct MotionAnalyzerManager {
 //        let v = CurrentVelocity.turnVelocity(
 //                movingPhases: TurnPhaseCutter.shared.getOneTurn()
 //        )
-        let va = Int(v.0 * 3600 / 1000)
+        let va = Int(v.0 * 36000)
         if va > 1 || va < -1{
         tellTheScore(score: va)
         }

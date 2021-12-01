@@ -4,18 +4,19 @@
 
 import Foundation
 import CoreMotion
+import simd
+
 struct FallLineOrthogonalAccelerationCalculator{
     // 絶対　north true absolute fallLine
     // absoluteUserAttitude true north
     // userAcceleration も absolute
-    static func handle(absoluteFallLineAttitude: Attitude,
+    static func handle(absoluteFallLineAttitude: simd_quatd,
                        turnYawingSide : TurnYawingSide,
                        userAcceleration: CMAcceleration,
-                       userAttitude: Attitude
+                       userAttitude: simd_quatd
     ) -> TargetDirectionAccelerationAndRelativeAttitude{
-        AccelerationForTargetAngle.handle(
-                userAcceleration: userAcceleration,
-                userAttitude: userAttitude,
-                targetAttitude: FallLineOutSideOrthogonalDirectionFinder.handle(fallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide))
+        let targetQAttitude = FallLineOutSideOrthogonalDirectionFinder.init(fallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide).handle()
+        return TargetDirectionAccelerationAndRelativeAttitude.init(targetDirectionAcceleration: AccelerationForTargetAngle.handle(userAcceleration: userAcceleration,
+                                                                                                                           userAttitude: userAttitude, targetAttitude: targetQAttitude), relativeAttitude: targetQAttitude)
     }
 }

@@ -4,51 +4,47 @@
 
 import Foundation
 import CoreMotion
-
+import simd
 struct UnifiedTurnPhase {
 
-    var skiFallLineOrthogonalAcceleration: Double
-    let bodyFallLineOrthogonalAcceleration: Double
-    var skiFallLineAcceleration: Double
-    var bodyFallLineAcceleration: Double
+    var skiFallLineOrthogonalAcceleration: simd_double3
+    let bodyFallLineOrthogonalAcceleration: simd_double3
+    var skiFallLineAcceleration: simd_double3
+    var bodyFallLineAcceleration: simd_double3
     var skiRotationRate: CMRotationRate
     let turnYawingSideDirection: TurnYawingSide
-    let bodyAttitudeTrueNorth: Attitude
+    let bodyAttitudeTrueNorth: simd_quatd
     let skiAttitudeTrueNorth: Attitude
     let skiAbsoluteFallLineAttitude: Attitude
     let bodySensorLocation: CMDeviceMotion.SensorLocation
-    let skiAbsoluteAcceleration: CMAcceleration
+    let skiAbsoluteAcceleration: simd_double3
     let skiTimeStampSince1970: TimeInterval
     let bodyTimeStampSince1970: TimeInterval
     let skiTurnChronologicalPhase: TurnChronologicalPhase
 
-    init(skiTurnPhase: SkiTurnPhase,
-         centerOfMassTurnPhase: CenterOfMassTurnPhase
-    ) {
-        skiFallLineOrthogonalAcceleration = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration
-        bodyFallLineOrthogonalAcceleration = FallLineOrthogonalAccelerationCalculator.handle(
-                absoluteFallLineAttitude: skiTurnPhase.absoluteFallLineAttitude,
-                turnYawingSide: skiTurnPhase.turnYawingSide,
-                userAcceleration: centerOfMassTurnPhase.relativeAcceleration,
-                userAttitude: skiTurnPhase.absoluteAttitude).targetDirectionAcceleration
-        skiFallLineAcceleration = skiTurnPhase.fallLineAcceleration
-        bodyFallLineAcceleration =
-                AccelerationForTargetAngle.handle(
-                        userAcceleration: centerOfMassTurnPhase.relativeAcceleration, // TODO : 絶対加速度に直すと計算量が上がりそうなのえここをどうにかする
-                        userAttitude: centerOfMassTurnPhase.relativeAttitude,
-                        targetAttitude: skiTurnPhase.absoluteFallLineAttitude
-                ).targetDirectionAcceleration
-        skiRotationRate = skiTurnPhase.rotationRate
-        turnYawingSideDirection = skiTurnPhase.turnYawingSide
-        bodyAttitudeTrueNorth = centerOfMassTurnPhase.relativeAttitude
-        skiAttitudeTrueNorth = skiTurnPhase.absoluteAttitude
-        skiAbsoluteFallLineAttitude = skiTurnPhase.absoluteFallLineAttitude
-        bodySensorLocation = centerOfMassTurnPhase.sensorLocation
-        skiAbsoluteAcceleration = skiTurnPhase.absoluteAcceleration
-        skiTimeStampSince1970 = skiTurnPhase.timeStampSince1970
-        bodyTimeStampSince1970 = centerOfMassTurnPhase.timeStampSince1970
-        skiTurnChronologicalPhase = skiTurnPhase.turnPhase
-    }
+//    init(skiTurnPhase: SkiTurnPhase,
+//         centerOfMassTurnPhase: CenterOfMassTurnPhase
+//    ) {
+//        skiFallLineOrthogonalAcceleration = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration
+//        bodyFallLineOrthogonalAcceleration = FallLineOrthogonalAccelerationCalculato
+//        skiFallLineAcceleration = skiTurnPhase.fallLineAcceleration
+//        bodyFallLineAcceleration =
+//                AccelerationForTargetAngle.handle(
+//                        userAcceleration: centerOfMassTurnPhase.relativeAcceleration, // TODO : 絶対加速度に直すと計算量が上がりそうなのえここをどうにかする
+//                        userAttitude: centerOfMassTurnPhase.relativeAttitude,
+//                        targetAttitude: skiTurnPhase.absoluteFallLineAttitude
+//                ).targetDirectionAcceleration
+//        skiRotationRate = skiTurnPhase.rotationRate
+//        turnYawingSideDirection = skiTurnPhase.turnYawingSide
+//        bodyAttitudeTrueNorth = centerOfMassTurnPhase.relativeAttitude
+//        skiAttitudeTrueNorth = skiTurnPhase.absoluteAttitude
+//        skiAbsoluteFallLineAttitude = skiTurnPhase.absoluteFallLineAttitude
+//        bodySensorLocation = centerOfMassTurnPhase.sensorLocation
+//        skiAbsoluteAcceleration = skiTurnPhase.absoluteAcceleration
+//        skiTimeStampSince1970 = skiTurnPhase.timeStampSince1970
+//        bodyTimeStampSince1970 = centerOfMassTurnPhase.timeStampSince1970
+//        skiTurnChronologicalPhase = skiTurnPhase.turnPhase
+//    }
 
     var fallLineOrthogonalRelativeAttitude: Attitude {
         get {

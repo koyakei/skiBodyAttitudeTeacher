@@ -5,16 +5,16 @@ import Foundation
 import CoreMotion
 
 struct 裏返しにしたDeviceMotionを表にする {
-    static func handle(deviceMotion: CMDeviceMotion,
-        timeStamp:
-            TimeInterval) ->
-            MovingPhase {
-        MovingPhase.init(boardRidingPhoneAttitudeConverter(attitude:
-                                                           deviceMotion.attitude), boardRidingPhoneRotationRateConverter(rotationRate: deviceMotion.rotationRate),
-                         accelerationConverter(acceleration: deviceMotion
-                                                .userAcceleration), timeStamp, deviceMotion.sensorLocation
-        )
-    }
+//    static func handle(deviceMotion: CMDeviceMotion,
+//        timeStamp:
+//            TimeInterval) ->
+//            MovingPhase {
+//        MovingPhase.init(boardRidingPhoneAttitudeConverter(attitude:
+//                                                           deviceMotion.attitude), boardRidingPhoneRotationRateConverter(rotationRate: deviceMotion.rotationRate),
+//                         accelerationConverter(acceleration: deviceMotion
+//                                                .userAcceleration), timeStamp, deviceMotion.sensorLocation, deviceMotion.attitude.quaternion
+//        )
+//    }
 
     //裏側においたとき ひっくり返す。
     // 裏返し　roll 反転　pitch 反転 yaw 反転

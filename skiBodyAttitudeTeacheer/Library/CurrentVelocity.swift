@@ -39,17 +39,17 @@ struct CurrentVelocity {
             bodyAfterSeconds = move.bodyTimeStampSince1970
             skiAfterSeconds = move.skiTimeStampSince1970
             return Calc.init(bodyO: IsMovingDiscriminator.init(acceleration:
-                                               move.bodyFallLineOrthogonalAcceleration,
+                                                                move.bodyFallLineAcceleration.y,
                                                timeElapsedFromBeforePhase: elapsed),
                 bodyF:
                     IsMovingDiscriminator.init(acceleration:
-                                               move.bodyFallLineAcceleration,
+                                                move.bodyFallLineAcceleration.y,
                                                timeElapsedFromBeforePhase: elapsed),
             skiO: IsMovingDiscriminator.init(acceleration:
-                                             move.skiFallLineOrthogonalAcceleration,
+                                                move.skiFallLineOrthogonalAcceleration.y,
                                              timeElapsedFromBeforePhase: skiElapsed),
                       skiF: IsMovingDiscriminator.init(acceleration:
-                                                       move.skiFallLineAcceleration,
+                                                        move.skiFallLineAcceleration.y,
                                                        timeElapsedFromBeforePhase: skiElapsed)
             )
         }

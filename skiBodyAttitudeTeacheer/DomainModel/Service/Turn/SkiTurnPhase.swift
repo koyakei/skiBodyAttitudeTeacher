@@ -4,12 +4,13 @@
 
 import Foundation
 import CoreMotion
+import simd
 
 struct SkiTurnPhase {
     let turnYawingSide: TurnYawingSide
     let turnSwitchingDirection: TurnSwitchingDirection
     let turnSideChangePeriod: TimeInterval
-    let absoluteFallLineAttitude: Attitude
+    let absoluteFallLineAttitude: simd_quatd
     let fallLineAcceleration: Double
     let turnPhase: TurnChronologicalPhase
     let orthogonalAccelerationAndRelativeAttitude:

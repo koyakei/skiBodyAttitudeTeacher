@@ -4,39 +4,30 @@
 
 import Foundation
 import CoreMotion
-
+import simd
 struct AccelerationForTargetAngle {
-    static func handle(userAcceleration: CMAcceleration, userAttitude: Attitude, targetAttitude: Attitude)
-                    -> TargetDirectionAccelerationAndRelativeAttitude {
-        let relativeAttitude: Attitude = Attitude.init(roll:
-                                                        targetAttitude.roll -
-                                                       userAttitude.roll
-                                                       , yaw:
-                                                        targetAttitude.yaw -
-                                                       userAttitude.yaw
-                                                       ,
-                pitch:
-                                                        targetAttitude.pitch -
-                                                       userAttitude.pitch)
-        let targetDirectionAcceleration: Double =
-                (userAcceleration.x * cos(relativeAttitude.yaw) * cos(relativeAttitude.roll) * 1)
-                        +
-                        (userAcceleration.y * sin(relativeAttitude.yaw) * cos(relativeAttitude.pitch))
-                        +
-                        (userAcceleration.z * cos(relativeAttitude.pitch) * sin(relativeAttitude.roll))
-        return TargetDirectionAccelerationAndRelativeAttitude.init(
-                targetDirectionAcceleration: targetDirectionAcceleration,
-                relativeAttitude: relativeAttitude
-        )
+    static func getRelativeAttitude(userAttitude: Attitude, targetAttitude: Attitude) -> Attitude{
+        Attitude.init(roll:
+                      TwoAngleDifferential.handle(angle: targetAttitude.roll, secondAngle: userAttitude.roll)
+
+                , yaw:
+                      TwoAngleDifferential.handle(angle: targetAttitude.yaw, secondAngle: userAttitude.yaw)
+                ,
+                      pitch:
+                      TwoAngleDifferential.handle(angle: targetAttitude.pitch, secondAngle: userAttitude.pitch))
+    }
+
+
+    static func handle(userAcceleration: CMAcceleration, userAttitude: simd_quatd, targetAttitude: simd_quatd)
+                    -> simd_double3 {
+        return simd_axis( targetAttitude - userAttitude ) *
+                simd_double3(userAttitude.vector.x, userAttitude.vector.y,
+                             userAttitude.vector.z)
     }
 }
 
 
 struct TargetDirectionAccelerationAndRelativeAttitude {
-    let targetDirectionAcceleration: Double
-    let relativeAttitude: Attitude
+    let targetDirectionAcceleration: simd_double3
+    let relativeAttitude: simd_quatd
 }
-
-
-
-

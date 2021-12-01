@@ -3,7 +3,7 @@
 //
 
 import Foundation
-
+import simd
 enum TurnPhase {
     case Turn(turnChronologicalPhase: TurnChronologicalPhase)
     case Straight
