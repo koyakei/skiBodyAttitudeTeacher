@@ -43,7 +43,7 @@ struct SkiTurnPhaseAnalyzer {
                                           userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineAttitude)
         let fallLineAcceleration : Double = fallLineAccelerationMatrix.x + fallLineAccelerationMatrix.y + fallLineAccelerationMatrix.z
         if turnPhase == .TurnMax{
-            MotionAnalyzerManager.shared.skiTurnMax()
+//            MotionAnalyzerManager.shared.skiTurnMax()
         }
         
         return SkiTurnPhase.init(turnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection,

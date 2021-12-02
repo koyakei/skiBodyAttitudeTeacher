@@ -21,7 +21,7 @@ final class ToneOutputUnit: NSObject {
     var f0  =    880.0              // default frequency of tone:   'A' above Concert A
     var v0  =  16383.0              // default volume of tone:      half full scale
 
-    var toneCount : Int32 = 0       // number of samples of tone to play.  0 for silence
+    var toneCount : Int32 = 1       // number of samples of tone to play.  0 for silence
 
     private var phY =     0.0       // save phase of sine wave to prevent clicking
     private var interrupted = false     // for restart from audio interruption notification
@@ -69,8 +69,8 @@ final class ToneOutputUnit: NSObject {
                 let audioFormat = AVAudioFormat(
                     commonFormat: AVAudioCommonFormat.pcmFormatInt16,   // short int samples
                     sampleRate: Double(sampleRate),
-                    channels:AVAudioChannelCount(2),
-                    interleaved: true )                                 // interleaved stereo
+                    channels:1,
+                    interleaved: false )                                 // interleaved stereo
 
                 try bus0.setFormat(audioFormat ?? AVAudioFormat())  //      for speaker bus
 
@@ -156,4 +156,164 @@ final class ToneOutputUnit: NSObject {
             audioRunning = false
         }
     }
+}
+
+import UIKit
+import AVFoundation
+
+struct Tone {
+    // エンジンの生成
+    let audioEngine = AVAudioEngine()
+    // ソースノードの生成
+    let player = AVAudioPlayerNode()
+
+    func playSineWave() {
+        // プレイヤーノードからオーディオフォーマットを取得
+        let audioFormat = player.outputFormat(forBus: 0)
+        // サンプリング周波数: 44.1K Hz
+        let sampleRate = Float(audioFormat.sampleRate)
+        // 3秒間鳴らすフレームの長さ
+        let length = 100.01 * sampleRate
+        // PCMバッファーを生成
+        let buffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: UInt32(length))
+        // frameLength を設定することで mDataByteSize が更新される
+        buffer?.frameLength = UInt32(length)
+        // オーディオのチャンネル数
+        let channels = Int(audioFormat.channelCount)
+        for ch in (0..<channels) {
+            let samples = buffer?.floatChannelData?[ch]
+            for n in 0..<Int(buffer!.frameLength) {
+                samples?[n] = sinf(Float(2.0 * M_PI) * 44.0 * Float(n) / sampleRate)
+            }
+        }
+
+        // オーディオエンジンにプレイヤーをアタッチ
+        audioEngine.attach(player)
+        let mixer = audioEngine.mainMixerNode
+        // プレイヤーノードとミキサーノードを接続
+        audioEngine.connect(player, to: mixer, format: audioFormat)
+        // 再生の開始を設定
+        player.scheduleBuffer(buffer!) {
+            print("Play completed")
+        }
+
+        do {
+            // エンジンを開始
+            try audioEngine.start()
+            // 再生
+            player.play()
+        } catch let error {
+            print(error)
+        }
+    }
+}
+
+import AVFoundation
+
+class SineWave {
+
+    private enum Fade {
+        case none
+        case `in`
+        case out
+    }
+
+    private let audioEngine = AVAudioEngine()
+    private let player = AVAudioPlayerNode()
+    private var buffer: AVAudioPCMBuffer!
+    private var fadeInBuffer: AVAudioPCMBuffer!
+    private var fadeOutBuffer: AVAudioPCMBuffer!
+    private let semaphore = DispatchSemaphore(value: 0)
+
+    var volume: Float = 0.1 {
+        didSet { updateBuffers() }
+    }
+
+    var hz: Float = 600 {
+        didSet { updateBuffers() }
+    }
+    public var shared = SineWave.init()
+    init(volume: Float = 0.1, hz: Float = 600) {
+        self.volume = volume
+        self.hz = hz
+        let audioFormat = player.outputFormat(forBus: 0)
+        updateBuffers()
+        audioEngine.attach(player)
+        audioEngine.connect(player, to: audioEngine.mainMixerNode, format: audioFormat)
+        audioEngine.prepare()
+        do {
+            try self.audioEngine.start()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    deinit {
+        stopEngine()
+    }
+
+    private func updateBuffers() {
+        buffer = makeBuffer()
+        fadeInBuffer = makeBuffer(fade: .in)
+        fadeOutBuffer = makeBuffer(fade: .out)
+    }
+
+    private func makeBuffer(fade: Fade = .none) -> AVAudioPCMBuffer {
+        let audioFormat = player.outputFormat(forBus: 0)
+        let sampleRate = Float(audioFormat.sampleRate) // 44100.0
+        let length = AVAudioFrameCount(sampleRate / hz)
+        let capacity = fade == .none ? length : 15 * length
+        guard let buf = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: capacity) else {
+            fatalError("Error initializing AVAudioPCMBuffer")
+        }
+        buf.frameLength = capacity
+        let u = Float.pi / Float(capacity)
+        for n in (0 ..< Int(capacity)) {
+            let power: Float
+            switch fade {
+            case .none: power = 1.0
+            case .in:   power = 0.5 * (1.0 - cosf(Float(n) * u))
+            case .out:  power = 0.5 * (1.0 + cosf(Float(n) * u))
+            }
+            let value = power * volume * sinf(Float(n) * 2.0 * Float.pi / Float(length))
+            buf.floatChannelData?.advanced(by: 0).pointee[n] = value
+            buf.floatChannelData?.advanced(by: 1).pointee[n] = value
+        }
+        return buf
+    }
+
+    func play() {
+        if audioEngine.isRunning && !player.isPlaying {
+            player.play()
+            player.scheduleBuffer(fadeInBuffer) { [weak self] in
+                self?.semaphore.signal()
+            }
+            player.scheduleBuffer(buffer, at: nil, options: .loops)
+        }
+    }
+
+    func pause() {
+        if player.isPlaying {
+            switch semaphore.wait(timeout: .now() + 0.1) {
+            case .success:
+                player.scheduleBuffer(fadeOutBuffer, at: nil,
+                                      options: .interruptsAtLoop,
+                                      completionHandler: { [weak self] in
+                                          self?.player.pause()
+                                      })
+            case .timedOut:
+                break
+            }
+        }
+    }
+
+    func stopEngine() {
+        pause()
+        if audioEngine.isRunning {
+            audioEngine.disconnectNodeOutput(player)
+            audioEngine.detach(player)
+            audioEngine.stop()
+        }
+    }
+
 }

@@ -22,7 +22,7 @@ struct AccelerationForTargetAngle {
                     -> simd_double3 {
   //絶対目標 -  絶対 筐体姿勢 割ると　ほんとに差が出るの？
         simd_axis(
-//                targetAttitude /
+                targetAttitude /
                            userAttitude * simd_quatd(
                 angle: Measurement(value: 90, unit: UnitAngle.degrees)
                         .converted(to: .radians).value,

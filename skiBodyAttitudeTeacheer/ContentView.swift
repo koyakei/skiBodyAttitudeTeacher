@@ -13,6 +13,7 @@ import simd
 //let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
+let sineWave = SineWave.init(volume: 0.1, hz: 650.0)
 import AVFoundation
 import AudioToolbox
 struct ContentView: View {
@@ -102,16 +103,23 @@ struct ContentView: View {
     }
 
     func startRecord(){
+
+
+        // 再生
+        sineWave.play()
+
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
+
+
             let cq = simd_quatd(
                     ix: motion!.attitude.quaternion.x,
                     iy: motion!.attitude.quaternion.y,
                     iz: motion!.attitude.quaternion.z,
                     r: motion!.attitude.quaternion.w
             )
-            
+
 
             currentAttitude = QuaternionToEuler.init(q: cq ).handle()
             quoternion = motion!.attitude.quaternion
@@ -119,33 +127,33 @@ struct ContentView: View {
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
             }
-            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
-                                         ProcessInfo
-                                                 .processInfo.systemUptime
-                                         )
-            absoluteFallLineAttitude =  QuaternionToEuler.init(q: skiTurnPhase.absoluteFallLineAttitude).handle()
-                    targetDirectionAccelerationAndRelativeAttitude = QuaternionToEuler.init(q: skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude).handle()
-            turnYawingSide = skiTurnPhase.turnYawingSide
-            turnChronologicalPhase = skiTurnPhase.turnPhase
-            turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
-                    let ac :simd_double3 = simd_axis(skiTurnPhase.absoluteFallLineAttitude
-                                       * simd_quatd(
-                            angle: Measurement(value: 90, unit: UnitAngle.degrees)
-                                    .converted(to: .radians).value,
-                            axis: simd_double3(0 , 1 ,0))
-                    
-                    ) * simd_double3(
-                                motion!.userAcceleration.x , motion!.userAcceleration.y
-                                ,motion!.userAcceleration.z)
-                    barLength = ac.x * 300
-                    barLengthR = ac.y * 300
-                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
-            headPhoneMotionDeviceLeft = QuaternionToEuler.init(q:skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude / simd_quatd(
-                    ix: motion!.attitude.quaternion.x,
-                    iy: motion!.attitude.quaternion.y,
-                    iz: motion!.attitude.quaternion.z,
-                    r: motion!.attitude.quaternion.w
-            )).handle()
+//            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
+//                                         ProcessInfo
+//                                                 .processInfo.systemUptime
+//                                         )
+//            absoluteFallLineAttitude =  QuaternionToEuler.init(q: skiTurnPhase.absoluteFallLineAttitude).handle()
+//                    targetDirectionAccelerationAndRelativeAttitude = QuaternionToEuler.init(q: skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude).handle()
+//            turnYawingSide = skiTurnPhase.turnYawingSide
+//            turnChronologicalPhase = skiTurnPhase.turnPhase
+//            turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
+//                    let ac :simd_double3 = simd_axis(skiTurnPhase.absoluteFallLineAttitude
+//                                       * simd_quatd(
+//                            angle: Measurement(value: 90, unit: UnitAngle.degrees)
+//                                    .converted(to: .radians).value,
+//                            axis: simd_double3(0 , 1 ,0))
+//
+//                    ) * simd_double3(
+//                                motion!.userAcceleration.x , motion!.userAcceleration.y
+//                                ,motion!.userAcceleration.z)
+//                    barLength = ac.x * 300
+//                    barLengthR = ac.y * 300
+//                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
+//            headPhoneMotionDeviceLeft = QuaternionToEuler.init(q:skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude / simd_quatd(
+//                    ix: motion!.attitude.quaternion.x,
+//                    iy: motion!.attitude.quaternion.y,
+//                    iz: motion!.attitude.quaternion.z,
+//                    r: motion!.attitude.quaternion.w
+//            )).handle()
 
         }
         // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
@@ -162,6 +170,15 @@ struct ContentView: View {
     func stopRecord(){
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
+        sineWave.pause()
+//        let myUnit = ToneOutputUnit()
+//        myUnit.setFrequency(freq: 440)
+//                                abs(Double(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
+//                                                     .converted(to: .degrees).value) * 10))
+//        myUnit.setToneVolume(vol: 0.5)
+//        myUnit.enableSpeaker()
+//        myUnit.setToneTime(t:100)
+        
 //        motionWriter.close()
 //        motionWriterHeadPhone.close()
 //        motionWriterWatch.close()
