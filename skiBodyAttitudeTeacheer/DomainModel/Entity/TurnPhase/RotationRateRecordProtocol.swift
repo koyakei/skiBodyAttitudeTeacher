@@ -56,12 +56,7 @@ extension Collection where Element: AbsoluteQuaternionProtocol {
     func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> simd_quatd {
         simd_normalize(
             self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).map {
-                simd_quatd(ix: $0.quaternion.vector.x,
-                           iy: $0.quaternion.vector.y,
-                           iz: $0.quaternion.vector.z,
-                           r: $0.quaternion.vector.w)
-        }.reduce(simd_quatd(ix: 0,iy: 0,iz: 0,r: 0),+)
-        )
+                $0.quaternion}.reduce(simd_quatd(ix: 0,iy: 0,iz: 0,r: 0),+))
     }
 }
 

@@ -39,9 +39,9 @@ struct SkiTurnPhaseAnalyzer {
                 TargetDirectionAccelerationAndRelativeAttitude
                 =
                 FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userAttitude: movingPhase.quaternion)
-        let fallLineAcceleration : Double =
-        AccelerationForTargetAngle.handle(userAcceleration: movingPhase.absoluteUserAcceleration,
-                                          userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineAttitude).z
+        let fallLineAccelerationMatrix = AccelerationForTargetAngle.handle(userAcceleration: movingPhase.absoluteUserAcceleration,
+                                          userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineAttitude)
+        let fallLineAcceleration : Double = fallLineAccelerationMatrix.x + fallLineAccelerationMatrix.y + fallLineAccelerationMatrix.z
         if turnPhase == .TurnMax{
             MotionAnalyzerManager.shared.skiTurnMax()
         }

@@ -19,13 +19,16 @@ struct ContentView: View {
     @State var turnYawingSide: TurnYawingSide = TurnYawingSide.Straight
     @State var turnSwitchingDirection : TurnSwitchingDirection = TurnSwitchingDirection.Keep
     @State var absoluteFallLineAttitude :Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
-    @State var currentYaw: Double = 0
+    @State var currentAttitude: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var yawingPeriod: Double = 0
     @State var accuracy: CMMagneticFieldCalibrationAccuracy = CMMagneticFieldCalibrationAccuracy.high
     @State var motionDate: Date = Date.now
     @State var turnChronologicalPhase:TurnChronologicalPhase = TurnChronologicalPhase.TurnMax
     @State var targetDirectionAccelerationAndRelativeAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var barLength : CGFloat = 0
+    @State var barLengthR : CGFloat = 0
+    @State var barLengthX : CGFloat = 0
+    @State var barLengthZ : CGFloat = 0
     @State var headPhoneMotionDeviceLeft: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var headPhoneMotionDeviceRight: CMDeviceMotion?
     @State var quoternion: CMQuaternion = CMQuaternion.init(x: 0, y: 0, z: 0, w: 0)
@@ -45,20 +48,20 @@ struct ContentView: View {
                     .background(Color.red)
                     .font(.largeTitle)
                     .rotationEffect(Angle.init(radians:
-                                               ((absoluteFallLineAttitude.yaw  - currentYaw) * -1)  ))
+                                               ((absoluteFallLineAttitude.yaw  - currentAttitude.yaw) * -1)  ))
                 Text("⇑")
                     .background(Color.blue)
                     .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians: (absoluteFallLineAttitude.roll - currentYaw) * -1))
+                    .rotationEffect(Angle.init(radians: currentAttitude.yaw ) )
                 Text("⇑")
                     .background(Color.green)
                     .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians: targetDirectionAccelerationAndRelativeAttitude.yaw * -1 ))
+                    .rotationEffect(Angle.init(radians: (targetDirectionAccelerationAndRelativeAttitude.yaw - currentAttitude.yaw) * -1 ))
                 Text("⇑")
                         .background(Color.red)
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians:
-                                                   currentYaw))
+                                                   headPhoneMotionDeviceLeft.yaw * -1))
 //                Text("⇑")
 //                        .background(Color.blue)
 //                        .font(.largeTitle)
@@ -68,20 +71,26 @@ struct ContentView: View {
 //                        .font(.largeTitle)
 //                        .rotationEffect(Angle.init(radians: targetDirectionAccelerationAndRelativeAttitude.relativeAttitude.yaw * -1 ))
                 Divider()
-                Text("yawing side" + turnYawingSide.rawValue)
+                Text("yawing side " + turnYawingSide.rawValue)
                 Text(turnChronologicalPhase.rawValue)
                 Text(turnSwitchingDirection.rawValue)
-                Text("\(yawingPeriod)")
                 Text(motionDate.formatted(.dateTime.second().minute()))
+                Text(Date.now.formatted(.dateTime.second().minute()))
             }
         }
-        Text("\(quoternion.x)")
-        Text("\(quoternion.y)")
-        Text("\(quoternion.z)")
-        Text("\(quoternion.w)")
-//        Rectangle()
-//            .fill(Color.blue)
-//            .frame(width: barLength + 100, height: 150)
+        Rectangle()
+            .fill(Color.blue)
+            .frame(width: barLength + 150, height: 10)
+        Rectangle()
+                .fill(Color.red)
+                .frame(width: barLengthR + 150, height: 10)
+        Rectangle()
+                .fill(Color.red)
+                .frame(width: barLengthX + 150, height: 10)
+
+        Rectangle()
+                .fill(Color.yellow)
+                .frame(width: barLengthZ + 150, height: 10)
         Text("⇑")
             .background(Color.green)
             .font(.largeTitle)
@@ -96,7 +105,15 @@ struct ContentView: View {
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
-            currentYaw = motion!.attitude.yaw
+            let cq = simd_quatd(
+                    ix: motion!.attitude.quaternion.x,
+                    iy: motion!.attitude.quaternion.y,
+                    iz: motion!.attitude.quaternion.z,
+                    r: motion!.attitude.quaternion.w
+            )
+            
+
+            currentAttitude = QuaternionToEuler.init(q: cq ).handle()
             quoternion = motion!.attitude.quaternion
             motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
@@ -111,8 +128,25 @@ struct ContentView: View {
             turnYawingSide = skiTurnPhase.turnYawingSide
             turnChronologicalPhase = skiTurnPhase.turnPhase
             turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
-            yawingPeriod = skiTurnPhase.turnSideChangePeriod
-                    barLength = CGFloat(skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration.y * 300)
+                    let ac :simd_double3 = simd_axis(skiTurnPhase.absoluteFallLineAttitude
+                                       * simd_quatd(
+                            angle: Measurement(value: 90, unit: UnitAngle.degrees)
+                                    .converted(to: .radians).value,
+                            axis: simd_double3(0 , 1 ,0))
+                    
+                    ) * simd_double3(
+                                motion!.userAcceleration.x , motion!.userAcceleration.y
+                                ,motion!.userAcceleration.z)
+                    barLength = ac.x * 300
+                    barLengthR = ac.y * 300
+                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
+            headPhoneMotionDeviceLeft = QuaternionToEuler.init(q:skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude / simd_quatd(
+                    ix: motion!.attitude.quaternion.x,
+                    iy: motion!.attitude.quaternion.y,
+                    iz: motion!.attitude.quaternion.z,
+                    r: motion!.attitude.quaternion.w
+            )).handle()
+
         }
         // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
 //        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in

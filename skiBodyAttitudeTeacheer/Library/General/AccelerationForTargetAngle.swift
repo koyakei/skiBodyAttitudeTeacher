@@ -20,14 +20,22 @@ struct AccelerationForTargetAngle {
 
     static func handle(userAcceleration: CMAcceleration, userAttitude: simd_quatd, targetAttitude: simd_quatd)
                     -> simd_double3 {
-        return simd_axis( targetAttitude - userAttitude ) *
-                simd_double3(userAttitude.vector.x, userAttitude.vector.y,
-                             userAttitude.vector.z)
+  //絶対目標 -  絶対 筐体姿勢 割ると　ほんとに差が出るの？
+        simd_axis(
+//                targetAttitude /
+                           userAttitude * simd_quatd(
+                angle: Measurement(value: 90, unit: UnitAngle.degrees)
+                        .converted(to: .radians).value,
+                axis: simd_double3(0 , 1 ,0))// y 方向
+        ) *
+                simd_double3(userAcceleration.x, userAcceleration.y,
+                             userAcceleration.z)
+
     }
 }
 
 
 struct TargetDirectionAccelerationAndRelativeAttitude {
     let targetDirectionAcceleration: simd_double3
-    let relativeAttitude: simd_quatd
+    let relativeAttitude: simd_quatd // 実は絶対を返している
 }

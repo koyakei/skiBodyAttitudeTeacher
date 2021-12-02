@@ -26,6 +26,6 @@ struct FallLineOutSideOrthogonalDirectionFinder {
         simd_quatd(
                 angle: Measurement(value: degree, unit: UnitAngle.degrees)
                         .converted(to: .radians).value,
-                axis: simd_double3(x: 0, y: 0, z: 1))
+                axis: simd_double3(x: 0, y: 1, z: 0))
     }
 }
