@@ -13,7 +13,6 @@ import simd
 //let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
-let sineWave = SineWave.init(volume: 0.1, hz: 650.0)
 import AVFoundation
 import AudioToolbox
 struct ContentView: View {
@@ -103,11 +102,11 @@ struct ContentView: View {
     }
 
     func startRecord(){
-
-
-        // 再生
-        sineWave.play()
-
+        SineWave.shared.hz = Float(440)
+                    SineWave.shared.play()
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    SineWave.shared.pause()
+//                }
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
@@ -119,14 +118,28 @@ struct ContentView: View {
                     iz: motion!.attitude.quaternion.z,
                     r: motion!.attitude.quaternion.w
             )
-
-
-            currentAttitude = QuaternionToEuler.init(q: cq ).handle()
-            quoternion = motion!.attitude.quaternion
-            motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
-            if MotionAnalyzerManager.shared.磁北偏差 == nil{
-                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
-            }
+                    let date : Date = Date()
+                    let calendar : Calendar = NSCalendar.current
+                    let components : DateComponents = calendar.dateComponents([.nanosecond], from: date)
+                    let nanoSeconds: Int = components.nanosecond ?? 0
+                    let millSeconds = Int(nanoSeconds / 100000)
+                    if millSeconds % 10 == 0 {
+//                        SineWave.shared
+//
+//            SineWave.shared.hz = Float(abs(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
+//                                                    .converted(to: .degrees).value) * 100.0)
+//                        SineWave.shared.play()
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                        SineWave.shared.pause()
+//                    }
+                    }
+//            currentAttitude = QuaternionToEuler.init(q: cq ).handle()
+//            quoternion = motion!.attitude.quaternion
+//            motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
+//            if MotionAnalyzerManager.shared.磁北偏差 == nil{
+//                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
+//            }
+                    
 //            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
 //                                         ProcessInfo
 //                                                 .processInfo.systemUptime
@@ -154,8 +167,8 @@ struct ContentView: View {
 //                    iz: motion!.attitude.quaternion.z,
 //                    r: motion!.attitude.quaternion.w
 //            )).handle()
-
-        }
+                }
+        
         // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
 //        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
 //
@@ -164,13 +177,13 @@ struct ContentView: View {
 //                                                 .processInfo.systemUptime
 //            )
 //            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
-//        }
-    }
+        }
+   
     
     func stopRecord(){
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
-        sineWave.pause()
+        SineWave.shared.pause()
 //        let myUnit = ToneOutputUnit()
 //        myUnit.setFrequency(freq: 440)
 //                                abs(Double(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
@@ -192,3 +205,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 }
+

@@ -121,6 +121,7 @@
 		BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB26539274BBBB0001A51BA /* CoreLocation.framework */; };
 		BAF25FF4275608CD009992C9 /* AccelerationForTargetAngleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */; };
 		BAF25FF6275612BB009992C9 /* AccelerationShifterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF5275612BB009992C9 /* AccelerationShifterTest.swift */; };
+		BAF25FF82759C80B009992C9 /* ToneSub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF72759C80B009992C9 /* ToneSub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +284,7 @@
 		BAF25FF2274BC83F009992C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationForTargetAngleTest.swift; sourceTree = "<group>"; };
 		BAF25FF5275612BB009992C9 /* AccelerationShifterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationShifterTest.swift; sourceTree = "<group>"; };
+		BAF25FF72759C80B009992C9 /* ToneSub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneSub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +440,7 @@
 				2EF6366F5F6BCD9FC33EF541 /* GetAbsoluteRotationRate.swift */,
 				2EF6389F251297054388331A /* SimpleMovingAverage.swift */,
 				2EF6372BE69879E25CE4CEE4 /* AccelerationShifter.swift */,
+				BAF25FF72759C80B009992C9 /* ToneSub.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAF25FF82759C80B009992C9 /* ToneSub.swift in Sources */,
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
 				BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */,
