@@ -68,11 +68,12 @@ class SineWave {
         let u = Float.pi / Float(capacity)
         for n in (0 ..< Int(capacity)) {
             let power: Float
-            switch fade {
-            case .none: power = 1.0
-            case .in:   power = 0.5 * (1.0 - cosf(Float(n) * u))
-            case .out:  power = 0.5 * (1.0 + cosf(Float(n) * u))
-            }
+//            switch fade {
+//            case .none: power = 1.0
+//            case .in:   power = 0.5 * (1.0 - cosf(Float(n) * u))
+//            case .out:  power = 0.5 * (1.0 + cosf(Float(n) * u))
+//            }
+            power = 1.0
             let value = power * volume * sinf(Float(n) * 2.0 * Float.pi / Float(length))
             buf.floatChannelData?.advanced(by: 0).pointee[n] = value
             buf.floatChannelData?.advanced(by: 1).pointee[n] = value

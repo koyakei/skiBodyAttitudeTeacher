@@ -102,11 +102,7 @@ struct ContentView: View {
     }
 
     func startRecord(){
-        SineWave.shared.hz = Float(440)
-                    SineWave.shared.play()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    SineWave.shared.pause()
-//                }
+        
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
@@ -134,16 +130,16 @@ struct ContentView: View {
 //                    }
                     }
 //            currentAttitude = QuaternionToEuler.init(q: cq ).handle()
-//            quoternion = motion!.attitude.quaternion
-//            motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
-//            if MotionAnalyzerManager.shared.磁北偏差 == nil{
-//                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
-//            }
+            quoternion = motion!.attitude.quaternion
+            motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
+            if MotionAnalyzerManager.shared.磁北偏差 == nil{
+                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
+            }
                     
-//            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
-//                                         ProcessInfo
-//                                                 .processInfo.systemUptime
-//                                         )
+            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
+                                         ProcessInfo
+                                                 .processInfo.systemUptime
+                                         )
 //            absoluteFallLineAttitude =  QuaternionToEuler.init(q: skiTurnPhase.absoluteFallLineAttitude).handle()
 //                    targetDirectionAccelerationAndRelativeAttitude = QuaternionToEuler.init(q: skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude).handle()
 //            turnYawingSide = skiTurnPhase.turnYawingSide
