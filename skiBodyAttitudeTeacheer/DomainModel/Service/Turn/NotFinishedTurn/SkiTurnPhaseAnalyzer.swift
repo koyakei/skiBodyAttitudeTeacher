@@ -20,8 +20,8 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         let turnYawingSide: TurnYawingSide = movingPhase.absoluteRotationRate.yawingSide
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: turnYawingSide)
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: turnYawingSide)
-        let absoluteFallLineAttitude: simd_quatd = absoluteQuaternionFallLineFinder.handle(quaternion: movingPhase.quaternion, timeStampSince1970: movingPhase.timeStampSince1970, yawingPeriod: turnSideChangePeriod)
-        let fallLineAttitude: Attitude = QuaternionToEuler.init(q: absoluteFallLineAttitude).handle()
+        let absoluteFallLineQuaternion: simd_quatd = absoluteQuaternionFallLineFinder.handle(quaternion: movingPhase.quaternion, timeStampSince1970: movingPhase.timeStampSince1970, yawingPeriod: turnSideChangePeriod)
+        let fallLineAttitude: Attitude = QuaternionToEuler.init(q: absoluteFallLineQuaternion).handle()
         let turnChronologicalPhase: TurnChronologicalPhase = turnChronologicalPhaseFinder.handle(
             currentAttitude: movingPhase.attitude, absoluteFallLineAttitude: fallLineAttitude
         , currentTurnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection)
@@ -29,15 +29,14 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         let fallLineOrthogonalAccelerationAndRelativeAttitude:
                 TargetDirectionAccelerationAndRelativeAttitude
                 =
-                FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userAttitude: movingPhase.quaternion)
+        FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: fallLineAttitude, absoluteFallLineQuaternion: absoluteFallLineQuaternion, turnYawingSide: turnYawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userQuaternion: movingPhase.quaternion, userAttitude: movingPhase.attitude)
         let fallLineAcceleration = AccelerationForTargetAngle.getAcceleration(userAcceleration: movingPhase.absoluteUserAcceleration,
-                                          userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineAttitude)
+                                          userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineQuaternion)
         if turnChronologicalPhase == .TurnMax{
             MotionAnalyzerManager.shared.skiTurnMax()
         }
-        
         return SkiTurnPhase.init(turnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection,
-                          turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineAttitude,
+                          turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineQuaternion,
                                  fallLineAcceleration: fallLineAcceleration, turnPhase: turnChronologicalPhase,
                           orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                  absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,

@@ -9,3 +9,16 @@ enum TurnYawingSide : String{
     case LeftYawing = "Left"
     case Straight = "Straight"
 }
+
+extension TurnYawingSide {
+    func shiftAngle() -> Int{
+        switch self {
+        case .RightYawing:
+            return -90
+        case .LeftYawing:
+            return 90  // - はこっち
+        case .Straight:
+            return 90
+        }
+    }
+}

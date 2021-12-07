@@ -4,7 +4,7 @@
 // 170 + 20  =  -170  になる
 
 import Foundation
-
+import simd
 struct AngleShifter {
 
     // return
@@ -18,5 +18,12 @@ struct AngleShifter {
         default:
             return shiftedAngle
         }
+    }
+    
+    static func yawRotation(_ degree: Double) -> simd_quatd {
+        simd_quatd(
+                angle: Measurement(value: degree, unit: UnitAngle.degrees)
+                        .converted(to: .radians).value,
+                axis: simd_double3(x: 0, y: 1, z: 0))
     }
 }

@@ -24,7 +24,7 @@ struct ContentView: View {
     @State var accuracy: CMMagneticFieldCalibrationAccuracy = CMMagneticFieldCalibrationAccuracy.high
     @State var motionDate: Date = Date.now
     @State var turnChronologicalPhase:TurnChronologicalPhase = TurnChronologicalPhase.TurnMax
-    @State var targetDirectionAccelerationAndRelativeAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
+    @State var orthogonalAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var barLength : CGFloat = 0
     @State var barLengthR : CGFloat = 0
     @State var barLengthX : CGFloat = 0
@@ -43,33 +43,34 @@ struct ContentView: View {
                 Text("Stop")
             }
             VStack {
+                HStack{
+                Text("fall Line")
                 Text("⇑")
                     .background(Color.red)
                     .font(.largeTitle)
                     .rotationEffect(Angle.init(radians:
-                                               absoluteFallLineAttitude.yaw * -1) )
+                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) )}
+                HStack{
+                    Text("orthogonal line to turn out")
+                    Text("⇑")
+                        .background(Color.green)
+                        .font(.largeTitle)
+                        .rotationEffect(Angle.init(radians: (orthogonalAttitude.yaw - currentAttitude.yaw) * -1 ))
+                }
                 Text("⇑")
                     .background(Color.blue)
                     .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians: currentAttitude.yaw ) )
-                Text("⇑")
-                    .background(Color.green)
-                    .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians: (absoluteFallLineAttitude.roll - currentAttitude.yaw) * -1 ))
+                    .rotationEffect(Angle.init(radians: ((absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1 ) + (.pi / 2 ) ) )
+
                 Text("⇑")
                         .background(Color.red)
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians:
                                                     (absoluteFallLineAttitude.pitch - currentAttitude.yaw) * -1 ))
-//                Text("⇑")
-//                        .background(Color.blue)
-//                        .font(.largeTitle)
-//                        .rotationEffect(Angle.init(radians: Double.pi / 2))
-//                Text("⇑")
-//                        .background(Color.green)
-//                        .font(.largeTitle)
-//                        .rotationEffect(Angle.init(radians: targetDirectionAccelerationAndRelativeAttitude.relativeAttitude.yaw * -1 ))
-                Divider()
+                Text("⇑")
+                        .background(Color.blue)
+                        .font(.largeTitle)
+                        .rotationEffect(Angle.init(radians: Double.pi / 2))
                 Text("yawing side " + turnYawingSide.rawValue)
                 Text(turnChronologicalPhase.rawValue)
                 Text(turnSwitchingDirection.rawValue)
@@ -101,18 +102,35 @@ struct ContentView: View {
     }
 
     func startRecord(){
-        
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
-
-
+                    currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
+                    
             let cq = simd_quatd(
                     ix: motion!.attitude.quaternion.x,
                     iy: motion!.attitude.quaternion.y,
                     iz: motion!.attitude.quaternion.z,
                     r: motion!.attitude.quaternion.w
             )
+                                        barLength =
+                    simd_dot(
+                        simd_normalize(simd_axis(cq *
+                                                 simd_inverse(cq) *
+                                                 simd_quatd( //　内への加速でプラスになっている
+                                                    angle: Measurement(value: Double(turnYawingSide.shiftAngle()), unit: UnitAngle.degrees)
+                                              .converted(to: .radians).value,
+                                      axis: simd_double3(1 , 0 ,0))
+                                                ) )
+                        ,
+                        simd_double3(motion!.userAcceleration.x, motion!.userAcceleration.y,
+                                     motion!.userAcceleration.z)
+                    ) * 100
+                    
+//                    AccelerationForTargetAngle.getAcceleration(userAcceleration: motion!.userAcceleration,                                                        userAttitude: cq - cq, targetAttitude:
+//                                                                cq - cq
+////                                                                simd_normalize(cq * AngleShifter.yawRotation(0))
+//                    )
                     let date : Date = Date()
                     let calendar : Calendar = NSCalendar.current
                     let components : DateComponents = calendar.dateComponents([.nanosecond], from: date)
@@ -137,13 +155,14 @@ struct ContentView: View {
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
-                    absoluteFallLineAttitude =  skiTurnPhase.fallLineAttitude
+                    orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
+                    absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
             turnYawingSide = skiTurnPhase.turnYawingSide
             turnChronologicalPhase = skiTurnPhase.turnPhase
             turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
-//                    barLength = ac.x * 300
-//                    barLengthR = ac.y * 300
-                    barLengthZ = skiTurnPhase.fallLineAcceleration * 100
+
+                    barLengthR = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration * 100
+                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
 //            headPhoneMotionDeviceLeft = QuaternionToEuler.init(q:skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude / simd_quatd(
 //                    ix: motion!.attitude.quaternion.x,
 //                    iy: motion!.attitude.quaternion.y,

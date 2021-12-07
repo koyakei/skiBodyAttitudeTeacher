@@ -65,7 +65,7 @@ class SineWave {
             fatalError("Error initializing AVAudioPCMBuffer")
         }
         buf.frameLength = capacity
-        let u = Float.pi / Float(capacity)
+//        let u = Float.pi / Float(capacity)
         for n in (0 ..< Int(capacity)) {
             let power: Float
 //            switch fade {

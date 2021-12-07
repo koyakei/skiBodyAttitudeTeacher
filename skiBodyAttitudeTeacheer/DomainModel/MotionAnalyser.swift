@@ -58,11 +58,6 @@ public struct MotionAnalyzerManager {
     // インターフェイスにして共通化したい
     func skiTurnMax() {
 //        getScore()
-//        var soundIdRing:SystemSoundID = 1000
-//            if let soundUrl = CFBundleCopyResourceURL(CFBundleGetMainBundle(), nil, nil, nil){
-//                AudioServicesCreateSystemSoundID(soundUrl, &soundIdRing)
-//                AudioServicesPlaySystemSound(soundIdRing)
-//            }
         
 //        SineWave.shared.hz = Float(440)
 //                    SineWave.shared.play()
