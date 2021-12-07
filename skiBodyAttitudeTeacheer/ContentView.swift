@@ -31,7 +31,6 @@ struct ContentView: View {
     @State var barLengthZ : CGFloat = 0
     @State var headPhoneMotionDeviceLeft: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var headPhoneMotionDeviceRight: CMDeviceMotion?
-    @State var quoternion: CMQuaternion = CMQuaternion.init(x: 0, y: 0, z: 0, w: 0)
 
     var body: some View {
         
@@ -48,7 +47,7 @@ struct ContentView: View {
                     .background(Color.red)
                     .font(.largeTitle)
                     .rotationEffect(Angle.init(radians:
-                                               ((absoluteFallLineAttitude.yaw  - currentAttitude.yaw) * -1)  ))
+                                               absoluteFallLineAttitude.yaw * -1) )
                 Text("⇑")
                     .background(Color.blue)
                     .font(.largeTitle)
@@ -56,12 +55,12 @@ struct ContentView: View {
                 Text("⇑")
                     .background(Color.green)
                     .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians: (targetDirectionAccelerationAndRelativeAttitude.yaw - currentAttitude.yaw) * -1 ))
+                    .rotationEffect(Angle.init(radians: (absoluteFallLineAttitude.roll - currentAttitude.yaw) * -1 ))
                 Text("⇑")
                         .background(Color.red)
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians:
-                                                   headPhoneMotionDeviceLeft.yaw * -1))
+                                                    (absoluteFallLineAttitude.pitch - currentAttitude.yaw) * -1 ))
 //                Text("⇑")
 //                        .background(Color.blue)
 //                        .font(.largeTitle)
@@ -129,8 +128,6 @@ struct ContentView: View {
 //                        SineWave.shared.pause()
 //                    }
                     }
-//            currentAttitude = QuaternionToEuler.init(q: cq ).handle()
-            quoternion = motion!.attitude.quaternion
             motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
@@ -140,23 +137,13 @@ struct ContentView: View {
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
-//            absoluteFallLineAttitude =  QuaternionToEuler.init(q: skiTurnPhase.absoluteFallLineAttitude).handle()
-//                    targetDirectionAccelerationAndRelativeAttitude = QuaternionToEuler.init(q: skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude).handle()
-//            turnYawingSide = skiTurnPhase.turnYawingSide
-//            turnChronologicalPhase = skiTurnPhase.turnPhase
-//            turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
-//                    let ac :simd_double3 = simd_axis(skiTurnPhase.absoluteFallLineAttitude
-//                                       * simd_quatd(
-//                            angle: Measurement(value: 90, unit: UnitAngle.degrees)
-//                                    .converted(to: .radians).value,
-//                            axis: simd_double3(0 , 1 ,0))
-//
-//                    ) * simd_double3(
-//                                motion!.userAcceleration.x , motion!.userAcceleration.y
-//                                ,motion!.userAcceleration.z)
+                    absoluteFallLineAttitude =  skiTurnPhase.fallLineAttitude
+            turnYawingSide = skiTurnPhase.turnYawingSide
+            turnChronologicalPhase = skiTurnPhase.turnPhase
+            turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
 //                    barLength = ac.x * 300
 //                    barLengthR = ac.y * 300
-//                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
+                    barLengthZ = skiTurnPhase.fallLineAcceleration * 100
 //            headPhoneMotionDeviceLeft = QuaternionToEuler.init(q:skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude / simd_quatd(
 //                    ix: motion!.attitude.quaternion.x,
 //                    iy: motion!.attitude.quaternion.y,

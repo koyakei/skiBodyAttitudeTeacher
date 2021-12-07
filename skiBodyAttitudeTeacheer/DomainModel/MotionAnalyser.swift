@@ -64,11 +64,11 @@ public struct MotionAnalyzerManager {
 //                AudioServicesPlaySystemSound(soundIdRing)
 //            }
         
-        SineWave.shared.hz = Float(440)
-                    SineWave.shared.play()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    SineWave.shared.pause()
-                }
+//        SineWave.shared.hz = Float(440)
+//                    SineWave.shared.play()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                    SineWave.shared.pause()
+//                }
     }
 
     func skiTurnSwitch(turnPhase: SkiTurnPhase) {

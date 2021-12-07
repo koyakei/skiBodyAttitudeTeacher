@@ -19,6 +19,7 @@ struct SkiTurnPhase {
     let timeStampSince1970: TimeInterval
     let absoluteAcceleration: CMAcceleration
     let rotationRate: CMRotationRate
+    let fallLineAttitude: Attitude
 }
 
 struct ElapsedTimeAndV{

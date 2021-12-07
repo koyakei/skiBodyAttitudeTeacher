@@ -16,6 +16,6 @@ struct FallLineOrthogonalAccelerationCalculator{
                        userAttitude: simd_quatd
     ) -> TargetDirectionAccelerationAndRelativeAttitude{
         let targetQAttitude = FallLineOutSideOrthogonalDirectionFinder.init(fallLineAttitude: absoluteFallLineAttitude, turnYawingSide: turnYawingSide).handle()
-        return TargetDirectionAccelerationAndRelativeAttitude.init(targetDirectionAcceleration: AccelerationForTargetAngle.handle(userAcceleration: userAcceleration,                                                                                              userAttitude: userAttitude, targetAttitude: targetQAttitude), relativeAttitude: targetQAttitude)
+        return TargetDirectionAccelerationAndRelativeAttitude.init(targetDirectionAcceleration: AccelerationForTargetAngle.getMatrix(userAcceleration: userAcceleration,                                                                                              userAttitude: userAttitude, targetAttitude: targetQAttitude), relativeAttitude: targetQAttitude)
     }
 }
