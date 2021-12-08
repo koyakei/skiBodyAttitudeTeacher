@@ -29,7 +29,7 @@ struct Tone {
         for ch in (0..<channels) {
             let samples = buffer?.floatChannelData?[ch]
             for n in 0..<Int(buffer!.frameLength) {
-                samples?[n] = sinf(Float(2.0 * M_PI) * 44.0 * Float(n) / sampleRate)
+                samples?[n] = sinf(Float(2.0 * .pi) * 44.0 * Float(n) / sampleRate)
             }
         }
 

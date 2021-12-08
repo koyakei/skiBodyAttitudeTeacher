@@ -6,8 +6,13 @@ import Foundation
 import CoreMotion
 import simd
 protocol TurnPhaseAnalyzerProtocol {
-    var turnPhaseFinder: TurnChronologicalPhaseFinder { get }
-    var turnPeriodFinder: TurnSideChangingPeriodFinder { get }
+    var turnChronologicalPhaseFinder: TurnChronologicalPhaseFinder { get }
+    var turnSideChangingPeriodFinder: TurnSideChangingPeriodFinder { get }
+    var turnSwitchingDirectionFinder: TurnSwitchingDirectionFinder { get }
+    var absoluteQuaternionFallLineFinder: AbsoluteQuaternionFallLineFinder { get }
+}
+extension TurnPhaseAnalyzerProtocol {
+    
 }
 
 struct CenterOfMassTurnPhaseAnalyzer {

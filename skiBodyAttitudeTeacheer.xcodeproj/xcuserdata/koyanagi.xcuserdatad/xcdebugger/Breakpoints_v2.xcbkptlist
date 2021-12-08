@@ -287,8 +287,8 @@
             filePath = "skiBodyAttitudeTeacheer/Library/General/AccelerationForTargetAngle.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "AccelerationForTargetAngle"
             landmarkType = "14">
          </BreakpointContent>
@@ -303,8 +303,8 @@
             filePath = "skiBodyAttitudeTeacheer/Library/General/AccelerationForTargetAngle.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "AccelerationForTargetAngle"
             landmarkType = "14">
          </BreakpointContent>
@@ -351,8 +351,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "handle(movingPhase:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -383,8 +383,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/MotionAnalyser.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "getScore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -399,8 +399,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/MotionAnalyser.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "getScore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -495,8 +495,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/MotionAnalyser.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "getScore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -543,8 +543,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "handle(movingPhase:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -559,10 +559,10 @@
             filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "ContentView"
-            landmarkType = "14">
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "startRecord()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -575,8 +575,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "handle(movingPhase:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -591,26 +591,10 @@
             filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "ContentView"
-            landmarkType = "14">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "35F784BE-8484-4DCA-9770-00BB13EB1089"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "ContentView"
-            landmarkType = "14">
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "startRecord()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -627,6 +611,38 @@
             endingLineNumber = "25"
             landmarkName = "ContentView"
             landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33019DDF-8CC1-4C37-B654-F2CD569841A1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/Library/ToneOutputUnit.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "makeBuffer(fade:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EF17E95-2869-47EC-8CA9-278E6B9D9875"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "handle(movingPhase:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

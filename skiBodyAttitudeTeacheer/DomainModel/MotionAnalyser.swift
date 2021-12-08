@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreMotion
+import AudioToolbox
 
 public struct MotionAnalyzerManager {
     var delegate: MotionFeedBackerDelegate =
@@ -56,7 +57,13 @@ public struct MotionAnalyzerManager {
 
     // インターフェイスにして共通化したい
     func skiTurnMax() {
-        getScore()
+//        getScore()
+        
+//        SineWave.shared.hz = Float(440)
+//                    SineWave.shared.play()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                    SineWave.shared.pause()
+//                }
     }
 
     func skiTurnSwitch(turnPhase: SkiTurnPhase) {
