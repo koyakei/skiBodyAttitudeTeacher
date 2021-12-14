@@ -8,8 +8,8 @@
 import Foundation
 import CoreMotion
 import simd
+
 struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
-    
     var turnChronologicalPhaseFinder: TurnChronologicalPhaseFinder = TurnChronologicalPhaseFinder.init()
     var turnSideChangingPeriodFinder: TurnSideChangingPeriodFinder =
             TurnSideChangingPeriodFinder.init()
@@ -32,15 +32,22 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: fallLineAttitude, absoluteFallLineQuaternion: absoluteFallLineQuaternion, turnYawingSide: turnYawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userQuaternion: movingPhase.quaternion, userAttitude: movingPhase.attitude)
         let fallLineAcceleration = AccelerationForTargetAngle.getAcceleration(userAcceleration: movingPhase.absoluteUserAcceleration,
                                           userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineQuaternion)
-        if turnChronologicalPhase == .TurnMax{
+        let skiTurnPhase = SkiTurnPhase.init(turnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection,
+                                            turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineQuaternion,
+                                                   fallLineAcceleration: fallLineAcceleration, turnPhase: turnChronologicalPhase,
+                                            orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
+                                                   absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
+                                                   rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude)
+        switch turnChronologicalPhase {
+        case .TurnMax:
             MotionAnalyzerManager.shared.skiTurnMax()
-        }
-        return SkiTurnPhase.init(turnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection,
-                          turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineQuaternion,
-                                 fallLineAcceleration: fallLineAcceleration, turnPhase: turnChronologicalPhase,
-                          orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
-                                 absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
-                                 rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude)
+        case .MaxToSwitch:
+            MotionAnalyzerManager.shared.skiTurnMaxToSwitch(turnPhase: skiTurnPhase)
+        case .SwitchToMax:
+            MotionAnalyzerManager.shared.skiTurnSwitchToMax(turnPhase: skiTurnPhase)
+        }        // ターンマックス以後
+        
+        return skiTurnPhase
     }
 }
 

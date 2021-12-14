@@ -6,7 +6,7 @@ import Foundation
 import CoreMotion
 import simd
 
-struct SkiTurnPhase {
+struct SkiTurnPhase : TooMuchInsideAngleFinderProtocol{
     let turnYawingSide: TurnYawingSide
     let turnSwitchingDirection: TurnSwitchingDirection
     let turnSideChangePeriod: TimeInterval

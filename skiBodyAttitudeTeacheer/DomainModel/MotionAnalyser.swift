@@ -27,7 +27,9 @@ public struct MotionAnalyzerManager {
 
     fileprivate init() {
     }
-
+    
+    public var turnMaxBeep = false
+    public var 内倒警告 = false
     mutating func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
         let now = CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime)
@@ -39,15 +41,7 @@ public struct MotionAnalyzerManager {
 
     mutating func receiveAirPodMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> CenterOfMassTurnPhase? {
-//        if 磁北偏差 != nil {
-//            if ariPodMotionReceiver == nil {
-//                ariPodMotionReceiver = AirPodOnHeadMotionReceiver.init(磁北偏差: 磁北偏差!)
-//            }
-//            let va = ariPodMotionReceiver!.receiver(motion,
-//                                                    CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
-//            unifyBodyAndSkiTurn.receive(turnPhase: va)
-//            return va
-//        }
+//        if 磁北偏差 != nil {w
         return nil
     }
 
@@ -58,16 +52,33 @@ public struct MotionAnalyzerManager {
     // インターフェイスにして共通化したい
     func skiTurnMax() {
 //        getScore()
-        
-//        SineWave.shared.hz = Float(440)
-//                    SineWave.shared.play()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                    SineWave.shared.pause()
-//                }
+        if turnMaxBeep {
+            turnMaxBeepSound()
+        }
+    }
+    
+    private func turnMaxBeepSound(){
+        SineWave.shared.hz = Float(440)
+                    SineWave.shared.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    SineWave.shared.pause()
+                }
     }
 
     func skiTurnSwitch(turnPhase: SkiTurnPhase) {
 
+    }
+    
+    func skiTurnMaxToSwitch(turnPhase: SkiTurnPhase) {
+        if 内倒警告 && turnPhase.badRollRotationRate &&
+            TimingStone.handle(timeIntervalSince1970: turnPhase.timeStampSince1970) {
+            turnMaxBeepSound()
+
+        }
+    }
+    
+    func skiTurnSwitchToMax(turnPhase: SkiTurnPhase) {
+        
     }
 
     func bodyTurnMax(turnPhase: SkiTurnPhase) {
@@ -90,3 +101,13 @@ public struct MotionAnalyzerManager {
     }
 }
 
+struct TimingStone{
+    static func handle(timeIntervalSince1970: TimeInterval) -> Bool{
+        let date : Date = Date(timeIntervalSince1970: timeIntervalSince1970)
+        let calendar : Calendar = NSCalendar.current
+        let components : DateComponents = calendar.dateComponents([.nanosecond], from: date)
+        let nanoSeconds: Int = components.nanosecond ?? 0
+        let millSeconds = Int(nanoSeconds / 100000)
+        return millSeconds % 10 == 0
+    }
+}

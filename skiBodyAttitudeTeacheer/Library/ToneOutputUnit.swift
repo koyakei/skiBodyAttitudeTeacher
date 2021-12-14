@@ -7,9 +7,80 @@
 
 import Foundation
 import AVFoundation
+import UIKit
+import AudioKit
+import AudioKitUI
+import AudioToolbox
+import SoundpipeAudioKit
+import Combine
+
+struct ToneStep{
+    static func hight(_ num : Float) -> Float {
+        let base : Float = 440.0
+        let min: Float = -24
+        return base * pow(pow(2, num + min), 1/12)
+    }
+}
+
+struct DynamicOscillatorData {
+    var isPlaying: Bool = false
+    var frequency: AUValue = 440
+    var amplitude: AUValue = 0.1
+    var rampDuration: AUValue = 0
+}
+
+class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
+
+    let engine = AudioEngine()
+
+    func noteOn(note: MIDINoteNumber) {
+        data.isPlaying = true
+        data.frequency = note.midiNoteToFrequency()
+    }
+
+    func noteOff(note: MIDINoteNumber) {
+        data.isPlaying = false
+    }
+
+    @Published var data = DynamicOscillatorData() {
+        didSet {
+            if data.isPlaying {
+                osc.start()
+                osc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
+                osc.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
+            } else {
+                osc.amplitude = 0.0
+            }
+        }
+    }
+
+    var osc = DynamicOscillator()
+
+    init() {
+        engine.output = osc
+    }
+
+    func start() {
+        osc.amplitude = 0.2
+        do {
+            try engine.start()
+        } catch let err {
+            Log(err)
+        }
+    }
+
+    func stop() {
+        data.isPlaying = false
+        osc.stop()
+        engine.stop()
+    }
+}
 
 class SineWave {
 
+    
+    var oscillator = Oscillator()
+    
     private enum Fade {
         case none
         case `in`
@@ -50,7 +121,7 @@ class SineWave {
         stopEngine()
     }
 
-    private func updateBuffers() {
+    func updateBuffers() {
         buffer = makeBuffer()
         fadeInBuffer = makeBuffer(fade: .in)
         fadeOutBuffer = makeBuffer(fade: .out)
@@ -82,7 +153,9 @@ class SineWave {
     }
 
     func play() {
-        if audioEngine.isRunning && !player.isPlaying {
+        
+        oscillator.play()
+        if audioEngine.isRunning {
             player.play()
             player.scheduleBuffer(fadeInBuffer) { [weak self] in
                 self?.semaphore.signal()
@@ -93,8 +166,10 @@ class SineWave {
 
     func pause() {
         if player.isPlaying {
-            switch semaphore.wait(timeout: .now() + 0.1) {
+            switch semaphore.wait(timeout: .now()) {
             case .success:
+//                self.pause()
+//                break
                 player.scheduleBuffer(fadeOutBuffer, at: nil,
                                       options: .interruptsAtLoop,
                                       completionHandler: { [weak self] in

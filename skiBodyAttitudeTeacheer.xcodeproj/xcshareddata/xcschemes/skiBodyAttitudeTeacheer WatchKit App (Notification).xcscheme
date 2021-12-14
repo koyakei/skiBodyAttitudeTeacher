@@ -56,8 +56,10 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "skiBodyAttitudeTeacheer WatchKit Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/skiBodyAttitudeTeacheer WatchKit App">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA3C94172722636E007D5325"
@@ -65,7 +67,7 @@
             BlueprintName = "skiBodyAttitudeTeacheer WatchKit App"
             ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,8 +77,10 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "skiBodyAttitudeTeacheer WatchKit Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/skiBodyAttitudeTeacheer WatchKit App">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA3C94172722636E007D5325"
@@ -84,7 +88,16 @@
             BlueprintName = "skiBodyAttitudeTeacheer WatchKit App"
             ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA3C94172722636E007D5325"
+            BuildableName = "skiBodyAttitudeTeacheer WatchKit App.app"
+            BlueprintName = "skiBodyAttitudeTeacheer WatchKit App"
+            ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

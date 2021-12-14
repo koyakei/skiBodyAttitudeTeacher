@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreMotion
 import simd
+
 //let motionWriter = MotionWriter()
 //let motionWriterHeadPhone = MotionWriter()
 //let motionWriterWatch = WatchMotionWriter()
@@ -31,16 +32,56 @@ struct ContentView: View {
     @State var barLengthZ : CGFloat = 0
     @State var headPhoneMotionDeviceLeft: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var headPhoneMotionDeviceRight: CMDeviceMotion?
+    @State var rollDegree: Double = 0
+    @State var rollTone: Bool = false
+    @StateObject var conductor = DynamicOscillatorConductor()
 
     var body: some View {
         
         VStack{
-            
+            HStack{
             Button(action: startRecord) {
-                Text("Start")
+                Text("Start motion ")
             }
             Button(action: stopRecord) {
-                Text("Stop")
+                Text("Stop motion")
+            }
+            }
+            HStack{
+                Button(action: {
+                    self.conductor.data.isPlaying.toggle()
+                }) {
+                    Text(self.conductor.data.isPlaying ? "roll tone STOP" : "roll tone START")
+                    
+                }
+            }.navigationBarTitle(Text("Dynamic Oscillator"))
+                .onAppear {
+                    self.conductor.start()
+                }
+                .onDisappear {
+                    self.conductor.stop()
+                }
+            
+            HStack{
+                Button(action: {
+                    MotionAnalyzerManager.shared.内倒警告 = true
+                }) {
+                    Text("Start 内倒警告 ")
+                }
+                Button(action: {
+                    MotionAnalyzerManager.shared.内倒警告 = false
+                }) {
+                    Text("Stop 内倒警告")
+                }
+            }
+            
+            HStack{
+                Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = true}) {
+                    Text("turn max beep start ")
+                }
+                Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = false}) {
+                    Text("turn max beep stop")
+                }
             }
             VStack {
                 HStack{
@@ -90,23 +131,23 @@ struct ContentView: View {
 
         Rectangle()
                 .fill(Color.yellow)
-                .frame(width: barLengthZ + 150, height: 10)
-        Text("⇑")
-            .background(Color.green)
-            .font(.largeTitle)
-            .rotationEffect(Angle.init(radians: headPhoneMotionDeviceLeft.yaw))
+                .frame(width: barLengthZ + 10, height: 10)
+        Text("\(rollDegree)")
         Text("⇑")
             .background(Color.green)
             .font(.largeTitle)
             .rotationEffect(Angle.init(radians: headPhoneMotionDeviceRight?.attitude.yaw ?? 0))
     }
-
+    func stopRollTone(){
+        rollTone = false
+    }
     func startRecord(){
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
                     currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
                     
+//                    barLengthZ = CGFloat(Measurement.init(value: motion!.rotationRate.y, unit: UnitAngle.radians).converted(to: UnitAngle.degrees).value * 2.0)// 右プラス
             let cq = simd_quatd(
                     ix: motion!.attitude.quaternion.x,
                     iy: motion!.attitude.quaternion.y,
@@ -126,26 +167,10 @@ struct ContentView: View {
                         simd_double3(motion!.userAcceleration.x, motion!.userAcceleration.y,
                                      motion!.userAcceleration.z)
                     ) * 100
+                    rollDegree = Double(abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
+                                                        .converted(to: .degrees).value))))
                     
-//                    AccelerationForTargetAngle.getAcceleration(userAcceleration: motion!.userAcceleration,                                                        userAttitude: cq - cq, targetAttitude:
-//                                                                cq - cq
-////                                                                simd_normalize(cq * AngleShifter.yawRotation(0))
-//                    )
-                    let date : Date = Date()
-                    let calendar : Calendar = NSCalendar.current
-                    let components : DateComponents = calendar.dateComponents([.nanosecond], from: date)
-                    let nanoSeconds: Int = components.nanosecond ?? 0
-                    let millSeconds = Int(nanoSeconds / 100000)
-                    if millSeconds % 10 == 0 {
-//                        SineWave.shared
-//
-//            SineWave.shared.hz = Float(abs(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
-//                                                    .converted(to: .degrees).value) * 100.0)
-//                        SineWave.shared.play()
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                        SineWave.shared.pause()
-//                    }
-                    }
+                    
             motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
@@ -162,30 +187,33 @@ struct ContentView: View {
             turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
 
                     barLengthR = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration * 100
-                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
-//            headPhoneMotionDeviceLeft = QuaternionToEuler.init(q:skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.relativeAttitude / simd_quatd(
-//                    ix: motion!.attitude.quaternion.x,
-//                    iy: motion!.attitude.quaternion.y,
-//                    iz: motion!.attitude.quaternion.z,
-//                    r: motion!.attitude.quaternion.w
-//            )).handle()
+//                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
+                    conductor.data.frequency = AUValue(ToneStep.hight(
+                        abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
+                                                                                    .converted(to: .degrees).value)))))
+                    if TimingStone.handle(timeIntervalSince1970:
+                                            skiTurnPhase.timeStampSince1970) {
+                        if rollTone {
+                            
+                        }
+                    }
                 }
-        
-        // 磁北が取れないのでどうするか？　どこかでキャリブレーションしないとね。
-//        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
-//
-//            let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
-//                                         ProcessInfo
-//                                                 .processInfo.systemUptime
-//            )
-//            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
+        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
+            
+            let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
+                                         ProcessInfo
+                                                 .processInfo.systemUptime
+            )
+            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
         }
+    }
+        
    
     
     func stopRecord(){
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
-        SineWave.shared.pause()
+        
 //        let myUnit = ToneOutputUnit()
 //        myUnit.setFrequency(freq: 440)
 //                                abs(Double(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
@@ -193,11 +221,6 @@ struct ContentView: View {
 //        myUnit.setToneVolume(vol: 0.5)
 //        myUnit.enableSpeaker()
 //        myUnit.setToneTime(t:100)
-        
-//        motionWriter.close()
-//        motionWriterHeadPhone.close()
-//        motionWriterWatch.close()
-//        sensorKitManager.stopRecording()
 
     }
 
@@ -207,4 +230,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 }
-

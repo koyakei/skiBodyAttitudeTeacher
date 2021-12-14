@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AudioKit",
+        "repositoryURL": "https://github.com/AudioKit/AudioKit.git",
+        "state": {
+          "branch": null,
+          "revision": "9d25f6c1e40975f321786d9b70502b4d74421707",
+          "version": "5.2.3"
+        }
+      },
+      {
+        "package": "AudioKitUI",
+        "repositoryURL": "https://github.com/koyakei/AudioKitUI",
+        "state": {
+          "branch": "main",
+          "revision": "da1f7de619588f9199d33e59540f66cda464e7c7",
+          "version": null
+        }
+      },
+      {
+        "package": "KissFFT",
+        "repositoryURL": "https://github.com/AudioKit/KissFFT",
+        "state": {
+          "branch": null,
+          "revision": "dd0636e151724b8ba2e0908eba4d99a6ff24d00c",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "SoundpipeAudioKit",
+        "repositoryURL": "https://github.com/AudioKit/SoundpipeAudioKit.git",
+        "state": {
+          "branch": null,
+          "revision": "3b92a11c31789073d1f48db8fa36ffa4b98a0dc7",
+          "version": "5.2.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

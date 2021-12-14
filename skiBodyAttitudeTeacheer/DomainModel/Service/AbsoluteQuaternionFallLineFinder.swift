@@ -15,7 +15,7 @@ struct AbsoluteQuaternionFallLineFinder {
     var absoluteAttitudeRecords: [AbsoluteQuaternionRecord] = []
 
     mutating func handle(quaternion: simd_quatd, timeStampSince1970: TimeInterval, yawingPeriod: TimeInterval) -> simd_quatd {
-        if absoluteAttitudeRecords.count > 200{
+        if absoluteAttitudeRecords.count > 500{
             absoluteAttitudeRecords.removeFirst()
         }
         absoluteAttitudeRecords.append(AbsoluteQuaternionRecord.init(quaternion: quaternion, timeStampSince1970: timeStampSince1970))
