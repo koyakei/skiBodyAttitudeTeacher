@@ -4,6 +4,8 @@
 
 import Foundation
 import simd
+import SceneKit
+
 enum TurnPhase {
     case Turn(turnChronologicalPhase: TurnChronologicalPhase)
     case Straight
@@ -44,7 +46,12 @@ enum TurnChronologicalPhase  : String{
     case SwitchToMax = "SwitchToMax"
     case TurnMax = "TurnMax"
     case MaxToSwitch = "MaxToSwitch"
+    case Turn1to3 = "Turn1to3"
+    case Turn3to6 = "Turn3to6"
+    case Turn4to6 = "Turn4to6"
+    case Turn3to3 = "Turn3to3"
 }
+
 
 // ターンマックスだけを見つける
 struct TurnChronologicalPhaseDefinition {
@@ -99,16 +106,29 @@ struct TurnChronologicalPhaseDefinition {
     }
 }
 
+
+
 struct TurnInitiationOrEndDiscriminator {
     var isTurnMaxPassed: Bool = false
-
     mutating func handle(turnSide: TurnYawingSide,
                          absoluteFallLineAttitude: Attitude,
-                         currentAttitude: Attitude
+                         absoluteFallLineByQuotanion: simd_quatf,
+                         currentAttitude: Attitude,
+                         currentAttitudeByQuotanion: simd_quatf,
+                         lastTurnSwitchAngleQ: simd_quatf
     ) -> TurnChronologicalPhase {
         let turnMaxPassedChecker: TurnChronologicalPhaseDefinition = TurnChronologicalPhaseDefinition.init(turnYawingSide: turnSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
         switch turnMaxPassedChecker.handle() {
         case .SwitchToMax:
+            let turn1to3 = (simd_normalize(lastTurnSwitchAngleQ + (2 * absoluteFallLineByQuotanion)))
+            let n = SCNNode()
+            n.simdOrientation = turn1to3
+            if((lastTurnSwitchAngleQ - turn1to3).axis.z < (lastTurnSwitchAngleQ - currentAttitudeByQuotanion).axis.z){
+                return TurnChronologicalPhase.Turn1to3
+            }
+            // 最後のターンマックス - 現在の姿勢 = ターンマックスと現在の姿勢の角度差
+            // turn1to3 がターンフェイズの切れ目 最後のターンマックス - ターンフェイズ1/3 = ターンマックスと 1/3 の角度差
+                //　ターンマックスと現在の姿勢の角度差 < ターンマックスと 1/3 の角度差
             return TurnChronologicalPhase.SwitchToMax
         case .TurnMax:
             isTurnMaxPassed = true
@@ -119,6 +139,14 @@ struct TurnInitiationOrEndDiscriminator {
             }
             isTurnMaxPassed = true
             return TurnChronologicalPhase.TurnMax
+        case .Turn1to3:
+            return TurnChronologicalPhase.TurnMax
+        case .Turn3to6:
+            return TurnChronologicalPhase.TurnMax
+        case .Turn4to6:
+            return TurnChronologicalPhase.TurnMax
+        case .Turn3to3:
+            return TurnChronologicalPhase.TurnMax
         }
     }
 }
@@ -126,7 +154,7 @@ struct TurnInitiationOrEndDiscriminator {
 struct TurnChronologicalPhaseFinder {
     var switch後ずっとKeepか: Switch後ずっとKeepか = Switch後ずっとKeepか.init()
     var turnInitiationOrEndDiscriminator: TurnInitiationOrEndDiscriminator = TurnInitiationOrEndDiscriminator.init()
-
+    
     mutating func handle(currentAttitude: Attitude,
                          absoluteFallLineAttitude: Attitude,
                          currentTurnYawingSide: TurnYawingSide,

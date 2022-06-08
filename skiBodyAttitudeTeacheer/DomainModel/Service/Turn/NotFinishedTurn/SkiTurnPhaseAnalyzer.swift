@@ -22,6 +22,7 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: turnYawingSide)
         let absoluteFallLineQuaternion: simd_quatd = absoluteQuaternionFallLineFinder.handle(quaternion: movingPhase.quaternion, timeStampSince1970: movingPhase.timeStampSince1970, yawingPeriod: turnSideChangePeriod)
         let fallLineAttitude: Attitude = QuaternionToEuler.init(q: absoluteFallLineQuaternion).handle()
+        
         let turnChronologicalPhase: TurnChronologicalPhase = turnChronologicalPhaseFinder.handle(
             currentAttitude: movingPhase.attitude, absoluteFallLineAttitude: fallLineAttitude
         , currentTurnYawingSide: turnYawingSide, turnSwitchingDirection: turnSwitchingDirection)

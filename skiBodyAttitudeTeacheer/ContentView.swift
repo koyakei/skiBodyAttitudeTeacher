@@ -14,6 +14,7 @@ import simd
 //let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
+
 import AVFoundation
 import AudioToolbox
 struct ContentView: View {
@@ -47,6 +48,7 @@ struct ContentView: View {
                 Text("Stop motion")
             }
             }
+            
             HStack{
                 Button(action: {
                     self.conductor.data.isPlaying.toggle()
@@ -81,6 +83,22 @@ struct ContentView: View {
                 }
                 Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = false}) {
                     Text("turn max beep stop")
+                }
+            }
+            HStack{
+                Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = true}) {
+                    Text("turn 1/3 beep start ")
+                }
+                Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = false}) {
+                    Text("turn 1/3 beep stop")
+                }
+            }
+            HStack{
+                Button(action: {
+                     BLEPeripheral.init()
+                    
+                }) {
+                    Text("boot ble ")
                 }
             }
             VStack {

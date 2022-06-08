@@ -118,6 +118,7 @@
 		BA44FF7E2767A1B8002653AB /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF7D2767A1B8002653AB /* AudioKit */; };
 		BA44FF8327682107002653AB /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF8227682107002653AB /* AudioKitUI */; };
 		BA44FF862768219B002653AB /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF852768219B002653AB /* SoundpipeAudioKit */; };
+		BA4C93CB27687BEE00E2C749 /* BLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C93CA27687BEE00E2C749 /* BLService.swift */; };
 		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
 		BAA0A9E3272C2C3D00FEDF23 /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
@@ -277,6 +278,7 @@
 		BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppTests.swift; sourceTree = "<group>"; };
 		BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA4C93CA27687BEE00E2C749 /* BLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLService.swift; sourceTree = "<group>"; };
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 				2EF634B77308022ECB76158C /* AbsoluteFallLineAttitudeFinder.swift */,
 				2EF634D7519FCE020ADFAE6E /* RotationAngleFinder.swift */,
 				2EF63D859CDF8D5A3E725AC6 /* AbsoluteQuaternionFallLineFinder.swift */,
+				BA4C93CA27687BEE00E2C749 /* BLService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4C93CB27687BEE00E2C749 /* BLService.swift in Sources */,
 				BAF25FF82759C80B009992C9 /* ToneSub.swift in Sources */,
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
 				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
