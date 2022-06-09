@@ -10,7 +10,7 @@ struct CenterOfMassTurnPhase {
     let turnSwitchingDirection: TurnSwitchingDirection
     let turnSideChangePeriod: TimeInterval
     let absoluteFallLineAttitude: Attitude
-    let turnPhase: TurnChronologicalPhase
+    let turnPhase: TurnPhaseByStartMaxEnd
     let fallLineOrthogonalAccelerationAndRelativeAttitude:
             TargetDirectionAccelerationAndRelativeAttitude
     let relativeAcceleration: CMAcceleration // 磁北偏差を直さない

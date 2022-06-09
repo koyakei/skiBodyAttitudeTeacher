@@ -25,7 +25,7 @@ struct ContentView: View {
     @State var yawingPeriod: Double = 0
     @State var accuracy: CMMagneticFieldCalibrationAccuracy = CMMagneticFieldCalibrationAccuracy.high
     @State var motionDate: Date = Date.now
-    @State var turnChronologicalPhase:TurnChronologicalPhase = TurnChronologicalPhase.TurnMax
+    @State var turnChronologicalPhase:TurnPhaseByStartMaxEnd = TurnPhaseByStartMaxEnd.TurnMax
     @State var orthogonalAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var barLength : CGFloat = 0
     @State var barLengthR : CGFloat = 0
@@ -86,10 +86,10 @@ struct ContentView: View {
                 }
             }
             HStack{
-                Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = true}) {
+                Button(action: {MotionAnalyzerManager.shared.turn1to3Beep = true}) {
                     Text("turn 1/3 beep start ")
                 }
-                Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = false}) {
+                Button(action: {MotionAnalyzerManager.shared.turn1to3Beep = false}) {
                     Text("turn 1/3 beep stop")
                 }
             }

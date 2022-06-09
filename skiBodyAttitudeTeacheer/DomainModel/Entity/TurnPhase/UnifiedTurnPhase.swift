@@ -20,7 +20,7 @@ struct UnifiedTurnPhase {
     let skiAbsoluteAcceleration: simd_double3
     let skiTimeStampSince1970: TimeInterval
     let bodyTimeStampSince1970: TimeInterval
-    let skiTurnChronologicalPhase: TurnChronologicalPhase
+    let skiTurnChronologicalPhase: TurnPhaseByStartMaxEnd
 
 //    init(skiTurnPhase: SkiTurnPhase,
 //         centerOfMassTurnPhase: CenterOfMassTurnPhase
@@ -95,14 +95,14 @@ struct UnifiedTurnPhase {
 extension Collection where Element == UnifiedTurnPhase {
     func filterTurnInitialize() -> [Element] {
         return self.filter{
-            $0.skiTurnChronologicalPhase == TurnChronologicalPhase.SwitchToMax
+            $0.skiTurnChronologicalPhase == TurnPhaseByStartMaxEnd.SwitchToMax
         }
 
     }
 
     func filterTurnEnd() -> [Element] {
         self.filter{
-            $0.skiTurnChronologicalPhase == TurnChronologicalPhase.MaxToSwitch
+            $0.skiTurnChronologicalPhase == TurnPhaseByStartMaxEnd.MaxToSwitch
         }
     }
 }

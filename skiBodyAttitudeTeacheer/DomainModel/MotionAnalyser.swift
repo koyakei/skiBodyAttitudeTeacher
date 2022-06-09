@@ -29,6 +29,7 @@ public struct MotionAnalyzerManager {
     }
     
     public var turnMaxBeep = false
+    public var turn1to3Beep = false
     public var 内倒警告 = false
     mutating func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
@@ -53,6 +54,12 @@ public struct MotionAnalyzerManager {
     func skiTurnMax() {
 //        getScore()
         if turnMaxBeep {
+            turnMaxBeepSound()
+        }
+    }
+    
+    func skiTurn1to3(){
+        if turn1to3Beep{
             turnMaxBeepSound()
         }
     }

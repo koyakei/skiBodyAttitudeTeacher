@@ -7,7 +7,7 @@ import simd
 import SceneKit
 
 enum TurnPhase {
-    case Turn(turnChronologicalPhase: TurnChronologicalPhase)
+    case Turn(turnChronologicalPhase: TurnPhaseByStartMaxEnd)
     case Straight
     case Stop
     case TurnSwitch(switchingDirection: TurnSwitchingDirection)
@@ -42,14 +42,10 @@ extension Collection where Element == TurnYawingSide{
 
 }
 
-enum TurnChronologicalPhase  : String{
+enum TurnPhaseByStartMaxEnd  : String{
     case SwitchToMax = "SwitchToMax"
     case TurnMax = "TurnMax"
     case MaxToSwitch = "MaxToSwitch"
-    case Turn1to3 = "Turn1to3"
-    case Turn3to6 = "Turn3to6"
-    case Turn4to6 = "Turn4to6"
-    case Turn3to3 = "Turn3to3"
 }
 
 
@@ -58,30 +54,30 @@ struct TurnChronologicalPhaseDefinition {
     let turnYawingSide: TurnYawingSide
     let absoluteFallLineAttitude: Attitude
     let currentAttitude: Attitude
-    func 右ターンの時にターンマックスを過ぎているか() -> TurnChronologicalPhase {
+    func 右ターンの時にターンマックスを過ぎているか() -> TurnPhaseByStartMaxEnd {
         if turnMax() {
-            return TurnChronologicalPhase.TurnMax
+            return TurnPhaseByStartMaxEnd.TurnMax
         } else if (turnYawingSide == TurnYawingSide.RightYawing && currentAttitude.yaw <
                 absoluteFallLineAttitude.yaw) {
-            return TurnChronologicalPhase.MaxToSwitch
+            return TurnPhaseByStartMaxEnd.MaxToSwitch
         } else if (turnYawingSide == TurnYawingSide.RightYawing && currentAttitude.yaw >
                 absoluteFallLineAttitude.yaw) {
-            return TurnChronologicalPhase.SwitchToMax
+            return TurnPhaseByStartMaxEnd.SwitchToMax
         }
-        return TurnChronologicalPhase.SwitchToMax
+        return TurnPhaseByStartMaxEnd.SwitchToMax
     }
 
-    func 左ターンの時にターンマックスを過ぎているか() -> TurnChronologicalPhase {
+    func 左ターンの時にターンマックスを過ぎているか() -> TurnPhaseByStartMaxEnd {
         if turnMax() {
-            return TurnChronologicalPhase.TurnMax
+            return TurnPhaseByStartMaxEnd.TurnMax
         } else if (turnYawingSide == TurnYawingSide.LeftYawing && currentAttitude.yaw >
                 absoluteFallLineAttitude.yaw) {
-            return TurnChronologicalPhase.MaxToSwitch
+            return TurnPhaseByStartMaxEnd.MaxToSwitch
         } else if (turnYawingSide == TurnYawingSide.LeftYawing && currentAttitude.yaw <
                 absoluteFallLineAttitude.yaw) {
-            return TurnChronologicalPhase.SwitchToMax
+            return TurnPhaseByStartMaxEnd.SwitchToMax
         }
-        return TurnChronologicalPhase.SwitchToMax
+        return TurnPhaseByStartMaxEnd.SwitchToMax
     }
 
     func turnMax() -> Bool {
@@ -91,7 +87,7 @@ struct TurnChronologicalPhaseDefinition {
 
     // ターンマックス前なら false ターンマックス後ならtrue を返す
     // TODO: 右ターンの時にターンマックスを過ぎているかをこのクラスに入れるほうがいいと思うう
-    func handle() -> TurnChronologicalPhase {
+    func handle() -> TurnPhaseByStartMaxEnd {
         // ヨーイング方向によって　以前の角度と今の角度を比較する
         // 以前の角度からのフォールラインのまたぎ越しを判定する
         switch turnYawingSide{
@@ -100,55 +96,73 @@ struct TurnChronologicalPhaseDefinition {
         case .LeftYawing:
             return 左ターンの時にターンマックスを過ぎているか()
         case .Straight:
-            return TurnChronologicalPhase.SwitchToMax
+            return TurnPhaseByStartMaxEnd.SwitchToMax
         }
         
     }
 }
 
+struct FindTurnPhaseBy100{
+    
+    
+    func handle(currentRotationEullerAngleFromTurnSwitching: Float,
+                oneTurnDiffrentialAngle: Float)-> Float{
+        let percent = currentRotationEullerAngleFromTurnSwitching / oneTurnDiffrentialAngle
+        if percent > 1 {
+            return 1
+        } else if percent < 0 {
+            return 0
+        } else {
+            return percent
+        }
+    }
+}
 
+struct CurrentDiffrentialFinder{
+    func handle(lastTurnSwitchAngle: simd_quatf, currentQuaternion: simd_quatf) -> Float{
+        return abs(QuaternionToEullerAngleDifferential.handle(base: lastTurnSwitchAngle, target: currentQuaternion).z)
+    }
+}
+
+struct OneTurnDiffrentialFinder {
+    var lastTurnSwitchAngle: simd_quatf = simd_quatf.init()
+    var oneTurnDiffrentialEuller: Float = Float(Measurement(value: 45.0, unit: UnitAngle.degrees)
+        .converted(to: .radians).value)
+    
+    mutating func handle(isTurnSwitched: Bool ,currentTurnSwitchAngle: simd_quatf) -> Float{
+        if (isTurnSwitched){
+            oneTurnDiffrentialEuller = abs(QuaternionToEullerAngleDifferential.handle(base: lastTurnSwitchAngle, target: currentTurnSwitchAngle).z)
+            lastTurnSwitchAngle = currentTurnSwitchAngle
+        }
+        return oneTurnDiffrentialEuller
+    }
+}
 
 struct TurnInitiationOrEndDiscriminator {
     var isTurnMaxPassed: Bool = false
     mutating func handle(turnSide: TurnYawingSide,
                          absoluteFallLineAttitude: Attitude,
-                         absoluteFallLineByQuotanion: simd_quatf,
-                         currentAttitude: Attitude,
-                         currentAttitudeByQuotanion: simd_quatf,
-                         lastTurnSwitchAngleQ: simd_quatf
-    ) -> TurnChronologicalPhase {
+                         currentAttitude: Attitude
+    ) -> TurnPhaseByStartMaxEnd {
         let turnMaxPassedChecker: TurnChronologicalPhaseDefinition = TurnChronologicalPhaseDefinition.init(turnYawingSide: turnSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
         switch turnMaxPassedChecker.handle() {
         case .SwitchToMax:
-            let turn1to3 = (simd_normalize(lastTurnSwitchAngleQ + (2 * absoluteFallLineByQuotanion)))
-            let n = SCNNode()
-            n.simdOrientation = turn1to3
-            if((lastTurnSwitchAngleQ - turn1to3).axis.z < (lastTurnSwitchAngleQ - currentAttitudeByQuotanion).axis.z){
-                return TurnChronologicalPhase.Turn1to3
-            }
             // 最後のターンマックス - 現在の姿勢 = ターンマックスと現在の姿勢の角度差
             // turn1to3 がターンフェイズの切れ目 最後のターンマックス - ターンフェイズ1/3 = ターンマックスと 1/3 の角度差
                 //　ターンマックスと現在の姿勢の角度差 < ターンマックスと 1/3 の角度差
-            return TurnChronologicalPhase.SwitchToMax
+            return TurnPhaseByStartMaxEnd.SwitchToMax
         case .TurnMax:
             isTurnMaxPassed = true
             return .TurnMax
         case .MaxToSwitch:
             if isTurnMaxPassed {
-                return TurnChronologicalPhase.MaxToSwitch
+                return TurnPhaseByStartMaxEnd.MaxToSwitch
             }
             isTurnMaxPassed = true
-            return TurnChronologicalPhase.TurnMax
-        case .Turn1to3:
-            return TurnChronologicalPhase.TurnMax
-        case .Turn3to6:
-            return TurnChronologicalPhase.TurnMax
-        case .Turn4to6:
-            return TurnChronologicalPhase.TurnMax
-        case .Turn3to3:
-            return TurnChronologicalPhase.TurnMax
+            return TurnPhaseByStartMaxEnd.TurnMax
         }
     }
+    
 }
 
 struct TurnChronologicalPhaseFinder {
@@ -159,7 +173,7 @@ struct TurnChronologicalPhaseFinder {
                          absoluteFallLineAttitude: Attitude,
                          currentTurnYawingSide: TurnYawingSide,
                          turnSwitchingDirection: TurnSwitchingDirection
-    ) -> TurnChronologicalPhase {
+    ) -> TurnPhaseByStartMaxEnd {
         return turnInitiationOrEndDiscriminator.handle(turnSide: currentTurnYawingSide, absoluteFallLineAttitude: absoluteFallLineAttitude, currentAttitude: currentAttitude)
         // switch 後ずっと　keep しているんだったら　右ターン左ターンでのターンマックスの判断が可能
 //        if (switch後ずっとKeepか.handle(now: turnSwitchingDirection)) {

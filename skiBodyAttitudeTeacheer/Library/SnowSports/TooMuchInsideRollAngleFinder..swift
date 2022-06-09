@@ -11,7 +11,7 @@ import CoreMotion
 protocol TooMuchInsideAngleFinderProtocol{
     var rotationRate: CMRotationRate {get}
     var turnYawingSide: TurnYawingSide {get}
-    var turnPhase: TurnChronologicalPhase {get}
+    var turnPhase: TurnPhaseByStartMaxEnd {get}
     var badRollRotationRate : Bool {get}
 }
 // roll がターンマックス以後に角速度が逆になっていかない

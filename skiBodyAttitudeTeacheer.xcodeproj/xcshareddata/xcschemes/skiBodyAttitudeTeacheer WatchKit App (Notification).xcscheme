@@ -56,10 +56,8 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "skiBodyAttitudeTeacheer WatchKit Extension/PushNotificationPayload.apns">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/skiBodyAttitudeTeacheer WatchKit App">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA3C94172722636E007D5325"
@@ -67,7 +65,7 @@
             BlueprintName = "skiBodyAttitudeTeacheer WatchKit App"
             ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -77,10 +75,8 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "skiBodyAttitudeTeacheer WatchKit Extension/PushNotificationPayload.apns">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/skiBodyAttitudeTeacheer WatchKit App">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BA3C94172722636E007D5325"
@@ -88,16 +84,7 @@
             BlueprintName = "skiBodyAttitudeTeacheer WatchKit App"
             ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3C94172722636E007D5325"
-            BuildableName = "skiBodyAttitudeTeacheer WatchKit App.app"
-            BlueprintName = "skiBodyAttitudeTeacheer WatchKit App"
-            ReferencedContainer = "container:skiBodyAttitudeTeacheer.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

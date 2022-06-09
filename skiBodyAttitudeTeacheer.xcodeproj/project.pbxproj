@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EF63040402F834A53FB22C9 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63050B5C66F8BA9A15216 /* EvaluationResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF632FFB6882E7920F88177 /* EvaluationResponder.swift */; };
 		2EF63066E41541AFD04CF2D8 /* LeftTurn前半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E5C4D306FD6168CC163 /* LeftTurn前半Phase.swift */; };
 		2EF63073D5AAF9D61036BB1D /* CenterOfMassTurnPhaseAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EC0588686A51DD25C3D /* CenterOfMassTurnPhaseAnalyzer.swift */; };
 		2EF63089F090CAC8F3320A3B /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
 		2EF6309337E0D2256CFCA07D /* OneTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EDF50E1FEE61302C58B /* OneTurn.swift */; };
-		2EF630A548CC2EA42DBDEC20 /* AccelerationShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6372BE69879E25CE4CEE4 /* AccelerationShifter.swift */; };
 		2EF630AF71D2370FCA457C30 /* GetAbsoluteRotationRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6366F5F6BCD9FC33EF541 /* GetAbsoluteRotationRate.swift */; };
 		2EF630E5E6C98B9812FFBD08 /* AccelerationForTargetAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635822175156661826BB7 /* AccelerationForTargetAngle.swift */; };
 		2EF630FC659F0A28F66A7F3F /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
@@ -22,24 +20,19 @@
 		2EF631B49468156B4DAFBDDE /* GarlandChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63009A2ED079095745A06 /* GarlandChecker.swift */; };
 		2EF631C538A7A86D965E43DE /* Attitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF638852BB8EF40346AC354 /* Attitude.swift */; };
 		2EF631E91B06832CC6CB0BF0 /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
-		2EF632587D6D76093850E009 /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		2EF6326215D919BD4AED9F7D /* TurnError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635C99299EF72A7E1CE89 /* TurnError.swift */; };
-		2EF632755FCA6EC12317BC60 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF63294AAE30149B8261DDA /* CenterOfMassTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E42BD37BB3228BEB9A2 /* CenterOfMassTurnPhase.swift */; };
 		2EF632E2131ACEC2249CA588 /* UnifiedTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63A84B828BB50B47BF23E /* UnifiedTurnPhase.swift */; };
 		2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63600A942019C72FEF59A /* LeftTurn内にスキーが傾いている.swift */; };
 		2EF63308CEBB1EC4EF6BBE16 /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63AF477EEB73E64C3340F /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift */; };
-		2EF63325186B89E51CD1E3A6 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF63341EDCA9F63BE736EC0 /* TurnChronologicalPhaseFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF634D918CD8E3B75EFC003 /* TurnChronologicalPhaseFinder.swift */; };
 		2EF63391AA1405D93E5F1C02 /* CurrentVelocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63BBC4C3B04B024C151A1 /* CurrentVelocity.swift */; };
 		2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */; };
 		2EF634129360B3769285D6A2 /* RightTurn前半スキーが内にロールしていっている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF636579BB557DF8C36F621 /* RightTurn前半スキーが内にロールしていっている.swift */; };
 		2EF6341FFB51AA0E753D86AB /* SkiTurnPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63F74A4EC4CD9024AA22B /* SkiTurnPhase.swift */; };
-		2EF6342906FF786E92ADD5AE /* FallLineOrthogonalAccelerationCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6392FF63C587930B7AC0F /* FallLineOrthogonalAccelerationCalculator.swift */; };
 		2EF6344254B370436EFF6AC1 /* ForwardAfterwardBalanceScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E296DCB11BA142480D9 /* ForwardAfterwardBalanceScore.swift */; };
 		2EF63455FC5D5E76E185DE45 /* ToneOutputUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631D70C72AD3C7621CDFC /* ToneOutputUnit.swift */; };
 		2EF634708DBE2CD1CD343B1F /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
-		2EF6347323FFBE625E957D33 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF6347BBAB51066FE1DC5C2 /* MotionAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF637F6B5201E6DCD55E406 /* MotionAnalyser.swift */; };
 		2EF6349DB8388C5CC8570D19 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6342AF3ED28AE323F54DC /* TypeAliases.swift */; };
 		2EF634BF428069C49B5461BD /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
@@ -50,23 +43,18 @@
 		2EF63602A240241B57A7F997 /* TurningChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6357FEE78DF0CD64A792C /* TurningChecker.swift */; };
 		2EF63672289EDDE5A4871A40 /* PhysicsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E0E844EEB291D80B01E /* PhysicsConstants.swift */; };
 		2EF6367E6F3DCB9B18A304C1 /* MotionFeedBackerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63BF1686B065E71DC4B08 /* MotionFeedBackerImpl.swift */; };
-		2EF63688177153659015D292 /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
-		2EF636AE20AA511BE00413E1 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63474CC5B29D712BFEBC2 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift */; };
 		2EF636AF54846DC1F651FA09 /* YawRotationRateMovingAverageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635ED93C5099DEF862FEE /* YawRotationRateMovingAverageFinder.swift */; };
 		2EF636D3F85B058C44C5FAC0 /* TimeStampAndTurnSideDirectionChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6377BD3A83603F7D2F226 /* TimeStampAndTurnSideDirectionChanged.swift */; };
 		2EF636E174019520949CA45F /* MovingPhasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF632804E51191A8B165B39 /* MovingPhasesProtocol.swift */; };
 		2EF638067456213912610AE5 /* RotationRateRecordProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF630386CE31665C1BE8E9F /* RotationRateRecordProtocol.swift */; };
 		2EF63810CF19733B874C5078 /* RotationAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF634D7519FCE020ADFAE6E /* RotationAngleFinder.swift */; };
-		2EF6386ED99C7899340F1594 /* AverageAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FE2A88409DB91599637 /* AverageAngleFinder.swift */; };
 		2EF638E910C2202EF0B03D63 /* TurnPhaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EE4F9DCB1F3D5558C4F /* TurnPhaseProtocol.swift */; };
 		2EF6390AF3397C50DAB7491A /* SkiTurnPhaseAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63170E20736515729E144 /* SkiTurnPhaseAnalyzer.swift */; };
 		2EF6395BDE442DF4C51019A7 /* AirPodOnHeadMotionReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF630AFEF7873CF71EA5E82 /* AirPodOnHeadMotionReceiver.swift */; };
 		2EF6398909F5052BF57E4D3F /* AbsoluteFallLineAttitudeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF634B77308022ECB76158C /* AbsoluteFallLineAttitudeFinder.swift */; };
-		2EF63999D97DE95FB060616F /* AccelerationForTargetAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635822175156661826BB7 /* AccelerationForTargetAngle.swift */; };
 		2EF639D0CB0F73847AC217F1 /* RightTurn前半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63E35CFA579DE9212AA38 /* RightTurn前半Phase.swift */; };
 		2EF63A1B8DA64B39B7A5A45A /* CenterOfMassTurnPhaseCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6308135883FEA9607CEDE /* CenterOfMassTurnPhaseCollection.swift */; };
 		2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF639474CB3F2ED8EEA63E7 /* Switch後ずっとKeepか.swift */; };
-		2EF63AF15292729142597319 /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF63B0086810A1D356D353E /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF63B2956375341C7736D07 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63B2A328D2899F8F365D8 /* TurnConditionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63EED1399E8E4A5853A98 /* TurnConditionFinder.swift */; };
@@ -78,25 +66,18 @@
 		2EF63B93B3B3F40C00200ED8 /* MotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63FD1BB56D985EA70A268 /* MotionWriter.swift */; };
 		2EF63BB80B7C0D4FE7BD216D /* LeftTurn後半スキーのロール角が起き上がってきている.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63DCDB4BBA6629D1D7AC8 /* LeftTurn後半スキーのロール角が起き上がってきている.swift */; };
 		2EF63BCE98EADED23EF13297 /* MovingPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6304E653C974E55ECC55C /* MovingPhase.swift */; };
-		2EF63BDA7A2FECBD31565899 /* TurnYawingSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635DD3C38ADBF7F6DEC1D /* TurnYawingSide.swift */; };
 		2EF63C1B8C5E7A63F2ED5256 /* TurnYawingSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF635DD3C38ADBF7F6DEC1D /* TurnYawingSide.swift */; };
 		2EF63C2FF02AA06CC85692F8 /* LeftTurn後半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF639DB37674B64D1AB5306 /* LeftTurn後半Phase.swift */; };
 		2EF63C40609FA02111B93E1C /* AccelerationShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6372BE69879E25CE4CEE4 /* AccelerationShifter.swift */; };
-		2EF63C74262C6B27407D0F49 /* RotationAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF634D7519FCE020ADFAE6E /* RotationAngleFinder.swift */; };
-		2EF63CE8D0FC8D1AD3D4D754 /* TowAngleDiffrencial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63572FDBD6633BF2ABD50 /* TowAngleDiffrencial.swift */; };
 		2EF63D0B5FA3BB120E5BFC17 /* 時計を平にして重心移動方向にX軸を向けたWatchTurnStreamReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63F93C10CD50734015EAF /* 時計を平にして重心移動方向にX軸を向けたWatchTurnStreamReceiver.swift */; };
 		2EF63D609E2CF62D963B2D6A /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631834BE40471093D77E6 /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift */; };
 		2EF63D6A68181FCF71A9D716 /* RightTurn後半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63D289638024D0CB2DC6E /* RightTurn後半Phase.swift */; };
 		2EF63D71467DD652BC3C85D7 /* PivotSlipScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6363BA389115ED2B7F776 /* PivotSlipScore.swift */; };
 		2EF63D8A7D93A72D2B9A54CF /* SimpleMovingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6389F251297054388331A /* SimpleMovingAverage.swift */; };
-		2EF63DA882049FA6BCAEEB7E /* FallLineOutSideOrthogonalQuaternionDirectionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF634A20E44011AD41849A1 /* FallLineOutSideOrthogonalQuaternionDirectionFinder.swift */; };
-		2EF63DC674D110C3DDAF9143 /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		2EF63E08E31ABA03BEA4C1E2 /* TurnSideChangingPeriodFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63ACF7B51D0C384E340EC /* TurnSideChangingPeriodFinder.swift */; };
-		2EF63E6630EDBEF471FD0385 /* MaxAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631850C9D315F37A2BCB0 /* MaxAngleFinder.swift */; };
 		2EF63E759458A0FFEB1A82B2 /* WatchMotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6323D6F702A9500A98DAE /* WatchMotionWriter.swift */; };
 		2EF63E92B71A89D534098689 /* IdealTurnConditionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6349EBE48A324D8010A7C /* IdealTurnConditionDetector.swift */; };
 		2EF63EA9750FD38E0F23D1C5 /* FallLineOrthogonalAccelerationCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6392FF63C587930B7AC0F /* FallLineOrthogonalAccelerationCalculator.swift */; };
-		2EF63F9BEEF8AE9D352D5A0D /* Attitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF638852BB8EF40346AC354 /* Attitude.swift */; };
 		2EF63FC94CADBB46D2648037 /* YawingSideFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF638C4A9237C688099FC70 /* YawingSideFinder.swift */; };
 		2EF63FEC9B9772A4296F630C /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */; };
@@ -104,23 +85,11 @@
 		BA3C93FC2722636E007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FB2722636E007D5325 /* Assets.xcassets */; };
 		BA3C93FF2722636E007D5325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */; };
 		BA3C94092722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94082722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift */; };
-		BA3C94192722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BA3C941E2722636F007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C941D2722636F007D5325 /* Assets.xcassets */; };
-		BA3C94242722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */; };
-		BA3C942B2722636F007D5325 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C942A2722636F007D5325 /* ContentView.swift */; };
-		BA3C942D2722636F007D5325 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C942C2722636F007D5325 /* NotificationController.swift */; };
-		BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C942E2722636F007D5325 /* NotificationView.swift */; };
-		BA3C94312722636F007D5325 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94302722636F007D5325 /* ComplicationController.swift */; };
-		BA3C943327226371007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C943227226371007D5325 /* Assets.xcassets */; };
-		BA3C943627226371007D5325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C943527226371007D5325 /* Preview Assets.xcassets */; };
-		BA3C944227226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */; };
 		BA44FF7E2767A1B8002653AB /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF7D2767A1B8002653AB /* AudioKit */; };
 		BA44FF8327682107002653AB /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF8227682107002653AB /* AudioKitUI */; };
 		BA44FF862768219B002653AB /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF852768219B002653AB /* SoundpipeAudioKit */; };
 		BA4C93CB27687BEE00E2C749 /* BLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C93CA27687BEE00E2C749 /* BLService.swift */; };
-		BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */; };
-		BAA0A9E3272C2C3D00FEDF23 /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */; };
+		BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
 		BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB26539274BBBB0001A51BA /* CoreLocation.framework */; };
 		BAF25FF4275608CD009992C9 /* AccelerationForTargetAngleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */; };
@@ -137,48 +106,15 @@
 			remoteGlobalIDString = BA3C93F32722636B007D5325;
 			remoteInfo = skiBodyAttitudeTeacheer;
 		};
-		BA3C941A2722636E007D5325 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA3C94172722636E007D5325;
-			remoteInfo = "skiBodyAttitudeTeacheer WatchKit App";
-		};
-		BA3C94252722636F007D5325 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA3C94222722636F007D5325;
-			remoteInfo = "skiBodyAttitudeTeacheer WatchKit Extension";
-		};
-		BA3C943E27226371007D5325 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA3C94222722636F007D5325;
-			remoteInfo = "skiBodyAttitudeTeacheer WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BA3C945427226371007D5325 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				BA3C94242722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BA3C945827226371007D5325 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				BA3C94192722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +198,7 @@
 		BA3C94082722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerTests.swift; sourceTree = "<group>"; };
 		BA3C94122722636E007D5325 /* skiBodyAttitudeTeacheerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerUITests.swift; sourceTree = "<group>"; };
 		BA3C94142722636E007D5325 /* skiBodyAttitudeTeacheerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3C941D2722636F007D5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3C94282722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerApp.swift; sourceTree = "<group>"; };
 		BA3C942A2722636F007D5325 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA3C942C2722636F007D5325 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -274,11 +208,11 @@
 		BA3C943527226371007D5325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA3C943727226371007D5325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA3C943827226371007D5325 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		BA3C943D27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "skiBodyAttitudeTeacheer WatchKit AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppTests.swift; sourceTree = "<group>"; };
 		BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BA4C93CA27687BEE00E2C749 /* BLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLService.swift; sourceTree = "<group>"; };
+		BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuaternionToEullerAngleDifferential.swift; sourceTree = "<group>"; };
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
@@ -307,20 +241,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BA3C94012722636E007D5325 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA3C94202722636F007D5325 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA3C943A27226371007D5325 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -451,6 +371,7 @@
 				2EF6389F251297054388331A /* SimpleMovingAverage.swift */,
 				2EF6372BE69879E25CE4CEE4 /* AccelerationShifter.swift */,
 				BAF25FF72759C80B009992C9 /* ToneSub.swift */,
+				BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -514,9 +435,6 @@
 			children = (
 				BA3C93F42722636B007D5325 /* skiBodyAttitudeTeacheer.app */,
 				BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */,
-				BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */,
-				BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */,
-				BA3C943D27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -681,7 +599,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BA3C941B2722636E007D5325 /* PBXTargetDependency */,
 			);
 			name = skiBodyAttitudeTeacheer;
 			packageProductDependencies = (
@@ -711,58 +628,6 @@
 			productReference = BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA3C945527226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit App" */;
-			buildPhases = (
-				BA3C94162722636E007D5325 /* Resources */,
-				BA3C945427226371007D5325 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BA3C94262722636F007D5325 /* PBXTargetDependency */,
-			);
-			name = "skiBodyAttitudeTeacheer WatchKit App";
-			productName = "skiBodyAttitudeTeacheer WatchKit App";
-			productReference = BA3C94182722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA3C945127226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit Extension" */;
-			buildPhases = (
-				BA3C941F2722636F007D5325 /* Sources */,
-				BA3C94202722636F007D5325 /* Frameworks */,
-				BA3C94212722636F007D5325 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "skiBodyAttitudeTeacheer WatchKit Extension";
-			productName = "skiBodyAttitudeTeacheer WatchKit Extension";
-			productReference = BA3C94232722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
-		BA3C943C27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA3C946227226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit AppTests" */;
-			buildPhases = (
-				BA3C943927226371007D5325 /* Sources */,
-				BA3C943A27226371007D5325 /* Frameworks */,
-				BA3C943B27226371007D5325 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BA3C943F27226371007D5325 /* PBXTargetDependency */,
-			);
-			name = "skiBodyAttitudeTeacheer WatchKit AppTests";
-			productName = "skiBodyAttitudeTeacheer WatchKit AppTests";
-			productReference = BA3C943D27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -779,16 +644,6 @@
 					BA3C94032722636E007D5325 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = BA3C93F32722636B007D5325;
-					};
-					BA3C94172722636E007D5325 = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					BA3C94222722636F007D5325 = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					BA3C943C27226371007D5325 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = BA3C94222722636F007D5325;
 					};
 				};
 			};
@@ -812,9 +667,6 @@
 			targets = (
 				BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */,
 				BA3C94032722636E007D5325 /* skiBodyAttitudeTeacheerTests */,
-				BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */,
-				BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */,
-				BA3C943C27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -830,30 +682,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BA3C94022722636E007D5325 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA3C94162722636E007D5325 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA3C941E2722636F007D5325 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA3C94212722636F007D5325 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA3C943627226371007D5325 /* Preview Assets.xcassets in Resources */,
-				BA3C943327226371007D5325 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA3C943B27226371007D5325 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -910,6 +738,7 @@
 				2EF63294AAE30149B8261DDA /* CenterOfMassTurnPhase.swift in Sources */,
 				2EF632E2131ACEC2249CA588 /* UnifiedTurnPhase.swift in Sources */,
 				2EF635E61314826BE2202D7F /* ReverceDeviceMotionMaintainXAxis.swift in Sources */,
+				BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */,
 				2EF630AF71D2370FCA457C30 /* GetAbsoluteRotationRate.swift in Sources */,
 				2EF6349DB8388C5CC8570D19 /* TypeAliases.swift in Sources */,
 				2EF63D8A7D93A72D2B9A54CF /* SimpleMovingAverage.swift in Sources */,
@@ -959,47 +788,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA3C941F2722636F007D5325 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA3C942D2722636F007D5325 /* NotificationController.swift in Sources */,
-				BA3C942B2722636F007D5325 /* ContentView.swift in Sources */,
-				BA3C94312722636F007D5325 /* ComplicationController.swift in Sources */,
-				BAA0A8842728F61600FEDF23 /* PhoneConnector.swift in Sources */,
-				BAA0A9E3272C2C3D00FEDF23 /* RecorderController.swift in Sources */,
-				BA3C94292722636F007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
-				BA3C942F2722636F007D5325 /* NotificationView.swift in Sources */,
-				2EF6386ED99C7899340F1594 /* AverageAngleFinder.swift in Sources */,
-				2EF632755FCA6EC12317BC60 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
-				2EF63CE8D0FC8D1AD3D4D754 /* TowAngleDiffrencial.swift in Sources */,
-				2EF63E6630EDBEF471FD0385 /* MaxAngleFinder.swift in Sources */,
-				2EF63325186B89E51CD1E3A6 /* PhysicsConstants.swift in Sources */,
-				2EF632587D6D76093850E009 /* AngleShifter.swift in Sources */,
-				2EF63999D97DE95FB060616F /* AccelerationForTargetAngle.swift in Sources */,
-				2EF63F9BEEF8AE9D352D5A0D /* Attitude.swift in Sources */,
-				2EF63C74262C6B27407D0F49 /* RotationAngleFinder.swift in Sources */,
-				2EF63DA882049FA6BCAEEB7E /* FallLineOutSideOrthogonalQuaternionDirectionFinder.swift in Sources */,
-				2EF6342906FF786E92ADD5AE /* FallLineOrthogonalAccelerationCalculator.swift in Sources */,
-				2EF63BDA7A2FECBD31565899 /* TurnYawingSide.swift in Sources */,
-				2EF630A548CC2EA42DBDEC20 /* AccelerationShifter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA3C943927226371007D5325 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA3C944227226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift in Sources */,
-				2EF63688177153659015D292 /* AverageAngleFinder.swift in Sources */,
-				2EF636AE20AA511BE00413E1 /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
-				2EF63040402F834A53FB22C9 /* TowAngleDiffrencial.swift in Sources */,
-				2EF63AF15292729142597319 /* MaxAngleFinder.swift in Sources */,
-				2EF6347323FFBE625E957D33 /* PhysicsConstants.swift in Sources */,
-				2EF63DC674D110C3DDAF9143 /* AngleShifter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1007,21 +795,6 @@
 			isa = PBXTargetDependency;
 			target = BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */;
 			targetProxy = BA3C94052722636E007D5325 /* PBXContainerItemProxy */;
-		};
-		BA3C941B2722636E007D5325 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA3C94172722636E007D5325 /* skiBodyAttitudeTeacheer WatchKit App */;
-			targetProxy = BA3C941A2722636E007D5325 /* PBXContainerItemProxy */;
-		};
-		BA3C94262722636F007D5325 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */;
-			targetProxy = BA3C94252722636F007D5325 /* PBXContainerItemProxy */;
-		};
-		BA3C943F27226371007D5325 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA3C94222722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */;
-			targetProxy = BA3C943E27226371007D5325 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1137,134 +910,6 @@
 			};
 			name = Release;
 		};
-		BA3C945227226371007D5325 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = YG69W9J287;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "skiBodyAttitudeTeacheer WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = skiBodyAttitudeTeacheer_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = test;
-				INFOPLIST_KEY_NSMotionUsageDescription = test;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer2.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		BA3C945327226371007D5325 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = YG69W9J287;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "skiBodyAttitudeTeacheer WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = skiBodyAttitudeTeacheer_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = test;
-				INFOPLIST_KEY_NSMotionUsageDescription = test;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer2.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
-		BA3C945627226371007D5325 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "skiBodyAttitudeTeacheer WatchKit App/skiBodyAttitudeTeacheer WatchKit App.entitlements";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YG69W9J287;
-				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = skiBodyAttitudeTeacheer_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit App";
-				INFOPLIST_KEY_NSMotionUsageDescription = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer2.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		BA3C945727226371007D5325 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "skiBodyAttitudeTeacheer WatchKit App/skiBodyAttitudeTeacheer WatchKit App.entitlements";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YG69W9J287;
-				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = skiBodyAttitudeTeacheer_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "skiBodyAttitudeTeacheer WatchKit App";
-				INFOPLIST_KEY_NSMotionUsageDescription = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer2.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
 		BA3C945A27226371007D5325 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1276,7 +921,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer/Preview Content\"";
-				DEVELOPMENT_TEAM = YG69W9J287;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
@@ -1298,7 +943,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer2;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1320,7 +965,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"skiBodyAttitudeTeacheer/Preview Content\"";
-				DEVELOPMENT_TEAM = YG69W9J287;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
@@ -1342,7 +987,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer2;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1359,9 +1004,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YG69W9J287;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1385,9 +1031,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YG69W9J287;
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1407,59 +1054,6 @@
 			};
 			name = Release;
 		};
-		BA3C946327226371007D5325 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YG69W9J287;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "koyakei.skiBodyAttitudeTeacheer-WatchKit-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skiBodyAttitudeTeacheer WatchKit Extension.appex/skiBodyAttitudeTeacheer WatchKit Extension";
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		BA3C946427226371007D5325 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YG69W9J287;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "koyakei.skiBodyAttitudeTeacheer-WatchKit-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skiBodyAttitudeTeacheer WatchKit Extension.appex/skiBodyAttitudeTeacheer WatchKit Extension";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1468,24 +1062,6 @@
 			buildConfigurations = (
 				BA3C944F27226371007D5325 /* Debug */,
 				BA3C945027226371007D5325 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA3C945127226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA3C945227226371007D5325 /* Debug */,
-				BA3C945327226371007D5325 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA3C945527226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA3C945627226371007D5325 /* Debug */,
-				BA3C945727226371007D5325 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1504,15 +1080,6 @@
 			buildConfigurations = (
 				BA3C945D27226371007D5325 /* Debug */,
 				BA3C945E27226371007D5325 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA3C946227226371007D5325 /* Build configuration list for PBXNativeTarget "skiBodyAttitudeTeacheer WatchKit AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA3C946327226371007D5325 /* Debug */,
-				BA3C946427226371007D5325 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
