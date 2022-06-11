@@ -8,6 +8,7 @@
 import Foundation
 import CoreMotion
 import simd
+import SceneKit
 
 struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
     var turnChronologicalPhaseFinder: TurnChronologicalPhaseFinder = TurnChronologicalPhaseFinder.init()
@@ -24,12 +25,17 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         let currentFloatQuatanion: simd_quatf =
         simd_quatf.init(ix: Float(movingPhase.quaternion.vector.x), iy: Float(movingPhase.quaternion.vector.y), iz: Float(movingPhase.quaternion.vector.z), r: Float(movingPhase.quaternion.vector.w))
         let isTurnSwitching: Bool = turnSwitchingTimingFinder.handle(currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
+        MotionAnalyzerManager.shared.turnSwitch = isTurnSwitching
         let oneTurnDiffAngleEuller = oneTurnDiffreentialFinder.handle(isTurnSwitched: isTurnSwitching, currentTurnSwitchAngle: currentFloatQuatanion)
+        
         if isTurnSwitching {
             lastTurnSwitchingAngle = currentFloatQuatanion
         }
-        
+        let s = SCNNode()
+        s.simdOrientation = lastTurnSwitchingAngle
+        MotionAnalyzerManager.shared.lastSwitchedTurnAngle = s.eulerAngles.z
         let turnPhaseBy100 = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
+//        MotionAnalyzerManager.shared.turnPhase100 = turnPhaseBy100
         // 向き付はうまくするといらないのかも
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, isTurnSwitching: isTurnSwitching)

@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreMotion
 import simd
+import SceneKit
 
 //let motionWriter = MotionWriter()
 //let motionWriterHeadPhone = MotionWriter()
@@ -35,11 +36,45 @@ struct ContentView: View {
     @State var headPhoneMotionDeviceRight: CMDeviceMotion?
     @State var rollDegree: Double = 0
     @State var rollTone: Bool = false
+    @State var quotanionOld: simd_quatf? = simd_quatf.init()
+    @State var quotanionNow: simd_quatf? = simd_quatf.init()
     @StateObject var conductor = DynamicOscillatorConductor()
 
     var body: some View {
         
         VStack{
+            HStack{
+                Button(action: {quotanionOld = quotanionNow}){
+                    Text("Set Angle")
+                }
+                VStack{
+                Text(String(
+                    round(Measurement(value:
+//                                    Double(QuaternionToEullerAngleDifferential.handle(base: quotanionNow! ?? simd_quatf.init(), target: quotanionOld!).z)
+                                Double(QuaternionToEullerAngleDifferential.convert(simdq: quotanionNow! ?? simd_quatf.init()).z)
+                                
+                                , unit: UnitAngle.radians)
+                        .converted(to: .degrees).value
+                    
+                )))
+                    Text(String(
+                        round(Measurement(value:
+                                    Double(QuaternionToEullerAngleDifferential.convert(simdq: quotanionOld! ?? simd_quatf.init()).z)
+                                    , unit: UnitAngle.radians)
+                            .converted(to: .degrees).value
+                        
+                    )))
+                    Text(String(
+                        round(Measurement(value:
+                                        Double(QuaternionToEullerAngleDifferential.handle(base: quotanionNow! ?? simd_quatf.init(), target: quotanionOld!).z)
+                                    
+                                    , unit: UnitAngle.radians)
+                            .converted(to: .degrees).value)
+                        
+                    ))
+                    
+                }
+            }
             HStack{
             Button(action: startRecord) {
                 Text("Start motion ")
@@ -93,16 +128,15 @@ struct ContentView: View {
                     Text("turn 1/3 beep stop")
                 }
             }
-            HStack{
-                Button(action: {
-                     BLEPeripheral.init()
-                    
-                }) {
-                    Text("boot ble ")
-                }
-            }
             VStack {
+                
                 HStack{
+                    Text("last switching")
+                    Text("⇑")
+                        .background(Color.red)
+                        .font(.largeTitle)
+                        .rotationEffect(Angle.init(radians:
+                                                    (Double(MotionAnalyzerManager.shared.lastSwitchedTurnAngle) - currentAttitude.yaw) * -1  ))
                 Text("fall Line")
                 Text("⇑")
                     .background(Color.red)
@@ -130,11 +164,20 @@ struct ContentView: View {
                         .background(Color.blue)
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians: Double.pi / 2))
+                
+            }
+            VStack{
+                HStack{
+                    Text("turn Phase " + String(
+                        round(Measurement(value: Double(MotionAnalyzerManager.shared.turnPhase100), unit: UnitAngle.radians).converted(to: UnitAngle.degrees).value)
+                    ))
+                }
+                Text("Is turn Switch ß" + String(MotionAnalyzerManager.shared.turnSwitch))
                 Text("yawing side " + turnYawingSide.rawValue)
                 Text(turnChronologicalPhase.rawValue)
                 Text(turnSwitchingDirection.rawValue)
                 Text(motionDate.formatted(.dateTime.second().minute()))
-                Text(Date.now.formatted(.dateTime.second().minute()))
+                
             }
         }
         Rectangle()
@@ -165,6 +208,7 @@ struct ContentView: View {
                 to: .current!) { (motion, error) in
                     currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
                     
+                        
 //                    barLengthZ = CGFloat(Measurement.init(value: motion!.rotationRate.y, unit: UnitAngle.radians).converted(to: UnitAngle.degrees).value * 2.0)// 右プラス
             let cq = simd_quatd(
                     ix: motion!.attitude.quaternion.x,
@@ -172,6 +216,10 @@ struct ContentView: View {
                     iz: motion!.attitude.quaternion.z,
                     r: motion!.attitude.quaternion.w
             )
+                    quotanionNow = simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
+                                                   iy: Float(motion!.attitude.quaternion.y),
+                                                   iz: Float(motion!.attitude.quaternion.z),
+                                                   r: Float(motion!.attitude.quaternion.w))
                                         barLength =
                     simd_dot(
                         simd_normalize(simd_axis(cq *

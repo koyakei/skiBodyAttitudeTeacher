@@ -30,6 +30,9 @@ public struct MotionAnalyzerManager {
     
     public var turnMaxBeep = false
     public var turn1to3Beep = false
+    public var turnPhase100 = Float.zero
+    public var turnSwitch = false
+    public var lastSwitchedTurnAngle = Float.zero
     public var 内倒警告 = false
     mutating func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
@@ -42,7 +45,7 @@ public struct MotionAnalyzerManager {
 
     mutating func receiveAirPodMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> CenterOfMassTurnPhase? {
-//        if 磁北偏差 != nil {w
+
         return nil
     }
 

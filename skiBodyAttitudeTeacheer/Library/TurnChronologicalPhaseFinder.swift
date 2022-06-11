@@ -32,14 +32,20 @@ enum TurnSwitchingDirection: String {
 
 
 
-extension Collection where Element == TurnYawingSide{
+extension Array where Element == TurnYawingSide{
     func isRightYawingContinued() -> Bool{
         !self.contains(TurnYawingSide.LeftYawing)
     }
     func isLeftYawingContinued() -> Bool{
         !self.contains(TurnYawingSide.RightYawing)
     }
-
+    // 前の3フレーム連続で同じターン
+    func isTurnSideSwitched() -> Bool{
+        if (self.count > 5  && self.contains(where:{ $0 != self.last})){
+            return true
+        }
+        return false
+    }
 }
 
 enum TurnPhaseByStartMaxEnd  : String{
@@ -47,7 +53,6 @@ enum TurnPhaseByStartMaxEnd  : String{
     case TurnMax = "TurnMax"
     case MaxToSwitch = "MaxToSwitch"
 }
-
 
 // ターンマックスだけを見つける
 struct TurnChronologicalPhaseDefinition {
@@ -134,6 +139,11 @@ struct OneTurnDiffrentialFinder {
             oneTurnDiffrentialEuller = abs(QuaternionToEullerAngleDifferential.handle(base: lastTurnSwitchAngle, target: currentTurnSwitchAngle).z)
             lastTurnSwitchAngle = currentTurnSwitchAngle
         }
+//        let x = currentTurnSwitchAngle.vector.x
+//        let y = currentTurnSwitchAngle.vector.y
+//        let z = currentTurnSwitchAngle.vector.z
+//        let w = currentTurnSwitchAngle.vector.w
+        MotionAnalyzerManager.shared.turnPhase100 = abs(QuaternionToEullerAngleDifferential.handle(base: lastTurnSwitchAngle, target: currentTurnSwitchAngle).y)
         return oneTurnDiffrentialEuller
     }
 }

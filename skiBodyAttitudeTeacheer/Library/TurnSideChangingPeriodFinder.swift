@@ -21,16 +21,21 @@ struct TurnSideChangingPeriodFinder {
 
 
 struct TurnSwitchingTimingFinder{
-    var yawingSideRecords: [TurnYawingSide] = [TurnYawingSide.Straight]
+    var yawingSideRecords: [TurnYawingSide] = []
     mutating func handle(currentYawingSide: TurnYawingSide)-> Bool{
         // 　左ターンが続いていて、ヨーイングサイドが逆になったら
-        if ((yawingSideRecords.isLeftYawingContinued() && currentYawingSide == TurnYawingSide.RightYawing) ||
-            (yawingSideRecords.isRightYawingContinued() && currentYawingSide == TurnYawingSide.LeftYawing)){
-             yawingSideRecords = [TurnYawingSide.Straight]
-        return true
-         }
+//        if ((yawingSideRecords.isLeftYawingContinued() && currentYawingSide == TurnYawingSide.RightYawing) ||
+//            (yawingSideRecords.isRightYawingContinued() && currentYawingSide == TurnYawingSide.LeftYawing)){
+//             yawingSideRecords = []
+//        return true
+//         }
+//        yawingSideRecords.append(currentYawingSide)
         yawingSideRecords.append(currentYawingSide)
-        return false
+        let v = yawingSideRecords.isTurnSideSwitched()
+        if v {
+            yawingSideRecords.removeAll()
+        }
+        return v
     }
 }
 
