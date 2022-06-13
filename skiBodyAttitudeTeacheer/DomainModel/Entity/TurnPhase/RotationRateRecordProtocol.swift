@@ -36,6 +36,13 @@ extension Collection where Element: RotationRateRecordProtocol {
                                          self.filterByBeforeMilleSecondsFromNow(timeInterval: timeInterval).mapper()
         )
     }
+    
+    // 最小　最大の差が　基準値以上あるかどうか？
+    func minMaxDiffrence(val: Double) -> Bool {
+        let min : Double = self.min(by: {(a,b) -> Bool in return a.absoluteRotationRate.z < b.absoluteRotationRate.z })?.absoluteRotationRate.z ?? 0
+        let max: Double  = self.max(by: {(a,b) -> Bool in return a.absoluteRotationRate.z < b.absoluteRotationRate.z })?.absoluteRotationRate.z ?? 0
+        return abs(max - min) > Measurement(value: 10, unit: UnitAngle.degrees).converted(to: .radians).value
+    }
 
     func mapper() -> [Double] {
         self.map {

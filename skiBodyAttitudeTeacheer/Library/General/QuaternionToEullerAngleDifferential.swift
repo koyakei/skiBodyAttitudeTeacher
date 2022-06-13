@@ -11,10 +11,10 @@ import SceneKit
 
 struct QuaternionToEullerAngleDifferential{
     static func handle(base : simd_quatf, target: simd_quatf) -> SCNVector3{
-        return convert(simdq: simd_normalize( target * base.inverse))
+        return convertToEuller(simdq: simd_normalize( target * base.inverse))
     }
     
-    static func convert(simdq: simd_quatf) -> SCNVector3{
+    static func convertToEuller(simdq: simd_quatf) -> SCNVector3{
         let n = SCNNode()
         n.simdOrientation = simdq
         return n.eulerAngles

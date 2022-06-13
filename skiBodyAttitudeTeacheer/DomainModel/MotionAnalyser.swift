@@ -31,8 +31,10 @@ public struct MotionAnalyzerManager {
     public var turnMaxBeep = false
     public var turn1to3Beep = false
     public var turnPhase100 = Float.zero
+    public var oneTurnDiffAngleEuller = Float.zero
     public var turnSwitch = false
     public var lastSwitchedTurnAngle = Float.zero
+    public var currentFloatYawAngle: Float = Float.zero
     public var 内倒警告 = false
     mutating func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {

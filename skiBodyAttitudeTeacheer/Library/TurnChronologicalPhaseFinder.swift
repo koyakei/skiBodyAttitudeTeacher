@@ -112,7 +112,7 @@ struct FindTurnPhaseBy100{
     
     func handle(currentRotationEullerAngleFromTurnSwitching: Float,
                 oneTurnDiffrentialAngle: Float)-> Float{
-        let percent = currentRotationEullerAngleFromTurnSwitching / oneTurnDiffrentialAngle
+        let percent = abs(currentRotationEullerAngleFromTurnSwitching) / abs(oneTurnDiffrentialAngle)
         if percent > 1 {
             return 1
         } else if percent < 0 {
@@ -143,7 +143,6 @@ struct OneTurnDiffrentialFinder {
 //        let y = currentTurnSwitchAngle.vector.y
 //        let z = currentTurnSwitchAngle.vector.z
 //        let w = currentTurnSwitchAngle.vector.w
-        MotionAnalyzerManager.shared.turnPhase100 = abs(QuaternionToEullerAngleDifferential.handle(base: lastTurnSwitchAngle, target: currentTurnSwitchAngle).y)
         return oneTurnDiffrentialEuller
     }
 }

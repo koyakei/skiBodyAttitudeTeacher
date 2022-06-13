@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import CoreMotion
 
 struct TurnSideChangingPeriodFinder {
     var lastSwitchedTurnSideTimeStamp: TimeInterval = Date.now.timeIntervalSince1970
@@ -20,22 +21,26 @@ struct TurnSideChangingPeriodFinder {
 
 
 
+
 struct TurnSwitchingTimingFinder{
-    var yawingSideRecords: [TurnYawingSide] = []
-    mutating func handle(currentYawingSide: TurnYawingSide)-> Bool{
-        // 　左ターンが続いていて、ヨーイングサイドが逆になったら
-//        if ((yawingSideRecords.isLeftYawingContinued() && currentYawingSide == TurnYawingSide.RightYawing) ||
-//            (yawingSideRecords.isRightYawingContinued() && currentYawingSide == TurnYawingSide.LeftYawing)){
-//             yawingSideRecords = []
-//        return true
-//         }
-//        yawingSideRecords.append(currentYawingSide)
-        yawingSideRecords.append(currentYawingSide)
-        let v = yawingSideRecords.isTurnSideSwitched()
-        if v {
-            yawingSideRecords.removeAll()
+//    var rotationRateRecords: [RotationRateRecord] = []
+    var lastTurnSiwtchedTimeInterval = Date.now.timeIntervalSince1970
+    let minimumTurnPeriod : TimeInterval = 0.7
+    let rotationNoizeRange: Range<Double> = (Measurement(value: -10
+                                            , unit: UnitAngle.degrees)
+                                    .converted(to: .radians).value)..<Measurement(value: 10
+                                                                                  , unit: UnitAngle.degrees)
+                                                                          .converted(to: .radians).value
+    mutating func handle(cMRotationRate: CMRotationRate, timeInterval : TimeInterval)-> Bool{
+//        rotationRateRecords.append(RotationRateRecord.init(absoluteRotationRate: cMRotationRate, timeStampSince1970: timeInterval))
+//        let v = rotationRateRecords.yawRotationRateMovingAverage(timeInterval: minimumTurnPeriod)
+        
+        if rotationNoizeRange ~= cMRotationRate.z
+            && (Date.now.timeIntervalSince1970 - lastTurnSiwtchedTimeInterval) > minimumTurnPeriod {
+            lastTurnSiwtchedTimeInterval = timeInterval
+            return true
         }
-        return v
+        return false
     }
 }
 

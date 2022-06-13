@@ -24,7 +24,7 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
             MovingPhase) -> SkiTurnPhase {
         let currentFloatQuatanion: simd_quatf =
         simd_quatf.init(ix: Float(movingPhase.quaternion.vector.x), iy: Float(movingPhase.quaternion.vector.y), iz: Float(movingPhase.quaternion.vector.z), r: Float(movingPhase.quaternion.vector.w))
-        let isTurnSwitching: Bool = turnSwitchingTimingFinder.handle(currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
+        let isTurnSwitching: Bool = turnSwitchingTimingFinder.handle(cMRotationRate: movingPhase.absoluteRotationRate, timeInterval: movingPhase.timeStampSince1970)
         MotionAnalyzerManager.shared.turnSwitch = isTurnSwitching
         let oneTurnDiffAngleEuller = oneTurnDiffreentialFinder.handle(isTurnSwitched: isTurnSwitching, currentTurnSwitchAngle: currentFloatQuatanion)
         
@@ -35,7 +35,8 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         s.simdOrientation = lastTurnSwitchingAngle
         MotionAnalyzerManager.shared.lastSwitchedTurnAngle = s.eulerAngles.z
         let turnPhaseBy100 = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
-//        MotionAnalyzerManager.shared.turnPhase100 = turnPhaseBy100
+        MotionAnalyzerManager.shared.turnPhase100 = turnPhaseBy100
+        MotionAnalyzerManager.shared.oneTurnDiffAngleEuller = oneTurnDiffAngleEuller
         // 向き付はうまくするといらないのかも
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, isTurnSwitching: isTurnSwitching)
@@ -60,7 +61,7 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
                                                    rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude)
         
-        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: turnPhaseBy100,angleRange: Float(0.32)..<Float(0.34)) {
+        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: turnPhaseBy100,angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
         }
         switch turnChronologicalPhase {

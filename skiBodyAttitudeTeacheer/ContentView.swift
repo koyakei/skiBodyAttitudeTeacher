@@ -49,24 +49,18 @@ struct ContentView: View {
                 }
                 VStack{
                 Text(String(
-                    round(Measurement(value:
 //                                    Double(QuaternionToEullerAngleDifferential.handle(base: quotanionNow! ?? simd_quatf.init(), target: quotanionOld!).z)
-                                Double(QuaternionToEullerAngleDifferential.convert(simdq: quotanionNow! ?? simd_quatf.init()).z)
-                                
-                                , unit: UnitAngle.radians)
-                        .converted(to: .degrees).value
-                    
-                )))
+                                      round(MotionAnalyzerManager.shared.currentFloatYawAngle / MotionAnalyzerManager.shared.oneTurnDiffAngleEuller * 100 )
+                                ))
                     Text(String(
                         round(Measurement(value:
-                                    Double(QuaternionToEullerAngleDifferential.convert(simdq: quotanionOld! ?? simd_quatf.init()).z)
+                                            Double(MotionAnalyzerManager.shared.currentFloatYawAngle)
                                     , unit: UnitAngle.radians)
                             .converted(to: .degrees).value
                         
                     )))
                     Text(String(
-                        round(Measurement(value:
-                                        Double(QuaternionToEullerAngleDifferential.handle(base: quotanionNow! ?? simd_quatf.init(), target: quotanionOld!).z)
+                        round(Measurement(value: Double(MotionAnalyzerManager.shared.oneTurnDiffAngleEuller)
                                     
                                     , unit: UnitAngle.radians)
                             .converted(to: .degrees).value)
@@ -136,7 +130,7 @@ struct ContentView: View {
                         .background(Color.red)
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians:
-                                                    (Double(MotionAnalyzerManager.shared.lastSwitchedTurnAngle) - currentAttitude.yaw) * -1  ))
+                                                    (Double(MotionAnalyzerManager.shared.lastSwitchedTurnAngle) - (currentAttitude.yaw * -1) )  ))
                 Text("fall Line")
                 Text("⇑")
                     .background(Color.red)
@@ -169,8 +163,8 @@ struct ContentView: View {
             VStack{
                 HStack{
                     Text("turn Phase " + String(
-                        round(Measurement(value: Double(MotionAnalyzerManager.shared.turnPhase100), unit: UnitAngle.radians).converted(to: UnitAngle.degrees).value)
-                    ))
+                        round(MotionAnalyzerManager.shared.turnPhase100 * 100 ))
+                    )
                 }
                 Text("Is turn Switch ß" + String(MotionAnalyzerManager.shared.turnSwitch))
                 Text("yawing side " + turnYawingSide.rawValue)
