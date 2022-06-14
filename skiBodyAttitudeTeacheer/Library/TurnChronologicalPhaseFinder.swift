@@ -111,12 +111,12 @@ struct FindTurnPhaseBy100{
     
     
     func handle(currentRotationEullerAngleFromTurnSwitching: Float,
-                oneTurnDiffrentialAngle: Float)-> Float{
-        let percent = abs(currentRotationEullerAngleFromTurnSwitching) / abs(oneTurnDiffrentialAngle)
+                oneTurnDiffrentialAngle: Float)-> Double{
+        let percent = Double(abs(Double(currentRotationEullerAngleFromTurnSwitching)) / abs(Double(oneTurnDiffrentialAngle)))
         if percent > 1 {
-            return 1
+            return 1.0
         } else if percent < 0 {
-            return 0
+            return Double.zero
         } else {
             return percent
         }

@@ -10,65 +10,22 @@ import CoreMotion
 import simd
 import SceneKit
 
-//let motionWriter = MotionWriter()
-//let motionWriterHeadPhone = MotionWriter()
-//let motionWriterWatch = WatchMotionWriter()
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
 
 import AVFoundation
 import AudioToolbox
 struct ContentView: View {
-    @State var turnYawingSide: TurnYawingSide = TurnYawingSide.Straight
-    @State var turnSwitchingDirection : TurnSwitchingDirection = TurnSwitchingDirection.Keep
     @State var absoluteFallLineAttitude :Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var currentAttitude: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
-    @State var yawingPeriod: Double = 0
-    @State var accuracy: CMMagneticFieldCalibrationAccuracy = CMMagneticFieldCalibrationAccuracy.high
-    @State var motionDate: Date = Date.now
-    @State var turnChronologicalPhase:TurnPhaseByStartMaxEnd = TurnPhaseByStartMaxEnd.TurnMax
     @State var orthogonalAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
-    @State var barLength : CGFloat = 0
-    @State var barLengthR : CGFloat = 0
-    @State var barLengthX : CGFloat = 0
-    @State var barLengthZ : CGFloat = 0
     @State var headPhoneMotionDeviceLeft: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
-    @State var headPhoneMotionDeviceRight: CMDeviceMotion?
-    @State var rollDegree: Double = 0
-    @State var rollTone: Bool = false
-    @State var quotanionOld: simd_quatf? = simd_quatf.init()
-    @State var quotanionNow: simd_quatf? = simd_quatf.init()
+    @State var lastSwitchedAngleRadian: Double = 0.0
+    @State var turnPhaseBy100: Double = 0.0
     @StateObject var conductor = DynamicOscillatorConductor()
 
     var body: some View {
-        
         VStack{
-            HStack{
-                Button(action: {quotanionOld = quotanionNow}){
-                    Text("Set Angle")
-                }
-                VStack{
-                Text(String(
-//                                    Double(QuaternionToEullerAngleDifferential.handle(base: quotanionNow! ?? simd_quatf.init(), target: quotanionOld!).z)
-                                      round(MotionAnalyzerManager.shared.currentFloatYawAngle / MotionAnalyzerManager.shared.oneTurnDiffAngleEuller * 100 )
-                                ))
-                    Text(String(
-                        round(Measurement(value:
-                                            Double(MotionAnalyzerManager.shared.currentFloatYawAngle)
-                                    , unit: UnitAngle.radians)
-                            .converted(to: .degrees).value
-                        
-                    )))
-                    Text(String(
-                        round(Measurement(value: Double(MotionAnalyzerManager.shared.oneTurnDiffAngleEuller)
-                                    
-                                    , unit: UnitAngle.radians)
-                            .converted(to: .degrees).value)
-                        
-                    ))
-                    
-                }
-            }
             HStack{
             Button(action: startRecord) {
                 Text("Start motion ")
@@ -94,19 +51,6 @@ struct ContentView: View {
                 }
             
             HStack{
-                Button(action: {
-                    MotionAnalyzerManager.shared.内倒警告 = true
-                }) {
-                    Text("Start 内倒警告 ")
-                }
-                Button(action: {
-                    MotionAnalyzerManager.shared.内倒警告 = false
-                }) {
-                    Text("Stop 内倒警告")
-                }
-            }
-            
-            HStack{
                 Button(action: {MotionAnalyzerManager.shared.turnMaxBeep = true}) {
                     Text("turn max beep start ")
                 }
@@ -130,7 +74,7 @@ struct ContentView: View {
                         .background(Color.red)
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians:
-                                                    (Double(MotionAnalyzerManager.shared.lastSwitchedTurnAngle) - (currentAttitude.yaw * -1) )  ))
+                                                    (lastSwitchedAngleRadian - (currentAttitude.yaw * -1) )  ))
                 Text("fall Line")
                 Text("⇑")
                     .background(Color.red)
@@ -163,125 +107,44 @@ struct ContentView: View {
             VStack{
                 HStack{
                     Text("turn Phase " + String(
-                        round(MotionAnalyzerManager.shared.turnPhase100 * 100 ))
+                        round(turnPhaseBy100 * 100 ))
                     )
                 }
-                Text("Is turn Switch ß" + String(MotionAnalyzerManager.shared.turnSwitch))
-                Text("yawing side " + turnYawingSide.rawValue)
-                Text(turnChronologicalPhase.rawValue)
-                Text(turnSwitchingDirection.rawValue)
-                Text(motionDate.formatted(.dateTime.second().minute()))
-                
             }
         }
-        Rectangle()
-            .fill(Color.blue)
-            .frame(width: barLength + 150, height: 10)
-        Rectangle()
-                .fill(Color.red)
-                .frame(width: barLengthR + 150, height: 10)
-        Rectangle()
-                .fill(Color.red)
-                .frame(width: barLengthX + 150, height: 10)
-
-        Rectangle()
-                .fill(Color.yellow)
-                .frame(width: barLengthZ + 10, height: 10)
-        Text("\(rollDegree)")
-        Text("⇑")
-            .background(Color.green)
-            .font(.largeTitle)
-            .rotationEffect(Angle.init(radians: headPhoneMotionDeviceRight?.attitude.yaw ?? 0))
     }
-    func stopRollTone(){
-        rollTone = false
-    }
+    
     func startRecord(){
         coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
-                    currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
-                    
-                        
-//                    barLengthZ = CGFloat(Measurement.init(value: motion!.rotationRate.y, unit: UnitAngle.radians).converted(to: UnitAngle.degrees).value * 2.0)// 右プラス
-            let cq = simd_quatd(
-                    ix: motion!.attitude.quaternion.x,
-                    iy: motion!.attitude.quaternion.y,
-                    iz: motion!.attitude.quaternion.z,
-                    r: motion!.attitude.quaternion.w
-            )
-                    quotanionNow = simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
-                                                   iy: Float(motion!.attitude.quaternion.y),
-                                                   iz: Float(motion!.attitude.quaternion.z),
-                                                   r: Float(motion!.attitude.quaternion.w))
-                                        barLength =
-                    simd_dot(
-                        simd_normalize(simd_axis(cq *
-                                                 simd_inverse(cq) *
-                                                 simd_quatd( //　内への加速でプラスになっている
-                                                    angle: Measurement(value: Double(turnYawingSide.shiftAngle()), unit: UnitAngle.degrees)
-                                              .converted(to: .radians).value,
-                                      axis: simd_double3(1 , 0 ,0))
-                                                ) )
-                        ,
-                        simd_double3(motion!.userAcceleration.x, motion!.userAcceleration.y,
-                                     motion!.userAcceleration.z)
-                    ) * 100
-                    rollDegree = Double(abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
-                                                        .converted(to: .degrees).value))))
-                    
-                    
-            motionDate = Date(timeIntervalSince1970: CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion!.timestamp, systemUptime: ProcessInfo.processInfo.systemUptime))
-            if MotionAnalyzerManager.shared.磁北偏差 == nil{
-                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
-            }
-                    
             let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
                                          ProcessInfo
                                                  .processInfo.systemUptime
                                          )
+                    currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
+//                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
+//                                                   iy: Float(motion!.attitude.quaternion.y),
+//                                                   iz: Float(motion!.attitude.quaternion.z),
+//                                                   r: Float(motion!.attitude.quaternion.w))
+            if MotionAnalyzerManager.shared.磁北偏差 == nil{
+                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
+            }
                     orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
                     absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
-            turnYawingSide = skiTurnPhase.turnYawingSide
-            turnChronologicalPhase = skiTurnPhase.turnPhase
-            turnSwitchingDirection = skiTurnPhase.turnSwitchingDirection
-
-                    barLengthR = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration * 100
-//                    barLengthZ = skiTurnPhase.fallLineAcceleration * 300
+                    turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
                     conductor.data.frequency = AUValue(ToneStep.hight(
                         abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
                                                                                     .converted(to: .degrees).value)))))
-                    if TimingStone.handle(timeIntervalSince1970:
-                                            skiTurnPhase.timeStampSince1970) {
-                        if rollTone {
-                            
-                        }
-                    }
                 }
         headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
-            
-            let v:CenterOfMassTurnPhase? = MotionAnalyzerManager.shared.receiveAirPodMotion(motion!,
-                                         ProcessInfo
-                                                 .processInfo.systemUptime
-            )
             headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
         }
     }
-        
-   
     
     func stopRecord(){
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
-        
-//        let myUnit = ToneOutputUnit()
-//        myUnit.setFrequency(freq: 440)
-//                                abs(Double(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
-//                                                     .converted(to: .degrees).value) * 10))
-//        myUnit.setToneVolume(vol: 0.5)
-//        myUnit.enableSpeaker()
-//        myUnit.setToneTime(t:100)
-
     }
 
 struct ContentView_Previews: PreviewProvider {

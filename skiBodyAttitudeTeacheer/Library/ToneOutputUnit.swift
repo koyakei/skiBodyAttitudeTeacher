@@ -102,6 +102,7 @@ class SineWave {
         didSet { updateBuffers() }
     }
     static public var shared = SineWave.init()
+    
     init(volume: Float = 0.1, hz: Float = 600) {
         self.volume = volume
         self.hz = hz
