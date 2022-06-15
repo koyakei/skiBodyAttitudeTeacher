@@ -7,7 +7,6 @@ import Foundation
 import simd
 struct AngleShifter {
 
-    // return
     static func handle(currentAngle: Double, shiftAngle: Double)-> Double{
         let shiftedAngle = (currentAngle + shiftAngle)
         switch shiftedAngle{

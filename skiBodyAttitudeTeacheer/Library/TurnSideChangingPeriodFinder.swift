@@ -19,9 +19,6 @@ struct TurnSideChangingPeriodFinder {
     }
 }
 
-
-
-
 struct TurnSwitchingTimingFinder{
 //    var rotationRateRecords: [RotationRateRecord] = []
     var lastTurnSiwtchedTimeInterval = Date.now.timeIntervalSince1970
@@ -32,9 +29,7 @@ struct TurnSwitchingTimingFinder{
                                                                                   , unit: UnitAngle.degrees)
                                                                           .converted(to: .radians).value
     mutating func handle(cMRotationRate: CMRotationRate, timeInterval : TimeInterval)-> Bool{
-//        rotationRateRecords.append(RotationRateRecord.init(absoluteRotationRate: cMRotationRate, timeStampSince1970: timeInterval))
-//        let v = rotationRateRecords.yawRotationRateMovingAverage(timeInterval: minimumTurnPeriod)
-        
+
         if rotationNoizeRange ~= cMRotationRate.z
             && (Date.now.timeIntervalSince1970 - lastTurnSiwtchedTimeInterval) > minimumTurnPeriod {
             lastTurnSiwtchedTimeInterval = timeInterval

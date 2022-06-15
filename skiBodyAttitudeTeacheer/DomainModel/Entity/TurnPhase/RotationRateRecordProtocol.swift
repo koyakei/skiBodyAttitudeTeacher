@@ -31,19 +31,7 @@ extension Collection where Element: RecordWithTimeStamp {
 
 
 extension Collection where Element: RotationRateRecordProtocol {
-    func yawRotationRateMovingAverage(timeInterval: TimeInterval) -> Double {
-        return AverageAngleFinder.handle(angles_rad:
-                                         self.filterByBeforeMilleSecondsFromNow(timeInterval: timeInterval).mapper()
-        )
-    }
-    
-    // 最小　最大の差が　基準値以上あるかどうか？
-    func minMaxDiffrence(val: Double) -> Bool {
-        let min : Double = self.min(by: {(a,b) -> Bool in return a.absoluteRotationRate.z < b.absoluteRotationRate.z })?.absoluteRotationRate.z ?? 0
-        let max: Double  = self.max(by: {(a,b) -> Bool in return a.absoluteRotationRate.z < b.absoluteRotationRate.z })?.absoluteRotationRate.z ?? 0
-        return abs(max - min) > Measurement(value: 10, unit: UnitAngle.degrees).converted(to: .radians).value
-    }
-
+  
     func mapper() -> [Double] {
         self.map {
             $0.mapper()
@@ -74,11 +62,7 @@ extension AbsoluteAttitudeProtocol {
 }
 
 extension Collection where Element: AbsoluteAttitudeProtocol {
-    func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> Double {
-        return AverageAngleFinder.handle(angles_rad:
-                                         self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).mapper()
-        )
-    }
+    
 
     func mapper() -> [Double] {
         self.map {

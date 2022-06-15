@@ -7,15 +7,6 @@
 
 import Foundation
 
-struct CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime {
-
-    static func handle(timeStamp: TimeInterval,
-                       systemUptime:
-                               TimeInterval) -> TimeInterval {
-        Date(timeInterval: timeStamp, since: Date.now
-                .addingTimeInterval(systemUptime * -1)).timeIntervalSince1970
-    }
-}
 
 struct MilliSecondString {
     static func handle(timeStamp: TimeInterval)-> String {

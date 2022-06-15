@@ -31,7 +31,7 @@ final public class UnifyBodyAndSkiTurn {
     }
 
     func ac()-> (Double,Double){
-        let moveFromLast :[SkiTurnPhase] = skiTurnPhases.filterTurnInitialize().reversed() // sortedのほうが保証できるのか？
+        let moveFromLast :[SkiTurnPhase] = []// sortedのほうが保証できるのか？
         if moveFromLast.count < 10 {
             return ( 0, 0)
         }

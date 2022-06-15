@@ -28,7 +28,8 @@ public struct MotionAnalyzerManager {
     mutating func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
         let va = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
-                                                                 CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.handle(timeStamp: motion.timestamp, systemUptime: receivedProcessUptime))
+                                                                 Date(timeInterval: motion.timestamp, since: Date.now
+                                                                         .addingTimeInterval(receivedProcessUptime * -1)).timeIntervalSince1970)
         unifyBodyAndSkiTurn.receive(turnPhase: va)
         return va
     }

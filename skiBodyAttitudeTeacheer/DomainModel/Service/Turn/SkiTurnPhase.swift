@@ -12,7 +12,6 @@ struct SkiTurnPhase : TooMuchInsideAngleFinderProtocol{
     let turnSideChangePeriod: TimeInterval
     let absoluteFallLineAttitude: simd_quatd
     let fallLineAcceleration: Double
-    let turnPhase: TurnPhaseByStartMaxEnd
     let orthogonalAccelerationAndRelativeAttitude:
     TargetDirectionAccelerationAndRelativeAttitude
     let absoluteAttitude: Attitude
@@ -29,17 +28,7 @@ struct ElapsedTimeAndV{
     let velocity: Double
 }
 extension Collection where Element == SkiTurnPhase{
-    func filterTurnInitialize()->[SkiTurnPhase]{
-        return self.filter{
-            $0.turnPhase == TurnPhaseByStartMaxEnd.SwitchToMax
-        }
-    }
-
-    func filterTurnEnd()-> [SkiTurnPhase]{
-        return self.filter{
-            $0.turnPhase == TurnPhaseByStartMaxEnd.MaxToSwitch
-        }
-    }
+    
 
     func firstAndLastTimeStamp()-> (TimeInterval,TimeInterval){
         let v = self.sorted(by:

@@ -10,8 +10,7 @@ import CoreMotion
 import simd
 import SceneKit
 
-struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
-    var turnChronologicalPhaseFinder: TurnChronologicalPhaseFinder = TurnChronologicalPhaseFinder.init()
+struct SkiTurnPhaseAnalyzer {
     var turnSideChangingPeriodFinder: TurnSideChangingPeriodFinder =
             TurnSideChangingPeriodFinder.init()
     var turnSwitchingDirectionFinder: TurnSwitchingDirectionFinder = TurnSwitchingDirectionFinder.init()
@@ -36,12 +35,10 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, isTurnSwitching: isTurnSwitching)
         
         let absoluteFallLineQuaternion: simd_quatd = absoluteQuaternionFallLineFinder.handle(quaternion: movingPhase.quaternion, timeStampSince1970: movingPhase.timeStampSince1970, yawingPeriod: turnSideChangePeriod)
-        let fallLineAttitude: Attitude = QuaternionToEuler.init(q: absoluteFallLineQuaternion).handle()
-        
-        let turnChronologicalPhase: TurnPhaseByStartMaxEnd = turnChronologicalPhaseFinder.handle(
-            currentAttitude: movingPhase.attitude, absoluteFallLineAttitude: fallLineAttitude
-        , currentTurnYawingSide: movingPhase.absoluteRotationRate.yawingSide, turnSwitchingDirection: turnSwitchingDirection)
-        
+        let euller = QuaternionToEullerAngleDifferential.convertToEuller(simdq: simd_quatf.init(
+            ix: Float(absoluteFallLineQuaternion.vector.x), iy: Float(absoluteFallLineQuaternion.vector.y), iz: Float(absoluteFallLineQuaternion.vector.z), r: Float(absoluteFallLineQuaternion.vector.w)))
+        let fallLineAttitude: Attitude = Attitude.init(roll: Double(euller.y), yaw: Double(euller.z), pitch: Double(euller.x))
+
         let fallLineOrthogonalAccelerationAndRelativeAttitude:
                 TargetDirectionAccelerationAndRelativeAttitude
                 =
@@ -50,7 +47,7 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
                                           userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineQuaternion)
         let skiTurnPhase = SkiTurnPhase.init(turnYawingSide: movingPhase.absoluteRotationRate.yawingSide, turnSwitchingDirection: turnSwitchingDirection,
                                             turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineQuaternion,
-                                                   fallLineAcceleration: fallLineAcceleration, turnPhase: turnChronologicalPhase,
+                                                   fallLineAcceleration: fallLineAcceleration,
                                             orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
                                              rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhaseBy100 ,lastSwitchedTurnAngle: lastTurnSwitchingAngle)
@@ -58,7 +55,7 @@ struct SkiTurnPhaseAnalyzer : TurnPhaseAnalyzerProtocol {
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
         }
-        if turnChronologicalPhase == .TurnMax{
+        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.49)..<Float(0.50)) {
             MotionAnalyzerManager.shared.skiTurnMax()
         }
         
