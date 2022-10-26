@@ -50,7 +50,8 @@ struct SkiTurnPhaseAnalyzer {
                                                    fallLineAcceleration: fallLineAcceleration,
                                             orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
-                                             rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhaseBy100 ,lastSwitchedTurnAngle: lastTurnSwitchingAngle)
+                                             rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhaseBy100 ,lastSwitchedTurnAngle: lastTurnSwitchingAngle,
+                                             currentAttitude: movingPhase.quaternion)
         
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
@@ -58,6 +59,7 @@ struct SkiTurnPhaseAnalyzer {
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.49)..<Float(0.50)) {
             MotionAnalyzerManager.shared.skiTurnMax()
         }
+        
         
         return skiTurnPhase
     }

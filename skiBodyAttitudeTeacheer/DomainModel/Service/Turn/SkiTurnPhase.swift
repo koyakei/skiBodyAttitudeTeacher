@@ -21,6 +21,7 @@ struct SkiTurnPhase : TooMuchInsideAngleFinderProtocol{
     let fallLineAttitude: Attitude
     let turnPhaseBy100: Double
     let lastSwitchedTurnAngle : simd_quatf
+    let currentAttitude: simd_quatd
 }
 
 struct ElapsedTimeAndV{

@@ -14,6 +14,10 @@ struct QuaternionToEullerAngleDifferential{
         return convertToEuller(simdq: simd_normalize( target * base.inverse))
     }
     
+    static func matrixDoubleToFloat(val : simd_quatd) -> simd_quatf{
+        return simd_quatf(ix: Float(val.vector.x), iy: Float(val.vector.y), iz: Float(val.vector.z), r: Float(val.vector.w) )
+    }
+    
     static func convertToEuller(simdq: simd_quatf) -> SCNVector3{
         let n = SCNNode()
         n.simdOrientation = simdq

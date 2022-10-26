@@ -22,6 +22,37 @@ public struct TurnPhaseCutter {
     }
 }
 
+final public class BeforeSkiTurn {
+    var skiTurnPhases: [SkiTurnPhase] = []
+    var beforeSkiTurnPhase: [SkiTurnPhase] = []
+    
+    func turnEnd(){
+        getScore()
+        // 消して次の
+        beforeSkiTurnPhase = skiTurnPhases
+        skiTurnPhases = []
+    }
+    
+    func getScore()-> Double{
+        let actualPhaseDegreeList: [ActualPhaseDegree] = beforeSkiTurnPhase.map{
+            ActualPhaseDegree(timeIntervalSinceStartOfTurn: $0.timeStampSince1970 -
+                              beforeSkiTurnPhase[beforeSkiTurnPhase.startIndex].timeStampSince1970,
+                              actualDiffrencialAngleSinceStartOfTurn: Double(QuaternionToEullerAngleDifferential.handle(base: QuaternionToEullerAngleDifferential.matrixDoubleToFloat(val:$0.currentAttitude)
+                                                                                                                        , target:
+                                                                                            QuaternionToEullerAngleDifferential.matrixDoubleToFloat(val: beforeSkiTurnPhase[beforeSkiTurnPhase.startIndex].currentAttitude)
+                                                ).z))
+            
+            }
+        // 現在の角度差が出てくる
+        let oneTurnDiffrencial : Double = Double(QuaternionToEullerAngleDifferential.handle(base: QuaternionToEullerAngleDifferential.matrixDoubleToFloat(val:beforeSkiTurnPhase[beforeSkiTurnPhase.endIndex].currentAttitude)
+                                                                                , target:
+                                                    QuaternionToEullerAngleDifferential.matrixDoubleToFloat(val: beforeSkiTurnPhase[beforeSkiTurnPhase.startIndex].currentAttitude)
+        ).z)
+        let oneTurnTimeDuration : TimeInterval =
+        beforeSkiTurnPhase[beforeSkiTurnPhase.endIndex].timeStampSince1970 - beforeSkiTurnPhase[beforeSkiTurnPhase.startIndex].timeStampSince1970
+        return YawingShapeScore(actualPhaseDegreeList: actualPhaseDegreeList, oneTurnDiffrencial: oneTurnDiffrencial, oneTurnTimeDuration: oneTurnTimeDuration).handle()
+    }
+}
 final public class UnifyBodyAndSkiTurn {
     var skiTurnPhases: [SkiTurnPhase] = []
     var bodyTurnPhases: [CenterOfMassTurnPhase] = []
