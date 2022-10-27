@@ -19,6 +19,7 @@ struct SkiTurnPhaseAnalyzer {
     var turnSwitchingTimingFinder: TurnSwitchingTimingFinder = TurnSwitchingTimingFinder.init()
     var lastTurnSwitchingAngle: simd_quatf = simd_quatf.init()
     var turnInFirstPhaseBorder: TurnInFirstPhaseBorder = TurnInFirstPhaseBorder.init()
+    var turnDiffrencialFinder: TurnDiffrencialFinder = TurnDiffrencialFinder.init()
     mutating func handle(movingPhase:
             MovingPhase) -> SkiTurnPhase {
         let currentFloatQuatanion: simd_quatf =
@@ -29,6 +30,7 @@ struct SkiTurnPhaseAnalyzer {
         
         if isTurnSwitching {
             lastTurnSwitchingAngle = currentFloatQuatanion
+            turnDiffrencialFinder.turnswitchedRecive(movingPhase: movingPhase)
         }
         let turnPhaseBy100 = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
@@ -51,8 +53,7 @@ struct SkiTurnPhaseAnalyzer {
                                             orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
                                              rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhaseBy100 ,lastSwitchedTurnAngle: lastTurnSwitchingAngle,
-                                             currentAttitude: movingPhase.quaternion)
-        
+                                             currentAttitude: movingPhase.quaternion, yawingDiffrencialFromIdealYaw: Double( turnDiffrencialFinder.currentIdealDiffrencial(currentAngle: movingPhase.quaternion)))
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
         }
@@ -65,5 +66,28 @@ struct SkiTurnPhaseAnalyzer {
     }
 }
 
+extension simd_quatd {
+    
+    public static func + (lhs: simd_quatd, rhs: simd_quatf) -> simd_quatf{
+        return simd_quatf(  lhs) + rhs
+    }
+    
+    public static func - (lhs: simd_quatd, rhs: simd_quatf) -> simd_quatf{
+        return simd_quatf(  lhs) - rhs
+    }
+}
 
+extension simd_quatf {
+    public init(_ val: simd_quatd){
+        self.init(ix: Float(val.vector.x), iy: Float(val.vector.y), iz: Float(val.vector.z), r: Float(val.vector.w) )
+    }
+    
+    public static func + (lhs: simd_quatf, rhs: simd_quatd) -> simd_quatf{
+        return simd_quatf( rhs) + lhs
+    }
+    
+    public static func - (lhs: simd_quatf, rhs: simd_quatd) -> simd_quatf{
+        return simd_quatf( rhs) - lhs
+    }
+}
 

@@ -22,7 +22,9 @@ struct ContentView: View {
     @State var headPhoneMotionDeviceLeft: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var lastSwitchedAngleRadian: Double = 0.0
     @State var turnPhaseBy100: Double = 0.0
+    @State var idealDiffrencial: Double = 0.0
     @StateObject var conductor = DynamicOscillatorConductor()
+    @StateObject var idealDiffrencialConductor = DynamicOscillatorConductor()
 
     var body: some View {
         VStack{
@@ -34,6 +36,21 @@ struct ContentView: View {
                 Text("Stop motion")
             }
             }
+            
+            HStack{
+                Button(action: {
+                    self.idealDiffrencialConductor.data.isPlaying.toggle()
+                }) {
+                    Text(self.conductor.data.isPlaying ? "diffrencial toneSTOP" : "diff tone START")
+                    
+                }
+            }.navigationBarTitle(Text("Dynamic Oscillator"))
+                .onAppear {
+                    self.idealDiffrencialConductor.start()
+                }
+                .onDisappear {
+                    self.idealDiffrencialConductor.stop()
+                }
             
             HStack{
                 Button(action: {
@@ -80,7 +97,15 @@ struct ContentView: View {
                     .background(Color.red)
                     .font(.largeTitle)
                     .rotationEffect(Angle.init(radians:
-                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) )}
+                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) )
+                
+                Text("ideal diff")
+                Text("⇑")
+                    .background(Color.red)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(radians:
+                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1 + idealDiffrencial) )}
+            
                 HStack{
                     Text("orthogonal line to turn out")
                     Text("⇑")
@@ -130,9 +155,13 @@ struct ContentView: View {
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
             }
+                    idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
                     orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
                     absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
                     turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
+                    idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
+                        abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
+                                                                                    .converted(to: .degrees).value)))))
                     conductor.data.frequency = AUValue(ToneStep.hight(
                         abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
                                                                                     .converted(to: .degrees).value)))))

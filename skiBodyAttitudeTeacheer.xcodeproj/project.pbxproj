@@ -80,6 +80,7 @@
 		BA4C93CB27687BEE00E2C749 /* BLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C93CA27687BEE00E2C749 /* BLService.swift */; };
 		BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */; };
 		BA847CD829090BB7009B8AEA /* TurnShapeScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */; };
+		BA847CDA290A516F009B8AEA /* TurnDiffrencialFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
 		BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB26539274BBBB0001A51BA /* CoreLocation.framework */; };
 		BAF25FF4275608CD009992C9 /* AccelerationForTargetAngleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */; };
@@ -196,6 +197,7 @@
 		BA4C93CA27687BEE00E2C749 /* BLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLService.swift; sourceTree = "<group>"; };
 		BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuaternionToEullerAngleDifferential.swift; sourceTree = "<group>"; };
 		BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnShapeScore.swift; sourceTree = "<group>"; };
+		BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnDiffrencialFinder.swift; sourceTree = "<group>"; };
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */,
 				2EF634061AA2AE9C93A8196E /* Entity */,
 				2EF638852BB8EF40346AC354 /* Attitude.swift */,
+				BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */,
 			);
 			path = DomainModel;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				2EF639D0CB0F73847AC217F1 /* RightTurn前半Phase.swift in Sources */,
 				2EF63D6A68181FCF71A9D716 /* RightTurn後半Phase.swift in Sources */,
 				2EF63C2FF02AA06CC85692F8 /* LeftTurn後半Phase.swift in Sources */,
+				BA847CDA290A516F009B8AEA /* TurnDiffrencialFinder.swift in Sources */,
 				2EF63066E41541AFD04CF2D8 /* LeftTurn前半Phase.swift in Sources */,
 				2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */,
 				2EF63FC94CADBB46D2648037 /* YawingSideFinder.swift in Sources */,
