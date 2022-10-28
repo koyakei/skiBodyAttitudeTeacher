@@ -21,4 +21,16 @@ extension TurnYawingSide {
             return 90
         }
     }
+    
+    func turnsideToSign()-> Int{
+        switch self{
+        case .RightYawing:
+            return 1
+        case .LeftYawing:
+            return -1  
+        case .Straight:
+            return 1
+        }
+            
+    }
 }

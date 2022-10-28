@@ -23,6 +23,7 @@ struct SkiTurnPhase : TooMuchInsideAngleFinderProtocol{
     let lastSwitchedTurnAngle : simd_quatf
     let currentAttitude: simd_quatd
     let yawingDiffrencialFromIdealYaw: Double // z の理想とのち外 外すぎ + 内すぎ -
+//    let beforeTurnYawDiffrencial: Double
 }
 
 struct ElapsedTimeAndV{

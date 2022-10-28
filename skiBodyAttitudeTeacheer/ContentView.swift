@@ -23,6 +23,7 @@ struct ContentView: View {
     @State var lastSwitchedAngleRadian: Double = 0.0
     @State var turnPhaseBy100: Double = 0.0
     @State var idealDiffrencial: Double = 0.0
+    @State var turnYawingSide: TurnYawingSide = TurnYawingSide.Straight
     @StateObject var conductor = DynamicOscillatorConductor()
     @StateObject var idealDiffrencialConductor = DynamicOscillatorConductor()
 
@@ -98,14 +99,25 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .rotationEffect(Angle.init(radians:
                                                 (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) )
+                    .overlay{
+                        Text("↑")
+                            .background(Color.clear)
+                            .foregroundColor(Color.blue)
+                            .font(.largeTitle)
+                            .fontWeight(.light)
+                            .rotationEffect(Angle.init(radians:
+                                                        (
+                                                            (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) +
+                                                       (idealDiffrencial * 4
+                                                                                                                        * Double(turnYawingSide.turnsideToSign())
+                                                       )) )
+                    }
                 
+                
+                
+                    
+                }
                 Text("ideal diff")
-                Text("⇑")
-                    .background(Color.red)
-                    .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians:
-                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1 + idealDiffrencial) )}
-            
                 HStack{
                     Text("orthogonal line to turn out")
                     Text("⇑")
@@ -135,6 +147,18 @@ struct ContentView: View {
                         round(turnPhaseBy100 * 100 ))
                     )
                 }
+                HStack{
+                    Text("yaw diff " + String(
+                        round(Angle.init(radians:idealDiffrencial).degrees)
+                    ))
+//                
+                    Text("second diff " + String(
+//                        round(
+                        idealDiffrencial
+//                            Angle.init(radians:idealDiffrencial).degrees
+//                             )
+                    ))
+                }
             }
         }
     }
@@ -155,6 +179,7 @@ struct ContentView: View {
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
             }
+                    turnYawingSide = skiTurnPhase.turnYawingSide
                     idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
                     orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
                     absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude

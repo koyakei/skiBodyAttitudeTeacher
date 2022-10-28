@@ -53,7 +53,7 @@ struct SkiTurnPhaseAnalyzer {
                                             orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
                                              rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhaseBy100 ,lastSwitchedTurnAngle: lastTurnSwitchingAngle,
-                                             currentAttitude: movingPhase.quaternion, yawingDiffrencialFromIdealYaw: Double( turnDiffrencialFinder.currentIdealDiffrencial(currentAngle: movingPhase.quaternion)))
+                                             currentAttitude: movingPhase.quaternion, yawingDiffrencialFromIdealYaw: Double( turnDiffrencialFinder.currentIdealDiffrencial(currentAngle: movingPhase.quaternion, currentTime: movingPhase.timeStampSince1970)))
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
         }

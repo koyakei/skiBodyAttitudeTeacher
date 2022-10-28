@@ -20,8 +20,17 @@ struct TurnDiffrencialFinder{
         beforeTurnSwitchedAngle = movingPhase.quaternion
     }
     
-    func currentIdealDiffrencial(currentAngle: simd_quatd) -> Double{
-        Double( beforeTurnYawingDiffrencial()) / beforeTurnDiffrencialTime() * Double(currentYawingDiffrencial(currentAngle: currentAngle))
+    func currentIdealDiffrencial(currentAngle: simd_quatd, currentTime: TimeInterval) -> Double{
+        
+        (
+            Double( beforeTurnYawingDiffrencial())
+         /
+        beforeTurnDiffrencialTime()
+         *
+        abs(currentTime - beforeTurnSwitchedUnixTime)
+        )
+        -
+        Double(currentYawingDiffrencial(currentAngle: currentAngle))
         
     }
     
@@ -30,17 +39,17 @@ struct TurnDiffrencialFinder{
     }
     
     func currentYawingDiffrencial(currentAngle: simd_quatd) -> Float{
-        QuaternionToEullerAngleDifferential.handle(base: simd_quatf(currentAngle)
+        abs(QuaternionToEullerAngleDifferential.handle(base: simd_quatf(currentAngle)
                                                     , target:
-                                                    simd_quatf( beforebeforeTurnSwitchedAngle)
-        ).z
+                                                    simd_quatf( beforeTurnSwitchedAngle)
+        ).z)
     }
     
     func beforeTurnYawingDiffrencial() -> Float{
-        QuaternionToEullerAngleDifferential.handle(base:
+        abs(QuaternionToEullerAngleDifferential.handle(base:
                                                     simd_quatf( beforeTurnSwitchedAngle)
                                                     , target:
                                                     simd_quatf( beforebeforeTurnSwitchedAngle)
-        ).z
+        ).z)
     }
 }
