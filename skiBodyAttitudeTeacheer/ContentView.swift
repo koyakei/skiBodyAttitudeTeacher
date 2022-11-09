@@ -26,7 +26,7 @@ struct ContentView: View {
     @State var turnYawingSide: TurnYawingSide = TurnYawingSide.Straight
     @StateObject var conductor = DynamicOscillatorConductor()
     @StateObject var idealDiffrencialConductor = DynamicOscillatorConductor()
-
+    @State var turnPhaseByTime: Double = 0.0
     var body: some View {
         VStack{
             HStack{
@@ -42,7 +42,7 @@ struct ContentView: View {
                 Button(action: {
                     self.idealDiffrencialConductor.data.isPlaying.toggle()
                 }) {
-                    Text(self.conductor.data.isPlaying ? "diffrencial toneSTOP" : "diff tone START")
+                    Text(self.conductor.data.isPlaying ? "yaw diffrencial tone　STOP" : "diff tone START")
                     
                 }
             }.navigationBarTitle(Text("Dynamic Oscillator"))
@@ -108,14 +108,13 @@ struct ContentView: View {
                             .rotationEffect(Angle.init(radians:
                                                         (
                                                             (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) +
-                                                       (idealDiffrencial * 4
-                                                                                                                        * Double(turnYawingSide.turnsideToSign())
-                                                       )) )
+                                                       (idealDiffrencial
+                                                                                                                        * 2 * Double(turnYawingSide.turnsideToSign()
+                                                                                                                                )
+                                                       )
+                                                      ) )
                     }
                 
-                
-                
-                    
                 }
                 Text("ideal diff")
                 HStack{
@@ -147,18 +146,18 @@ struct ContentView: View {
                         round(turnPhaseBy100 * 100 ))
                     )
                 }
-                HStack{
-                    Text("yaw diff " + String(
-                        round(Angle.init(radians:idealDiffrencial).degrees)
+                        Text("yaw diff " + String(
+                            round(Angle.init(radians:idealDiffrencial).degrees)
+                        ))
+                    
+                    Text("by time turn phase " + String(
+                                                round(
+                                                    turnPhaseByTime * 100
+                        //                            Angle.init(radians:idealDiffrencial).degrees
+                                                     )
                     ))
-//                
-                    Text("second diff " + String(
-//                        round(
-                        idealDiffrencial
-//                            Angle.init(radians:idealDiffrencial).degrees
-//                             )
-                    ))
-                }
+                
+                
             }
         }
     }
@@ -179,11 +178,21 @@ struct ContentView: View {
             if MotionAnalyzerManager.shared.磁北偏差 == nil{
                 MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
             }
+                    idealDiffrencialConductor.data.detuningOffset = 440
                     turnYawingSide = skiTurnPhase.turnYawingSide
                     idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
                     orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
                     absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
                     turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
+                    turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
+                    if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
+                    ) {
+                        idealDiffrencialConductor.changeWaveFormToSquare()
+                    } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
+                        idealDiffrencialConductor.changeWaveFormToSin()
+                    } else{
+                        idealDiffrencialConductor.changeWaveFormToTriangle()
+                    }
                     idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
                         abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
                                                                                     .converted(to: .degrees).value)))))

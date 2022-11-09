@@ -32,7 +32,7 @@ struct SkiTurnPhaseAnalyzer {
             lastTurnSwitchingAngle = currentFloatQuatanion
             turnDiffrencialFinder.turnswitchedRecive(movingPhase: movingPhase)
         }
-        let turnPhaseBy100 = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
+        let turnPhasePercantageByAngle = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, isTurnSwitching: isTurnSwitching)
         
@@ -47,17 +47,19 @@ struct SkiTurnPhaseAnalyzer {
         FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: fallLineAttitude, absoluteFallLineQuaternion: absoluteFallLineQuaternion, turnYawingSide: movingPhase.absoluteRotationRate.yawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userQuaternion: movingPhase.quaternion, userAttitude: movingPhase.attitude)
         let fallLineAcceleration = AccelerationForTargetAngle.getAcceleration(userAcceleration: movingPhase.absoluteUserAcceleration,
                                           userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineQuaternion)
+        let idealYaw = turnDiffrencialFinder.currentIdealDiffrencial(currentAngle: movingPhase.quaternion, currentTime: movingPhase.timeStampSince1970)
+        let perTime = turnDiffrencialFinder.currentTimeDurationPercentage(currentTime: movingPhase.timeStampSince1970)
         let skiTurnPhase = SkiTurnPhase.init(turnYawingSide: movingPhase.absoluteRotationRate.yawingSide, turnSwitchingDirection: turnSwitchingDirection,
                                             turnSideChangePeriod: turnSideChangePeriod, absoluteFallLineAttitude: absoluteFallLineQuaternion,
                                                    fallLineAcceleration: fallLineAcceleration,
                                             orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
-                                             rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhaseBy100 ,lastSwitchedTurnAngle: lastTurnSwitchingAngle,
-                                             currentAttitude: movingPhase.quaternion, yawingDiffrencialFromIdealYaw: Double( turnDiffrencialFinder.currentIdealDiffrencial(currentAngle: movingPhase.quaternion, currentTime: movingPhase.timeStampSince1970)))
-        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.32)..<Float(0.33)) {
+                                             rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhasePercantageByAngle ,lastSwitchedTurnAngle: lastTurnSwitchingAngle,
+                                             currentAttitude: movingPhase.quaternion, yawingDiffrencialFromIdealYaw: Double(idealYaw ), turnPhasePercentageByTime: perTime)
+        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhasePercantageByAngle),angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
         }
-        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhaseBy100),angleRange: Float(0.49)..<Float(0.50)) {
+        if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhasePercantageByAngle),angleRange: Float(0.49)..<Float(0.50)) {
             MotionAnalyzerManager.shared.skiTurnMax()
         }
         

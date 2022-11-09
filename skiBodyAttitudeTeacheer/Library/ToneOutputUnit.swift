@@ -27,6 +27,7 @@ struct DynamicOscillatorData {
     var frequency: AUValue = 440
     var amplitude: AUValue = 0.1
     var rampDuration: AUValue = 0
+    var detuningOffset: AUValue = 440
 }
 
 class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
@@ -48,10 +49,23 @@ class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
                 osc.start()
                 osc.$frequency.ramp(to: data.frequency, duration: data.rampDuration)
                 osc.$amplitude.ramp(to: data.amplitude, duration: data.rampDuration)
+                osc.$detuningOffset.ramp(to: data.detuningOffset, duration: data.rampDuration)
             } else {
                 osc.amplitude = 0.0
             }
         }
+    }
+    
+    func changeWaveFormToTriangle(){
+        osc.setWaveform(Table(.triangle))
+    }
+    
+    func changeWaveFormToSin(){
+        osc.setWaveform(Table(.sawtooth))
+    }
+    
+    func changeWaveFormToSquare(){
+        osc.setWaveform(Table(.square))
     }
 
     var osc = DynamicOscillator()

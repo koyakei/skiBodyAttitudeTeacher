@@ -47,6 +47,7 @@ enum TurnPhaseByStartMaxEnd  : String{
     case MaxToSwitch = "MaxToSwitch"
 }
 
+
 struct FindTurnPhaseBy100{
     func handle(currentRotationEullerAngleFromTurnSwitching: Float,
                 oneTurnDiffrentialAngle: Float)-> Double{

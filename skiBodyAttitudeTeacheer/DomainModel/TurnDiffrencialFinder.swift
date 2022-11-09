@@ -7,6 +7,8 @@
 
 import Foundation
 import simd
+import Accelerate
+
 struct TurnDiffrencialFinder{
     var beforeTurnSwitchedAngle: simd_quatd = simd_quatd()
     var beforebeforeTurnSwitchedAngle: simd_quatd = simd_quatd()
@@ -21,31 +23,52 @@ struct TurnDiffrencialFinder{
     }
     
     func currentIdealDiffrencial(currentAngle: simd_quatd, currentTime: TimeInterval) -> Double{
-        
-        (
-            Double( beforeTurnYawingDiffrencial())
-         /
-        beforeTurnDiffrencialTime()
-         *
-        abs(currentTime - beforeTurnSwitchedUnixTime)
+        getCurrentIdealDiffrencialAngle(currentTimeDurationPercentageByOneTurn:
+        currentTimeDurationPercentage(currentTime: currentTime)
         )
+////        (
+////            Double( beforeTurnYawingDiffrencialAngle())
+////         /
+////        beforeTurnDiffrencialTime()
+////         *
+////        abs(currentTime - beforeTurnSwitchedUnixTime)
+////        )
         -
-        Double(currentYawingDiffrencial(currentAngle: currentAngle))
+        Double(currentYawingDiffrencialAngle(currentAngle: currentAngle))
         
+//        idealTurnAnglePercentageByOneTurn(currentTimeDurationPercentageByOneTurn: currentTimeDurationPercentage(currentTime: currentTime))
     }
+    
+    func idealTurnAnglePercentageByOneTurn(currentTimeDurationPercentageByOneTurn: Double)-> Double{
+        sig(alpha: 2.5, x: (currentTimeDurationPercentageByOneTurn - 0.5) * 4)
+    }
+    
+    func getCurrentIdealDiffrencialAngle(currentTimeDurationPercentageByOneTurn: Double) -> Double{
+        Double( beforeTurnYawingDiffrencialAngle()) * idealTurnAnglePercentageByOneTurn(currentTimeDurationPercentageByOneTurn: currentTimeDurationPercentageByOneTurn)
+    }
+    
+    func currentTimeDurationPercentage(currentTime: TimeInterval)-> Double{
+        abs(currentTime - beforeTurnSwitchedUnixTime) / beforeTurnDiffrencialTime()
+    }
+    
+    
+    func sig(alpha: Double,x :Double)-> Double{
+        (tanh(x * alpha/2) + 1)/2
+    }
+    
     
     func beforeTurnDiffrencialTime() -> TimeInterval {
         beforeTurnSwitchedUnixTime - beforebeforeTurnSwitchedUnixTime
     }
     
-    func currentYawingDiffrencial(currentAngle: simd_quatd) -> Float{
+    func currentYawingDiffrencialAngle(currentAngle: simd_quatd) -> Float{
         abs(QuaternionToEullerAngleDifferential.handle(base: simd_quatf(currentAngle)
                                                     , target:
                                                     simd_quatf( beforeTurnSwitchedAngle)
         ).z)
     }
     
-    func beforeTurnYawingDiffrencial() -> Float{
+    func beforeTurnYawingDiffrencialAngle() -> Float{
         abs(QuaternionToEullerAngleDifferential.handle(base:
                                                     simd_quatf( beforeTurnSwitchedAngle)
                                                     , target:
