@@ -193,6 +193,7 @@
 		BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BA4C93CA27687BEE00E2C749 /* BLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLService.swift; sourceTree = "<group>"; };
+		BA64A91929E997E600A3A96A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuaternionToEullerAngleDifferential.swift; sourceTree = "<group>"; };
 		BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnShapeScore.swift; sourceTree = "<group>"; };
 		BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnDiffrencialFinder.swift; sourceTree = "<group>"; };
@@ -394,6 +395,7 @@
 		BA3C93EB2722636B007D5325 = {
 			isa = PBXGroup;
 			children = (
+				BA64A91929E997E600A3A96A /* README.md */,
 				BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */,
 				BA3C94072722636E007D5325 /* skiBodyAttitudeTeacheerTests */,
 				BA3C94112722636E007D5325 /* skiBodyAttitudeTeacheerUITests */,
