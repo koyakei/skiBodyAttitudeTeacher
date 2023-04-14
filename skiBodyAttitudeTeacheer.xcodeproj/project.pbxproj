@@ -62,7 +62,6 @@
 		2EF63D609E2CF62D963B2D6A /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF631834BE40471093D77E6 /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift */; };
 		2EF63D6A68181FCF71A9D716 /* RightTurn後半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63D289638024D0CB2DC6E /* RightTurn後半Phase.swift */; };
 		2EF63D71467DD652BC3C85D7 /* PivotSlipScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6363BA389115ED2B7F776 /* PivotSlipScore.swift */; };
-		2EF63D8A7D93A72D2B9A54CF /* SimpleMovingAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6389F251297054388331A /* SimpleMovingAverage.swift */; };
 		2EF63E08E31ABA03BEA4C1E2 /* TurnSideChangingPeriodFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63ACF7B51D0C384E340EC /* TurnSideChangingPeriodFinder.swift */; };
 		2EF63E759458A0FFEB1A82B2 /* WatchMotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6323D6F702A9500A98DAE /* WatchMotionWriter.swift */; };
 		2EF63E92B71A89D534098689 /* IdealTurnConditionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6349EBE48A324D8010A7C /* IdealTurnConditionDetector.swift */; };
@@ -145,7 +144,6 @@
 		2EF6377BD3A83603F7D2F226 /* TimeStampAndTurnSideDirectionChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStampAndTurnSideDirectionChanged.swift; sourceTree = "<group>"; };
 		2EF637F6B5201E6DCD55E406 /* MotionAnalyser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionAnalyser.swift; path = skiBodyAttitudeTeacheer/DomainModel/MotionAnalyser.swift; sourceTree = SOURCE_ROOT; };
 		2EF638852BB8EF40346AC354 /* Attitude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attitude.swift; sourceTree = "<group>"; };
-		2EF6389F251297054388331A /* SimpleMovingAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMovingAverage.swift; sourceTree = "<group>"; };
 		2EF638C4A9237C688099FC70 /* YawingSideFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YawingSideFinder.swift; path = skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/YawingSideFinder.swift; sourceTree = SOURCE_ROOT; };
 		2EF6392FF63C587930B7AC0F /* FallLineOrthogonalAccelerationCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FallLineOrthogonalAccelerationCalculator.swift; sourceTree = "<group>"; };
 		2EF63936A0C112C8ABB1928F /* SkiTurnPhaseCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkiTurnPhaseCollection.swift; sourceTree = "<group>"; };
@@ -350,7 +348,6 @@
 				2EF631D70C72AD3C7621CDFC /* ToneOutputUnit.swift */,
 				2EF6326CAF988A36F5BEB2DD /* ReverceDeviceMotionMaintainXAxis.swift */,
 				2EF6366F5F6BCD9FC33EF541 /* GetAbsoluteRotationRate.swift */,
-				2EF6389F251297054388331A /* SimpleMovingAverage.swift */,
 				2EF6372BE69879E25CE4CEE4 /* AccelerationShifter.swift */,
 				BAF25FF72759C80B009992C9 /* ToneSub.swift */,
 				BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */,
@@ -714,7 +711,6 @@
 				BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */,
 				2EF630AF71D2370FCA457C30 /* GetAbsoluteRotationRate.swift in Sources */,
 				2EF6349DB8388C5CC8570D19 /* TypeAliases.swift in Sources */,
-				2EF63D8A7D93A72D2B9A54CF /* SimpleMovingAverage.swift in Sources */,
 				2EF63A1B8DA64B39B7A5A45A /* CenterOfMassTurnPhaseCollection.swift in Sources */,
 				2EF63B57C6B221362A4C9049 /* SkiTurnPhaseCollection.swift in Sources */,
 				2EF639D0CB0F73847AC217F1 /* RightTurn前半Phase.swift in Sources */,
@@ -820,6 +816,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -873,6 +870,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

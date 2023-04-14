@@ -23,16 +23,16 @@ struct TurnDiffrencialFinder{
     }
     
     func currentIdealDiffrencial(currentAngle: simd_quatd, currentTime: TimeInterval) -> Double{
-        getCurrentIdealDiffrencialAngle(currentTimeDurationPercentageByOneTurn:
-        currentTimeDurationPercentage(currentTime: currentTime)
+//        getCurrentIdealDiffrencialAngle(currentTimeDurationPercentageByOneTurn:
+//        currentTimeDurationPercentage(currentTime: currentTime)
+//        )
+        (
+            Double( beforeTurnYawingDiffrencialAngle())
+         /
+        beforeTurnDiffrencialTime()
+         *
+        abs(currentTime - beforeTurnSwitchedUnixTime)
         )
-////        (
-////            Double( beforeTurnYawingDiffrencialAngle())
-////         /
-////        beforeTurnDiffrencialTime()
-////         *
-////        abs(currentTime - beforeTurnSwitchedUnixTime)
-////        )
         -
         Double(currentYawingDiffrencialAngle(currentAngle: currentAngle))
         

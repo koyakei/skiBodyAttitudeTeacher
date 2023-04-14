@@ -57,15 +57,15 @@ class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
     }
     
     func changeWaveFormToTriangle(){
-        osc.setWaveform(Table(.triangle))
+        osc.setWaveform(Table(.positiveSawtooth))
     }
     
     func changeWaveFormToSin(){
-        osc.setWaveform(Table(.sawtooth))
+        osc.setWaveform(Table(.triangle))
     }
     
     func changeWaveFormToSquare(){
-        osc.setWaveform(Table(.square))
+        osc.setWaveform(Table(.sawtooth))
     }
 
     var osc = DynamicOscillator()

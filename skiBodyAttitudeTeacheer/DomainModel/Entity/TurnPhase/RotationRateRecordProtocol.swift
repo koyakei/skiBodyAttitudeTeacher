@@ -49,8 +49,8 @@ protocol AbsoluteQuaternionProtocol: RecordWithTimeStamp {
 
 extension Collection where Element: AbsoluteQuaternionProtocol {
     func yawYawingMovingAverage(yawingPeriod: TimeInterval) -> simd_quatd {
-        simd_normalize(self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).map {
-            $0.quaternion}.reduce(simd_quatd(ix: 0,iy: 0,iz: 0,r: 0),+))
+        self.filterByBeforeMilleSecondsFromNow(timeInterval: yawingPeriod).map {
+            $0.quaternion}.reduce(simd_quatd(ix: 0,iy: 0,iz: 0,r: 0),+).normalized
         
     }
 }
