@@ -9,13 +9,16 @@ import SwiftUI
 import CoreMotion
 import simd
 import SceneKit
-
+import NearbyInteraction
+import MultipeerConnectivity
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
 
 import AVFoundation
 import AudioToolbox
 struct ContentView: View {
+ 
+    @ObservedObject var niManager: NearbyInteractionManager = NearbyInteractionManager()
     @State var absoluteFallLineAttitude :Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var currentAttitude: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var orthogonalAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
@@ -29,6 +32,18 @@ struct ContentView: View {
     @State var turnPhaseByTime: Double = 0.0
     var body: some View {
         VStack{
+            HStack {
+                if niManager.isConnected {
+                    if let distance = niManager.distance?.converted(to: .meters) {
+                        Text(distance.value.description).font(.title)
+                    } else {
+                        Text("-")
+                    }
+                } else {
+                    Text("not connected")
+                }
+            }
+            
             HStack{
             Button(action: startRecord) {
                 Text("Start motion ")
@@ -164,7 +179,7 @@ struct ContentView: View {
     
     func startRecord(){
         coreMotion.startDeviceMotionUpdates(
-                using: .xTrueNorthZVertical,
+                using: .xArbitraryCorrectedZVertical,
                 to: .current!) { (motion, error) in
             let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
                                          ProcessInfo
@@ -209,6 +224,9 @@ struct ContentView: View {
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
     }
+    
+    
+    
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -216,3 +234,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 }
+

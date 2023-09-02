@@ -174,8 +174,8 @@
             filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -594,6 +594,22 @@
             endingLineNumber = "25"
             landmarkName = "Collection"
             landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B3DA2CE-A47E-42E0-BC19-890193DA5172"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/Library/ToneOutputUnit.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "SineWave"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
