@@ -12,8 +12,7 @@ struct SkiTurnPhase : TooMuchInsideAngleFinderProtocol{
     let turnSideChangePeriod: TimeInterval
     let absoluteFallLineAttitude: simd_quatd
     let fallLineAcceleration: Double
-    let orthogonalAccelerationAndRelativeAttitude:
-    TargetDirectionAccelerationAndRelativeAttitude
+    let orthogonalAccelerationAndRelativeAttitude: TargetDirectionAccelerationAndRelativeAttitude
     let absoluteAttitude: Attitude
     let timeStampSince1970: TimeInterval
     let absoluteAcceleration: CMAcceleration

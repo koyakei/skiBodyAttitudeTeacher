@@ -3,10 +3,18 @@
 <plist version="1.0">
 <dict>
 	<key>NSNearbyInteractionUsageDescription</key>
-	<string>Air Tag</string>
+	<string>motion</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>mc</string>
+	<key></key>
+	<string></string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_your-service._tcp</string>
+		<string>_your-service._udp</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
 		<string>external-accessory</string>

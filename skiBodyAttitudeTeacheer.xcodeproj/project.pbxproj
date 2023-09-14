@@ -82,6 +82,7 @@
 		BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */; };
 		BA847CD829090BB7009B8AEA /* TurnShapeScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */; };
 		BA847CDA290A516F009B8AEA /* TurnDiffrencialFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */; };
+		BA8E7F9E2AB3343C00CB9254 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E7F9D2AB3343C00CB9254 /* MessageManager.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
 		BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB26539274BBBB0001A51BA /* CoreLocation.framework */; };
 		BAF25FF4275608CD009992C9 /* AccelerationForTargetAngleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */; };
@@ -201,6 +202,7 @@
 		BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuaternionToEullerAngleDifferential.swift; sourceTree = "<group>"; };
 		BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnShapeScore.swift; sourceTree = "<group>"; };
 		BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnDiffrencialFinder.swift; sourceTree = "<group>"; };
+		BA8E7F9D2AB3343C00CB9254 /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */,
 				BA3702902AA1A61600FB162A /* UWBScaling.swift */,
 				BA3702922AA2F51E00FB162A /* NearbyInteractionManager.swift */,
+				BA8E7F9D2AB3343C00CB9254 /* MessageManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
 				2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */,
 				2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */,
+				BA8E7F9E2AB3343C00CB9254 /* MessageManager.swift in Sources */,
 				2EF63341EDCA9F63BE736EC0 /* TurnChronologicalPhaseFinder.swift in Sources */,
 				BA847CD829090BB7009B8AEA /* TurnShapeScore.swift in Sources */,
 				2EF636AF54846DC1F651FA09 /* YawRotationRateMovingAverageFinder.swift in Sources */,
@@ -826,7 +830,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -880,7 +884,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -905,15 +909,18 @@
 				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ski;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = accel;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = test;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_NSMotionUsageDescription = test;
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "Air Tag";
 				INFOPLIST_KEY_NSSensorKitPrivacyPolicyURL = "https://my-site.xyz/privacy-policy/";
 				INFOPLIST_KEY_NSSensorKitUsageDescription = "This is my app&apos;s SensorKit usage description.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -950,15 +957,18 @@
 				INFOPLIST_FILE = skiBodyAttitudeTeacheer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ski;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = accel;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = test;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = test;
 				INFOPLIST_KEY_NSMotionUsageDescription = test;
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "Air Tag";
 				INFOPLIST_KEY_NSSensorKitPrivacyPolicyURL = "https://my-site.xyz/privacy-policy/";
 				INFOPLIST_KEY_NSSensorKitUsageDescription = "This is my app&apos;s SensorKit usage description.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -989,7 +999,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1016,7 +1026,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X4RPB4Q33M;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

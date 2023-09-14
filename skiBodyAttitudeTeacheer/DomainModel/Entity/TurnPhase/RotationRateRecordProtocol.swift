@@ -20,6 +20,10 @@ protocol RecordWithTimeStamp {
     var timeStampSince1970: TimeInterval { get }
 }
 
+protocol CoreMotionWithTimeStampProtocol: RecordWithTimeStamp{
+    var deveceMotion: CMDeviceMotion { get }
+}
+// 時刻　向き　加速度　rotation_rate
 extension Collection where Element: RecordWithTimeStamp {
     func filterByBeforeMilleSecondsFromNow(
             timeInterval: TimeInterval) -> [Element] {

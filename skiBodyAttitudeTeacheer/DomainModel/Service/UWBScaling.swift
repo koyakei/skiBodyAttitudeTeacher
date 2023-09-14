@@ -26,6 +26,9 @@ struct UMBDirDistance{
     let dir: simd_float3
     let distance: Float
     let timeStamp: TimeInterval
+    func point()-> Point3D{
+        Point3D.init(vector: Vector3D.init(dir).uniformlyScaled(by: Double(distance)).vector)
+    }
 }
 
 struct hipOrientation{
@@ -33,11 +36,30 @@ struct hipOrientation{
     let leftHip: UMBDirDistance
     
     func yawDegreeDiffrencial() -> Double {
-        let diff = handle() - Vector3D.forward
-        return Angle2D(radians: atan2(diff.x,diff.y)).degrees
+        return (Rotation3D(position: rightHip.point(), target: leftHip.point(),up: Vector3D.up)).angle.degrees
     }
     // 右腰と左腰の位置がわかる　それを結んだ線のヨーイング方向にを出力する
     func handle()-> Vector3D {
-        (Vector3D.init(rightHip.dir).uniformlyScaled(by: Double(rightHip.distance)) - Vector3D.init(leftHip.dir).uniformlyScaled(by: Double(leftHip.distance))).rotated(by: Rotation3D.init(angle: Angle2D(degrees: 90), axis: RotationAxis3D.z)).normalized
+        (Vector3D.init(leftHip.dir).uniformlyScaled(by: Double(leftHip.distance))  -  Vector3D.init(rightHip.dir).uniformlyScaled(by: Double(rightHip.distance))).rotated(by: Rotation3D.init(angle: Angle2D(degrees: -90), axis: RotationAxis3D.z))
+    }
+}
+
+struct 内倒{
+    let centerOfMass: Point3D
+    let centerOfPressure: Point3D
+    let currentSkiDir: simd_quatf
+    let fallLine: simd_quatf
+    let mass = 75000 //gram
+    
+    //鉛直方向に起き上がった距離
+//    func liftDistanceAgainstGravity()-> Float{
+//        
+//    }
+    // グラビティーヨーイング方向だけ？　そうではないな。　斜面考慮するｋ
+    func フォールラインとスキーのなす角度()-> Float{
+        Float((Rotation3D.init(fallLine).inverse * Rotation3D.init(currentSkiDir)).angle.degrees)
+    }
+    func フォールライン方向への内倒角度と距離を計算(){
+        
     }
 }
