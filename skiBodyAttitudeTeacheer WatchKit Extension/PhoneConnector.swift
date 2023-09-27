@@ -44,6 +44,7 @@ class PhoneConnector: NSObject, ObservableObject, WCSessionDelegate {
             if WCSession.default.isReachable {
                 count += 1
                 print(timeStamp)
+                WCSession
                 WCSession.default.sendMessage(
                     ["WATCH_COUNT" : count,
                      "motion.userAcceleration.x":motion.userAcceleration.x,

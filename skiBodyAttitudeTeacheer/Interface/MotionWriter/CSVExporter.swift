@@ -8,6 +8,82 @@
 import Foundation
 import CoreMotion
 
+class CSVExporter {
+    var file: FileHandle?
+    var filePath: URL?
+    var sample: Int = 0
+    let startAt : Date = Date.now
+    
+    func getClassName(myInstance : Any) -> String{
+        let mirror = Mirror(reflecting: myInstance)
+        if let className = mirror.subjectType as? AnyClass {
+            let classNameString = String(describing: className)
+            return "\(classNameString)"
+        } else{
+            return "error"
+        }
+    }
+    
+    func structNameExpander(structObject: Any) -> String{
+        let mirror = Mirror(reflecting: structObject)
+        var labels:[String] = []
+        for case let (label?, _) in mirror.children {
+            labels.append(label)
+        }
+        return labels.joined(separator: ",")
+    }
+
+    func open(structObject: Any) {
+        do {
+            let filePath = CSVExporter.makeFilePath(fileAlias: getClassName(myInstance: structObject))
+            FileManager.default.createFile(atPath: filePath.path, contents: nil, attributes: nil)
+            let file = try FileHandle(forWritingTo: filePath)
+            var header = ""
+            header += structNameExpander(structObject: structObject)
+            header += "\n"
+            file.write(header.data(using: .utf8)!)
+            self.file = file
+            self.filePath = filePath
+        } catch let error {
+            print(error)
+        }
+    }
+
+    func write(_ structObject: Any) {
+        let mirror = Mirror(reflecting: structObject)
+        var values:[String] = []
+        for case let (_, value) in mirror.children {
+            values.append(value as! String)
+        }
+        guard let file = self.file else { return }
+        var text = ""
+        text += values.joined(separator: ",")
+        text += "\n"
+        file.write(text.data(using: .utf8)!)
+        sample += 1
+    }
+
+    func close() {
+        guard let file = self.file else { return }
+        file.closeFile()
+        print("\(sample) sample")
+        self.file = nil
+    }
+
+    static func getDocumentPath() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+
+    static func makeFilePath(fileAlias: String) -> URL {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd_HHmmss"
+        let filename = formatter.string(from: Date()) + "\(fileAlias).csv"
+        let fileUrl = url.appendingPathComponent(filename)
+        print(fileUrl.absoluteURL)
+        return fileUrl
+    }
+}
 class WatchMotionWriter {
 
     var file: FileHandle?

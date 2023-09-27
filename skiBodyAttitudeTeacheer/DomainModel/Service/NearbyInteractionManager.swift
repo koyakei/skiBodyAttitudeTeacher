@@ -9,23 +9,30 @@ The helper class that handles the transfer of discovery tokens between peers
 import NearbyInteraction
 import Combine
 import os.log
+import MultipeerConnectivity
+import WatchConnectivity
 
 class NearbyInteractionManager: NSObject, ObservableObject {
     
-    /// The distance to the nearby object (the paired device) in meters.
-    @Published var distance: Measurement<UnitLength>?
+    @Published var umbMeasuredData : UMBMeasuredData?{
+        
+        willSet{
+            // watch connectivity で送信する。
+            try? WCSession.default.updateApplicationContext([Helper.ridersDataKey: umbMeasuredData])
+        }
+    }
+//    var messageManager = ContentView.messageManager
     
     private var didSendDiscoveryToken: Bool = false
     
     var isConnected: Bool {
-        return distance != nil
+        return umbMeasuredData != nil
     }
     
     private var session: NISession?
     
     override init() {
         super.init()
-        
         initializeNISession()
     }
     
@@ -62,12 +69,10 @@ class NearbyInteractionManager: NSObject, ObservableObject {
             return
         }
         
-        do {
-            os_log("NIDiscoveryToken \(token) sent to counterpart")
-            didSendDiscoveryToken = true
-        } catch let error {
-            os_log("failed to send NIDiscoveryToken: \(error.localizedDescription)")
-        }
+        
+//        messageManager.send(data: tokenData)
+        os_log("NIDiscoveryToken \(token) sent to counterpart")
+        didSendDiscoveryToken = true
     }
     
     /// When a discovery token is received, run the session
@@ -82,13 +87,41 @@ class NearbyInteractionManager: NSObject, ObservableObject {
     }
 }
 
+extension NearbyInteractionManager: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        if let token = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NIDiscoveryToken.self, from: data) {
+            os_log("received NIDiscoveryToken \(token) from counterpart")
+            self.didReceiveDiscoveryToken(token)
+        } else {
+            os_log("failed to decode NIDiscoveryToken")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        
+    }
+    
+    
+}
 // MARK: - NISessionDelegate
 
 extension NearbyInteractionManager: NISessionDelegate {
     
     func sessionWasSuspended(_ session: NISession) {
         os_log("NISession was suspended")
-        distance = nil
+        umbMeasuredData = nil
     }
     
     func sessionSuspensionEnded(_ session: NISession) {
@@ -98,13 +131,17 @@ extension NearbyInteractionManager: NISessionDelegate {
     
     func session(_ session: NISession, didInvalidateWith error: Error) {
         os_log("NISession did invalidate with error: \(error.localizedDescription)")
-        distance = nil
+        umbMeasuredData = nil
     }
     
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
-        if let object = nearbyObjects.first, let distance = object.distance {
-            os_log("object distance: \(distance) meters")
-            self.distance = Measurement(value: Double(distance), unit: .meters)
+        for object in nearbyObjects {
+            if  let distance = object.distance , let direction = object.direction {
+                os_log("object distance: \(distance) meters")
+                self.umbMeasuredData = UMBMeasuredData(distance: Measurement(value: Double(distance), unit: .meters), direction: direction, timeStamp: Date.now.timeIntervalSince1970)
+                
+                
+            }
         }
     }
     
@@ -119,6 +156,6 @@ extension NearbyInteractionManager: NISessionDelegate {
         default:
             os_log("disconnected from peer for an unknown reason")
         }
-        distance = nil
+        umbMeasuredData = nil
     }
 }

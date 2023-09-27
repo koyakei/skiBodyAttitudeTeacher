@@ -14,7 +14,6 @@ struct Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver {
             SkiTurnPhase {
                 let movingPhase = MovingPhase.init(motion, timeStamp)
                 
-//                ContentView().hostVM
         let v = turnPhaseAnalyzer.handle(movingPhase:
                                             movingPhase)
 //        UnifyBodyAndSkiTurn.shared.receive(turnPhase: v)

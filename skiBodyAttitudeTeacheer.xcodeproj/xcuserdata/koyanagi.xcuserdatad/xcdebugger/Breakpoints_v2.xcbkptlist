@@ -174,8 +174,8 @@
             filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -481,7 +481,7 @@
             startingLineNumber = "16"
             endingLineNumber = "16"
             landmarkName = "SkiTurnPhaseAnalyzer"
-            landmarkType = "14">
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1316,6 +1316,293 @@
             startingLineNumber = "83"
             endingLineNumber = "83"
             landmarkName = "session(_:didReceive:fromPeer:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95CFBCC4-5B94-4719-97A9-BF3FD01294F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SkiWatch Watch App/ConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "session(_:activationDidCompleteWith:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A70750A8-6B51-4A89-BA6D-30ED58E774C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "send(message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52BF2723-0A91-493B-81C0-AEC542C6C47E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "send(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0742386-25A6-4C9B-97EB-AD153FF2FCDF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7A753D8-C613-486A-9354-5CE774773B99"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "send(message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B7A753D8-C613-486A-9354-5CE774773B99 - 5374e6dab759af8e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.send(message: Swift.String) -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "1572">
+               </Location>
+               <Location
+                  uuid = "B7A753D8-C613-486A-9354-5CE774773B99 - 5374e6dab759af6f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.send(message: Swift.String) -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "1784">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "009375BB-1BCA-4D4A-A31F-57DED145E73F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "advertiser(_:didNotStartAdvertisingPeer:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "009375BB-1BCA-4D4A-A31F-57DED145E73F - b406198f1d083c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.advertiser(_: __C.MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer: Swift.Error) -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "009375BB-1BCA-4D4A-A31F-57DED145E73F - b406198f1d083c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.advertiser(_: __C.MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer: Swift.Error) -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A9E8F5B-4C65-40BC-970A-3D50C2ADF673"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "invitePeer()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0A9E8F5B-4C65-40BC-970A-3D50C2ADF673 - d373a146e38c0bd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.invitePeer() -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "372">
+               </Location>
+               <Location
+                  uuid = "0A9E8F5B-4C65-40BC-970A-3D50C2ADF673 - 77d52f620b39b4e4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.__allocating_init() -&gt; skiBodyAttitudeTeacheer.MessageManager"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "0A9E8F5B-4C65-40BC-970A-3D50C2ADF673 - 9766dc755483e1a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.MessageManager.init() -&gt; skiBodyAttitudeTeacheer.MessageManager"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B78B3AF6-B33C-48C5-A12C-6FC31DD7885D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "browser(_:foundPeer:withDiscoveryInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B92C8463-134A-431A-8864-82D105DB1A25"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "browser(_:lostPeer:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7DC02E52-07A3-445B-8FF7-6754C48B9599"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "browser(_:lostPeer:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D8EEE0FD-E69F-4F4B-A8B2-F780BB7EE4A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MultipeerConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "browser(_:foundPeer:withDiscoveryInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

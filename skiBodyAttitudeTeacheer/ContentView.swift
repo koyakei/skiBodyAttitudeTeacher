@@ -14,6 +14,7 @@ import MultipeerConnectivity
 import Foundation
 import AVFoundation
 import AudioToolbox
+import Spatial
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
 
@@ -24,46 +25,18 @@ struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
     let timeStampSince1970: TimeInterval
 }
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    @IBAction func presentSwiftUIView() {
-        let controller = UIHostingController(rootView: ContentView())
-        controller.modalPresentationStyle = .overFullScreen
-        present(controller, animated: true)
-    }
-}
-
-struct ViewControllerRepresentable: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> ViewController {
-        let storyboard = UIStoryboard(name: "LaunchScreen", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "vc") as! ViewController
-        vc.modalPresentationStyle = .overFullScreen
-        return vc
-    }
-
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
-    }
-}
-
-struct P2PSender{
-    
-}
 
 struct ContentView: View {
-    let serviceType = "motion-peer"
-    var peerSession: MCSession?
-    var peerId : MCPeerID? = nil
-    var connectedPeer: [MCPeerID] = []
     
-    @StateObject var messageManager = MessageManager()
+   
+    
+//    var nearbyInteractionManager : NearbyInteractionManager
+//    var watchConnectionManager: WatchConnectionManager = WatchConnectionManager()
+    @ObservedObject var messageManager: MessageManager
+    
+    
     @State var currentAngle : Float = 0
     @State var connectingTarget: String = "init"
-    @ObservedObject var niManager: NearbyInteractionManager = NearbyInteractionManager()
     @State var absoluteFallLineAttitude :Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var currentAttitude: Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
     @State var orthogonalAttitude : Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
@@ -77,13 +50,13 @@ struct ContentView: View {
     @State var turnPhaseByTime: Double = 0.0
     @State private var isPresented: Bool = false
     @State private var messageText = ""
-        @State private var receivedMessage = ""
+    @State private var receivedMessage = ""
     
     var body: some View {
         VStack{
             
             HStack {
-                        Text("Received Message:")
+                Text(String(messageManager.connectedPeers.first?.displayName ?? "no"))
                 Text(messageManager.receivedMessage)
                             .padding()
                         
@@ -94,15 +67,29 @@ struct ContentView: View {
                         Button("Send Message") {
                             messageManager.send(message: messageText)
                         }
-                Button("connect peer"){
-                    messageManager.connectButtonTapped()
-                }
+                
                     }
-                    .padding()
+            HStack{
+                Button("start adv"){
+                    messageManager.advertiserAssistant.startAdvertisingPeer()
+//                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
+                    
+                }
+                Button("invite"){
+                    messageManager.invitePeer()
+                }
+                Button("startbrouse"){
+                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
+//                    messageManager.advertiserAssistant.stopAdvertisingPeer()
+//                    messageManager.mCNearbyServiceBrowser.stopBrowsingForPeers()
+                }
+            }
+            
 //            HStack {
-//                if niManager.isConnected {
-//                    if let distance = niManager.distance?.converted(to: .meters) {
-//                        Text(distance.value.description).font(.title)
+//                if nearbyInteractionManager.isConnected {
+//                    if let distance = nearbyInteractionManager.umbMeasuredData?.distance.converted(to: .centimeters) {
+//                        Text(distance.description + "cm")
+//                        Text(nearbyInteractionManager.umbMeasuredData?.euler3d ?? "読めない" )
 //                    } else {
 //                        Text("-")
 //                    }
@@ -111,29 +98,29 @@ struct ContentView: View {
 //                }
 //            }
             
-//            HStack{
-//            Button(action: startRecord) {
-//                Text("Start motion ")
-//            }
-//            Button(action: stopRecord) {
-//                Text("Stop motion")
-//            }
-//            }
-//            
-//            HStack{
-//                Button(action: {
-//                    self.idealDiffrencialConductor.data.isPlaying.toggle()
-//                }) {
-//                    Text(self.conductor.data.isPlaying ? "yaw diffrencial tone　STOP" : "diff tone START")
-//                    
-//                }
-//            }.navigationBarTitle(Text("Dynamic Oscillator"))
-//                .onAppear {
-//                    self.idealDiffrencialConductor.start()
-//                }
-//                .onDisappear {
-//                    self.idealDiffrencialConductor.stop()
-//                }
+            HStack{
+            Button(action: startRecord) {
+                Text("Start motion ")
+            }
+            Button(action: stopRecord) {
+                Text("Stop motion")
+            }
+            }
+            
+            HStack{
+                Button(action: {
+                    self.idealDiffrencialConductor.data.isPlaying.toggle()
+                }) {
+                    Text(self.conductor.data.isPlaying ? "yaw diffrencial tone　STOP" : "diff tone START")
+                    
+                }
+            }.navigationBarTitle(Text("Dynamic Oscillator"))
+                .onAppear {
+                    self.idealDiffrencialConductor.start()
+                }
+                .onDisappear {
+                    self.idealDiffrencialConductor.stop()
+                }
             
             HStack{
                 Button(action: {
@@ -169,7 +156,7 @@ struct ContentView: View {
             VStack {
                 
                 HStack{
-                    Text("last switching")
+                    Text("last switched DIrection")
                     Text("⇑")
                         .background(Color.red)
                         .font(.largeTitle)
@@ -292,33 +279,11 @@ struct ContentView: View {
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
     }
-    func sendData(){
-        try? peerSession!.send("test".utf8.description.data(using: .utf8)!, toPeers: connectedPeer, with: .unreliable)
-    }
-    
-    mutating func startPeerConnectionToHip(){
-        peerId = MCPeerID(displayName: UIDevice.current.name)
-        let peerAdvertiser: MCNearbyServiceAdvertiser
-        
-        var connectedPeer: MCPeerID? = nil
-        /// Setting the `peerSession`
-        peerSession = MCSession(peer: peerId!, securityIdentity: nil, encryptionPreference: .none)
-
-        /// Setting the `peerAdvertiser`
-        peerAdvertiser = MCNearbyServiceAdvertiser(peer: peerId!, discoveryInfo: nil, serviceType: serviceType)
-//        /// Setting the `peerSession` and `peerAdvertiser` delegates
-//        peerSession.delegate = self
-//        peerAdvertiser.delegate = self
-
-        /// To advertise your peer device, you need to
-        /// call this function after setting the advertiser
-        peerAdvertiser.startAdvertisingPeer()
-    }
     
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(messageManager: MessageManager())
     }
 }
 }

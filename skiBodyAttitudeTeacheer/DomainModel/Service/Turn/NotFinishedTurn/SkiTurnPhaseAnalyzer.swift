@@ -10,7 +10,7 @@ import CoreMotion
 import simd
 import SceneKit
 
-struct SkiTurnPhaseAnalyzer {
+class SkiTurnPhaseAnalyzer : ObservableObject{
     var turnSideChangingPeriodFinder: TurnSideChangingPeriodFinder =
             TurnSideChangingPeriodFinder.init()
     var turnSwitchingDirectionFinder: TurnSwitchingDirectionFinder = TurnSwitchingDirectionFinder.init()
@@ -20,7 +20,7 @@ struct SkiTurnPhaseAnalyzer {
     var lastTurnSwitchingAngle: simd_quatf = simd_quatf.init()
     var turnInFirstPhaseBorder: TurnInFirstPhaseBorder = TurnInFirstPhaseBorder.init()
     var turnDiffrencialFinder: TurnDiffrencialFinder = TurnDiffrencialFinder.init()
-    mutating func handle(movingPhase:
+    func handle(movingPhase:
             MovingPhase) -> SkiTurnPhase {
         let currentFloatQuatanion: simd_quatf =
         simd_quatf.init(ix: Float(movingPhase.quaternion.vector.x), iy: Float(movingPhase.quaternion.vector.y), iz: Float(movingPhase.quaternion.vector.z), r: Float(movingPhase.quaternion.vector.w))

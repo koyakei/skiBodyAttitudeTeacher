@@ -63,14 +63,14 @@
 		2EF63D6A68181FCF71A9D716 /* RightTurn後半Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63D289638024D0CB2DC6E /* RightTurn後半Phase.swift */; };
 		2EF63D71467DD652BC3C85D7 /* PivotSlipScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6363BA389115ED2B7F776 /* PivotSlipScore.swift */; };
 		2EF63E08E31ABA03BEA4C1E2 /* TurnSideChangingPeriodFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF63ACF7B51D0C384E340EC /* TurnSideChangingPeriodFinder.swift */; };
-		2EF63E759458A0FFEB1A82B2 /* WatchMotionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6323D6F702A9500A98DAE /* WatchMotionWriter.swift */; };
+		2EF63E759458A0FFEB1A82B2 /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6323D6F702A9500A98DAE /* CSVExporter.swift */; };
 		2EF63E92B71A89D534098689 /* IdealTurnConditionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6349EBE48A324D8010A7C /* IdealTurnConditionDetector.swift */; };
 		2EF63EA9750FD38E0F23D1C5 /* FallLineOrthogonalAccelerationCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6392FF63C587930B7AC0F /* FallLineOrthogonalAccelerationCalculator.swift */; };
 		2EF63FC94CADBB46D2648037 /* YawingSideFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF638C4A9237C688099FC70 /* YawingSideFinder.swift */; };
 		2EF63FEC9B9772A4296F630C /* AngleShifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF633D8018B0E8B238E3AB2 /* AngleShifter.swift */; };
 		BA3702912AA1A61600FB162A /* UWBScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3702902AA1A61600FB162A /* UWBScaling.swift */; };
 		BA3702932AA2F51E00FB162A /* NearbyInteractionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3702922AA2F51E00FB162A /* NearbyInteractionManager.swift */; };
-		BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */; };
+		BA3C93F82722636B007D5325 /* SkiBodyAttitudeTeacheerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C93F72722636B007D5325 /* SkiBodyAttitudeTeacheerApp.swift */; };
 		BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C93F92722636B007D5325 /* ContentView.swift */; };
 		BA3C93FC2722636E007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FB2722636E007D5325 /* Assets.xcassets */; };
 		BA3C93FF2722636E007D5325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */; };
@@ -78,13 +78,35 @@
 		BA44FF7E2767A1B8002653AB /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF7D2767A1B8002653AB /* AudioKit */; };
 		BA44FF8327682107002653AB /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF8227682107002653AB /* AudioKitUI */; };
 		BA44FF862768219B002653AB /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF852768219B002653AB /* SoundpipeAudioKit */; };
+		BA4C32AC2ABB3DAF0032AB56 /* SkiWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C32AB2ABB3DAF0032AB56 /* SkiWatchApp.swift */; };
+		BA4C32AE2ABB3DAF0032AB56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C32AD2ABB3DAF0032AB56 /* ContentView.swift */; };
+		BA4C32B02ABB3DB20032AB56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA4C32AF2ABB3DB20032AB56 /* Assets.xcassets */; };
+		BA4C32B32ABB3DB20032AB56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA4C32B22ABB3DB20032AB56 /* Preview Assets.xcassets */; };
+		BA4C32B62ABB3DB20032AB56 /* SkiWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BA4C32A92ABB3DAF0032AB56 /* SkiWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA4C32BB2ABD81310032AB56 /* WatchSideConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C32BA2ABD81310032AB56 /* WatchSideConnectionManager.swift */; };
 		BA4C93CB27687BEE00E2C749 /* BLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C93CA27687BEE00E2C749 /* BLService.swift */; };
+		BA4FE3602AC15BBA00BDC119 /* 内倒.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE35F2AC15BBA00BDC119 /* 内倒.swift */; };
+		BA4FE3612AC15BBA00BDC119 /* 内倒.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE35F2AC15BBA00BDC119 /* 内倒.swift */; };
+		BA4FE3632AC1D29000BDC119 /* 運動量測定.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3622AC1D29000BDC119 /* 運動量測定.swift */; };
+		BA4FE3642AC1D29000BDC119 /* 運動量測定.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3622AC1D29000BDC119 /* 運動量測定.swift */; };
+		BA4FE3662AC26B0A00BDC119 /* ExportStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */; };
+		BA4FE3672AC26B0A00BDC119 /* ExportStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */; };
 		BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */; };
 		BA847CD829090BB7009B8AEA /* TurnShapeScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */; };
 		BA847CDA290A516F009B8AEA /* TurnDiffrencialFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */; };
-		BA8E7F9E2AB3343C00CB9254 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E7F9D2AB3343C00CB9254 /* MessageManager.swift */; };
+		BA8E7F9E2AB3343C00CB9254 /* MultipeerConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E7F9D2AB3343C00CB9254 /* MultipeerConnectionManager.swift */; };
+		BA90EC652AC453F6005A0A5E /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90EC642AC453F6005A0A5E /* AlertView.swift */; };
 		BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */; };
 		BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB26539274BBBB0001A51BA /* CoreLocation.framework */; };
+		BADC41EF2ABF2FAE00DFD405 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41EE2ABF2FAE00DFD405 /* Helper.swift */; };
+		BADC41F02ABF2FAE00DFD405 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41EE2ABF2FAE00DFD405 /* Helper.swift */; };
+		BADC41F12ABF2FAE00DFD405 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41EE2ABF2FAE00DFD405 /* Helper.swift */; };
+		BADC41F42ABF30F000DFD405 /* UMBMeasuredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41F32ABF30F000DFD405 /* UMBMeasuredData.swift */; };
+		BADC41F52ABF30F000DFD405 /* UMBMeasuredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41F32ABF30F000DFD405 /* UMBMeasuredData.swift */; };
+		BADC41F62ABF30F000DFD405 /* UMBMeasuredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41F32ABF30F000DFD405 /* UMBMeasuredData.swift */; };
+		BADC41F82ABF31CF00DFD405 /* WatchConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41F72ABF31CF00DFD405 /* WatchConnectionManager.swift */; };
+		BADC41F92ABF31CF00DFD405 /* WatchConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41F72ABF31CF00DFD405 /* WatchConnectionManager.swift */; };
+		BADC41FA2ABF31CF00DFD405 /* WatchConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADC41F72ABF31CF00DFD405 /* WatchConnectionManager.swift */; };
 		BAF25FF4275608CD009992C9 /* AccelerationForTargetAngleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */; };
 		BAF25FF6275612BB009992C9 /* AccelerationShifterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF5275612BB009992C9 /* AccelerationShifterTest.swift */; };
 		BAF25FF82759C80B009992C9 /* ToneSub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF25FF72759C80B009992C9 /* ToneSub.swift */; };
@@ -99,6 +121,13 @@
 			remoteGlobalIDString = BA3C93F32722636B007D5325;
 			remoteInfo = skiBodyAttitudeTeacheer;
 		};
+		BA4C32B42ABB3DB20032AB56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3C93EC2722636B007D5325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA4C32A82ABB3DAF0032AB56;
+			remoteInfo = "SkiWatch Watch App";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -108,6 +137,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				BA4C32B62ABB3DB20032AB56 /* SkiWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,7 +154,7 @@
 		2EF631834BE40471093D77E6 /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift"; sourceTree = "<group>"; };
 		2EF631969CBA00532F359724 /* RightTurn内にスキーが傾いている.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RightTurn内にスキーが傾いている.swift"; path = "skiBodyAttitudeTeacheer/DomainModel/Entity/TurnPhase/Definition/RightTurn内にスキーが傾いている.swift"; sourceTree = SOURCE_ROOT; };
 		2EF631D70C72AD3C7621CDFC /* ToneOutputUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToneOutputUnit.swift; path = skiBodyAttitudeTeacheer/Library/ToneOutputUnit.swift; sourceTree = SOURCE_ROOT; };
-		2EF6323D6F702A9500A98DAE /* WatchMotionWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchMotionWriter.swift; sourceTree = "<group>"; };
+		2EF6323D6F702A9500A98DAE /* CSVExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
 		2EF6326CAF988A36F5BEB2DD /* ReverceDeviceMotionMaintainXAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverceDeviceMotionMaintainXAxis.swift; sourceTree = "<group>"; };
 		2EF632804E51191A8B165B39 /* MovingPhasesProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovingPhasesProtocol.swift; path = skiBodyAttitudeTeacheer/DomainModel/Service/MovingPhasesProtocol.swift; sourceTree = SOURCE_ROOT; };
 		2EF632FFB6882E7920F88177 /* EvaluationResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationResponder.swift; path = skiBodyAttitudeTeacheer/EvaluationResponder.swift; sourceTree = SOURCE_ROOT; };
@@ -176,7 +206,7 @@
 		BA3702902AA1A61600FB162A /* UWBScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWBScaling.swift; sourceTree = "<group>"; };
 		BA3702922AA2F51E00FB162A /* NearbyInteractionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyInteractionManager.swift; sourceTree = "<group>"; };
 		BA3C93F42722636B007D5325 /* skiBodyAttitudeTeacheer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skiBodyAttitudeTeacheer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheerApp.swift; sourceTree = "<group>"; };
+		BA3C93F72722636B007D5325 /* SkiBodyAttitudeTeacheerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiBodyAttitudeTeacheerApp.swift; sourceTree = "<group>"; };
 		BA3C93F92722636B007D5325 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA3C93FB2722636E007D5325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -197,12 +227,22 @@
 		BA3C944127226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppTests.swift; sourceTree = "<group>"; };
 		BA3C944B27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		BA3C944D27226371007D5325 /* skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skiBodyAttitudeTeacheer_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA4C32A92ABB3DAF0032AB56 /* SkiWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SkiWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA4C32AB2ABB3DAF0032AB56 /* SkiWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiWatchApp.swift; sourceTree = "<group>"; };
+		BA4C32AD2ABB3DAF0032AB56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA4C32AF2ABB3DB20032AB56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA4C32B22ABB3DB20032AB56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BA4C32BA2ABD81310032AB56 /* WatchSideConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSideConnectionManager.swift; sourceTree = "<group>"; };
 		BA4C93CA27687BEE00E2C749 /* BLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLService.swift; sourceTree = "<group>"; };
+		BA4FE35F2AC15BBA00BDC119 /* 内倒.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "内倒.swift"; sourceTree = "<group>"; };
+		BA4FE3622AC1D29000BDC119 /* 運動量測定.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "運動量測定.swift"; sourceTree = "<group>"; };
+		BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportStruct.swift; sourceTree = "<group>"; };
 		BA64A91929E997E600A3A96A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuaternionToEullerAngleDifferential.swift; sourceTree = "<group>"; };
 		BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnShapeScore.swift; sourceTree = "<group>"; };
 		BA847CD9290A516F009B8AEA /* TurnDiffrencialFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnDiffrencialFinder.swift; sourceTree = "<group>"; };
-		BA8E7F9D2AB3343C00CB9254 /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		BA8E7F9D2AB3343C00CB9254 /* MultipeerConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerConnectionManager.swift; sourceTree = "<group>"; };
+		BA90EC642AC453F6005A0A5E /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheer.entitlements; sourceTree = "<group>"; };
 		BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = skiBodyAttitudeTeacheerDebug.entitlements; sourceTree = "<group>"; };
 		BAA0A8832728F61600FEDF23 /* PhoneConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneConnector.swift; sourceTree = "<group>"; };
@@ -211,6 +251,9 @@
 		BAA0A9E2272C2C3D00FEDF23 /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
 		BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFeedBackerDelegate.swift; sourceTree = "<group>"; };
 		BAB26539274BBBB0001A51BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		BADC41EE2ABF2FAE00DFD405 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		BADC41F32ABF30F000DFD405 /* UMBMeasuredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMBMeasuredData.swift; sourceTree = "<group>"; };
+		BADC41F72ABF31CF00DFD405 /* WatchConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectionManager.swift; sourceTree = "<group>"; };
 		BAF25FF2274BC83F009992C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BAF25FF3275608CD009992C9 /* AccelerationForTargetAngleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationForTargetAngleTest.swift; sourceTree = "<group>"; };
 		BAF25FF5275612BB009992C9 /* AccelerationShifterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationShifterTest.swift; sourceTree = "<group>"; };
@@ -231,6 +274,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BA3C94012722636E007D5325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA4C32A62ABB3DAF0032AB56 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -277,7 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF63FD1BB56D985EA70A268 /* MotionWriter.swift */,
-				2EF6323D6F702A9500A98DAE /* WatchMotionWriter.swift */,
+				2EF6323D6F702A9500A98DAE /* CSVExporter.swift */,
 			);
 			path = MotionWriter;
 			sourceTree = "<group>";
@@ -394,6 +444,7 @@
 				2EF63A3298102CE8398B9962 /* 一度は成就する条件4Phase */,
 				2EF6385520327E050DDA9D54 /* 反応の速い十分条件 */,
 				2EF63BFF00991DB2943AAA94 /* フェイズ中一度は成就する条件 */,
+				BA4FE35F2AC15BBA00BDC119 /* 内倒.swift */,
 			);
 			path = Definition;
 			sourceTree = "<group>";
@@ -401,6 +452,7 @@
 		BA3C93EB2722636B007D5325 = {
 			isa = PBXGroup;
 			children = (
+				BADC41F22ABF2FF700DFD405 /* PhoneAndWatch */,
 				BA64A91929E997E600A3A96A /* README.md */,
 				BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */,
 				BA3C94072722636E007D5325 /* skiBodyAttitudeTeacheerTests */,
@@ -409,6 +461,7 @@
 				BA3C94272722636F007D5325 /* skiBodyAttitudeTeacheer WatchKit Extension */,
 				BA3C944027226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppTests */,
 				BA3C944A27226371007D5325 /* skiBodyAttitudeTeacheer WatchKit AppUITests */,
+				BA4C32AA2ABB3DAF0032AB56 /* SkiWatch Watch App */,
 				BA3C93F52722636B007D5325 /* Products */,
 				BAB26538274BBBB0001A51BA /* Frameworks */,
 			);
@@ -419,6 +472,7 @@
 			children = (
 				BA3C93F42722636B007D5325 /* skiBodyAttitudeTeacheer.app */,
 				BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */,
+				BA4C32A92ABB3DAF0032AB56 /* SkiWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -426,12 +480,13 @@
 		BA3C93F62722636B007D5325 /* skiBodyAttitudeTeacheer */ = {
 			isa = PBXGroup;
 			children = (
+				BA90EC632AC453DC005A0A5E /* View */,
 				BAF25FF2274BC83F009992C9 /* Info.plist */,
 				BAA0A9FB272F9F3300FEDF23 /* Library */,
 				BAA0A9DA272BABA300FEDF23 /* DomainModel */,
 				BA90EF5027229E6E00FC7A66 /* skiBodyAttitudeTeacheerDebug.entitlements */,
 				BA90EF4F2722925100FC7A66 /* skiBodyAttitudeTeacheer.entitlements */,
-				BA3C93F72722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift */,
+				BA3C93F72722636B007D5325 /* SkiBodyAttitudeTeacheerApp.swift */,
 				BA3C93F92722636B007D5325 /* ContentView.swift */,
 				BA3C93FB2722636E007D5325 /* Assets.xcassets */,
 				BA3C93FD2722636E007D5325 /* Preview Content */,
@@ -520,6 +575,34 @@
 			path = "skiBodyAttitudeTeacheer WatchKit AppUITests";
 			sourceTree = "<group>";
 		};
+		BA4C32AA2ABB3DAF0032AB56 /* SkiWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				BA4C32AB2ABB3DAF0032AB56 /* SkiWatchApp.swift */,
+				BA4C32AD2ABB3DAF0032AB56 /* ContentView.swift */,
+				BA4C32AF2ABB3DB20032AB56 /* Assets.xcassets */,
+				BA4C32B12ABB3DB20032AB56 /* Preview Content */,
+				BA4C32BA2ABD81310032AB56 /* WatchSideConnectionManager.swift */,
+			);
+			path = "SkiWatch Watch App";
+			sourceTree = "<group>";
+		};
+		BA4C32B12ABB3DB20032AB56 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BA4C32B22ABB3DB20032AB56 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA90EC632AC453DC005A0A5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA90EC642AC453F6005A0A5E /* AlertView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BAA0A9DA272BABA300FEDF23 /* DomainModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,7 +641,10 @@
 				BA847CD729090BB7009B8AEA /* TurnShapeScore.swift */,
 				BA3702902AA1A61600FB162A /* UWBScaling.swift */,
 				BA3702922AA2F51E00FB162A /* NearbyInteractionManager.swift */,
-				BA8E7F9D2AB3343C00CB9254 /* MessageManager.swift */,
+				BA8E7F9D2AB3343C00CB9254 /* MultipeerConnectionManager.swift */,
+				BADC41F72ABF31CF00DFD405 /* WatchConnectionManager.swift */,
+				BA4FE3622AC1D29000BDC119 /* 運動量測定.swift */,
+				BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -569,6 +655,15 @@
 				BAB26539274BBBB0001A51BA /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BADC41F22ABF2FF700DFD405 /* PhoneAndWatch */ = {
+			isa = PBXGroup;
+			children = (
+				BADC41EE2ABF2FAE00DFD405 /* Helper.swift */,
+				BADC41F32ABF30F000DFD405 /* UMBMeasuredData.swift */,
+			);
+			path = PhoneAndWatch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,6 +681,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BA4C32B52ABB3DB20032AB56 /* PBXTargetDependency */,
 			);
 			name = skiBodyAttitudeTeacheer;
 			packageProductDependencies = (
@@ -615,6 +711,23 @@
 			productReference = BA3C94042722636E007D5325 /* skiBodyAttitudeTeacheerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BA4C32A82ABB3DAF0032AB56 /* SkiWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA4C32B92ABB3DB20032AB56 /* Build configuration list for PBXNativeTarget "SkiWatch Watch App" */;
+			buildPhases = (
+				BA4C32A52ABB3DAF0032AB56 /* Sources */,
+				BA4C32A62ABB3DAF0032AB56 /* Frameworks */,
+				BA4C32A72ABB3DAF0032AB56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SkiWatch Watch App";
+			productName = "SkiWatch Watch App";
+			productReference = BA4C32A92ABB3DAF0032AB56 /* SkiWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -622,7 +735,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					BA3C93F32722636B007D5325 = {
@@ -631,6 +744,9 @@
 					BA3C94032722636E007D5325 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = BA3C93F32722636B007D5325;
+					};
+					BA4C32A82ABB3DAF0032AB56 = {
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
@@ -654,6 +770,7 @@
 			targets = (
 				BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */,
 				BA3C94032722636E007D5325 /* skiBodyAttitudeTeacheerTests */,
+				BA4C32A82ABB3DAF0032AB56 /* SkiWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -675,6 +792,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA4C32A72ABB3DAF0032AB56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA4C32B32ABB3DB20032AB56 /* Preview Assets.xcassets in Resources */,
+				BA4C32B02ABB3DB20032AB56 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -682,10 +808,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4FE3632AC1D29000BDC119 /* 運動量測定.swift in Sources */,
 				BA4C93CB27687BEE00E2C749 /* BLService.swift in Sources */,
 				BAF25FF82759C80B009992C9 /* ToneSub.swift in Sources */,
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
-				BA3C93F82722636B007D5325 /* skiBodyAttitudeTeacheerApp.swift in Sources */,
+				BA3C93F82722636B007D5325 /* SkiBodyAttitudeTeacheerApp.swift in Sources */,
 				BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */,
 				2EF634708DBE2CD1CD343B1F /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF63672289EDDE5A4871A40 /* PhysicsConstants.swift in Sources */,
@@ -695,7 +822,7 @@
 				2EF63D609E2CF62D963B2D6A /* Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.swift in Sources */,
 				2EF63D0B5FA3BB120E5BFC17 /* 時計を平にして重心移動方向にX軸を向けたWatchTurnStreamReceiver.swift in Sources */,
 				2EF63B93B3B3F40C00200ED8 /* MotionWriter.swift in Sources */,
-				2EF63E759458A0FFEB1A82B2 /* WatchMotionWriter.swift in Sources */,
+				2EF63E759458A0FFEB1A82B2 /* CSVExporter.swift in Sources */,
 				2EF63E92B71A89D534098689 /* IdealTurnConditionDetector.swift in Sources */,
 				2EF63391AA1405D93E5F1C02 /* CurrentVelocity.swift in Sources */,
 				2EF63E08E31ABA03BEA4C1E2 /* TurnSideChangingPeriodFinder.swift in Sources */,
@@ -712,6 +839,7 @@
 				BA3702912AA1A61600FB162A /* UWBScaling.swift in Sources */,
 				2EF6347BBAB51066FE1DC5C2 /* MotionAnalyser.swift in Sources */,
 				2EF63D71467DD652BC3C85D7 /* PivotSlipScore.swift in Sources */,
+				BADC41F82ABF31CF00DFD405 /* WatchConnectionManager.swift in Sources */,
 				2EF63308CEBB1EC4EF6BBE16 /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift in Sources */,
 				2EF6344254B370436EFF6AC1 /* ForwardAfterwardBalanceScore.swift in Sources */,
 				2EF635E3BC76C0B423AABECA /* MoveStopDiscriminator.swift in Sources */,
@@ -722,6 +850,7 @@
 				2EF632E2131ACEC2249CA588 /* UnifiedTurnPhase.swift in Sources */,
 				2EF635E61314826BE2202D7F /* ReverceDeviceMotionMaintainXAxis.swift in Sources */,
 				BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */,
+				BADC41F42ABF30F000DFD405 /* UMBMeasuredData.swift in Sources */,
 				2EF630AF71D2370FCA457C30 /* GetAbsoluteRotationRate.swift in Sources */,
 				2EF6349DB8388C5CC8570D19 /* TypeAliases.swift in Sources */,
 				2EF63A1B8DA64B39B7A5A45A /* CenterOfMassTurnPhaseCollection.swift in Sources */,
@@ -734,13 +863,16 @@
 				2EF63AEBC7FC656F12ED2429 /* Switch後ずっとKeepか.swift in Sources */,
 				2EF63FC94CADBB46D2648037 /* YawingSideFinder.swift in Sources */,
 				2EF63B2C71216B0301DCABCD /* LeftTurn前半内にロールしていっている.swift in Sources */,
+				BA4FE3602AC15BBA00BDC119 /* 内倒.swift in Sources */,
 				2EF63BB80B7C0D4FE7BD216D /* LeftTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
 				BAF25FFA27631305009992C9 /* TooMuchInsideRollAngleFinder..swift in Sources */,
+				BA90EC652AC453F6005A0A5E /* AlertView.swift in Sources */,
 				2EF634129360B3769285D6A2 /* RightTurn前半スキーが内にロールしていっている.swift in Sources */,
 				2EF63B65CAE9543F4C2F51A0 /* RightTurn後半スキーのロール角が起き上がってきている.swift in Sources */,
+				BA4FE3662AC26B0A00BDC119 /* ExportStruct.swift in Sources */,
 				2EF63305D5DF074BAB31E48E /* LeftTurn内にスキーが傾いている.swift in Sources */,
 				2EF633CBAF24C729C8E944CD /* RightTurn内にスキーが傾いている.swift in Sources */,
-				BA8E7F9E2AB3343C00CB9254 /* MessageManager.swift in Sources */,
+				BA8E7F9E2AB3343C00CB9254 /* MultipeerConnectionManager.swift in Sources */,
 				2EF63341EDCA9F63BE736EC0 /* TurnChronologicalPhaseFinder.swift in Sources */,
 				BA847CD829090BB7009B8AEA /* TurnShapeScore.swift in Sources */,
 				2EF636AF54846DC1F651FA09 /* YawRotationRateMovingAverageFinder.swift in Sources */,
@@ -750,6 +882,7 @@
 				2EF63B79244DC43ADF4C2A3F /* FallLineOutSideOrthogonalQuaternionDirectionFinder.swift in Sources */,
 				2EF63EA9750FD38E0F23D1C5 /* FallLineOrthogonalAccelerationCalculator.swift in Sources */,
 				2EF63C1B8C5E7A63F2ED5256 /* TurnYawingSide.swift in Sources */,
+				BADC41EF2ABF2FAE00DFD405 /* Helper.swift in Sources */,
 				2EF63C40609FA02111B93E1C /* AccelerationShifter.swift in Sources */,
 				2EF63B4F54014435677844C6 /* AbsoluteQuaternionFallLineFinder.swift in Sources */,
 			);
@@ -759,12 +892,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADC41F52ABF30F000DFD405 /* UMBMeasuredData.swift in Sources */,
 				BA3C94092722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift in Sources */,
+				BADC41F92ABF31CF00DFD405 /* WatchConnectionManager.swift in Sources */,
+				BADC41F02ABF2FAE00DFD405 /* Helper.swift in Sources */,
 				BAF25FF6275612BB009992C9 /* AccelerationShifterTest.swift in Sources */,
 				2EF634BF428069C49B5461BD /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF630FC659F0A28F66A7F3F /* PhysicsConstants.swift in Sources */,
 				BAF25FF4275608CD009992C9 /* AccelerationForTargetAngleTest.swift in Sources */,
 				2EF63FEC9B9772A4296F630C /* AngleShifter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA4C32A52ABB3DAF0032AB56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BADC41F62ABF30F000DFD405 /* UMBMeasuredData.swift in Sources */,
+				BA4FE3672AC26B0A00BDC119 /* ExportStruct.swift in Sources */,
+				BA4C32AE2ABB3DAF0032AB56 /* ContentView.swift in Sources */,
+				BA4FE3612AC15BBA00BDC119 /* 内倒.swift in Sources */,
+				BA4FE3642AC1D29000BDC119 /* 運動量測定.swift in Sources */,
+				BADC41FA2ABF31CF00DFD405 /* WatchConnectionManager.swift in Sources */,
+				BA4C32BB2ABD81310032AB56 /* WatchSideConnectionManager.swift in Sources */,
+				BADC41F12ABF2FAE00DFD405 /* Helper.swift in Sources */,
+				BA4C32AC2ABB3DAF0032AB56 /* SkiWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,6 +927,11 @@
 			isa = PBXTargetDependency;
 			target = BA3C93F32722636B007D5325 /* skiBodyAttitudeTeacheer */;
 			targetProxy = BA3C94052722636E007D5325 /* PBXContainerItemProxy */;
+		};
+		BA4C32B52ABB3DB20032AB56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA4C32A82ABB3DAF0032AB56 /* SkiWatch Watch App */;
+			targetProxy = BA4C32B42ABB3DB20032AB56 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -895,6 +1052,7 @@
 		BA3C945A27226371007D5325 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -943,6 +1101,7 @@
 		BA3C945B27226371007D5325 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -1044,6 +1203,80 @@
 			};
 			name = Release;
 		};
+		BA4C32B72ABB3DB20032AB56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SkiWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SkiWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer3.watchkitapp2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		BA4C32B82ABB3DB20032AB56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SkiWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = X4RPB4Q33M;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = SkiWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = koyakei.skiBodyAttitudeTeacheer3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = koyakei.skiBodyAttitudeTeacheer3.watchkitapp2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1070,6 +1303,15 @@
 			buildConfigurations = (
 				BA3C945D27226371007D5325 /* Debug */,
 				BA3C945E27226371007D5325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA4C32B92ABB3DB20032AB56 /* Build configuration list for PBXNativeTarget "SkiWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA4C32B72ABB3DB20032AB56 /* Debug */,
+				BA4C32B82ABB3DB20032AB56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

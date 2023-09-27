@@ -8,11 +8,11 @@
 import SwiftUI
 
 @main
-struct skiBodyAttitudeTeacheerApp: App {
+struct SkiBodyAttitudeTeacheerApp: App {
+    var messageManager = MessageManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(messageManager: messageManager)
         }
-        
     }
 }
