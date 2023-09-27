@@ -32,7 +32,7 @@ struct ContentView: View {
     
 //    var nearbyInteractionManager : NearbyInteractionManager
 //    var watchConnectionManager: WatchConnectionManager = WatchConnectionManager()
-    @ObservedObject var messageManager: MessageManager
+    @StateObject var messageManager: MessageManager
     
     
     @State var currentAngle : Float = 0
@@ -70,19 +70,19 @@ struct ContentView: View {
                 
                     }
             HStack{
-                Button("start adv"){
-                    messageManager.advertiserAssistant.startAdvertisingPeer()
+//                Button("start adv"){
+////                    messageManager.advertiserAssistant.startAdvertisingPeer()
+////                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
+//                    
+//                }
+//                Button("invite"){
+//                    messageManager.invitePeer()
+//                }
+//                Button("startbrouse"){
 //                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
-                    
-                }
-                Button("invite"){
-                    messageManager.invitePeer()
-                }
-                Button("startbrouse"){
-                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
-//                    messageManager.advertiserAssistant.stopAdvertisingPeer()
-//                    messageManager.mCNearbyServiceBrowser.stopBrowsingForPeers()
-                }
+////                    messageManager.advertiserAssistant.stopAdvertisingPeer()
+////                    messageManager.mCNearbyServiceBrowser.stopBrowsingForPeers()
+//                }
             }
             
 //            HStack {

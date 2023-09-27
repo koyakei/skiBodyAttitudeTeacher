@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct SkiBodyAttitudeTeacheerApp: App {
-    var messageManager = MessageManager()
+    let messageManager = MessageManager()
     var body: some Scene {
         WindowGroup {
             ContentView(messageManager: messageManager)
