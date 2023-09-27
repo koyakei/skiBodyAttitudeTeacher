@@ -24,42 +24,9 @@ struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
     let timeStampSince1970: TimeInterval
 }
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    @IBAction func presentSwiftUIView() {
-        let controller = UIHostingController(rootView: ContentView())
-        controller.modalPresentationStyle = .overFullScreen
-        present(controller, animated: true)
-    }
-}
-
-struct ViewControllerRepresentable: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> ViewController {
-        let storyboard = UIStoryboard(name: "LaunchScreen", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "vc") as! ViewController
-        vc.modalPresentationStyle = .overFullScreen
-        return vc
-    }
-
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
-    }
-}
-
-struct P2PSender{
-    
-}
-
 struct ContentView: View {
-    var session: MCSession?
-    var peerId : MCPeerID? = nil
-    var connectedPeer: [MCPeerID] = []
     
-    @StateObject var messageManager = MessageManager()
+    @StateObject var messageManager :MessageManager
     @State var currentAngle : Float = 0
     @State var connectingTarget: String = "init"
     @ObservedObject var niManager: NearbyInteractionManager = NearbyInteractionManager()
@@ -291,17 +258,14 @@ struct ContentView: View {
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
     }
-    func sendData(){
-        try? messageManager.session.send("test".utf8.description.data(using: .utf8)!, toPeers: connectedPeer, with: .unreliable)
-//        try? session!.send("test".utf8.description.data(using: .utf8)!, toPeers: connectedPeer, with: .unreliable)
-    }
+
     
     
     
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(messageManager: MessageManager())
     }
 }
 }
