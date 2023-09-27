@@ -55,8 +55,7 @@ struct P2PSender{
 }
 
 struct ContentView: View {
-    let serviceType = "motion-peer"
-    var peerSession: MCSession?
+    var session: MCSession?
     var peerId : MCPeerID? = nil
     var connectedPeer: [MCPeerID] = []
     
@@ -293,27 +292,11 @@ struct ContentView: View {
         headphoneMotion.stopDeviceMotionUpdates()
     }
     func sendData(){
-        try? peerSession!.send("test".utf8.description.data(using: .utf8)!, toPeers: connectedPeer, with: .unreliable)
+        try? messageManager.session.send("test".utf8.description.data(using: .utf8)!, toPeers: connectedPeer, with: .unreliable)
+//        try? session!.send("test".utf8.description.data(using: .utf8)!, toPeers: connectedPeer, with: .unreliable)
     }
     
-    mutating func startPeerConnectionToHip(){
-        peerId = MCPeerID(displayName: UIDevice.current.name)
-        let peerAdvertiser: MCNearbyServiceAdvertiser
-        
-        var connectedPeer: MCPeerID? = nil
-        /// Setting the `peerSession`
-        peerSession = MCSession(peer: peerId!, securityIdentity: nil, encryptionPreference: .none)
-
-        /// Setting the `peerAdvertiser`
-        peerAdvertiser = MCNearbyServiceAdvertiser(peer: peerId!, discoveryInfo: nil, serviceType: serviceType)
-//        /// Setting the `peerSession` and `peerAdvertiser` delegates
-//        peerSession.delegate = self
-//        peerAdvertiser.delegate = self
-
-        /// To advertise your peer device, you need to
-        /// call this function after setting the advertiser
-        peerAdvertiser.startAdvertisingPeer()
-    }
+    
     
 
 struct ContentView_Previews: PreviewProvider {

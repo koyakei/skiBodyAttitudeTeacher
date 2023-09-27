@@ -174,8 +174,8 @@
             filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -915,8 +915,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "send(message:)"
             landmarkType = "7">
             <Locations>
@@ -963,8 +963,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "send(message:)"
             landmarkType = "7">
             <Locations>
@@ -1027,8 +1027,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "session(_:peer:didChange:)"
             landmarkType = "7">
             <Locations>
@@ -1201,8 +1201,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "session(_:peer:didChange:)"
             landmarkType = "7">
             <Locations>
@@ -1249,8 +1249,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "session(_:peer:didChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1265,8 +1265,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "session(_:peer:didChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1297,8 +1297,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "session(_:didReceive:fromPeer:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1313,10 +1313,73 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/MessageManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "session(_:didReceive:fromPeer:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23F983A5-D77C-4E33-9C42-2578466C41EB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "skiBodyAttitudeTeacheer/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "startRecord()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "23F983A5-D77C-4E33-9C42-2578466C41EB - 2b2f649d8761b30f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "skiBodyAttitudeTeacheer.ContentView.startRecord() -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "23F983A5-D77C-4E33-9C42-2578466C41EB - 6d25ffe2d4db056"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;__C.CMDeviceMotion&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in skiBodyAttitudeTeacheer.ContentView.startRecord() -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "287"
+                  endingLineNumber = "287"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "23F983A5-D77C-4E33-9C42-2578466C41EB - 6d25ffe2d4db071"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;__C.CMDeviceMotion&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in skiBodyAttitudeTeacheer.ContentView.startRecord() -&gt; ()"
+                  moduleName = "skiBodyAttitudeTeacheer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/koyanagi/skiBodyAttitudeTeacheer/skiBodyAttitudeTeacheer/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

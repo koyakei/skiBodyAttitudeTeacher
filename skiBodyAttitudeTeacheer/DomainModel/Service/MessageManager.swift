@@ -37,8 +37,8 @@ class MessageManager: NSObject, ObservableObject, MCSessionDelegate, MCNearbySer
         print("d")
     }
     @Published var connectedPeers: [MCPeerID] = []
-    private var peerID: MCPeerID!
-    private var session: MCSession!
+    var peerID: MCPeerID
+    @Published  var session: MCSession
     private let serviceType = "your-service"
     private var advertiserAssistant: MCNearbyServiceAdvertiser!
     private var mCNearbyServiceBrowser : MCNearbyServiceBrowser!
@@ -52,10 +52,11 @@ class MessageManager: NSObject, ObservableObject, MCSessionDelegate, MCNearbySer
         }
     
     override init() {
-        super.init()
-        
         peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
+        super.init()
+        
+        
         session.delegate = self
         mCNearbyServiceBrowser = MCNearbyServiceBrowser(peer: peerID,
                                                           serviceType: serviceType)
