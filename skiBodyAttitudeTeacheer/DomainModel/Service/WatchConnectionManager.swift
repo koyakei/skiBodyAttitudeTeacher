@@ -49,19 +49,19 @@ extension WatchConnectionManager :WCSessionDelegate{
     }
 
     #if os(iOS)
-    func sessionDidBecomeInactive(_ session: WCSession) {
+    func sessionDidBecomeInactive(_ niSession: WCSession) {
         
     }
 
-    func sessionDidDeactivate(_ session: WCSession) {
+    func sessionDidDeactivate(_ niSession: WCSession) {
         
     }
     
-    func sessionWatchStateDidChange(_ session: WCSession) {
+    func sessionWatchStateDidChange(_ niSession: WCSession) {
         print("""
             WCSession watch state did change:
-              - isPaired: \(session.isPaired)
-              - isWatchAppInstalled: \(session.isWatchAppInstalled)
+              - isPaired: \(niSession.isPaired)
+              - isWatchAppInstalled: \(niSession.isWatchAppInstalled)
             """)
     }
     #endif

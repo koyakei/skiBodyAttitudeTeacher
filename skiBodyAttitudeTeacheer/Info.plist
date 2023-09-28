@@ -2,12 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>NSNearbyInteractionAllowOnceUsageDescription</key>
+	<string>motion</string>
 	<key>NSNearbyInteractionUsageDescription</key>
 	<string>motion</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>mc</string>
-	<key></key>
-	<string></string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>bt</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_your-service._tcp</string>

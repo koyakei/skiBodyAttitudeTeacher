@@ -28,12 +28,7 @@ struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
 
 struct ContentView: View {
     
-   
-    
-//    var nearbyInteractionManager : NearbyInteractionManager
-//    var watchConnectionManager: WatchConnectionManager = WatchConnectionManager()
     @StateObject var messageManager: MessageManager
-    
     
     @State var currentAngle : Float = 0
     @State var connectingTarget: String = "init"
@@ -69,34 +64,25 @@ struct ContentView: View {
                         }
                 
                     }
-            HStack{
-//                Button("start adv"){
-////                    messageManager.advertiserAssistant.startAdvertisingPeer()
-////                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
-//                    
-//                }
-//                Button("invite"){
-//                    messageManager.invitePeer()
-//                }
-//                Button("startbrouse"){
-//                    messageManager.mCNearbyServiceBrowser.startBrowsingForPeers()
-////                    messageManager.advertiserAssistant.stopAdvertisingPeer()
-////                    messageManager.mCNearbyServiceBrowser.stopBrowsingForPeers()
-//                }
-            }
             
-//            HStack {
-//                if nearbyInteractionManager.isConnected {
-//                    if let distance = nearbyInteractionManager.umbMeasuredData?.distance.converted(to: .centimeters) {
-//                        Text(distance.description + "cm")
-//                        Text(nearbyInteractionManager.umbMeasuredData?.euler3d ?? "読めない" )
-//                    } else {
-//                        Text("-")
-//                    }
-//                } else {
-//                    Text("not connected")
-//                }
-//            }
+            HStack {
+                Button("umb start") {
+                    messageManager.sendDiscoveryToken()
+                }
+                Button("umb restart") {
+                    messageManager.restartNISession()
+                }
+                if messageManager.isConnected {
+                    if let distance = messageManager.umbMeasuredData?.distance.converted(to: .centimeters) {
+                        Text(distance.description + "cm")
+                        Text(messageManager.umbMeasuredData?.euler3d ?? "読めない" )
+                    } else {
+                        Text("-")
+                    }
+                } else {
+                    Text("not connected")
+                }
+            }
             
             HStack{
             Button(action: startRecord) {
