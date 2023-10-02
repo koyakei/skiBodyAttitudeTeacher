@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSHealthShareUsageDescription</key>
+    <string>読み込み許可を求めるメッセージdssa</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>書き込み許可を求めるメッセージ</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>NSNearbyInteractionAllowOnceUsageDescription</key>

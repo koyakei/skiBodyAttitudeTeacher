@@ -58,11 +58,11 @@ extension WatchConnectionManager :WCSessionDelegate{
     }
     
     func sessionWatchStateDidChange(_ niSession: WCSession) {
-        print("""
-            WCSession watch state did change:
-              - isPaired: \(niSession.isPaired)
-              - isWatchAppInstalled: \(niSession.isWatchAppInstalled)
-            """)
+//        print("""
+//            WCSession watch state did change:
+//              - isPaired: \(niSession.isPaired)
+//              - isWatchAppInstalled: \(niSession.isWatchAppInstalled)
+//            """)
     }
     #endif
 }

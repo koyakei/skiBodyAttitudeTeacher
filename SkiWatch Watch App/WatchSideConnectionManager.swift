@@ -9,10 +9,11 @@ import NearbyInteraction
 import WatchConnectivity
 import Combine
 import os.log
+import Spatial
 
 class WatchSideConnectionManager: NSObject, ObservableObject {
     @Published var distance: Measurement<UnitLength>?
-    @Published var direction: SIMD3<Float>?
+    @Published var direction: Vector3D?
     @Published var euler3d : String?
     
     var isConnected: Bool {
@@ -48,7 +49,7 @@ extension WatchSideConnectionManager :WCSessionDelegate{
         for object in objects {
             direction = object.direction
             distance = object.distance
-            euler3d = object.euler3d
+//            euler3d = object.euler3d
         }
     }
     
@@ -56,7 +57,7 @@ extension WatchSideConnectionManager :WCSessionDelegate{
         if let ridersData = applicationContext[Helper.ridersDataKey] as? UMBMeasuredData {
             distance = ridersData.distance
             direction = ridersData.direction
-            euler3d = ridersData.euler3d
+//            euler3d = ridersData.euler3d
         }
     }
 }

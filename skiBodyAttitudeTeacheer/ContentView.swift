@@ -15,9 +15,9 @@ import Foundation
 import AVFoundation
 import AudioToolbox
 import Spatial
+
 let coreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
-
 
 struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
     let deveceMotion: CMDeviceMotion
@@ -27,9 +27,9 @@ struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
 
 
 struct ContentView: View {
-    
     @StateObject var messageManager: MessageManager
-    
+    @StateObject var turnManager: TurnCoMManager
+    @StateObject var healthCareManager: HealthCareManager = HealthCareManager()
     @State var currentAngle : Float = 0
     @State var connectingTarget: String = "init"
     @State var absoluteFallLineAttitude :Attitude = Attitude.init(roll: 0, yaw: 0, pitch: 0)
@@ -46,25 +46,22 @@ struct ContentView: View {
     @State private var isPresented: Bool = false
     @State private var messageText = ""
     @State private var receivedMessage = ""
-    
+    @State var currentAttitudePoint3d = Point3D.zero
     var body: some View {
         VStack{
-            
             HStack {
+                Text(String(Int(healthCareManager.heartRate ?? 0)) )
+                Button(" get hear rate"){
+                    healthCareManager.get()
+                }
                 Text(String(messageManager.connectedPeers.first?.displayName ?? "no"))
-                Text(messageManager.receivedMessage)
-                            .padding()
-                        
-                        TextField("Enter a message", text: $messageText)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                        
-                        Button("Send Message") {
-                            messageManager.send(message: messageText)
-                        }
+                if let dir = turnManager.inclineCoM {
+                    Text(dir.fallLineForwardGravityAbsoluteCenterOfMass.realPoint3DByCentimeter)
+                    Text("cuurent attitude by point3d")
+                    Text(dir.skiDirectionAbsoluteByNorth.axis.description)
+                }
                 
-                    }
-            
+            }
             HStack {
                 Button("umb start") {
                     messageManager.sendDiscoveryToken()
@@ -73,11 +70,13 @@ struct ContentView: View {
                     messageManager.restartNISession()
                 }
                 if messageManager.isConnected {
-                    if let distance = messageManager.umbMeasuredData?.distance.converted(to: .centimeters) {
-                        Text(distance.description + "cm")
-                        Text(messageManager.umbMeasuredData?.euler3d ?? "読めない" )
+                    if let distance : Double = messageManager.umbMeasuredData?.distance.converted(to: .centimeters).value {
+                        Text("\(Int(round(distance)) )cm")
                     } else {
                         Text("-")
+                    }
+                    if let dirction = messageManager.umbMeasuredData?.realDistance.realPoint3DByCentimeter {
+                        Text(dirction)
                     }
                 } else {
                     Text("not connected")
@@ -148,28 +147,28 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .rotationEffect(Angle.init(radians:
                                                     (lastSwitchedAngleRadian - (currentAttitude.yaw * -1) )  ))
-                Text("fall Line")
-                Text("⇑")
-                    .background(Color.red)
-                    .font(.largeTitle)
-                    .rotationEffect(Angle.init(radians:
-                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) )
-                    .overlay{
-                        Text("↑")
-                            .background(Color.clear)
-                            .foregroundColor(Color.blue)
-                            .font(.largeTitle)
-                            .fontWeight(.light)
-                            .rotationEffect(Angle.init(radians:
-                                                        (
-                                                            (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) +
-                                                       (idealDiffrencial
-                                                                                                                        * 2 * Double(turnYawingSide.turnsideToSign()
-                                                                                                                                )
-                                                       )
-                                                      ) )
-                    }
-                
+                    Text("fall Line")
+                    Text("⇑")
+                        .background(Color.red)
+                        .font(.largeTitle)
+                        .rotationEffect(Angle.init(radians:
+                                                    (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) )
+                        .overlay{
+                            Text("↑")
+                                .background(Color.clear)
+                                .foregroundColor(Color.blue)
+                                .font(.largeTitle)
+                                .fontWeight(.light)
+                                .rotationEffect(Angle.init(radians:
+                                                            (
+                                                                (absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1) +
+                                                           (idealDiffrencial
+                                                            * 2 * Double(turnYawingSide.turnsideToSign()
+                                                                        )
+                                                           )
+                                                          ) )
+                        }
+                    
                 }
                 Text("ideal diff")
                 HStack{
@@ -183,16 +182,37 @@ struct ContentView: View {
                     .background(Color.blue)
                     .font(.largeTitle)
                     .rotationEffect(Angle.init(radians: ((absoluteFallLineAttitude.yaw - currentAttitude.yaw ) * -1 ) + (.pi / 2 ) ) )
-
+                
                 Text("⇑")
-                        .background(Color.red)
-                        .font(.largeTitle)
-                        .rotationEffect(Angle.init(radians:
-                                                    (absoluteFallLineAttitude.pitch - currentAttitude.yaw) * -1 ))
+                    .background(Color.red)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(radians:
+                                                (absoluteFallLineAttitude.pitch - currentAttitude.yaw) * -1 ))
                 Text("⇑")
-                        .background(Color.blue)
-                        .font(.largeTitle)
-                        .rotationEffect(Angle.init(radians: Double.pi / 2))
+                    .background(Color.blue)
+                    .font(.largeTitle)
+                    .rotationEffect(Angle.init(radians: Double.pi / 2))
+                
+                    if let inclineCoM = turnManager.inclineCoM{
+                        HStack{
+                        Text("true north attitude ")
+                        Text("⇑")
+                                .background(Color.blue)
+                                .font(.largeTitle)
+                                .rotationEffect(Angle.init(radians: (inclineCoM.skiDirectionAbsoluteByNorth.eulerAngles(order: .xyz).angles.x)))
+                        Text("⇑")
+                                .background(Color.blue)
+                                .font(.largeTitle)
+                                .rotationEffect(Angle.init(radians: (inclineCoM.skiDirectionAbsoluteByNorth.eulerAngles(order: .xyz).angles.y)))
+                        Text("⇑")
+                                .background(Color.blue)
+                                .font(.largeTitle)
+                                .rotationEffect(Angle.init(radians: (inclineCoM.skiDirectionAbsoluteByNorth.eulerAngles(order: .xyz).angles.z)))
+                        }
+                    }
+                
+                
+                
                 
             }
             VStack{
@@ -219,43 +239,56 @@ struct ContentView: View {
     
     func startRecord(){
         coreMotion.startDeviceMotionUpdates(
-                using: .xArbitraryCorrectedZVertical,
+            using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
-            let skiTurnPhase :SkiTurnPhase = MotionAnalyzerManager.shared.receiveBoardMotion(motion!,
-                                         ProcessInfo
-                                                 .processInfo.systemUptime
-                                         )
-                    
-                    currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
-//                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
-//                                                   iy: Float(motion!.attitude.quaternion.y),
-//                                                   iz: Float(motion!.attitude.quaternion.z),
-//                                                   r: Float(motion!.attitude.quaternion.w))
-            if MotionAnalyzerManager.shared.磁北偏差 == nil{
-                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
-            }
-                    idealDiffrencialConductor.data.detuningOffset = 440
-                    turnYawingSide = skiTurnPhase.turnYawingSide
-                    idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
-                    orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
-                    absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
-                    turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
-                    turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
-                    if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
-                    ) {
-                        idealDiffrencialConductor.changeWaveFormToSquare()
-                    } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
-                        idealDiffrencialConductor.changeWaveFormToSin()
-                    } else{
-                        idealDiffrencialConductor.changeWaveFormToTriangle()
+                    if let deviceMotioon: CMDeviceMotion = motion , let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
+                        
+                            
+                            let skiTurnPhase :SkiTurnPhase =
+                            
+                            MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotioon,
+                                                                            ProcessInfo
+                                .processInfo.systemUptime
+                            )
+                            
+                            turnManager.receive(coreMotion: deviceMotioon, startedTime: ProcessInfo
+                                .processInfo.systemUptime, fallLineDirectionGravityAbsoluteByNorth:
+                                                    Rotation3D.init(target: Point3D(Vector3D.forward)),
+                                                centerOfMassRelativeDirectionFromSki: measuredData.realDistance
+                                                
+                            )
+                            currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
+                            //                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
+                            //                                                   iy: Float(motion!.attitude.quaternion.y),
+                            //                                                   iz: Float(motion!.attitude.quaternion.z),
+                            //                                                   r: Float(motion!.attitude.quaternion.w))
+                            if MotionAnalyzerManager.shared.磁北偏差 == nil{
+                                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
+                            }
+                            
+                            idealDiffrencialConductor.data.detuningOffset = 440
+                            turnYawingSide = skiTurnPhase.turnYawingSide
+                            idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
+                            orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
+                            absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
+                            turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
+                            turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
+                            if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
+                            ) {
+                                idealDiffrencialConductor.changeWaveFormToSquare()
+                            } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
+                                idealDiffrencialConductor.changeWaveFormToSin()
+                            } else{
+                                idealDiffrencialConductor.changeWaveFormToTriangle()
+                            }
+                            idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
+                                abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
+                                    .converted(to: .degrees).value)))))
+                            conductor.data.frequency = AUValue(ToneStep.hight(
+                                abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
+                                    .converted(to: .degrees).value)))))
+                        }
                     }
-                    idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
-                        abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
-                                                                                    .converted(to: .degrees).value)))))
-                    conductor.data.frequency = AUValue(ToneStep.hight(
-                        abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
-                                                                                    .converted(to: .degrees).value)))))
-                }
         headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
             headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
         }
@@ -267,11 +300,11 @@ struct ContentView: View {
     }
     
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(messageManager: MessageManager())
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(messageManager: MessageManager(),turnManager: TurnManager())
+//    }
+//}
 }
 
 

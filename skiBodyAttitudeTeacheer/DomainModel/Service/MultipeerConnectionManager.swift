@@ -16,10 +16,10 @@ extension MessageManager : MCSessionDelegate{
             }
         }
         if let token = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NIDiscoveryToken.self, from: data) {
-            print("received NIDiscoveryToken \(token) from counterpart")
+//            print("received NIDiscoveryToken \(token) from counterpart")
             didReceiveDiscoveryToken(token)
         } else {
-            print("failed to decode NIDiscoveryToken")
+//            print("failed to decode NIDiscoveryToken")
         }
     }
     
@@ -61,6 +61,34 @@ extension MessageManager : MCNearbyServiceBrowserDelegate{
         print("")
     }
     
+}
+
+extension CMQuaternion{
+    var simdQuat : simd_quatd {
+        get {
+            return simd_quatd(ix: self.x,
+                              iy: self.y,
+                              iz: self.z,
+                              r: self.w)
+        }
+    }
+}
+
+import CoreMotion
+import Spatial
+class TurnCoMManager : NSObject, ObservableObject{
+    
+    @Published var inclineCoM: InclineCoM?
+    var startedTime: TimeInterval = Date.now.timeIntervalSince1970
+    func receive(coreMotion: CMDeviceMotion, startedTime: TimeInterval,fallLineDirectionGravityAbsoluteByNorth : Rotation3D,
+                 centerOfMassRelativeDirectionFromSki: Point3D
+    ){
+        
+        inclineCoM = InclineCoM.init(
+            fallLineDirectionZVerticalXTrueNorth: fallLineDirectionGravityAbsoluteByNorth, skiDirectionAbsoluteByNorth: Rotation3D.init(coreMotion.attitude.quaternion.simdQuat)
+//            * Rotation3D.init(eulerAngles: EulerAngles(x: Angle2D.zero, y: Angle2D.init(degrees: 180), z: Angle2D.zero, order: EulerAngles.Order.xyz))
+            , centerOfMassRelativeDirectionFromSki: centerOfMassRelativeDirectionFromSki)
+    }
 }
 
 class MessageManager: NSObject, ObservableObject {
@@ -197,11 +225,9 @@ extension MessageManager: NISessionDelegate {
     }
     
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
-        print(nearbyObjects)
         for object in nearbyObjects {
             if  let distance = object.distance , let direction = object.direction {
-                print("object distance: \(distance) meters")
-                self.umbMeasuredData = UMBMeasuredData(distance: Measurement(value: Double(distance), unit: .meters), direction: direction, timeStamp: Date.now.timeIntervalSince1970)
+                self.umbMeasuredData = UMBMeasuredData(distance: distance, direction: direction)
             }
         }
     }
