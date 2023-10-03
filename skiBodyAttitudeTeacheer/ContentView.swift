@@ -26,9 +26,13 @@ struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
 }
 
 
+
 struct ContentView: View {
+    
+    @State var massOrSKi = true
     @StateObject var messageManager: MessageManager
     @StateObject var turnManager: TurnCoMManager
+    @StateObject var motionAnalyzerManager :MotionAnalyzerManager
     @StateObject var healthCareManager: HealthCareManager = HealthCareManager()
     @State var currentAngle : Float = 0
     @State var connectingTarget: String = "init"
@@ -47,8 +51,12 @@ struct ContentView: View {
     @State private var messageText = ""
     @State private var receivedMessage = ""
     @State var currentAttitudePoint3d = Point3D.zero
+    @State var currentAccel : Vector3D = Vector3D.forward
     var body: some View {
         VStack{
+            HStack{
+                Rectangle().fill(.blue).frame(width: (100 * currentAccel.z) + 100, height: 10)
+            }
             HStack {
                 Text(String(Int(healthCareManager.heartRate ?? 0)) )
                 Button(" get hear rate"){
@@ -58,7 +66,7 @@ struct ContentView: View {
                 if let dir = turnManager.inclineCoM {
                     Text(dir.fallLineForwardGravityAbsoluteCenterOfMass.realPoint3DByCentimeter)
                     Text("cuurent attitude by point3d")
-                    Text(dir.skiDirectionAbsoluteByNorth.axis.description)
+//                    Text(dir.skiDirectionAbsoluteByNorth.axis.description)
                 }
                 
             }
@@ -241,22 +249,33 @@ struct ContentView: View {
         coreMotion.startDeviceMotionUpdates(
             using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
-                    if let deviceMotioon: CMDeviceMotion = motion , let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
+                    if let deviceMotioon: CMDeviceMotion = motion {
                         
-                            
-                            let skiTurnPhase :SkiTurnPhase =
-                            
-                            MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotioon,
-                                                                            ProcessInfo
-                                .processInfo.systemUptime
-                            )
-                            
+                        currentAccel = Vector3D(x: deviceMotioon.userAcceleration.x,y: deviceMotioon.userAcceleration.y, z: deviceMotioon.userAcceleration.z).rotated(by: Rotation3D(deviceMotioon.attitude.quaternion.simdQuat)
+                        )
+                        let skiTurnPhase :SkiTurnPhase =
+                        
+                        MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotioon,
+                                                                        ProcessInfo
+                            .processInfo.systemUptime
+                        )
+                        if let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
                             turnManager.receive(coreMotion: deviceMotioon, startedTime: ProcessInfo
                                 .processInfo.systemUptime, fallLineDirectionGravityAbsoluteByNorth:
-                                                    Rotation3D.init(target: Point3D(Vector3D.forward)),
+                                                    Rotation3D(skiTurnPhase.absoluteFallLineAttitude),
                                                 centerOfMassRelativeDirectionFromSki: measuredData.realDistance
                                                 
                             )
+                            
+                        }
+                        
+                    }
+                    if let deviceMotioon: CMDeviceMotion = motion , let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
+                        
+                            
+                            
+                            
+                            
                             currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
                             //                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
                             //                                                   iy: Float(motion!.attitude.quaternion.y),
@@ -267,23 +286,23 @@ struct ContentView: View {
                             }
                             
                             idealDiffrencialConductor.data.detuningOffset = 440
-                            turnYawingSide = skiTurnPhase.turnYawingSide
-                            idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
-                            orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
-                            absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
-                            turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
-                            turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
-                            if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
-                            ) {
-                                idealDiffrencialConductor.changeWaveFormToSquare()
-                            } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
-                                idealDiffrencialConductor.changeWaveFormToSin()
-                            } else{
-                                idealDiffrencialConductor.changeWaveFormToTriangle()
-                            }
-                            idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
-                                abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
-                                    .converted(to: .degrees).value)))))
+//                            turnYawingSide = skiTurnPhase.turnYawingSide
+//                            idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
+//                            orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
+//                            absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
+//                            turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
+//                            turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
+//                            if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
+//                            ) {
+//                                idealDiffrencialConductor.changeWaveFormToSquare()
+//                            } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
+//                                idealDiffrencialConductor.changeWaveFormToSin()
+//                            } else{
+//                                idealDiffrencialConductor.changeWaveFormToTriangle()
+//                            }
+//                            idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
+//                                abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
+//                                    .converted(to: .degrees).value)))))
                             conductor.data.frequency = AUValue(ToneStep.hight(
                                 abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
                                     .converted(to: .degrees).value)))))

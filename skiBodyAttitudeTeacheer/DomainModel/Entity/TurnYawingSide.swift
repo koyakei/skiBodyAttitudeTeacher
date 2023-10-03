@@ -1,5 +1,8 @@
 //
-// Created by koyanagi on 2021/11/25.
+//  TurnYawingSide.swift
+//  skiBodyAttitudeTeacheer
+//
+//  Created by koyanagi on 2023/10/03.
 //
 
 import Foundation
@@ -27,7 +30,7 @@ extension TurnYawingSide {
         case .RightYawing:
             return 1
         case .LeftYawing:
-            return -1  
+            return -1
         case .Straight:
             return 1
         }

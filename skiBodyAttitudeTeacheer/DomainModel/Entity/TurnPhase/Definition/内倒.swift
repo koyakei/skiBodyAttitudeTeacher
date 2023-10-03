@@ -9,6 +9,8 @@ import Foundation
 import Spatial
 import simd
 
+
+
 struct InclineCoM {
     // 西向きの１前のベクトルを設定する
     let vectorYInNroth = Vector3D(x:-1,y:0,z: 0)
@@ -72,8 +74,8 @@ struct InclineCoM {
     }
     
     var turnYawingSide : TurnYawingSide = .Straight
-    // ステアリングアングル　フォールラインに対して何度のヨーイング角度をもっているか？
-    // 左右のターン
+//    // ステアリングアングル　フォールラインに対して何度のヨーイング角度をもっているか？
+//    // 左右のターン
     var sterlingAngle : Angle2D{
         get{
             let rad = tan(fallLineForwardGravityAbsoluteCenterOfMass.x / fallLineForwardGravityAbsoluteCenterOfMass.y)

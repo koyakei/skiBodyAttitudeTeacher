@@ -9,7 +9,7 @@ import Foundation
 import CoreMotion
 import AudioToolbox
 
-public struct MotionAnalyzerManager {
+class MotionAnalyzerManager: ObservableObject{
     var ariPodMotionReceiver: AirPodOnHeadMotionReceiver?
     var boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver: Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver
             = Boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.init()
@@ -25,7 +25,7 @@ public struct MotionAnalyzerManager {
     public var turnMaxBeep = false
     public var turn1to3Beep = false
     public var turnSwitch = false
-    mutating func receiveBoardMotion(_ motion: CMDeviceMotion, _
+    func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
         let va = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
                                                                  Date(timeInterval: motion.timestamp, since: Date.now

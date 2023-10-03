@@ -16,7 +16,8 @@ struct SkiBodyAttitudeTeacheerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(messageManager: messageManager
-                        , turnManager: turnManager
+                        , turnManager: turnManager,
+                        motionAnalyzerManager: MotionAnalyzerManager.shared
             )
         }
     }
