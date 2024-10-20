@@ -124,7 +124,6 @@ class MessageManager: NSObject, ObservableObject {
     }
     
     func restartNISession() {
-        print(niSession.configuration)
         if let config = niSession.configuration {
             niSession.run(config)
             print("restarting the NISession")

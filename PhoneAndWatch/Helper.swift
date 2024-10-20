@@ -14,7 +14,7 @@ enum Helper {
     static let ridersDataKey: String = "riders-data"
     
     /// A formatter that converts a distance to a string with units.
-    static var localFormatter: MeasurementFormatter = {
+    nonisolated(unsafe) static let localFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         formatter.unitStyle = .medium
         formatter.unitOptions = .providedUnit
@@ -27,6 +27,10 @@ enum Helper {
     
     /// The unit length for the device's current locale.
     static var localUnits: UnitLength {
-        Locale.current.usesMetricSystem ? .centimeters : .feet
+        if Locale.current.measurementSystem == Locale.MeasurementSystem.metric {
+            return UnitLength.centimeters
+        } else{
+            return UnitLength.feet
+        }
     }
 }
