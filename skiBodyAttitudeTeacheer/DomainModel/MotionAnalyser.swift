@@ -18,13 +18,15 @@ class MotionAnalyzerManager: ObservableObject{
     var unifyBodyAndSkiTurn :UnifyBodyAndSkiTurn = UnifyBodyAndSkiTurn.shared
 
     public static var shared: MotionAnalyzerManager = MotionAnalyzerManager()
-
+    let motionFeedBackerImpl : MotionFeedBackerImpl = MotionFeedBackerImpl()
+    
     fileprivate init() {
     }
     
     public var turnMaxBeep = false
     public var turn1to3Beep = false
-    public var turnSwitch = false
+    public var isターン前半のタメ音声通知 = false
+    public var isターン切替時の減衰率の音声通知 = false
     func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
         let va = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
@@ -46,6 +48,19 @@ class MotionAnalyzerManager: ObservableObject{
             beepSoundForTurnPhaseSwitching(hz: 440.0, length: 0.1)
         }
     }
+    
+    func ターン前半のタメ音声通知(diffrencialRatio: Double){
+        if isターン前半のタメ音声通知{
+            motionFeedBackerImpl.result(score: Int(diffrencialRatio * 100))
+        }
+    }
+    
+    func ターン切替時の減衰率の音声通知(diffrencialRatio: Double){
+        if isターン切替時の減衰率の音声通知{
+            motionFeedBackerImpl.result(score: Int(diffrencialRatio * 100))
+        }
+    }
+    
     
     private func beepSoundForTurnPhaseSwitching(hz: Float, length: TimeInterval){
         SineWave.shared.hz = hz

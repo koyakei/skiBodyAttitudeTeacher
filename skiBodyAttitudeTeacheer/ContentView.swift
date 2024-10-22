@@ -146,6 +146,14 @@ struct ContentView: View {
                     Text("turn 1/3 beep stop")
                 }
             }
+            HStack{
+                Button(action: {MotionAnalyzerManager.shared.isターン切替時の減衰率の音声通知 = true}) {
+                    Text("ターン切替時の減衰率の音声通知 start ")
+                }
+                Button(action: {MotionAnalyzerManager.shared.isターン切替時の減衰率の音声通知 = false}) {
+                    Text("ターン切替時の減衰率の音声通知  stop")
+                }
+            }
             VStack {
                 
                 HStack{

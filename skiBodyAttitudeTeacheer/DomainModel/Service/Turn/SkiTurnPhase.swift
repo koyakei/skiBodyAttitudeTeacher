@@ -24,6 +24,7 @@ struct SkiTurnPhase : TooMuchInsideAngleFinderProtocol{
     let currentVelocityToSkiTop : Double
     let yawingDiffrencialFromIdealYaw: Double // z の理想とのち外 外すぎ + 内すぎ -
     let turnPhasePercentageByTime: Double
+    let currentOrthogonalVelocityRatioToStartOfTurnMinimumOrthogonalVelocity: Double
 //    let beforeTurnYawDiffrencial: Double
 }
 
