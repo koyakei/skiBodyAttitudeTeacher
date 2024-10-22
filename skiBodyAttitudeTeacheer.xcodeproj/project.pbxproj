@@ -91,6 +91,9 @@
 		BA4FE3642AC1D29000BDC119 /* 運動量測定.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3622AC1D29000BDC119 /* 運動量測定.swift */; };
 		BA4FE3662AC26B0A00BDC119 /* ExportStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */; };
 		BA4FE3672AC26B0A00BDC119 /* ExportStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */; };
+		BA6B2C5C2CC5690900414552 /* MaxSpeedFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6B2C5B2CC568F500414552 /* MaxSpeedFinder.swift */; };
+		BA6B2C5E2CC77CF400414552 /* MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6B2C5D2CC77CDC00414552 /* MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.swift */; };
+		BA6B2C602CC7A4CB00414552 /* SkiTurnPhaseByAngleFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6B2C5F2CC7A48600414552 /* SkiTurnPhaseByAngleFinder.swift */; };
 		BA794D472ACA4DCC00A80381 /* HealthCareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA794D462ACA4DCC00A80381 /* HealthCareManager.swift */; };
 		BA794D492ACA796700A80381 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA794D482ACA796700A80381 /* HealthKit.framework */; };
 		BA7CC0BA285191F100123290 /* QuaternionToEullerAngleDifferential.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */; };
@@ -242,6 +245,9 @@
 		BA4FE3622AC1D29000BDC119 /* 運動量測定.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "運動量測定.swift"; sourceTree = "<group>"; };
 		BA4FE3652AC26B0A00BDC119 /* ExportStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportStruct.swift; sourceTree = "<group>"; };
 		BA64A91929E997E600A3A96A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA6B2C5B2CC568F500414552 /* MaxSpeedFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxSpeedFinder.swift; sourceTree = "<group>"; };
+		BA6B2C5D2CC77CDC00414552 /* MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.swift; sourceTree = "<group>"; };
+		BA6B2C5F2CC7A48600414552 /* SkiTurnPhaseByAngleFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiTurnPhaseByAngleFinder.swift; sourceTree = "<group>"; };
 		BA794D462ACA4DCC00A80381 /* HealthCareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareManager.swift; sourceTree = "<group>"; };
 		BA794D482ACA796700A80381 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		BA7CC0B9285191F100123290 /* QuaternionToEullerAngleDifferential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuaternionToEullerAngleDifferential.swift; sourceTree = "<group>"; };
@@ -436,6 +442,8 @@
 		2EF63C1DBF006617208DBE5F /* SnowSports */ = {
 			isa = PBXGroup;
 			children = (
+				BA6B2C5F2CC7A48600414552 /* SkiTurnPhaseByAngleFinder.swift */,
+				BA6B2C5D2CC77CDC00414552 /* MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.swift */,
 				2EF6349EBE48A324D8010A7C /* IdealTurnConditionDetector.swift */,
 				2EF63BBC4C3B04B024C151A1 /* CurrentVelocity.swift */,
 				2EF635F7FC6B8FA10BED8322 /* TurnPeriodFinder */,
@@ -614,6 +622,7 @@
 		BAA0A9DA272BABA300FEDF23 /* DomainModel */ = {
 			isa = PBXGroup;
 			children = (
+				BA6B2C5B2CC568F500414552 /* MaxSpeedFinder.swift */,
 				BAA0AA132734DDE500FEDF23 /* Service */,
 				BAA0A9F9272F973700FEDF23 /* MotionFeedBackerDelegate.swift */,
 				2EF634061AA2AE9C93A8196E /* Entity */,
@@ -819,10 +828,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA4FE3632AC1D29000BDC119 /* 運動量測定.swift in Sources */,
+				BA6B2C602CC7A4CB00414552 /* SkiTurnPhaseByAngleFinder.swift in Sources */,
 				BA4C93CB27687BEE00E2C749 /* BLEService.swift in Sources */,
 				BAF25FF82759C80B009992C9 /* ToneSub.swift in Sources */,
 				BA3C93FA2722636B007D5325 /* ContentView.swift in Sources */,
 				BA3C93F82722636B007D5325 /* SkiBodyAttitudeTeacheerApp.swift in Sources */,
+				BA6B2C5C2CC5690900414552 /* MaxSpeedFinder.swift in Sources */,
 				BAA0A9FA272F973700FEDF23 /* MotionFeedBackerDelegate.swift in Sources */,
 				2EF634708DBE2CD1CD343B1F /* CurrentTimeCalculatorFromSystemUpTimeAndSystemBootedTime.swift in Sources */,
 				2EF63672289EDDE5A4871A40 /* PhysicsConstants.swift in Sources */,
@@ -855,6 +866,7 @@
 				2EF63308CEBB1EC4EF6BBE16 /* ScoreOfCenterOfMassMoveToFallLineDirectionInTurnEnd.swift in Sources */,
 				2EF6344254B370436EFF6AC1 /* ForwardAfterwardBalanceScore.swift in Sources */,
 				2EF635E3BC76C0B423AABECA /* MoveStopDiscriminator.swift in Sources */,
+				BA6B2C5E2CC77CF400414552 /* MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.swift in Sources */,
 				2EF63455FC5D5E76E185DE45 /* ToneOutputUnit.swift in Sources */,
 				2EF6367E6F3DCB9B18A304C1 /* MotionFeedBackerImpl.swift in Sources */,
 				2EF6309337E0D2256CFCA07D /* OneTurn.swift in Sources */,

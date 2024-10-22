@@ -4,20 +4,11 @@
 
 import Foundation
 
-struct Calc{
-    let bodyO: IsMovingDiscriminator
-    let bodyF: IsMovingDiscriminator
-    let skiO: IsMovingDiscriminator
-    let skiF: IsMovingDiscriminator
-}
-struct Distance{
-    let bodyODis: Double
-    let bodyFDis: Double
-}
-
-struct TurnVelocity{
-    let bodyO: Double
-    let bodyF: Double
-    let skiO: Double
-    let skiF: Double
+struct CurrentVelocity{
+    var initalSpeed: Double
+    mutating func handle(currentAcceleration : Double , currentiTimestamp :TimeInterval, beforeMovingPhaseTimeStamp: TimeInterval) -> Double{
+        let speed = initalSpeed + ((currentiTimestamp - beforeMovingPhaseTimeStamp) * currentAcceleration)
+        initalSpeed = speed
+        return speed
+    }
 }

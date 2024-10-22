@@ -238,8 +238,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "handle(movingPhase:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,8 +382,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "handle(movingPhase:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +494,8 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "handle(movingPhase:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -526,10 +526,10 @@
             filePath = "skiBodyAttitudeTeacheer/DomainModel/Service/Turn/NotFinishedTurn/SkiTurnPhaseAnalyzer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-(lhs:rhs:)"
-            landmarkType = "7">
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "simd_quatd"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

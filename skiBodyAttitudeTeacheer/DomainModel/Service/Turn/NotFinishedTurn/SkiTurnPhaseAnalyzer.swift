@@ -20,6 +20,18 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
     var lastTurnSwitchingAngle: simd_quatf = simd_quatf.init()
     var turnInFirstPhaseBorder: TurnInFirstPhaseBorder = TurnInFirstPhaseBorder.init()
     var turnDiffrencialFinder: TurnDiffrencialFinder = TurnDiffrencialFinder.init()
+    var beforeMovingPhaseTimeStamp : TimeInterval = 0
+    var currentVelocityToSkiTopOrientation : CurrentVelocity = CurrentVelocity.init(initalSpeed: 0)
+    var currentFallLineOrthogonalVelocityCalitulator: CurrentVelocity = CurrentVelocity.init(initalSpeed: 0)
+//    var 現在の相対速度をターン開始を０として設定 : Float = 0
+    var 現在までの最高速度とそのターンフェイズの情報 : SkiTurnPhase?
+    var beforeSkiTurnPhase : SkiTurnPhase?
+    var minimumFallLineOrthogonalVelocityInStartOfTurnCaliculator = MinimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.init(minVelocity: 0)
+    var isMaxSkiTurnPhaseByAngleFinder  = SkiTurnPhaseByAngleFinder.init()
+//    var 現在までの最低速度とそのターンフェイズの情報: SkiTurnPhase
+    // 前のターンの最大速度からの　ターン前半　外転角の大きさが大きいうちに外側方向への原則が大きいかどうか
+    var ターン前半で作ったタメ : Double = 0
+    var 前回ターン切り替え時の横移動速度 : Double = 0
     func handle(movingPhase:
             MovingPhase) -> SkiTurnPhase {
         let currentFloatQuatanion: simd_quatf =
@@ -31,7 +43,11 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
         if isTurnSwitching {
             lastTurnSwitchingAngle = currentFloatQuatanion
             turnDiffrencialFinder.turnswitchedRecive(movingPhase: movingPhase)
+            currentVelocityToSkiTopOrientation.initalSpeed = 0
         }
+        let cuurentVelocityToSkiTop = currentVelocityToSkiTopOrientation.handle(currentAcceleration: movingPhase.absoluteUserAcceleration.y, currentiTimestamp: movingPhase.timeStampSince1970, beforeMovingPhaseTimeStamp: beforeMovingPhaseTimeStamp)
+       
+        let 今の減衰率 =  cuurentVelocityToSkiTop / 現在までの最高速度とそのターンフェイズの情報!.currentVelocityToSkiTop
         let turnPhasePercantageByAngle = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
         let turnSwitchingDirection: TurnSwitchingDirection = turnSwitchingDirectionFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, currentYawingSide: movingPhase.absoluteRotationRate.yawingSide)
         let turnSideChangePeriod : TimeInterval = turnSideChangingPeriodFinder.handle(currentTimeStampSince1970: movingPhase.timeStampSince1970, isTurnSwitching: isTurnSwitching)
@@ -45,6 +61,18 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
                 TargetDirectionAccelerationAndRelativeAttitude
                 =
         FallLineOrthogonalAccelerationCalculator.handle(absoluteFallLineAttitude: fallLineAttitude, absoluteFallLineQuaternion: absoluteFallLineQuaternion, turnYawingSide: movingPhase.absoluteRotationRate.yawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userQuaternion: movingPhase.quaternion, userAttitude: movingPhase.attitude)
+        let currentFallLineOrthogonalVelocity = currentFallLineOrthogonalVelocityCalitulator.handle(currentAcceleration: fallLineOrthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration, currentiTimestamp: movingPhase.timeStampSince1970 , beforeMovingPhaseTimeStamp: beforeMovingPhaseTimeStamp)
+        if isTurnSwitching{
+            前回ターン切り替え時の横移動速度 = currentFallLineOrthogonalVelocity
+        }
+        if turnPhasePercantageByAngle < 0.5 { // 谷まわりだったらにするべきだがターン前半でもバグらないはず。ヘアピントンネルとか１８０ど曲がると問題が起きる。
+            minimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.handle(currentOrthogonalVelocity: currentFallLineOrthogonalVelocity)
+        }
+        let ゴール方向に向いているか？ = isMaxSkiTurnPhaseByAngleFinder.handle(currentTurnAnglePhasePercentage: turnPhasePercantageByAngle, currentTimeStamp: movingPhase.timeStampSince1970)
+        if ゴール方向に向いているか？ { //ターンマックスで横移動速度をリセット
+            currentFallLineOrthogonalVelocityCalitulator.initalSpeed = 0
+            ターン前半で作ったタメ = minimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.minVelocity /    前回ターン切り替え時の横移動速度
+        }
         let fallLineAcceleration = AccelerationForTargetAngle.getAcceleration(userAcceleration: movingPhase.absoluteUserAcceleration,
                                           userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineQuaternion)
         let idealYaw = turnDiffrencialFinder.currentIdealDiffrencial(currentAngle: movingPhase.quaternion, currentTime: movingPhase.timeStampSince1970)
@@ -55,7 +83,18 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
                                             orthogonalAccelerationAndRelativeAttitude: fallLineOrthogonalAccelerationAndRelativeAttitude,
                                                    absoluteAttitude: movingPhase.attitude, timeStampSince1970: movingPhase.timeStampSince1970, absoluteAcceleration: movingPhase.absoluteUserAcceleration,
                                              rotationRate: movingPhase.absoluteRotationRate, fallLineAttitude: fallLineAttitude, turnPhaseBy100: turnPhasePercantageByAngle ,lastSwitchedTurnAngle: lastTurnSwitchingAngle,
-                                             currentAttitude: movingPhase.quaternion, yawingDiffrencialFromIdealYaw: Double(idealYaw ), turnPhasePercentageByTime: perTime)
+                                             currentAttitude: movingPhase.quaternion, currentVelocityToSkiTop: cuurentVelocityToSkiTop, yawingDiffrencialFromIdealYaw: Double(idealYaw ), turnPhasePercentageByTime: perTime)
+        if 現在までの最高速度とそのターンフェイズの情報 != nil{
+            if  cuurentVelocityToSkiTop > 現在までの最高速度とそのターンフェイズの情報!.currentVelocityToSkiTop{
+                現在までの最高速度とそのターンフェイズの情報 = skiTurnPhase
+            }
+        }
+        // ターン指導で横にいくタメを作る定義
+        if isTurnSwitching {
+            let ターンエンドでの減衰率 = 今の減衰率
+            // ターンエンドでの速度減衰率をどう返すのか？　今の減衰率を音で表現してもいいだろ
+            
+        }
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhasePercantageByAngle),angleRange: Float(0.32)..<Float(0.33)) {
             MotionAnalyzerManager.shared.skiTurn1to3()
         }
@@ -63,7 +102,8 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
             MotionAnalyzerManager.shared.skiTurnMax()
         }
         
-        
+        beforeMovingPhaseTimeStamp = movingPhase.timeStampSince1970
+        beforeSkiTurnPhase = skiTurnPhase
         return skiTurnPhase
     }
 }
