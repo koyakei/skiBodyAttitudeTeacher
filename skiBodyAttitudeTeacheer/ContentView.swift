@@ -17,6 +17,7 @@ import AudioToolbox
 import Spatial
 
 let coreMotion = CMMotionManager()
+let xArbitCoreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
 
 struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
@@ -52,10 +53,12 @@ struct ContentView: View {
     @State private var receivedMessage = ""
     @State var currentAttitudePoint3d = Point3D.zero
     @State var currentAccel : Vector3D = Vector3D.forward
+    @State var skiVelocityToTop: Double = 0
+    var currentVelocity = CurrentVelocity.init(initalSpeed: 0)
     var body: some View {
         VStack{
             HStack{
-                Rectangle().fill(.blue).frame(width: (100 * currentAccel.z) + 100, height: 10)
+                Rectangle().fill(.blue).frame(width: (100 * currentAccel.y) + 100, height: 10)
             }
             HStack {
                 Text(String(Int(healthCareManager.heartRate ?? 0)) )
@@ -237,18 +240,18 @@ struct ContentView: View {
                         round(turnPhaseBy100 * 100 ))
                     )
                 }
-                        Text("yaw diff " + String(
-                            round(Angle.init(radians:idealDiffrencial).degrees)
-                        ))
-                    
-                    Text("by time turn phase " + String(
-                                                round(
-                                                    turnPhaseByTime * 100
+                Text("yaw diff " + String(
+                    round(Angle.init(radians:idealDiffrencial).degrees)
+                ))
+                
+                Text("by time turn phase " + String(
+                    round(
+                        turnPhaseByTime * 100
                         //                            Angle.init(radians:idealDiffrencial).degrees
-                                                     )
-                    ))
-                
-                
+                    )
+                ))
+                Text("current velocity to ski top " + String(round(skiVelocityToTop * 1000)))
+            
             }
         }
     }
@@ -259,31 +262,26 @@ struct ContentView: View {
                 to: .current!) { (motion, error) in
                     if let deviceMotioon: CMDeviceMotion = motion {
                         
-                        currentAccel = Vector3D(x: deviceMotioon.userAcceleration.x,y: deviceMotioon.userAcceleration.y, z: deviceMotioon.userAcceleration.z).rotated(by: Rotation3D(deviceMotioon.attitude.quaternion.simdQuat)
-                        )
+                         
+                        currentAccel.y = (simd_double3(deviceMotioon.userAcceleration.x, deviceMotioon.userAcceleration.y,
+                                                      deviceMotioon.userAcceleration.z)
+                                          * simd_double3(0, 1 ,0)).y
+                        MotionAnalyzerManager.shared.boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhaseAnalyzer.beforeMovingPhaseTimeStamp = Date.now.timeIntervalSince1970
                         let skiTurnPhase :SkiTurnPhase =
-                        
                         MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotioon,
                                                                         ProcessInfo
                             .processInfo.systemUptime
                         )
+                        skiVelocityToTop = skiTurnPhase.currentVelocityToSkiTop
                         if let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
                             turnManager.receive(coreMotion: deviceMotioon, startedTime: ProcessInfo
                                 .processInfo.systemUptime, fallLineDirectionGravityAbsoluteByNorth:
                                                     Rotation3D(skiTurnPhase.absoluteFallLineAttitude),
                                                 centerOfMassRelativeDirectionFromSki: measuredData.realDistance
-                                                
                             )
-                            
                         }
-                        
                     }
                     if let deviceMotioon: CMDeviceMotion = motion , let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
-                        
-                            
-                            
-                            
-                            
                             currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
                             //                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
                             //                                                   iy: Float(motion!.attitude.quaternion.y),
@@ -294,6 +292,7 @@ struct ContentView: View {
                             }
                             
                             idealDiffrencialConductor.data.detuningOffset = 440
+                        
 //                            turnYawingSide = skiTurnPhase.turnYawingSide
 //                            idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
 //                            orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude

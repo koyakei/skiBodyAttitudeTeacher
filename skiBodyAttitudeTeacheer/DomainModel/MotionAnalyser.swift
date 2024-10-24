@@ -27,6 +27,8 @@ class MotionAnalyzerManager: ObservableObject{
     public var turn1to3Beep = false
     public var isターン前半のタメ音声通知 = false
     public var isターン切替時の減衰率の音声通知 = false
+    var currentVelocity = CurrentVelocity.init(initalSpeed: 0)
+    var beforeTimeStamp: TimeInterval = Date.now.timeIntervalSince1970
     func receiveBoardMotion(_ motion: CMDeviceMotion, _
     receivedProcessUptime: TimeInterval) -> SkiTurnPhase {
         let va = boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.receiver(motion,
@@ -35,6 +37,15 @@ class MotionAnalyzerManager: ObservableObject{
         unifyBodyAndSkiTurn.receive(turnPhase: va)
         return va
     }
+    
+    func xArbitraryMotion(_ motion: CMDeviceMotion, _
+                          receivedProcessUptime: TimeInterval) -> Double{
+        let sysTime = Date(timeInterval: motion.timestamp, since: Date.now
+                .addingTimeInterval(receivedProcessUptime * -1)).timeIntervalSince1970
+        let currentV = currentVelocity.handle(currentAcceleration: motion.userAcceleration.y, currentiTimestamp: sysTime, beforeMovingPhaseTimeStamp: beforeTimeStamp)
+        beforeTimeStamp = sysTime
+        return currentV
+                          }
 
     // インターフェイスにして共通化したい
     func skiTurnMax() {
