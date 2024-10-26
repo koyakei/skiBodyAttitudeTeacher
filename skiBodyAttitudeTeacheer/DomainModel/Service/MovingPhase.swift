@@ -41,6 +41,7 @@ public struct MovingPhase: MovingPhaseProtocol {
     let timeStamp: Date
     let sensorLocation: CMDeviceMotion.SensorLocation
     let quaternion: simd_quatd
+    let gravity: CMAcceleration
 
     init(_ motion: CMDeviceMotion,
          _ timeStampSince1970: TimeInterval) {
@@ -61,39 +62,6 @@ public struct MovingPhase: MovingPhaseProtocol {
                                 r: motion.attitude.quaternion.w)
         timeStamp = Date(timeIntervalSince1970: timeStampSince1970)
         sensorLocation = motion.sensorLocation
-    }
-
-
-    init(movingPhase: MovingPhaseProtocol,
-         attitude: Attitude,
-         rotationRate: CMRotationRate,
-         quaternion: simd_quatd) {
-        self.attitude = attitude
-        absoluteUserAcceleration = movingPhase.absoluteUserAcceleration
-        timeStampSince1970 = movingPhase.timeStampSince1970
-        self.absoluteRotationRate = rotationRate
-        timeStamp = Date(timeIntervalSince1970: timeStampSince1970)
-        sensorLocation = movingPhase.sensorLocation
-        self.quaternion = quaternion
-    }
-
-    init(_ attitude: Attitude,
-         _ rotationRate: CMRotationRate,
-         _ acceleration: CMAcceleration,
-         _ timeStampSince1970: TimeInterval,
-         _ sensorLocation: CMDeviceMotion.SensorLocation,
-         _ quaternion: simd_quatd) {
-        self.timeStampSince1970 = timeStampSince1970
-        self.absoluteRotationRate = rotationRate
-        absoluteUserAcceleration = acceleration
-        self.attitude = attitude
-        timeStamp = Date(timeIntervalSince1970: timeStampSince1970)
-        self.sensorLocation = sensorLocation
-        self.quaternion = quaternion
+        gravity = motion.gravity
     }
 }
-
-
-
-
-

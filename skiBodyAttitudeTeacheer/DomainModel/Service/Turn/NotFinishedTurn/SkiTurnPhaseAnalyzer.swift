@@ -9,6 +9,8 @@ import Foundation
 import CoreMotion
 import simd
 import SceneKit
+import CoreMotion
+import Spatial
 
 class SkiTurnPhaseAnalyzer : ObservableObject{
     var turnSideChangingPeriodFinder: TurnSideChangingPeriodFinder =
@@ -20,7 +22,6 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
     var lastTurnSwitchingAngle: simd_quatf = simd_quatf.init()
     var turnInFirstPhaseBorder: TurnInFirstPhaseBorder = TurnInFirstPhaseBorder.init()
     var turnDiffrencialFinder: TurnDiffrencialFinder = TurnDiffrencialFinder.init()
-    var beforeMovingPhaseTimeStamp : TimeInterval = Date.now.timeIntervalSince1970
     var currentVelocityToSkiTopOrientation : CurrentVelocity = CurrentVelocity.init(initalSpeed: 0)
     var currentFallLineOrthogonalVelocityCalitulator: CurrentVelocity = CurrentVelocity.init(initalSpeed: 0)
 //    var 現在の相対速度をターン開始を０として設定 : Float = 0
@@ -48,26 +49,27 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
             lastTurnSwitchingAngle = currentFloatQuatanion
             turnDiffrencialFinder.turnswitchedRecive(movingPhase: movingPhase)
 //            currentVelocityToSkiTopOrientation.initalSpeed = 0
+            
+        }
+        var curentVelocityToSkiTop = 0.0
+        if let beforeSkiTurnPhase = beforeSkiTurnPhase{
+//            print((beforeSkiTurnPhase.timeStampSince1970 - movingPhase.timeStampSince1970 ) * (Vector3D(vector: simd_double3(beforeSkiTurnPhase.absoluteAcceleration.x, beforeSkiTurnPhase.absoluteAcceleration.y,                beforeSkiTurnPhase.absoluteAcceleration.z))).rotated(by: simd_inverse(beforeSkiTurnPhase.currentAttitude)).y)
+            
+            curentVelocityToSkiTop = currentVelocityToSkiTopOrientation.handle(currentAcceleration: (Vector3D(vector: simd_double3(movingPhase.absoluteUserAcceleration.x, movingPhase.absoluteUserAcceleration.y,
+                                                                                                                                   movingPhase.absoluteUserAcceleration.z )).reflected( Vector3D.forward.rotated(by: movingPhase.quaternion).normalized)).y
+                                                                                   , currentiTimestamp: movingPhase.timeStampSince1970, beforeMovingPhaseTimeStamp: beforeSkiTurnPhase.timeStampSince1970)
+        }
+        if isTurnSwitching{
+            if 現在までの最高速度とそのターンフェイズの情報 != nil && maxSkiSpeedInThisTurn != 0{
+                今のターン中のスキーの前後方向の最高速度からの減衰率 = curentVelocityToSkiTop / maxSkiSpeedInThisTurn
+            }
+            MotionAnalyzerManager.shared.ターン切替時の減衰率の音声通知(diffrencialRatio: 今のターン中のスキーの前後方向の最高速度からの減衰率)
+//            currentVelocityToSkiTopOrientation.initalSpeed = 0
             maxSkiSpeedInThisTurn = 0
         }
         
-        let curentVelocityToSkiTop = currentVelocityToSkiTopOrientation.handle(currentAcceleration:
-                                                                                simd_dot(
-                                                                                    simd_axis(simd_quatd(
-                                                                                        angle: Measurement(value: 90, unit: UnitAngle.degrees)
-                                                                                                .converted(to: .radians).value,
-                                                                                        axis: simd_double3(0 , 1 ,0)) * simd_inverse(
-                                                                                            movingPhase.quaternion)),
-                                                                                    simd_double3(movingPhase.absoluteUserAcceleration.x, movingPhase.absoluteUserAcceleration.y,
-                                                                                                 movingPhase.absoluteUserAcceleration.z)), currentiTimestamp: movingPhase.timeStampSince1970, beforeMovingPhaseTimeStamp: beforeMovingPhaseTimeStamp)
-        if isTurnSwitching{
-            MotionAnalyzerManager.shared.ターン切替時の減衰率の音声通知(diffrencialRatio: curentVelocityToSkiTop)
-        }
         if maxSkiSpeedInThisTurn < curentVelocityToSkiTop{
             maxSkiSpeedInThisTurn = curentVelocityToSkiTop
-        }
-        if 現在までの最高速度とそのターンフェイズの情報 != nil {
-            今のターン中のスキーの前後方向の最高速度からの減衰率 = curentVelocityToSkiTop / maxSkiSpeedInThisTurn
         }
         
         let turnPhasePercantageByAngle = FindTurnPhaseBy100.init().handle(currentRotationEullerAngleFromTurnSwitching: CurrentDiffrentialFinder.init().handle(lastTurnSwitchAngle: lastTurnSwitchingAngle, currentQuaternion: currentFloatQuatanion), oneTurnDiffrentialAngle: oneTurnDiffAngleEuller)
@@ -83,8 +85,10 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
                 TargetDirectionAccelerationAndRelativeAttitude
                 =
         FallLineOrthogonalAccelerationCalculator.handle( absoluteFallLineAttitude: fallLineAttitude, absoluteFallLineQuaternion: absoluteFallLineQuaternion, turnYawingSide: movingPhase.absoluteRotationRate.yawingSide, userAcceleration: movingPhase.absoluteUserAcceleration, userQuaternion: movingPhase.quaternion, userAttitude: movingPhase.attitude)
-        
-        let currentFallLineOrthogonalVelocity = currentFallLineOrthogonalVelocityCalitulator.handle(currentAcceleration: fallLineOrthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration, currentiTimestamp: movingPhase.timeStampSince1970 , beforeMovingPhaseTimeStamp: beforeMovingPhaseTimeStamp)
+        var currentFallLineOrthogonalVelocity = 0.0
+        if let beforeSkiTurnPhase = beforeSkiTurnPhase{
+            currentFallLineOrthogonalVelocity = currentFallLineOrthogonalVelocityCalitulator.handle(currentAcceleration: fallLineOrthogonalAccelerationAndRelativeAttitude.targetDirectionAcceleration, currentiTimestamp: movingPhase.timeStampSince1970 , beforeMovingPhaseTimeStamp: beforeSkiTurnPhase.timeStampSince1970)
+        }
         if isTurnSwitching{
             前回ターン切り替え時の横移動速度 = currentFallLineOrthogonalVelocity
         }
@@ -112,6 +116,8 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
             if  curentVelocityToSkiTop > 現在までの最高速度とそのターンフェイズの情報!.currentVelocityToSkiTop{
                 現在までの最高速度とそのターンフェイズの情報 = skiTurnPhase
             }
+        } else{
+            現在までの最高速度とそのターンフェイズの情報 = skiTurnPhase
         }
         // ターン指導で横にいくタメを作る定義
         if isTurnSwitching {
@@ -125,8 +131,6 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
         if turnInFirstPhaseBorder.handle(isTurnSwitching: isTurnSwitching, turnPhaseBy100: Float(turnPhasePercantageByAngle),angleRange: Float(0.49)..<Float(0.50)) {
             MotionAnalyzerManager.shared.skiTurnMax()
         }
-        
-        beforeMovingPhaseTimeStamp = movingPhase.timeStampSince1970
         beforeSkiTurnPhase = skiTurnPhase
         return skiTurnPhase
     }

@@ -7,8 +7,7 @@ import Foundation
 struct CurrentVelocity{
     var initalSpeed: Double
     mutating func handle(currentAcceleration : Double , currentiTimestamp :TimeInterval, beforeMovingPhaseTimeStamp: TimeInterval) -> Double{
-        let speed = initalSpeed + ((beforeMovingPhaseTimeStamp - currentiTimestamp ) * currentAcceleration)
-        initalSpeed = speed
-        return speed
+        initalSpeed += ( currentiTimestamp - beforeMovingPhaseTimeStamp) * currentAcceleration * -1
+        return initalSpeed
     }
 }

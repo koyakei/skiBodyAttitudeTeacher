@@ -57,9 +57,13 @@ struct ContentView: View {
     var currentVelocity = CurrentVelocity.init(initalSpeed: 0)
     var body: some View {
         VStack{
-            HStack{
-                Rectangle().fill(.blue).frame(width: (100 * currentAccel.y) + 100, height: 10)
-            }
+            
+            Rectangle().fill(.red).frame(width: (200 * currentAccel.x) + 200, height: 10)
+                Rectangle().fill(.blue).frame(width: (200 * currentAccel.y) + 200, height: 10)
+            Rectangle().fill(.brown).frame(width: (200 * currentAccel.z) + 200, height: 10)
+            Text(String(currentAccel.x))
+            Text(String(currentAccel.y))
+            Text(String(currentAccel.z))
             HStack {
                 Text(String(Int(healthCareManager.heartRate ?? 0)) )
                 Button(" get hear rate"){
@@ -262,11 +266,10 @@ struct ContentView: View {
                 to: .current!) { (motion, error) in
                     if let deviceMotioon: CMDeviceMotion = motion {
                         
-                         
-                        currentAccel.y = (simd_double3(deviceMotioon.userAcceleration.x, deviceMotioon.userAcceleration.y,
-                                                      deviceMotioon.userAcceleration.z)
-                                          * simd_double3(0, 1 ,0)).y
-                        MotionAnalyzerManager.shared.boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhaseAnalyzer.beforeMovingPhaseTimeStamp = Date.now.timeIntervalSince1970
+                        currentAccel = Vector3D(vector: simd_double3(
+                            deviceMotioon.userAcceleration.x, deviceMotioon.userAcceleration.y,
+                            deviceMotioon.userAcceleration.z )).reflected( Vector3D.forward.rotated(by: deviceMotioon.attitude.quaternion.simdQuat).normalized)
+                        
                         let skiTurnPhase :SkiTurnPhase =
                         MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotioon,
                                                                         ProcessInfo
@@ -323,6 +326,7 @@ struct ContentView: View {
     func stopRecord(){
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
+        MotionAnalyzerManager.shared.boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhaseAnalyzer.beforeSkiTurnPhase = nil
     }
     
 

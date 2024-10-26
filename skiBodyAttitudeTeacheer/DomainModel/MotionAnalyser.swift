@@ -37,15 +37,6 @@ class MotionAnalyzerManager: ObservableObject{
         unifyBodyAndSkiTurn.receive(turnPhase: va)
         return va
     }
-    
-    func xArbitraryMotion(_ motion: CMDeviceMotion, _
-                          receivedProcessUptime: TimeInterval) -> Double{
-        let sysTime = Date(timeInterval: motion.timestamp, since: Date.now
-                .addingTimeInterval(receivedProcessUptime * -1)).timeIntervalSince1970
-        let currentV = currentVelocity.handle(currentAcceleration: motion.userAcceleration.y, currentiTimestamp: sysTime, beforeMovingPhaseTimeStamp: beforeTimeStamp)
-        beforeTimeStamp = sysTime
-        return currentV
-                          }
 
     // インターフェイスにして共通化したい
     func skiTurnMax() {
