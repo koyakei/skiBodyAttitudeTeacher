@@ -53,18 +53,16 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
         }
         var curentVelocityToSkiTop = 0.0
         if let beforeSkiTurnPhase = beforeSkiTurnPhase{
-//            print((beforeSkiTurnPhase.timeStampSince1970 - movingPhase.timeStampSince1970 ) * (Vector3D(vector: simd_double3(beforeSkiTurnPhase.absoluteAcceleration.x, beforeSkiTurnPhase.absoluteAcceleration.y,                beforeSkiTurnPhase.absoluteAcceleration.z))).rotated(by: simd_inverse(beforeSkiTurnPhase.currentAttitude)).y)
-            
-            curentVelocityToSkiTop = currentVelocityToSkiTopOrientation.handle(currentAcceleration: (Vector3D(vector: simd_double3(movingPhase.absoluteUserAcceleration.x, movingPhase.absoluteUserAcceleration.y,
-                                                                                                                                   movingPhase.absoluteUserAcceleration.z )).reflected( Vector3D.forward.rotated(by: movingPhase.quaternion).normalized)).y
+            curentVelocityToSkiTop = currentVelocityToSkiTopOrientation.handle(currentAcceleration: movingPhase.absoluteUserAcceleration.y
                                                                                    , currentiTimestamp: movingPhase.timeStampSince1970, beforeMovingPhaseTimeStamp: beforeSkiTurnPhase.timeStampSince1970)
         }
         if isTurnSwitching{
+            MotionAnalyzerManager.shared.skiTurnSwitching()
             if 現在までの最高速度とそのターンフェイズの情報 != nil && maxSkiSpeedInThisTurn != 0{
                 今のターン中のスキーの前後方向の最高速度からの減衰率 = curentVelocityToSkiTop / maxSkiSpeedInThisTurn
             }
             MotionAnalyzerManager.shared.ターン切替時の減衰率の音声通知(diffrencialRatio: 今のターン中のスキーの前後方向の最高速度からの減衰率)
-//            currentVelocityToSkiTopOrientation.initalSpeed = 0
+            currentVelocityToSkiTopOrientation.initalSpeed = 0
             maxSkiSpeedInThisTurn = 0
         }
         
@@ -99,7 +97,7 @@ class SkiTurnPhaseAnalyzer : ObservableObject{
         if ゴール方向に向いているか？ { //ターンマックスで横移動速度をリセット
             currentFallLineOrthogonalVelocityCalitulator.initalSpeed = 0
             ターン前半で作ったタメ = minimumFallLineOrthogonalVelocityInStartOfTurnCaliculator.minVelocity /    前回ターン切り替え時の横移動速度
-            MotionAnalyzerManager.shared.ターン切替時の減衰率の音声通知(diffrencialRatio: ターン前半で作ったタメ)
+            MotionAnalyzerManager.shared.ターン前半のタメ(diffrencialRatio: ターン前半で作ったタメ)
         }
         let fallLineAcceleration = AccelerationForTargetAngle.getAcceleration(userAcceleration: movingPhase.absoluteUserAcceleration,
                                           userAttitude: movingPhase.quaternion, targetAttitude: absoluteFallLineQuaternion)

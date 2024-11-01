@@ -19,6 +19,7 @@ import Spatial
 let coreMotion = CMMotionManager()
 let xArbitCoreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
+let batchedSensorManager = CMBatchedSensorManager()
 
 struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
     let deveceMotion: CMDeviceMotion
@@ -153,6 +154,15 @@ struct ContentView: View {
                     Text("turn 1/3 beep stop")
                 }
             }
+            
+            HStack{
+                Button(action: {MotionAnalyzerManager.shared.turnSwitchingBeep = true}) {
+                    Text("turn switching beep start ")
+                }
+                Button(action: {MotionAnalyzerManager.shared.turnSwitchingBeep = false}) {
+                    Text("turn switching beep stop")
+                }
+            }
             HStack{
                 Button(action: {MotionAnalyzerManager.shared.isターン切替時の減衰率の音声通知 = true}) {
                     Text("ターン切替時の減衰率の音声通知 start ")
@@ -259,67 +269,80 @@ struct ContentView: View {
             }
         }
     }
-    
+    private func motinoCalc(deviceMotion: CMDeviceMotion){
+        currentAccel = Vector3D(vector: simd_double3(
+            deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y,
+            deviceMotion.userAcceleration.z ))
+        
+        let skiTurnPhase :SkiTurnPhase =
+        MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotion,
+                                                        ProcessInfo
+            .processInfo.systemUptime
+        )
+        skiVelocityToTop = skiTurnPhase.currentVelocityToSkiTop
+        if let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
+            turnManager.receive(coreMotion: deviceMotion, startedTime: ProcessInfo
+                .processInfo.systemUptime, fallLineDirectionGravityAbsoluteByNorth:
+                                    Rotation3D(skiTurnPhase.absoluteFallLineAttitude),
+                                centerOfMassRelativeDirectionFromSki: measuredData.realDistance
+            )
+        }
+    }
     func startRecord(){
-        coreMotion.startDeviceMotionUpdates(
-            using: .xTrueNorthZVertical,
+        if batchedSensorManager.isDeviceMotionActive {
+            batchedSensorManager.startDeviceMotionUpdates{
+                (motion, error) in
+                if let deviceMotionList: [CMDeviceMotion] = motion {
+                    for deviceMotion in deviceMotionList{
+                        motinoCalc(deviceMotion: deviceMotion)
+                    }
+                }
+            }
+        } else {
+            
+            coreMotion.startDeviceMotionUpdates(
+                using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
-                    if let deviceMotioon: CMDeviceMotion = motion {
-                        
-                        currentAccel = Vector3D(vector: simd_double3(
-                            deviceMotioon.userAcceleration.x, deviceMotioon.userAcceleration.y,
-                            deviceMotioon.userAcceleration.z )).reflected( Vector3D.forward.rotated(by: deviceMotioon.attitude.quaternion.simdQuat).normalized)
-                        
-                        let skiTurnPhase :SkiTurnPhase =
-                        MotionAnalyzerManager.shared.receiveBoardMotion(deviceMotioon,
-                                                                        ProcessInfo
-                            .processInfo.systemUptime
-                        )
-                        skiVelocityToTop = skiTurnPhase.currentVelocityToSkiTop
-                        if let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
-                            turnManager.receive(coreMotion: deviceMotioon, startedTime: ProcessInfo
-                                .processInfo.systemUptime, fallLineDirectionGravityAbsoluteByNorth:
-                                                    Rotation3D(skiTurnPhase.absoluteFallLineAttitude),
-                                                centerOfMassRelativeDirectionFromSki: measuredData.realDistance
-                            )
-                        }
+                    if let deviceMotion: CMDeviceMotion = motion {
+                        motinoCalc(deviceMotion: deviceMotion)
                     }
                     if let deviceMotioon: CMDeviceMotion = motion , let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
-                            currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
-                            //                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
-                            //                                                   iy: Float(motion!.attitude.quaternion.y),
-                            //                                                   iz: Float(motion!.attitude.quaternion.z),
-                            //                                                   r: Float(motion!.attitude.quaternion.w))
-                            if MotionAnalyzerManager.shared.磁北偏差 == nil{
-                                MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
-                            }
-                            
-                            idealDiffrencialConductor.data.detuningOffset = 440
-                        
-//                            turnYawingSide = skiTurnPhase.turnYawingSide
-//                            idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
-//                            orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
-//                            absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
-//                            turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
-//                            turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
-//                            if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
-//                            ) {
-//                                idealDiffrencialConductor.changeWaveFormToSquare()
-//                            } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
-//                                idealDiffrencialConductor.changeWaveFormToSin()
-//                            } else{
-//                                idealDiffrencialConductor.changeWaveFormToTriangle()
-//                            }
-//                            idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
-//                                abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
-//                                    .converted(to: .degrees).value)))))
-                            conductor.data.frequency = AUValue(ToneStep.hight(
-                                abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
-                                    .converted(to: .degrees).value)))))
+                        currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
+                        //                    simd_quatf.init(ix: Float(motion!.attitude.quaternion.x),
+                        //                                                   iy: Float(motion!.attitude.quaternion.y),
+                        //                                                   iz: Float(motion!.attitude.quaternion.z),
+                        //                                                   r: Float(motion!.attitude.quaternion.w))
+                        if MotionAnalyzerManager.shared.磁北偏差 == nil{
+                            MotionAnalyzerManager.shared.磁北偏差 = motion!.attitude.yaw
                         }
+                        
+                        idealDiffrencialConductor.data.detuningOffset = 440
+                        
+                        //                            turnYawingSide = skiTurnPhase.turnYawingSide
+                        //                            idealDiffrencial = skiTurnPhase.yawingDiffrencialFromIdealYaw
+                        //                            orthogonalAttitude = skiTurnPhase.orthogonalAccelerationAndRelativeAttitude.attitude
+                        //                            absoluteFallLineAttitude = skiTurnPhase.fallLineAttitude
+                        //                            turnPhaseBy100 = skiTurnPhase.turnPhaseBy100
+                        //                            turnPhaseByTime = skiTurnPhase.turnPhasePercentageByTime
+                        //                            if(-0.08726646259971647..<0.08726646259971647 ~= skiTurnPhase.yawingDiffrencialFromIdealYaw
+                        //                            ) {
+                        //                                idealDiffrencialConductor.changeWaveFormToSquare()
+                        //                            } else if (skiTurnPhase.yawingDiffrencialFromIdealYaw.sign == .plus){
+                        //                                idealDiffrencialConductor.changeWaveFormToSin()
+                        //                            } else{
+                        //                                idealDiffrencialConductor.changeWaveFormToTriangle()
+                        //                            }
+                        //                            idealDiffrencialConductor.data.frequency = AUValue(ToneStep.hight(
+                        //                                abs(ceil(Float(Measurement(value: skiTurnPhase.yawingDiffrencialFromIdealYaw, unit: UnitAngle.radians)
+                        //                                    .converted(to: .degrees).value)))))
+                        conductor.data.frequency = AUValue(ToneStep.hight(
+                            abs(ceil(Float(Measurement(value: motion!.attitude.roll, unit: UnitAngle.radians)
+                                .converted(to: .degrees).value)))))
                     }
-        headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
-            headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
+                }
+            headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
+                headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
+            }
         }
     }
     
