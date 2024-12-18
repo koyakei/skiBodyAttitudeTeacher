@@ -75,8 +75,6 @@
 		BA3C93FC2722636E007D5325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FB2722636E007D5325 /* Assets.xcassets */; };
 		BA3C93FF2722636E007D5325 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3C93FE2722636E007D5325 /* Preview Assets.xcassets */; };
 		BA3C94092722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C94082722636E007D5325 /* skiBodyAttitudeTeacheerTests.swift */; };
-		BA44FF7E2767A1B8002653AB /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF7D2767A1B8002653AB /* AudioKit */; };
-		BA44FF8327682107002653AB /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF8227682107002653AB /* AudioKitUI */; };
 		BA44FF862768219B002653AB /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA44FF852768219B002653AB /* SoundpipeAudioKit */; };
 		BA4C32AC2ABB3DAF0032AB56 /* SkiWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C32AB2ABB3DAF0032AB56 /* SkiWatchApp.swift */; };
 		BA4C32AE2ABB3DAF0032AB56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C32AD2ABB3DAF0032AB56 /* ContentView.swift */; };
@@ -279,8 +277,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA44FF7E2767A1B8002653AB /* AudioKit in Frameworks */,
-				BA44FF8327682107002653AB /* AudioKitUI in Frameworks */,
 				BA44FF862768219B002653AB /* SoundpipeAudioKit in Frameworks */,
 				BAB2653A274BBBB0001A51BA /* CoreLocation.framework in Frameworks */,
 				BA794D492ACA796700A80381 /* HealthKit.framework in Frameworks */,
@@ -704,8 +700,6 @@
 			);
 			name = skiBodyAttitudeTeacheer;
 			packageProductDependencies = (
-				BA44FF7D2767A1B8002653AB /* AudioKit */,
-				BA44FF8227682107002653AB /* AudioKitUI */,
 				BA44FF852768219B002653AB /* SoundpipeAudioKit */,
 			);
 			productName = skiBodyAttitudeTeacheer;
@@ -779,8 +773,6 @@
 			);
 			mainGroup = BA3C93EB2722636B007D5325;
 			packageReferences = (
-				BA44FF7C2767A1B8002653AB /* XCRemoteSwiftPackageReference "AudioKit" */,
-				BA44FF8127682107002653AB /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 				BA44FF842768219B002653AB /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 			);
 			productRefGroup = BA3C93F52722636B007D5325 /* Products */;
@@ -1343,22 +1335,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BA44FF7C2767A1B8002653AB /* XCRemoteSwiftPackageReference "AudioKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		BA44FF8127682107002653AB /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/koyakei/AudioKitUI";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		BA44FF842768219B002653AB /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
@@ -1370,16 +1346,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BA44FF7D2767A1B8002653AB /* AudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BA44FF7C2767A1B8002653AB /* XCRemoteSwiftPackageReference "AudioKit" */;
-			productName = AudioKit;
-		};
-		BA44FF8227682107002653AB /* AudioKitUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BA44FF8127682107002653AB /* XCRemoteSwiftPackageReference "AudioKitUI" */;
-			productName = AudioKitUI;
-		};
 		BA44FF852768219B002653AB /* SoundpipeAudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BA44FF842768219B002653AB /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;

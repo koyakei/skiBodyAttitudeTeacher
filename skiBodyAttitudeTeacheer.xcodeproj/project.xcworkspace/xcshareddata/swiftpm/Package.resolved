@@ -1,4 +1,5 @@
 {
+  "originHash" : "6241d9de4069effd8c980825fa9513206018213cdfd5463c74c910596a4a4362",
   "pins" : [
     {
       "identity" : "audiokit",
@@ -7,15 +8,6 @@
       "state" : {
         "revision" : "9d25f6c1e40975f321786d9b70502b4d74421707",
         "version" : "5.2.3"
-      }
-    },
-    {
-      "identity" : "audiokitui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/koyakei/AudioKitUI",
-      "state" : {
-        "branch" : "main",
-        "revision" : "da1f7de619588f9199d33e59540f66cda464e7c7"
       }
     },
     {
@@ -37,5 +29,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

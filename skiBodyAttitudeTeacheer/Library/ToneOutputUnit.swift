@@ -9,7 +9,6 @@ import Foundation
 import AVFoundation
 import UIKit
 import AudioKit
-import AudioKitUI
 import AudioToolbox
 import SoundpipeAudioKit
 import Combine
@@ -30,7 +29,7 @@ struct DynamicOscillatorData {
     var detuningOffset: AUValue = 440
 }
 
-class DynamicOscillatorConductor: ObservableObject, KeyboardDelegate {
+class DynamicOscillatorConductor: ObservableObject {
 
     let engine = AudioEngine()
 
