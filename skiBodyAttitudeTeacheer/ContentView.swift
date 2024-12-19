@@ -20,7 +20,7 @@ let coreMotion = CMMotionManager()
 let xArbitCoreMotion = CMMotionManager()
 let headphoneMotion = CMHeadphoneMotionManager()
 let batchedSensorManager = CMBatchedSensorManager()
-
+let motionWriter = MotionWriter()
 struct CoreMotionWithTimeStamp :CoreMotionWithTimeStampProtocol{
     let deveceMotion: CMDeviceMotion
     
@@ -58,9 +58,8 @@ struct ContentView: View {
     var currentVelocity = CurrentVelocity.init(initalSpeed: 0)
     var body: some View {
         VStack{
-            
             Rectangle().fill(.red).frame(width: (200 * currentAccel.x) + 200, height: 10)
-                Rectangle().fill(.blue).frame(width: (200 * currentAccel.y) + 200, height: 10)
+            Rectangle().fill(.blue).frame(width: (200 * currentAccel.y) + 200, height: 10)
             Rectangle().fill(.brown).frame(width: (200 * currentAccel.z) + 200, height: 10)
             Text(String(currentAccel.x))
             Text(String(currentAccel.y))
@@ -289,6 +288,13 @@ struct ContentView: View {
         }
     }
     func startRecord(){
+        let fm = FileManager.default
+                let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+                //let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let filePath = documentsPath + "/myfile.txt"
+                if !fm.fileExists(atPath: filePath) {
+                    fm.createFile(atPath: filePath, contents: nil, attributes: [:])
+                }
         if batchedSensorManager.isDeviceMotionActive {
             batchedSensorManager.startDeviceMotionUpdates{
                 (motion, error) in
@@ -299,12 +305,13 @@ struct ContentView: View {
                 }
             }
         } else {
-            
+            motionWriter.open(MotionWriter.makeFilePath(fileAlias: "motionRecord"))
             coreMotion.startDeviceMotionUpdates(
                 using: .xTrueNorthZVertical,
                 to: .current!) { (motion, error) in
                     if let deviceMotion: CMDeviceMotion = motion {
                         motinoCalc(deviceMotion: deviceMotion)
+                        motionWriter.write(deviceMotion)
                     }
                     if let deviceMotioon: CMDeviceMotion = motion , let measuredData: UMBMeasuredData = messageManager.umbMeasuredData {
                         currentAttitude = Attitude.init(roll: motion!.attitude.roll, yaw: motion!.attitude.yaw, pitch: motion!.attitude.pitch)
@@ -340,15 +347,16 @@ struct ContentView: View {
                                 .converted(to: .degrees).value)))))
                     }
                 }
-            headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
-                headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
-            }
+//            headphoneMotion.startDeviceMotionUpdates(to: .main) { (motion, error) in
+//                headPhoneMotionDeviceLeft = Attitude.init(roll: 0, yaw: motion!.attitude.yaw + MotionAnalyzerManager.shared.磁北偏差!, pitch: 0)
+//            }
         }
     }
     
     func stopRecord(){
         coreMotion.stopDeviceMotionUpdates()
         headphoneMotion.stopDeviceMotionUpdates()
+        motionWriter.close()
         MotionAnalyzerManager.shared.boardに裏返して進行方向にX軸を向けたPhoneTurnReceiver.turnPhaseAnalyzer.beforeSkiTurnPhase = nil
     }
     

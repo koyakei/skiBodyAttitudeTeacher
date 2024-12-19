@@ -51,6 +51,7 @@ class MotionWriter {
     func write(_ motion: CMDeviceMotion) {
         guard let file = self.file else { return }
         var text = ""
+        text += "\(motion.timestamp),"
         text += "\(motion.userAcceleration.x),"
         text += "\(motion.userAcceleration.y),"
         text += "\(motion.userAcceleration.z),"
@@ -82,12 +83,8 @@ class MotionWriter {
         self.file = nil
     }
 
-    static func getDocumentPath() -> URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
-
     static func makeFilePath(fileAlias: String) -> URL {
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = URL.documentsDirectory
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd_HHmmss"
         let filename = formatter.string(from: Date()) + "\(fileAlias).csv"
